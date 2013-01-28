@@ -1,0 +1,8 @@
+# Generic files to ignore
+*.DS_Store
+
+# NetBeans specific
+nbproject
+nbproject/private/
+nbactions.xml
+nb-configuration.xml
