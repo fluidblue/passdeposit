@@ -1,1 +1,1 @@
-Licensed under GLPv3
+Licensed under GPLv3
