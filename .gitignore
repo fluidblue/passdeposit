@@ -6,3 +6,6 @@ nbproject
 nbproject/private/
 nbactions.xml
 nb-configuration.xml
+
+# Project specific
+src/config.sample.php
