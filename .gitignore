@@ -8,4 +8,4 @@ nbactions.xml
 nb-configuration.xml
 
 # Project specific
-src/config.sample.php
+src/config.php
