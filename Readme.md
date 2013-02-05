@@ -23,7 +23,7 @@ Use PassDeposit at <https://www.passdeposit.com> for free.
 
 You can use PassDeposit without installation at <https://www.passdeposit.com>
 
-Alternatively, you can download the latest version and use it on your own server. See Install.txt for more information.
+Alternatively, you can download the latest version and use it on your own server. See Install.md for more information.
 
 
 ## Bugs
@@ -35,4 +35,4 @@ Please report bugs to <https://github.com/fluidblue/passdeposit/issues>
 
 Copyright (C) 2013 Max Geissler
 
-This program is free software, licensed under the GNU Affero General Public License (AGPL). Please see License.txt for more information.
+This program is free software, licensed under the GNU Affero General Public License (AGPL). Please see License.md for more information.

@@ -1,6 +1,6 @@
 # PassDeposit Installation
 
-Please read carefully through both this document and Readme.txt
+Please read carefully through both this document and Readme.md
 
 
 ## Do you need to install PassDeposit yourself?
