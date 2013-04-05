@@ -4,7 +4,7 @@
  * @author Max Geissler
  */
 
-var tabChangeDuration = 200;
+var tabChangeDuration = 300;
 
 function changeTab(visibleElement)
 {
@@ -14,10 +14,10 @@ function changeTab(visibleElement)
 	$(".content").stop(true, true);
 	$("#content").stop(true, true);
 	
-	$("#content").animate({ height: $(visibleElement).height() + 20 }, tabChangeDuration * 2);
+	$("#content").animate({ height: $(visibleElement).height() + 20 }, tabChangeDuration);
 	
 	$(".content").fadeOut(tabChangeDuration);
-	$(visibleElement).delay(tabChangeDuration).fadeIn(tabChangeDuration);
+	$(visibleElement).fadeIn(tabChangeDuration);
 	
 	/*$(".content").fadeOut(tabChangeDuration, function()
 	{
