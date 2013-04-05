@@ -46,12 +46,12 @@ table td, table th
 	padding: 0;
 }
 
-.hidden
-{
-	display: none;
-}
-
 .tab
 {
 	cursor: default;
+}
+
+#content
+{
+	overflow: hidden;
 }

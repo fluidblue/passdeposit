@@ -30,34 +30,36 @@ $user = isset($_COOKIE['user']) ? $_COOKIE['user'] : '';
 	<div id="loginTab" class="tab">Login</div>
 	<div id="registerTab" class="tab">Register</div>
 	<div id="aboutTab" class="tab">About</div>
-	<div id="loginContent" class="content">
-		<form id="loginForm" action="." method="post" autocomplete="off">
-			<div>
-				<input name="mail" type="email" id="loginUser" value="<?php echo $user; ?>" class="text" placeholder="Email address" required="required" />
-				<br />
-				<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
-				<br />
-				<input type="submit" id="loginButton" value="Login" class="button" />
-			</div>
-		</form>
-	</div>
-	<div id="registerContent" class="hidden content">
-		<form id="registerForm" action="." method="post" autocomplete="off">
-			<div>
-				<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
-				<br />
-				<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" required="required" />
-				<br />
-				<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
-				<br />
-				<input name="passhint" type="text" value="" class="text" placeholder="Password hint" required="required" />
-				<br />
-				<input type="submit" id="registerButton" value="Register" class="button" />
-			</div>
-		</form>
-	</div>
-	<div id="aboutContent" class="hidden content">
-		Information
+	<div id="content">
+		<div id="loginContent" class="content">
+			<form id="loginForm" action="." method="post" autocomplete="off">
+				<div>
+					<input name="mail" type="email" id="loginUser" value="<?php echo $user; ?>" class="text" placeholder="Email address" required="required" />
+					<br />
+					<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
+					<br />
+					<input type="submit" id="loginButton" value="Login" class="button" />
+				</div>
+			</form>
+		</div>
+		<div id="registerContent" class="content">
+			<form id="registerForm" action="." method="post" autocomplete="off">
+				<div>
+					<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
+					<br />
+					<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" required="required" />
+					<br />
+					<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
+					<br />
+					<input name="passhint" type="text" value="" class="text" placeholder="Password hint" required="required" />
+					<br />
+					<input type="submit" id="registerButton" value="Register" class="button" />
+				</div>
+			</form>
+		</div>
+		<div id="aboutContent" class="content">
+			Information
+		</div>
 	</div>
 	<div>Copyright &copy; 2013 Max Geissler</div>
 </body>
