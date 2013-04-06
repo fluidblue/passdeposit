@@ -4,30 +4,24 @@
  * @author Max Geissler
  */
 
-var tabChangeDuration = 300;
-
 function changeTab(visibleElement)
 {
-	//$("#content").height($("#loginContent").height());
-	//alert($(visibleElement).height());
+	var tabChangeDuration = 400;
 	
-	$(".content").stop(true, true);
-	$("#content").stop(true, true);
+	// Cancel when element is already visible
+	if ($(visibleElement).is(':visible'))
+		return;
 	
+	// Stop all runnning and queued animations
+	$(".content").stop(true, false);
+	$("#content").stop(true, false);
+	
+	// Animate container's height
 	$("#content").animate({ height: $(visibleElement).height() + 20 }, tabChangeDuration);
 	
+	// Fade content
 	$(".content").fadeOut(tabChangeDuration);
 	$(visibleElement).fadeIn(tabChangeDuration);
-	
-	/*$(".content").fadeOut(tabChangeDuration, function()
-	{
-		
-		//$(visibleElement).fadeIn(tabChangeDuration);
-		$(visibleElement).delay(1000).css("display", "block");
-	});*/
-	
-	//$(".content").css("display", "none");
-	//$(visibleContent).css("display", "block");
 };
 
 function App()
