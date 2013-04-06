@@ -25,8 +25,8 @@ input.button
 	
 	text-align: center;
 	padding: 7px 50px;
-	/*font-size: 13px;*/
-	font-weight: 600;
+	
+	/* font-weight: 600; TODO: Keep? */
 	cursor: pointer;
 	overflow: visible;
 
