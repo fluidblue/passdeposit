@@ -17,50 +17,57 @@ $user = isset($_COOKIE['user']) ? $_COOKIE['user'] : '';
 	<title>PassDeposit</title>
 	<link rel="icon" type="image/x-icon" href="img/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/font.css" />
 	<link rel="stylesheet" type="text/css" href="css/controls.css" />
+	<link rel="stylesheet" type="text/css" href="css/frontpage.css" />
 	<link rel="vcs-git" href="git://github.com/fluidblue/passdeposit.git" title="PassDeposit Git repository" />
 	<link rel="vcs-browse" href="http://github.com/fluidblue/passdeposit" title="PassDeposit Git repository browser" />
 	<script type="text/javascript" src="js/sjcl.js"></script>
 	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/passdeposit.js"></script>
 </head>
 <body>
-	<img src="img/passdeposit.png" alt="PassDeposit" />
-	<div id="loginTab" class="tab">Login</div>
-	<div id="registerTab" class="tab">Register</div>
-	<div id="aboutTab" class="tab">About</div>
-	<div id="content">
-		<div id="loginContent" class="content">
-			<form id="loginForm" action="." method="post" autocomplete="off">
-				<div>
-					<input name="mail" type="email" id="loginUser" value="<?php echo $user; ?>" class="text" placeholder="Email address" required="required" />
-					<br />
-					<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
-					<br />
-					<input type="submit" id="loginButton" value="Login" class="button" />
-				</div>
-			</form>
+	<div id="frontpage">
+		<img src="img/passdeposit.png" alt="PassDeposit" style="width: 350px; height: 280px;" />
+		<div id="tabContainer" class="marginCentered">
+			<div id="loginTab" class="tab">Login</div>
+			<div id="registerTab" class="tab">Register</div>
+			<div id="aboutTab" class="tab tabLast">About</div>
 		</div>
-		<div id="registerContent" class="content">
-			<form id="registerForm" action="." method="post" autocomplete="off">
-				<div>
-					<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
-					<br />
-					<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" required="required" />
-					<br />
-					<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
-					<br />
-					<input name="passhint" type="text" value="" class="text" placeholder="Password hint" required="required" />
-					<br />
-					<input type="submit" id="registerButton" value="Register" class="button" />
-				</div>
-			</form>
+		<div id="contentContainer" class="marginCentered">
+			<div id="loginContent" class="content">
+				<form id="loginForm" action="." method="post" autocomplete="off">
+					<div>
+						<input name="mail" type="email" id="loginUser" value="<?php echo $user; ?>" class="text" placeholder="Email address" required="required" />
+						<br />
+						<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
+						<br />
+						<input type="submit" id="loginButton" value="Login" class="button" />
+					</div>
+				</form>
+			</div>
+			<div id="registerContent" class="content">
+				<form id="registerForm" action="." method="post" autocomplete="off">
+					<div>
+						<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
+						<br />
+						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" required="required" />
+						<br />
+						<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
+						<br />
+						<input name="passhint" type="text" value="" class="text" placeholder="Password hint" required="required" />
+						<br />
+						<input type="submit" id="registerButton" value="Register" class="button" />
+					</div>
+				</form>
+			</div>
+			<div id="aboutContent" class="content">
+				Information
+			</div>
 		</div>
-		<div id="aboutContent" class="content">
-			Information
-		</div>
+		<div id="copyright">Copyright &copy; 2013 Max Geissler</div>
 	</div>
-	<div>Copyright &copy; 2013 Max Geissler</div>
 </body>
 </html>

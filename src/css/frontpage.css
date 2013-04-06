@@ -1,0 +1,56 @@
+#frontpage #tabContainer
+{
+	width: 540px;
+	height: 35px;
+	
+	margin-top: 20px;
+	margin-bottom: 8px;
+}
+
+#frontpage #tabContainer .tab
+{
+	float: left;
+	
+	cursor: default;
+	
+	width: 180px;
+	height: 35px;
+	line-height: 35px;
+	
+	text-align: center;
+	
+	background-color: lightblue;
+}
+
+#frontpage #tabContainer .tabActive
+{
+	background-color: darkgreen;
+	color: white;
+}
+
+#frontpage #contentContainer
+{
+	width: 540px;
+	clear: left;
+	margin-bottom: 10px;
+	
+	overflow: hidden;
+	position: relative;
+}
+
+#frontpage #contentContainer .content
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#frontpage #contentContainer div form div input
+{
+	margin-bottom: 8px;
+}
+
+#frontpage #copyright
+{
+	color: #666666;
+}

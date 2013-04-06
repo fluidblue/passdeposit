@@ -4,25 +4,55 @@
  * @author Max Geissler
  */
 
-function changeTab(visibleElement)
+var tabChangeDuration = 400;
+
+function changeTabContent(idContent)
 {
-	var tabChangeDuration = 400;
-	
-	// Cancel when element is already visible
-	if ($(visibleElement).is(':visible'))
-		return;
-	
 	// Stop all runnning and queued animations
-	$(".content").stop(true, false);
-	$("#content").stop(true, false);
+	$(".content").stop(true, true);
+	$("#contentContainer").stop(true, true);
 	
 	// Animate container's height
-	$("#content").animate({ height: $(visibleElement).height() + 20 }, tabChangeDuration);
+	$("#contentContainer").animate({ height: $(idContent).height() + 10 }, tabChangeDuration);
 	
 	// Fade content
 	$(".content").fadeOut(tabChangeDuration);
-	$(visibleElement).fadeIn(tabChangeDuration);
-};
+	$(idContent).fadeIn(tabChangeDuration);
+}
+
+function changeTab(idTab, idContent)
+{
+	// Stop all runnning and queued animations
+	$(".tab").stop(true, true);
+	
+	// Change tab header class
+	$(".tab").removeClass("tabActive", tabChangeDuration);
+	$(idTab).addClass("tabActive", tabChangeDuration);
+	
+	// Change content
+	changeTabContent(idContent);
+}
+
+function bindTab(idTab, idContent)
+{
+	var fn = function()
+	{
+		changeTab(idTab, idContent);
+	};
+	
+	// Bind to mouseenter and click event.
+	$(idTab).mouseenter(fn).click(fn);
+}
+
+function initTabs()
+{
+	$(".content").hide();
+	changeTab("#loginTab", "#loginContent");
+	
+	bindTab("#loginTab", "#loginContent");
+	bindTab("#registerTab", "#registerContent");
+	bindTab("#aboutTab", "#aboutContent");
+}
 
 function App()
 {
@@ -31,50 +61,7 @@ function App()
 	
 	this.init = function()
 	{
-		$(".content").hide();
-		changeTab("#loginContent");
-		
-		$("#loginTab").mouseenter(function()
-		{
-			changeTab("#loginContent");
-			/*var tabs = 3;
-			$(".content").fadeOut(tabChangeDuration, function()
-			{
-				tabs--;
-				if (tabs <= 0)
-					$("#loginContent").fadeIn(tabChangeDuration);
-			});*/
-			//$(".content").css("display", "none");
-			//$("#loginContent").css("display", "block");
-		});
-		
-		$("#registerTab").mouseenter(function()
-		{
-			changeTab("#registerContent");
-			/*var tabs = 3;
-			$(".content").fadeOut(tabChangeDuration, function()
-			{
-				tabs--;
-				if (tabs <= 0)
-					$("#registerContent").fadeIn(tabChangeDuration);
-			});*/
-			//$(".content").css("display", "none");
-			//$("#registerContent").css("display", "block");
-		});
-		
-		$("#aboutTab").mouseenter(function()
-		{
-			changeTab("#aboutContent");
-			/*var tabs = 3;
-			$(".content").fadeOut(tabChangeDuration, function()
-			{
-				tabs--;
-				if (tabs <= 0)
-					$("#aboutContent").fadeIn(tabChangeDuration);
-			});*/
-			//$(".content").css("display", "none");
-			//$("#aboutContent").css("display", "block");
-		});
+		initTabs();
 		
 		$("#loginForm").submit(this.loginUser);
 	};

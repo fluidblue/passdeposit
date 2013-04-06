@@ -6,10 +6,9 @@
 
 body
 {
-	font: 12px Arial;
-	color: rgb(70, 70, 70);
 	margin: 15px 15px 30px 15px;
 	background-image: url('../img/bg.gif');
+	text-align: center;
 }
 
 ul, ol
@@ -46,20 +45,8 @@ table td, table th
 	padding: 0;
 }
 
-.tab
+.marginCentered
 {
-	cursor: default;
-}
-
-#content
-{
-	overflow: hidden;
-	position: relative;
-}
-
-.content
-{
-	position: absolute;
-	left: 0px;
-	top: 0px;
+	margin-left: auto;
+	margin-right: auto;
 }
