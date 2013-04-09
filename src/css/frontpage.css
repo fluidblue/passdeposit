@@ -1,6 +1,10 @@
+#frontpage #tabContainer, #frontpage #contentContainer
+{
+	width: 360px;
+}
+
 #frontpage #tabContainer
 {
-	width: 540px;
 	height: 35px;
 	
 	margin-top: 20px;
@@ -13,9 +17,9 @@
 	
 	cursor: default;
 	
-	width: 180px;
-	height: 35px;
-	line-height: 35px;
+	width: 120px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	
 	text-align: center;
 	
@@ -46,7 +50,6 @@
 
 #frontpage #contentContainer
 {
-	width: 540px;
 	clear: left;
 	margin-bottom: 10px;
 	
