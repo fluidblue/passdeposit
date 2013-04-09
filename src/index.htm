@@ -6,9 +6,6 @@ ob_start("ob_gzhandler");
 // Set output format
 header('content-type: text/html; charset=utf-8');
 
-// Get user name from cookie
-$user = isset($_COOKIE['user']) ? $_COOKIE['user'] : '';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +23,7 @@ $user = isset($_COOKIE['user']) ? $_COOKIE['user'] : '';
 	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery.total-storage.min.js"></script>
 	<script type="text/javascript" src="js/passdeposit.js"></script>
 </head>
 <body>
@@ -40,7 +38,7 @@ $user = isset($_COOKIE['user']) ? $_COOKIE['user'] : '';
 			<div id="loginContent" class="content">
 				<form id="loginForm" action="." method="post" autocomplete="off">
 					<div>
-						<input name="mail" type="email" id="loginUser" value="<?php echo $user; ?>" class="text" placeholder="Email address" required="required" />
+						<input name="mail" type="email" id="loginUser" value="" class="text" placeholder="Email address" required="required" />
 						<br />
 						<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
 						<br />

@@ -54,33 +54,46 @@ function initTabs()
 	bindTab("#aboutTab", "#aboutContent");
 }
 
+function loadUsername()
+{
+	$("#loginUser").val($.totalStorage("username"));
+}
+
+function saveUsername()
+{
+	$.totalStorage("username", $("#loginUser").val());
+}
+
 function App()
 {
-	this.userName = "";
-	this.passHash = "";
+	var userName = "";
+	var passHash = "";
 	
 	this.init = function()
 	{
+		loadUsername();
 		initTabs();
 		
-		$("#loginForm").submit(this.loginUser);
+		$("#loginForm").submit(loginUser);
 	};
 	
-	this.loginUser = function()
+	var loginUser = function()
 	{
-		this.passHash = this.getPassHash($("#loginPass").val);
+		passHash = getPassHash($("#loginPass").val);
 		
-		$.post("passdeposit.php",
+		/*$.post("passdeposit.php",
 			{
 				userName : this.userName,
 				pass: this.passHash
 			}
-		);
+		);*/
 		
-		$.cookie("username", this.userName, { expires : 7300 });
+		saveUsername();
+		
+		return false;
 	};
 	
-	this.getPassHash = function(pass)
+	var getPassHash = function(pass)
 	{
 		// TODO
 		return pass;
