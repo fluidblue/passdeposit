@@ -77,7 +77,7 @@
 
 #frontpage #copyright
 {
-	color: rgb(100, 100, 100);
+	color: rgb(120, 120, 120);
 }
 
 #frontpage #logo
@@ -89,4 +89,5 @@
 #frontpage #aboutContent
 {
 	text-align: left;
+	line-height: 140%; /* TODO: Important */
 }
