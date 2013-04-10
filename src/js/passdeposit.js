@@ -74,6 +74,8 @@ function App()
 		loadUsername();
 		initTabs();
 		
+		$(".text").tipTip({defaultPosition: "right", maxWidth: "250px"});
+		
 		$("#loginForm").submit(loginUser);
 	};
 	
