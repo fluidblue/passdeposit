@@ -85,3 +85,8 @@
 	width: 325px;
 	height: 260px;
 }
+
+#frontpage #aboutContent
+{
+	text-align: left;
+}
