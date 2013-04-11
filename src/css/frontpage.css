@@ -96,7 +96,7 @@
 {
 	padding: 5px;
 	border-radius: 6px;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.35);
 	
 	width: 364px;
 }
@@ -110,6 +110,8 @@
 	background-color: #35BFF4;
 	
 	border-top: solid rgb(126, 186, 231) 1px;
+	/*border-top: solid rgb(147, 211, 145) 1px;*/
+	
 	/*border-right: solid rgb(126, 186, 231) 1px;*/
 	
 	/* TODO: Remove*/
@@ -126,6 +128,13 @@
 	background: -webkit-gradient(linear, left top, left bottom, from(#33A0E8), to(#2180CE));
 	background: -moz-linear-gradient(top, #33A0E8, #2180CE);
 	background: -o-linear-gradient(top, #33A0E8, #2180CE);
+	
+	
+/*	background: #60BE5D;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#60BE5D", endColorstr="#47AA44");
+	background: -webkit-gradient(linear, left top, left bottom, from(#60BE5D), to(#47AA44));
+	background: -moz-linear-gradient(top, #60BE5D, #47AA44);
+	background: -o-linear-gradient(top, #60BE5D, #47AA44);*/
 }
 
 #frontpage #navbar .item
@@ -138,6 +147,9 @@
 	
 	border-right: solid rgb(28, 89, 132) 1px;
 	border-left: solid rgb(104, 174, 227) 1px;
+	
+/*	border-right: solid rgb(129, 204, 127) 1px;
+	border-left: solid rgb(48, 114, 46) 1px;*/
 	
 	color: white;
 	text-shadow: #355782 0 1px 2px;
