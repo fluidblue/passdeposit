@@ -204,9 +204,8 @@
 	float: left;
 	
 	width: 110px;
-	margin-top: 3px;
-	height: 29px;
-	line-height: 29px;
+	height: 35px;
+	line-height: 35px;
 	
 	color: #999999;
 }
@@ -214,7 +213,7 @@
 #frontpage #navbar2 .item:hover
 {
 	box-shadow: inset 0 0 30px rgb(10, 10, 10);
-	border-radius: 3px;
+	/*border-radius: 3px;*/
 	
 	color: #cccccc;
 }
