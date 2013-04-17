@@ -67,7 +67,7 @@ input.button:active
 
 input.button:focus
 {
-	box-shadow: 0 0 3px 1px #33A0E8, inset 0 0 3px 0 #35BFF4;
+	box-shadow: 0 0 3px 1px #33A0E8, inset 0px 1px 0px #83C5F1;
 }
 
 input.text, textarea.text
