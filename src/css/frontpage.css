@@ -1,16 +1,32 @@
-#frontpage #tabContainer
+#frontpage
 {
-	width: 360px;
-	height: 35px;
+	margin-left: auto;
+	margin-right: auto;
 	
-	padding-left: 10px;
-	padding-right: 10px;
-	
-	margin-top: 30px;
-	margin-bottom: 8px;
+	width: 380px; /* width of #contentContainer */
+}
+
+#frontpage img.logo
+{
+	display: block;
 	
 	margin-left: auto;
 	margin-right: auto;
+	
+	width: 325px;
+	height: 260px;
+}
+
+#frontpage #tabContainer
+{
+	width: 360px; /* .tab width * tab count */
+	height: 35px;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	margin-top: 30px;
+	margin-bottom: 8px;
 }
 
 #frontpage #tabContainer .tab
@@ -27,15 +43,8 @@
 	
 	background-color: lightblue;
 	
-	/* TODO:
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),inset 0px 1px 0px #83C5F1;*/
+	/* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),inset 0px 1px 0px #83C5F1; */
 	text-shadow: #355782 0 1px 2px;
-}
-
-#frontpage #tabContainer .tabActive
-{
-	background-color: darkgreen;
-	color: white;
 }
 
 #frontpage #tabContainer .tab:first-child
@@ -50,15 +59,18 @@
 	border-bottom-right-radius: 4px;
 }
 
+#frontpage #tabContainer .tabActive
+{
+	background-color: darkgreen;
+	color: white;
+}
+
 #frontpage #contentContainer
 {
 	clear: left;
-	margin-bottom: 15px;
 	
-	margin-left: auto;
-	margin-right: auto;
+	width: 380px; /* .content width + 2 * .content padding */
 	
-	width: 380px;
 	overflow: hidden;
 	position: relative;
 }
@@ -69,11 +81,14 @@
 	left: 0px;
 	top: 0px;
 	
+	width: 360px; /* #tabContainer width */
 	padding: 10px;
 }
 
 #frontpage #contentContainer div form div input.text
 {
+	display: block;
+	width: 100%;
 	margin-bottom: 8px;
 }
 
@@ -83,29 +98,24 @@
 	float: right;
 }
 
-#frontpage .copyright
-{
-	margin-top: 20px;
-	color: rgb(120, 120, 120);
-}
-
-#frontpage img.logo
-{
-	width: 325px;
-	height: 260px;
-}
-
 #frontpage #aboutContent
 {
-	text-align: left;
 	line-height: 140%;
 }
 
 #frontpage #loginPassForgotten
 {
 	float: left;
-	margin-left: 10px;
-	margin-top: 16px;
+	
+	margin-left: 8px; /* textbox padding-left + textbox border-left */
+	margin-top: 16px; /* button margin-top + button padding-top + button border-top */
+}
+
+#frontpage .copyright
+{
+	text-align: center;
+	margin-top: 20px;
+	color: rgb(120, 120, 120);
 }
 
 #frontpage #navbar
@@ -167,6 +177,7 @@
 /*	border-right: solid rgb(129, 204, 127) 1px;
 	border-left: solid rgb(48, 114, 46) 1px;*/
 	
+	text-align: center;
 	color: white;
 	text-shadow: #355782 0 1px 2px;
 	font-weight: bold;
@@ -239,6 +250,7 @@
 	height: 29px;
 	line-height: 29px;*/
 	
+	text-align: center;
 	color: #999999;
 	font-weight: bold;
 	text-shadow: rgb(0, 0, 0) 0 1px 3px;
