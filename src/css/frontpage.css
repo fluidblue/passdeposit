@@ -1,17 +1,16 @@
 #frontpage #tabContainer
 {
 	width: 360px;
+	height: 35px;
 	
 	padding-left: 10px;
 	padding-right: 10px;
-}
-
-#frontpage #tabContainer
-{
-	height: 35px;
 	
 	margin-top: 30px;
 	margin-bottom: 8px;
+	
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #frontpage #tabContainer .tab
@@ -55,6 +54,9 @@
 {
 	clear: left;
 	margin-bottom: 15px;
+	
+	margin-left: auto;
+	margin-right: auto;
 	
 	width: 380px;
 	overflow: hidden;
