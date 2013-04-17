@@ -41,9 +41,7 @@ header('content-type: text/html; charset=utf-8');
 				<form id="loginForm" action="." method="post" autocomplete="off">
 					<div>
 						<input name="mail" type="email" id="loginUser" value="" class="text" placeholder="Email address" title="Please provide the email address you registered your account with." required="required" />
-						<br />
 						<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
-						<br />
 						<a href="." id="loginPassForgotten">Forgot your password?</a>
 						<input type="submit" id="loginButton" value="Login" class="button" />
 					</div>
@@ -53,13 +51,9 @@ header('content-type: text/html; charset=utf-8');
 				<form id="registerForm" action="." method="post" autocomplete="off">
 					<div>
 						<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
-						<br />
 						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" required="required" />
-						<br />
 						<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
-						<br />
 						<input name="passhint" type="text" value="" class="text" placeholder="Password hint" required="required" />
-						<br />
 						<input type="submit" id="registerButton" value="Register" class="button" />
 					</div>
 				</form>
@@ -75,6 +69,7 @@ header('content-type: text/html; charset=utf-8');
 			</div>
 		</div>
 		<div class="copyright">Copyright &copy; 2013 Max Geissler</div>
+		<!--
 		<div id="navbar">
 			<div class="inner">
 				<div class="item">Login</div>
@@ -89,6 +84,7 @@ header('content-type: text/html; charset=utf-8');
 				<div class="item">About</div>
 			</div>
 		</div>
+		-->
 	</div>
 </body>
 </html>
