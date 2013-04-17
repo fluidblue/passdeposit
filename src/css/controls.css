@@ -72,7 +72,7 @@ input.button:focus
 
 input.text, textarea.text
 {
-	width: 343px; /* TODO */
+	width: 220px;
 	
 	outline: none;
 	
