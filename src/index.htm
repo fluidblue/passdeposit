@@ -40,7 +40,7 @@ header('content-type: text/html; charset=utf-8');
 			<div id="loginContent" class="content">
 				<form id="loginForm" action="." method="post" autocomplete="off">
 					<div>
-						<input name="mail" type="email" id="loginUser" value="" class="text" placeholder="Email address" title="Please provide the email address you registered your account with." required="required" />
+						<input name="mail" type="email" id="loginUser" value="" class="text" placeholder="Email address" required="required" />
 						<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
 						<a href="." id="loginPassForgotten">Forgot your password?</a>
 						<input type="submit" id="loginButton" value="Login" class="button" />
@@ -51,9 +51,9 @@ header('content-type: text/html; charset=utf-8');
 				<form id="registerForm" action="." method="post" autocomplete="off">
 					<div>
 						<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
-						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" required="required" />
+						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" title="Some info about password requirements" required="required" />
 						<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
-						<input name="passhint" type="text" value="" class="text" placeholder="Password hint" required="required" />
+						<input name="passhint" type="text" id="registerPassHint" value="" class="text" placeholder="Password hint" title="Some info about password hint" required="required" />
 						<input type="submit" id="registerButton" value="Register" class="button" />
 					</div>
 				</form>

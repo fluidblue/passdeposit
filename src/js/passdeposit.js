@@ -64,6 +64,14 @@ function saveUsername()
 	$.totalStorage("username", $("#loginUser").val());
 }
 
+function setTooltips()
+{
+	var options = { defaultPosition: "right", maxWidth: "250px", activation: "focus" };
+	
+	$("#registerPassHint").tipTip(options);
+	$("#registerPass").tipTip(options);
+}
+
 function App()
 {
 	var userName = "";
@@ -73,8 +81,9 @@ function App()
 	{
 		loadUsername();
 		initTabs();
+		setTooltips();
 		
-		$(".text").tipTip({defaultPosition: "right", maxWidth: "250px", activation: "focus"});
+		$("#loginPassForgotten").click(function() { alert("Not implemented"); return false; } );
 		
 		$("#loginForm").submit(loginUser);
 	};
