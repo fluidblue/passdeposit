@@ -13,7 +13,7 @@ function changeTabContent(idContent)
 	$("#contentContainer").stop(true, true);
 	
 	// Animate container's height
-	$("#contentContainer").animate({ height: $(idContent).height() + 10 }, tabChangeDuration);
+	$("#contentContainer").animate({ height: $(idContent).height() + 20 }, tabChangeDuration);
 	
 	// Fade content
 	$(".content").fadeOut(tabChangeDuration);
