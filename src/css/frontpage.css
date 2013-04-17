@@ -1,6 +1,9 @@
 #frontpage #tabContainer
 {
 	width: 360px;
+	
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #frontpage #tabContainer
@@ -8,7 +11,7 @@
 	height: 35px;
 	
 	margin-top: 30px;
-	margin-bottom: 18px;
+	margin-bottom: 8px;
 }
 
 #frontpage #tabContainer .tab
@@ -54,11 +57,7 @@
 	margin-bottom: 15px;
 	
 	width: 380px;
-	
-	/* TODO: overflow: hidden hides text box shadows */
 	overflow: hidden;
-	background-color: rgba(255,0,0,0.2);
-	
 	position: relative;
 }
 
@@ -71,7 +70,7 @@
 	padding: 10px;
 }
 
-#frontpage #contentContainer div form div input
+#frontpage #contentContainer div form div input.text
 {
 	margin-bottom: 8px;
 }
@@ -84,6 +83,7 @@
 
 #frontpage #copyright
 {
+	margin-top: 20px;
 	color: rgb(120, 120, 120);
 }
 
