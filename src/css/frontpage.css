@@ -83,13 +83,13 @@
 	float: right;
 }
 
-#frontpage #copyright
+#frontpage .copyright
 {
 	margin-top: 20px;
 	color: rgb(120, 120, 120);
 }
 
-#frontpage #logo
+#frontpage img.logo
 {
 	width: 325px;
 	height: 260px;
@@ -99,6 +99,13 @@
 {
 	text-align: left;
 	line-height: 140%;
+}
+
+#frontpage #loginPassForgotten
+{
+	float: left;
+	margin-left: 10px;
+	margin-top: 16px;
 }
 
 #frontpage #navbar
@@ -173,13 +180,6 @@
 #frontpage #navbar .item:last-child
 {
 	border-right: none;
-}
-
-#frontpage #pwrecovery
-{
-	float: left;
-	margin-left: 10px;
-	margin-top: 16px;
 }
 
 #frontpage #navbar2

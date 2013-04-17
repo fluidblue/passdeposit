@@ -30,7 +30,7 @@ header('content-type: text/html; charset=utf-8');
 </head>
 <body>
 	<div id="frontpage">
-		<img src="img/passdeposit.png" alt="PassDeposit" id="logo" />
+		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
 		<div id="tabContainer">
 			<div id="loginTab" class="tab">Login</div>
 			<div id="registerTab" class="tab">Register</div>
@@ -44,7 +44,7 @@ header('content-type: text/html; charset=utf-8');
 						<br />
 						<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
 						<br />
-						<a href="." id="pwrecovery">Forgot your password?</a>
+						<a href="." id="loginPassForgotten">Forgot your password?</a>
 						<input type="submit" id="loginButton" value="Login" class="button" />
 					</div>
 				</form>
@@ -74,7 +74,7 @@ header('content-type: text/html; charset=utf-8');
 				PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
 			</div>
 		</div>
-		<div id="copyright">Copyright &copy; 2013 Max Geissler</div>
+		<div class="copyright">Copyright &copy; 2013 Max Geissler</div>
 		<div id="navbar">
 			<div class="inner">
 				<div class="item">Login</div>
