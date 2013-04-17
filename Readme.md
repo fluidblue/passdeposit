@@ -23,7 +23,7 @@ Use PassDeposit at <http://www.passdeposit.com> for free.
 
 You can use PassDeposit without installation at <http://www.passdeposit.com>
 
-Alternatively, you can download the latest version and use it on your own server. See Install.md for more information.
+Alternatively, you can download the latest version and use it on your own server. See **Install.md** for more information.
 
 
 ## Bugs
