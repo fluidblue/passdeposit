@@ -31,10 +31,12 @@ header('content-type: text/html; charset=utf-8');
 <body>
 	<div id="frontpage">
 		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
-		<div id="tabContainer">
-			<div id="loginTab" class="tab">Login</div>
-			<div id="registerTab" class="tab">Register</div>
-			<div id="aboutTab" class="tab">About</div>
+		<div id="navbar2">
+			<div class="outer">
+				<div id="loginTab" class="item">Login</div>
+				<div id="registerTab" class="item">Register</div>
+				<div id="aboutTab" class="item">About</div>
+			</div>
 		</div>
 		<div id="contentContainer">
 			<div id="loginContent" class="content">
@@ -50,10 +52,10 @@ header('content-type: text/html; charset=utf-8');
 			<div id="registerContent" class="content">
 				<form id="registerForm" action="." method="post" autocomplete="off">
 					<div>
-						<input name="mail" type="email" id="registerUser" value="" class="text" placeholder="Email address" required="required" />
-						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" title="Some info about password requirements" required="required" />
+						<input name="mail" type="email" id="registerEmail" value="" class="text" placeholder="Email address" title="We only need your email address for sending your password hint in case you forget your password." required="required" />
+						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" title="Use a strong password here. Strong passwords have a minimum length of 8 and contain an uppercase letter, a lowercase letter and a digit." required="required" />
 						<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
-						<input name="passhint" type="text" id="registerPassHint" value="" class="text" placeholder="Password hint" title="Some info about password hint" required="required" />
+						<input name="passhint" type="text" id="registerPassHint" value="" class="text" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." required="required" />
 						<input type="submit" id="registerButton" value="Register" class="button" />
 					</div>
 				</form>
@@ -77,12 +79,10 @@ header('content-type: text/html; charset=utf-8');
 				<div class="item">About</div>
 			</div>
 		</div>
-		<div id="navbar2">
-			<div class="outer">
-				<div class="item">Login</div>
-				<div class="item">Register</div>
-				<div class="item">About</div>
-			</div>
+		<div id="tabContainer">
+			<div id="loginTab" class="tab">Login</div>
+			<div id="registerTab" class="tab">Register</div>
+			<div id="aboutTab" class="tab">About</div>
 		</div>
 		-->
 	</div>
