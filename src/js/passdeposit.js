@@ -4,13 +4,24 @@
  * @author Max Geissler
  */
 
-var tabChangeDuration = 400;
+var tabChangeDuration = 300;
 
-function changeTabContent(idContent)
+function changeTabContent(idContent, fnFocus)
 {
+	if ($(".content").is(':animated'))
+	
 	// Stop all runnning and queued animations
 	$(".content").stop(true, true);
 	$("#contentContainer").stop(true, true);
+	
+	// Cleanup
+	$(".content input").blur(); // TODO: Necessary?
+	
+	// Set new focus
+	$(idContent).show().css("opacity", "0.0");
+	if (fnFocus)
+		fnFocus();
+	$(idContent).hide().css("opacity", "1.0");
 	
 	// Animate container's height
 	$("#contentContainer").animate({ height: $(idContent).height() + 20 }, tabChangeDuration);
@@ -20,24 +31,24 @@ function changeTabContent(idContent)
 	$(idContent).fadeIn(tabChangeDuration);
 }
 
-function changeTab(idTab, idContent)
+function changeTab(idTab, idContent, fnFocus)
 {
 	// Stop all runnning and queued animations
-	$(".tab").stop(true, true);
+	$(".item").stop(true, true);
 	
 	// Change tab header class
-	$(".tab").removeClass("tabActive", tabChangeDuration);
-	$(idTab).addClass("tabActive", tabChangeDuration);
+	$(".item").removeClass("itemActive");
+	$(idTab).addClass("itemActive");
 	
 	// Change content
-	changeTabContent(idContent);
+	changeTabContent(idContent, fnFocus);
 }
 
-function bindTab(idTab, idContent)
+function bindTab(idTab, idContent, fnFocus)
 {
 	var fn = function()
 	{
-		changeTab(idTab, idContent);
+		changeTab(idTab, idContent, fnFocus);
 	};
 	
 	// Bind to mouseenter and click event.
@@ -46,12 +57,28 @@ function bindTab(idTab, idContent)
 
 function initTabs()
 {
-	$(".content").hide();
-	changeTab("#loginTab", "#loginContent");
+	// Focus functions
+	var fnLoginFocus = function()
+	{
+		if ($("#loginUser").val().length == 0)
+			$("#loginUser").focus();
+		else
+			$("#loginPass").focus();
+	}
 	
-	bindTab("#loginTab", "#loginContent");
-	bindTab("#registerTab", "#registerContent");
-	bindTab("#aboutTab", "#aboutContent");
+	var fnRegisterFocus = function()
+	{
+		$("#registerEmail").focus();
+	}
+	
+	// Startpage
+	$(".content").hide();
+	changeTab("#loginTab", "#loginContent", fnLoginFocus);
+	
+	// Bind events
+	bindTab("#loginTab", "#loginContent", fnLoginFocus);
+	bindTab("#registerTab", "#registerContent", fnRegisterFocus);
+	bindTab("#aboutTab", "#aboutContent", null);
 }
 
 function loadUsername()
@@ -66,8 +93,15 @@ function saveUsername()
 
 function setTooltips()
 {
-	var options = { defaultPosition: "right", maxWidth: "250px", activation: "focus" };
+	var options =
+	{
+		defaultPosition: "right",
+		maxWidth: "250px",
+		activation: "focus",
+		delay: 0
+	};
 	
+	$("#registerEmail").tipTip(options);
 	$("#registerPassHint").tipTip(options);
 	$("#registerPass").tipTip(options);
 }
