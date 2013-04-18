@@ -8,20 +8,22 @@ var tabChangeDuration = 300;
 
 function changeTabContent(idContent, fnFocus)
 {
-	if ($(".content").is(':animated'))
+	// Cancel if tab is already visible
+	if (!$(".content").is(':animated') && $(idContent).is(":visible"))
+		return;
 	
 	// Stop all runnning and queued animations
 	$(".content").stop(true, true);
 	$("#contentContainer").stop(true, true);
 	
 	// Cleanup
-	$(".content input").blur(); // TODO: Necessary?
+	$(".content input").blur();
 	
 	// Set new focus
-	$(idContent).show().css("opacity", "0.0");
+	$(idContent).css("opacity", "0.0").show();
 	if (fnFocus)
 		fnFocus();
-	$(idContent).hide().css("opacity", "1.0");
+	$(idContent).css("opacity", "1.0").hide();
 	
 	// Animate container's height
 	$("#contentContainer").animate({ height: $(idContent).height() + 20 }, tabChangeDuration);
@@ -33,9 +35,6 @@ function changeTabContent(idContent, fnFocus)
 
 function changeTab(idTab, idContent, fnFocus)
 {
-	// Stop all runnning and queued animations
-	$(".item").stop(true, true);
-	
 	// Change tab header class
 	$(".item").removeClass("itemActive");
 	$(idTab).addClass("itemActive");
@@ -52,7 +51,8 @@ function bindTab(idTab, idContent, fnFocus)
 	};
 	
 	// Bind to mouseenter and click event.
-	$(idTab).mouseenter(fn).click(fn);
+//	$(idTab).mouseenter(fn); // TODO
+	$(idTab).click(fn);
 }
 
 function initTabs()

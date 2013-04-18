@@ -244,7 +244,7 @@
 
 #frontpage #navbar2 .item
 {
-	cursor: default;
+	cursor: pointer;
 	
 	-webkit-transition: all 0.1s ease-in 0;
 	transition: all 0.1s ease-in;
