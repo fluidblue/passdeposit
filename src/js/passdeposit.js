@@ -129,6 +129,17 @@ function setTooltips()
 	$("#registerEmail").tipTip(options);
 	$("#registerPassHint").tipTip(options);
 	$("#registerPass").tipTip(options);
+	
+	// Resize fix for tipTip
+	$(window).resize(function()
+	{
+		$("#tiptip_holder").hide();
+	});
+	
+	$(window).afterResize(function()
+	{
+		$(document.activeElement).triggerHandler("focus");
+	}, false, 100 );
 }
 
 function App()
