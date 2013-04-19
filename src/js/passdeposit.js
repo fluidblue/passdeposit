@@ -50,7 +50,7 @@ function bindTab(idTab, idContent, fnFocus)
 		changeTab(idTab, idContent, fnFocus);
 	};
 	
-	// Bind to mouseenter and click event.
+	// Bind to DOM events
 //	$(idTab).mouseenter(fn); // TODO
 	$(idTab).click(fn);
 }
@@ -69,6 +69,31 @@ function initTabs()
 	var fnRegisterFocus = function()
 	{
 		$("#registerEmail").focus();
+		
+		/*
+		var focused = false;
+		
+		$("#registerContent input").each(function(i, obj)
+		{
+			// Focus first empty input
+			if ($(obj).val().length == 0)
+			{
+				focused = true;
+				$(obj).focus();
+				
+				// Exit loop
+				return false;
+			}
+			
+			return true;
+		});
+		
+		if (!focused)
+		{
+			// Focus submit button
+			$("#registerContent :submit").focus();
+		}
+		*/
 	}
 	
 	// Startpage
