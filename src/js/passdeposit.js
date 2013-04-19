@@ -4,7 +4,7 @@
  * @author Max Geissler
  */
 
-var tabChangeDuration = 300;
+var tabChangeDuration = 200;
 
 function changeTabContent(idContent, fnFocus)
 {
@@ -97,8 +97,9 @@ function initTabs()
 	}
 	
 	// Startpage
-	$(".content").hide();
-	changeTab("#loginTab", "#loginContent", fnLoginFocus);
+	$(".content:not(#loginContent)").hide();
+	$("#contentContainer").height($("#loginContent").height() + 20);
+	fnLoginFocus();
 	
 	// Bind events
 	bindTab("#loginTab", "#loginContent", fnLoginFocus);
@@ -153,9 +154,15 @@ function App()
 		initTabs();
 		setTooltips();
 		
-		$("#loginPassForgotten").click(function() { alert("Not implemented"); return false; } );
+		var fnNotImpl = function()
+		{
+			alert("Not implemented");
+			return false;
+		};
 		
 		$("#loginForm").submit(loginUser);
+		$("#loginPassForgotten").click(fnNotImpl);
+		$("#registerForm").submit(fnNotImpl);
 	};
 	
 	var loginUser = function()
@@ -170,6 +177,8 @@ function App()
 		);*/
 		
 		saveUsername();
+		
+		alert("Login");
 		
 		return false;
 	};
