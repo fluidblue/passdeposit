@@ -26,7 +26,8 @@ function changeTabContent(idContent, fnFocus)
 	$(idContent).css("opacity", "1.0").hide();
 	
 	// Animate container's height
-	$("#contentContainer").animate({ height: $(idContent).height() + 20 }, tabChangeDuration);
+	// Not needed if nothing is below #contentContainer
+	// $("#contentContainer").animate({ height: $(idContent).height() + 20 }, tabChangeDuration);
 	
 	// Fade content
 	$(".content").fadeOut(tabChangeDuration);

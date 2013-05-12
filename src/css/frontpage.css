@@ -88,7 +88,7 @@
 	
 	width: 380px; /* .content width + 2 * .content padding */
 	
-	overflow: hidden;
+	/*overflow: hidden;*/ /* Not needed if nothing is below #contentContainer */
 	position: relative;
 }
 
