@@ -1,5 +1,13 @@
 /* TipTip CSS - Version 1.2 */
 
+/**
+ * Modified by Max Geissler.
+ *
+ * Changes:
+ * - Gradient filling for all browsers (TODO)
+ * - Removed font-size for #tiptip_content
+ */
+
 #tiptip_holder {
 	display: none;
 	position: absolute;
@@ -26,11 +34,12 @@
 
 #tiptip_content {
 	text-align: left;
-/*	font-size: 11px;*/
+	
 	color: #fff;
 	text-shadow: 0 0 2px #000;
 	padding: 4px 8px;
 	border: 1px solid rgba(255,255,255,0.25);
+	
 	background-color: rgb(25,25,25);
 	background-color: rgba(25,25,25,0.92);
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#000));
