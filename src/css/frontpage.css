@@ -127,10 +127,3 @@
 	margin-left: 8px; /* textbox padding-left + textbox border-left */
 	margin-top: 16px; /* button margin-top + button padding-top + button border-top */
 }
-
-#frontpage .copyright
-{
-	text-align: center;
-	margin-top: 20px;
-	color: rgb(120, 120, 120);
-}
