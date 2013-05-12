@@ -56,50 +56,55 @@ function bindTab(idTab, idContent, fnFocus)
 	$(idTab).click(fn);
 }
 
+function setFormFocus(parent)
+{
+	var lastInput = null;
+	
+	$(parent + " input").each(function(i, obj)
+	{
+		// Save last input which is not of type submit.
+		if (!$(obj).is(":submit"))
+			lastInput = $(obj);
+		
+		// Focus first empty input
+		if ($(obj).val().length == 0)
+		{
+			// Focus input
+			$(obj).focus();
+			
+			// Do not focus again
+			lastInput = null;
+
+			// Exit loop
+			return false;
+		}
+
+		return true;
+	});
+	
+	if (lastInput)
+	{
+		// Focus last input
+		lastInput.focus();
+	}
+}
+
 function initTabs()
 {
 	// Focus functions
 	var fnLoginFocus = function()
 	{
-		if ($("#loginUser").val().length == 0)
-			$("#loginUser").focus();
-		else
-			$("#loginPass").focus();
+		setFormFocus("#loginContent");
 	}
 	
 	var fnRegisterFocus = function()
 	{
-		$("#registerEmail").focus();
-		
-		/*
-		var focused = false;
-		
-		$("#registerContent input").each(function(i, obj)
-		{
-			// Focus first empty input
-			if ($(obj).val().length == 0)
-			{
-				focused = true;
-				$(obj).focus();
-				
-				// Exit loop
-				return false;
-			}
-			
-			return true;
-		});
-		
-		if (!focused)
-		{
-			// Focus submit button
-			$("#registerContent :submit").focus();
-		}
-		*/
+		setFormFocus("#registerContent");
 	}
 	
 	// Startpage
 	$(".content:not(#loginContent)").hide();
-	$("#contentContainer").height($("#loginContent").height() + 20);
+//	$("#contentContainer").height($("#loginContent").height() + 20);
 	fnLoginFocus();
 	
 	// Bind events
