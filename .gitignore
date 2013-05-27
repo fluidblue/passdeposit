@@ -9,3 +9,6 @@ nb-configuration.xml
 
 # Project specific
 src/include/config.php
+
+# stuff folder
+stuff
