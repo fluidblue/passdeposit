@@ -1,6 +1,0 @@
-/**
- * PassDeposit
- * 
- * @author Max Geissler
- */
-

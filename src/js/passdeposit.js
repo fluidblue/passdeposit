@@ -4,56 +4,22 @@
  * @author Max Geissler
  */
 
-function App()
+// Third party dependencies are in the lib folder
+// Configure loading modules from the lib directory, except 'app' ones
+requirejs.config(
 {
-	var userName = "";
-	var passHash = "";
-	
-	this.init = function()
+	"baseUrl": "js/lib",
+	"paths":
 	{
-		loadUsername();
-		initTabs();
-		setTooltips();
-		
-		var fnNotImpl = function()
-		{
-			alert("Not implemented");
-			return false;
-		};
-		
-		$("#loginForm").submit(loginUser);
-		$("#loginPassForgotten").click(fnNotImpl);
-		$("#registerForm").submit(fnNotImpl);
-	};
-	
-	var loginUser = function()
+		"app": "../app"
+	},
+	"shim":
 	{
-		passHash = getPassHash($("#loginPass").val);
-		
-		/*$.post("passdeposit.php",
-			{
-				userName : this.userName,
-				pass: this.passHash
-			}
-		);*/
-		
-		saveUsername();
-		
-		$("#frontpage").hide();
-		$("#mainpage").show();
-		
-		return false;
-	};
-	
-	var getPassHash = function(pass)
-	{
-		// TODO
-		return pass;
-	};
-}
-
-$(document).ready(function()
-{
-	var app = new App();
-	app.init();
+		"jquery.afterresize": ["jquery"],
+		"jquery.tipTip": ["jquery"],
+		"jquery.total-storage": ["jquery"]
+	}
 });
+
+// Load the front page to start the app
+requirejs(["app/pages/front"]);
