@@ -10,18 +10,26 @@ header('content-type: text/html; charset=utf-8');
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>PassDeposit</title>
+	
 	<link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+	
 	<link rel="vcs-git" href="git://github.com/fluidblue/passdeposit.git" title="PassDeposit Git repository" />
 	<link rel="vcs-browse" href="http://github.com/fluidblue/passdeposit" title="PassDeposit Git repository browser" />
-	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<link rel="stylesheet" type="text/css" href="css/font.css" />
-	<link rel="stylesheet" type="text/css" href="css/controls.css" />
-	<link rel="stylesheet" type="text/css" href="css/frontpage.css" />
-	<link rel="stylesheet" type="text/css" href="css/mainpage.css" />
-	<link rel="stylesheet" type="text/css" href="css/tipTip.css" />
-	<script type="text/javascript" data-main="js/passdeposit" src="js/lib/require.js"></script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/font.css" />
+	<link rel="stylesheet" href="css/controls.css" />
+	<link rel="stylesheet" href="css/frontpage.css" />
+	<link rel="stylesheet" href="css/mainpage.css" />
+	<link rel="stylesheet" href="css/tipTip.css" />
+	
+	<!--[if lt IE 9]>
+	<script src="js/lib/html5shiv.js"></script>
+	<![endif]-->
+	<script src="js/lib/require.js" data-main="js/passdeposit"></script>
 </head>
 <body>
 	<div id="frontpage">

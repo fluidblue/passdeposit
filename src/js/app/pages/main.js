@@ -7,7 +7,8 @@
 define(
 [
 	"jquery",
-	"domReady"
+	"domReady",
+	"bootstrap"
 ],
 function($, domReady)
 {

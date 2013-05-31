@@ -15,8 +15,7 @@ requirejs.config(
 	},
 	"shim":
 	{
-		"jquery.afterresize": ["jquery"],
-		"jquery.tipTip": ["jquery"],
+		"bootstrap" : ['jquery'],
 		"jquery.total-storage": ["jquery"]
 	}
 });

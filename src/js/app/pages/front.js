@@ -8,10 +8,8 @@ define(
 [
 	"jquery",
 	"domReady",
-	"jquery-ui",
-	"jquery.afterresize",
-	"jquery.tipTip",
-	"jquery.total-storage"
+	"jquery.total-storage",
+	"bootstrap"
 ],
 function($, domReady)
 {
@@ -191,7 +189,7 @@ function($, domReady)
 	{
 		loadUsername();
 		initTabs();
-		setTooltips();
+		//setTooltips(); // TODO
 		
 		var fnNotImpl = function()
 		{
