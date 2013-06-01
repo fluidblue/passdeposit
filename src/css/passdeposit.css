@@ -145,3 +145,12 @@ body
 {
 	outline: none !important;
 }
+
+/* Set background color of .active to .disabled (default: transparent) */
+.pagination ul > .disabled > a:hover,
+.pagination ul > .disabled > a:focus,
+.pagination ul > .disabled > a,
+.pagination ul > .disabled > span
+{
+	background-color: #f5f5f5;
+}
