@@ -146,6 +146,20 @@ body
 	outline: none !important;
 }
 
+/* The default of 80% is too dark, so light it up */
+.modal-backdrop,
+.modal-backdrop.fade.in
+{
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+/* Move modal dialogs down (default: 10%) */
+.modal.fade.in
+{
+	top: 15%;
+}
+
 /* Set background color of .active to .disabled (default: transparent) */
 .pagination ul > .disabled > a:hover,
 .pagination ul > .disabled > a:focus,
