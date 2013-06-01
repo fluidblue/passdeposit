@@ -140,13 +140,31 @@ header('content-type: text/html; charset=utf-8');
 		<div class="well item">
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-globe"></i></span>
-				<input type="text" placeholder="http://www.example.com">
+				<input type="text" placeholder="http://example.com">
 				<button class="btn" type="button">Open</button>
 			</div>
 
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-user"></i></span>
-				<input type="text" placeholder="Username">
+				<input type="text" placeholder="User">
+				<button class="btn" type="button">Copy</button>
+			</div>
+			
+			<div class="input-prepend input-append input-block-level">
+				<span class="add-on"><i class="icon-envelope"></i></span>
+				<input type="text" placeholder="Email">
+				<button class="btn" type="button">Copy</button>
+			</div>
+			
+			<div class="input-prepend input-append input-block-level">
+				<span class="add-on"><i class="icon-align-left"></i></span>
+				<input type="text" placeholder="Text">
+				<button class="btn" type="button">Copy</button>
+			</div>
+			
+			<div class="input-prepend input-append input-block-level">
+				<span class="add-on"><i class="icon-globe"></i></span>
+				<input type="text" placeholder="Service name, e.g. Skype">
 				<button class="btn" type="button">Copy</button>
 			</div>
 
@@ -155,6 +173,26 @@ header('content-type: text/html; charset=utf-8');
 				<input type="password" placeholder="Password">
 				<button class="btn pwtogglevisiblity" type="button">Show</button>
 				<button class="btn pwcopy" type="button">Copy</button>
+			</div>
+			
+			<div class="input-prepend input-block-level">
+				<span class="add-on"><i class="icon-tags"></i></span>
+				<input type="text" placeholder="Tags">
+			</div>
+			
+			<div class="btn-group">
+				<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<i class="icon-plus"></i>
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#service">Service name</a></li>
+					<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
+					<li><a tabindex="-1" href="#user">User</a></li>
+					<li><a tabindex="-1" href="#email">Email</a></li>
+					<li><a tabindex="-1" href="#text">Text</a></li>
+					<li><a tabindex="-1" href="#pw">Password</a></li>
+				</ul>
 			</div>
 		</div>
 		
