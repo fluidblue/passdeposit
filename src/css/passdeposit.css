@@ -1,6 +1,7 @@
 body
 {
 	background-image: url('../img/bg.gif');
+	/* TODO: Check min-width on frontpage and mainpage! */
 }
 
 .btn-wide
@@ -15,6 +16,8 @@ body
 	
 	margin-left: auto;
 	margin-right: auto;
+	
+	margin-top: 15px;
 	
 	width: 325px;
 	height: 260px;
@@ -48,7 +51,6 @@ body
 
 #frontNav.nav-pills > li
 {
-	/* TODO */
 	width: 108px;
 }
 
@@ -88,4 +90,53 @@ body
 	/*position: absolute;*/
 	/*left: 50%;*/
 	/*margin-left: -173px; half the width*/
+}
+
+.btn-group-wrap
+{
+	margin-top: 25px;
+	margin-bottom: 25px;
+	
+	text-align: center;
+}
+
+.btn-group-wrap div.btn-group
+{
+	text-align: left;
+}
+
+.btn-group-wrap div.btn-group-search
+{
+	/* TODO: Why is this fix needed? Problem when zooming! */
+	height: 30px;
+}
+
+#search
+{
+	width: 350px;
+}
+
+/* TODO: REMOVE */
+/*.mainmenu
+{
+	width: 800px;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	background-color: red;
+}*/
+
+.item
+{
+	width: 500px;
+	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.item div span.add-on
+{
+	padding-left: 8px;
+	padding-right: 8px;
 }
