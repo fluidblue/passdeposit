@@ -1,0 +1,129 @@
+#frontpage
+{
+	margin-left: auto;
+	margin-right: auto;
+	
+	width: 380px; /* width of #contentContainer */
+}
+
+#frontpage img.logo
+{
+	display: block;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	width: 325px;
+	height: 260px;
+}
+
+#frontpage .navbar
+{
+	margin-left: auto;
+	margin-right: auto;
+	
+	margin-top: 30px;
+	margin-bottom: 8px;
+	
+	width: 360px;
+	
+	border-radius: 20px;
+	/*padding: 5px;*/
+	
+	background-color: rgba(0, 0, 0, 0);
+	
+	/*box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.2);*/
+}
+
+#frontpage .navbar > div
+{
+	height: 34px;
+	
+	padding-left: 15px;
+	
+	border-radius: 8px;
+	
+	background-color: rgb(30, 30, 30);
+	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="rgb(55,55,55)", endColorstr="#000");
+	background: -webkit-gradient(linear, left top, left bottom, from(rgb(55,55,55)), to(rgb(25,25,25)));
+	background: -moz-linear-gradient(top, rgb(55,55,55), rgb(25,25,25));
+	background: -o-linear-gradient(top, rgb(55,55,55), rgb(25,25,25));
+	background: -ms-linear-gradient(top, rgb(55,55,55), rgb(25,25,25));
+	background: linear-gradient(top, rgb(55,55,55), rgb(25,25,25));
+	
+	/*box-shadow: inset 0 4px 4px rgba(255, 255, 255, 0.08), 0 2px 2px 0 rgba(0, 0, 0, 0.25);*/
+}
+
+#frontpage .navbar .item
+{
+	cursor: pointer;
+	
+	-webkit-transition: all 0.1s ease-in 0;
+	transition: all 0.1s ease-in;
+	
+	float: left;
+	
+	width: 110px;
+	height: 34px;
+	line-height: 34px;
+	
+	text-align: center;
+	color: #999999;
+	font-weight: bold;
+	text-shadow: rgb(0, 0, 0) 0 1px 3px;
+}
+
+#frontpage .navbar .itemActive
+{
+	box-shadow: inset 0 0 30px rgb(0, 0, 0);
+	border-radius: 3px;
+	
+	color: #cccccc;
+}
+
+#frontpage #contentContainer
+{
+	clear: left;
+	
+	width: 380px; /* .content width + 2 * .content padding */
+	
+	/*overflow: hidden;*/ /* Not needed if nothing is below #contentContainer */
+	position: relative;
+}
+
+#frontpage #contentContainer .content
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	
+	width: 360px; /* #tabContainer width */
+	padding: 10px;
+}
+
+#frontpage #contentContainer div form div input.text
+{
+	display: block;
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+#frontpage #contentContainer div form div input.button
+{
+	margin-top: 8px;
+	float: right;
+}
+
+#frontpage #aboutContent
+{
+	line-height: 140%;
+}
+
+#frontpage #loginPassForgotten
+{
+	float: left;
+	
+	margin-left: 8px; /* textbox padding-left + textbox border-left */
+	margin-top: 16px; /* button margin-top + button padding-top + button border-top */
+}

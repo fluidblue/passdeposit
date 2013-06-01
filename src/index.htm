@@ -10,72 +10,89 @@ header('content-type: text/html; charset=utf-8');
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>PassDeposit</title>
-	
 	<link rel="icon" type="image/x-icon" href="img/favicon.ico" />
-	
-	<link rel="vcs-git" href="git://github.com/fluidblue/passdeposit.git" title="PassDeposit Git repository" />
-	<link rel="vcs-browse" href="http://github.com/fluidblue/passdeposit" title="PassDeposit Git repository browser" />
-	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="css/bootstrap.css" media="screen">
-	<link rel="stylesheet" href="css/main.css" />
-	<link rel="stylesheet" href="css/font.css" />
-	<link rel="stylesheet" href="css/controls.css" />
-	<link rel="stylesheet" href="css/frontpage.css" />
-	<link rel="stylesheet" href="css/mainpage.css" />
-	
+	<link rel="stylesheet" href="css/passdeposit.css">
 	<!--[if lt IE 9]>
 	<script src="js/lib/html5shiv.js"></script>
 	<![endif]-->
 	<script src="js/lib/require.js" data-main="js/passdeposit"></script>
 </head>
 <body>
-	<div id="frontpage">
+	<div id="frontpage" class="container">
 		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
-		<div class="navbar">
-			<div>
-				<div id="loginTab" class="item itemActive">Login</div>
-				<div id="registerTab" class="item">Register</div>
-				<div id="aboutTab" class="item">About</div>
-			</div>
-		</div>
-		<div id="contentContainer">
-			<div id="loginContent" class="content">
-				<form id="loginForm" action="." method="post" autocomplete="off">
-					<div>
-						<input name="mail" type="email" id="loginUser" value="" class="text" placeholder="Email address" required="required" />
-						<input name="pass" type="password" id="loginPass" value="" class="text" placeholder="Password" required="required" />
-						<a href="." id="loginPassForgotten">Forgot your password?</a>
-						<input type="submit" id="loginButton" value="Login" class="button" />
-					</div>
-				</form>
-			</div>
-			<div id="registerContent" class="content">
-				<form id="registerForm" action="." method="post" autocomplete="off">
-					<div>
-						<input name="mail" type="email" id="registerEmail" value="" class="text" placeholder="Email address" title="We only need your email address for sending your password hint if you forget your password." required="required" />
-						<input name="pass" type="password" id="registerPass" value="" class="text" placeholder="Password" title="Use a strong password with a minimum length of 8 characters, an uppercase letter, a lowercase letter and a digit." required="required" />
-						<input name="passrepeat" type="password" id="registerPassRepeat" value="" class="text" placeholder="Repeat password" required="required" />
-						<input name="passhint" type="text" id="registerPassHint" value="" class="text" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." required="required" />
-						<input type="submit" id="registerButton" value="Register" class="button" />
-					</div>
-				</form>
-			</div>
-			<div id="aboutContent" class="content">
-				PassDeposit is a highly secure online password manager,
-				which allows you to store and access your passwords online.<br />
-				<br />
-				See the <a href="https://github.com/fluidblue/passdeposit/blob/master/Readme.md#passdeposit">Readme</a>
-				for further information.<br />
-				<br />
-				PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
-			</div>
+		<ul id="frontNav" class="nav nav-pills">
+			<li class="active"><a href="#login">Login</a></li>
+			<li><a href="#register">Register</a></li>
+			<li><a href="#about">About</a></li>
+		</ul>
+		<form id="login" autocomplete="off" class="content">
+			<input type="text" id="loginUser" class="input-block-level" value="" placeholder="Email address" />
+			<input type="password" id="loginPass" class="input-block-level" value="" placeholder="Password" />
+			<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" />
+			<input type="submit" id="loginButton" value="Login" class="btn btn-success btn-wide pull-right" />
+		</form>
+		<form id="register" autocomplete="off" class="content hide">
+			<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" title="We only need your email address for sending your password hint if you forget your password." />
+			<input type="password" id="registerPass" class="input-block-level" value="" placeholder="Password" title="Use a strong password with a minimum length of 8 characters, an uppercase letter, a lowercase letter and a digit." />
+			<input type="password" id="registerPassRepeat" class="input-block-level" value="" placeholder="Repeat password" />
+			<input type="text" id="registerPassHint" class="input-block-level" value="" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." />
+			<input type="submit" id="registerButton" value="Register" class="btn btn-success btn-wide pull-right" />
+		</form>
+		<div id="about" class="content hide">
+			PassDeposit is a highly secure online password manager,
+			which allows you to store and access your passwords online.<br />
+			<br />
+			See the <a href="https://github.com/fluidblue/passdeposit/blob/master/Readme.md#passdeposit">Readme</a>
+			for further information.<br />
+			<br />
+			PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
 		</div>
 	</div>
-	<div id="mainpage">
+	<div id="mainpage" class="hide">
 		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
-		<input name="mail" type="text" id="search" value="" class="text" placeholder="Type to search..." />
+		
+		<div class="input-append input-block-level">
+			<input id="search" type="text" placeholder="Type to search...">
+			<div class="btn-group">
+				<button class="btn">
+					<span class="caret"></span>
+				</button>
+			</div>
+		</div>
+		
+		<div class="btn-group">
+			<button class="btn dropdown-toggle" data-toggle="dropdown">
+				New
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a tabindex="-1" href="#">Action</a></li>
+				<li><a tabindex="-1" href="#">Another action</a></li>
+				<li><a tabindex="-1" href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a tabindex="-1" href="#">Separated link</a></li>
+			</ul>
+		</div>
+		<a class="btn" href="#options" data-toggle="modal"><i class="icon-globe"></i> Options</a>
+		<a class="btn" href="#options" data-toggle="modal"><i class="icon-ok"></i> Options</a>
+		
+		<div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="optionsLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 id="optionsLabel">Options</h3>
+			</div>
+			<div class="modal-body">
+				<p>This is the option dialog</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
