@@ -24,7 +24,8 @@ header('content-type: text/html; charset=utf-8');
 	<script src="js/lib/require.js" data-main="js/passdeposit"></script>
 </head>
 <body>
-	<div id="frontpage" class="container">
+	<!-- Front page -->
+	<div id="frontpage">
 		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
 		
 		<ul id="frontNav" class="nav nav-pills">
@@ -34,14 +35,14 @@ header('content-type: text/html; charset=utf-8');
 		</ul>
 		
 		<form id="login" autocomplete="off" class="content">
-			<input type="text" id="loginUser" class="input-block-level" value="" placeholder="Email address" />
+			<input type="text" id="loginUser" class="input-block-level" value="" spellcheck="false" placeholder="Email address" />
 			<input type="password" id="loginPass" class="input-block-level" value="" placeholder="Password" />
 			<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" />
 			<input type="submit" id="loginButton" value="Login" class="btn btn-success btn-wide pull-right" />
 		</form>
 		
 		<form id="register" autocomplete="off" class="content hide">
-			<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" title="We only need your email address for sending your password hint if you forget your password." />
+			<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" spellcheck="false" title="We only need your email address for sending your password hint if you forget your password." />
 			<input type="password" id="registerPass" class="input-block-level" value="" placeholder="Password" title="Use a strong password with a minimum length of 8 characters, an uppercase letter, a lowercase letter and a digit." />
 			<input type="password" id="registerPassRepeat" class="input-block-level" value="" placeholder="Repeat password" />
 			<input type="text" id="registerPassHint" class="input-block-level" value="" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." />
@@ -58,12 +59,14 @@ header('content-type: text/html; charset=utf-8');
 			PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
 		</div>
 	</div>
+	
+	<!-- Main page -->
 	<div id="mainpage" class="hide">
 		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
 		
 <!--		<div class="mainmenu hide">
 			<div class="input-append input-block-level">
-				<input id="search" type="text" placeholder="Type to search..." autocomplete="off">
+				<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
 				<div class="btn-group">
 					<button class="btn">
 						<span class="caret"></span>
@@ -90,7 +93,7 @@ header('content-type: text/html; charset=utf-8');
 				<a class="btn" href="#delete"><i class="icon-trash"></i> Delete</a>
 			</div>
 			<div class="btn-group">
-				<a class="btn" href="#options" data-toggle="modal"><i class="icon-wrench"></i> Options</a>
+				<a class="btn" href="#optionsDialog" data-toggle="modal"><i class="icon-wrench"></i> Options</a>
 			</div>
 			<div class="btn-group">
 				<a class="btn" href="#lock"><i class="icon-lock"></i> Lock</a>
@@ -116,7 +119,7 @@ header('content-type: text/html; charset=utf-8');
 			</div>
 			<div class="btn-group btn-group-search">
 				<div class="input-append">
-					<input id="search" type="text" placeholder="Type to search..." autocomplete="off">
+					<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
 					<div class="btn-group">
 						<button class="btn">
 							<span class="caret"></span>
@@ -125,7 +128,7 @@ header('content-type: text/html; charset=utf-8');
 				</div>
 			</div>
 			<div class="btn-group">
-				<a class="btn" href="#options" data-toggle="modal"><i class="icon-wrench"></i> Options</a>
+				<a class="btn" href="#optionsDialog" data-toggle="modal"><i class="icon-wrench"></i> Options</a>
 			</div>
 			<div class="btn-group">
 				<a class="btn" href="#lock"><i class="icon-lock"></i> Lock</a>
@@ -138,44 +141,44 @@ header('content-type: text/html; charset=utf-8');
 			
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-globe"></i></span>
-				<input type="text" placeholder="http://example.com">
+				<input type="text" placeholder="http://example.com" spellcheck="false" />
 				<button class="btn" type="button">Open</button>
 			</div>
 
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-user"></i></span>
-				<input type="text" placeholder="User">
+				<input type="text" placeholder="User" spellcheck="false" />
 				<button class="btn" type="button">Copy</button>
 			</div>
 			
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-envelope"></i></span>
-				<input type="text" placeholder="Email">
+				<input type="text" placeholder="Email" spellcheck="false" />
 				<button class="btn" type="button">Copy</button>
 			</div>
 			
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-align-left"></i></span>
-				<input type="text" placeholder="Text">
+				<input type="text" placeholder="Text" />
 				<button class="btn" type="button">Copy</button>
 			</div>
 			
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-globe"></i></span>
-				<input type="text" placeholder="Service name, e.g. Skype">
+				<input type="text" placeholder="Service name, e.g. Skype" spellcheck="false" />
 				<button class="btn" type="button">Copy</button>
 			</div>
 
 			<div class="input-prepend input-append input-block-level">
 				<span class="add-on"><i class="icon-lock"></i></span>
-				<input type="password" placeholder="Password">
+				<input type="password" placeholder="Password" />
 				<button class="btn pwtogglevisiblity" type="button">Show</button>
 				<button class="btn pwcopy" type="button">Copy</button>
 			</div>
 			
 			<div class="input-prepend input-block-level">
 				<span class="add-on"><i class="icon-tags"></i></span>
-				<input type="text" placeholder="Tags">
+				<input type="text" placeholder="Tags" spellcheck="false" />
 			</div>
 			
 			<div class="btn-group">
@@ -207,24 +210,51 @@ header('content-type: text/html; charset=utf-8');
 				<li><a href="#">&raquo;</a></li>
 			</ul>
 		</div>
-		
-		<div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="optionsLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 id="optionsLabel">Options</h3>
-			</div>
-			<div class="modal-body">
-				<ul class="nav nav-pills">
-					<li class="active"><a href="#">General</a></li>
-					<li><a href="#">Import</a></li>
-					<li><a href="#">Export</a></li>
-				</ul>
-				<p>This is the option dialog</p>
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<button class="btn btn-primary">Save changes</button>
-			</div>
+	</div>
+	
+	<!-- Register Dialog -->
+	<div id="registerDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="registerDialogLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="registerDialogLabel">Register</h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				As a user you agree to any information you have entered above
+				being stored in a database. While this information will not be
+				disclosed to any third party without your consent the webmaster
+				cannot be held responsible for any hacking attempt that may lead
+				to the data being compromised.
+			</p>
+			<p>
+				Warning: <span class="color-danger">It is technically impossible to
+				restore or reset your password</span>, if you forget it. We can only
+				send your password hint to your email address.
+			</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<button class="btn btn-primary">Register</button>
+		</div>
+	</div>
+	
+	<!-- Options Dialog -->
+	<div id="optionsDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="optionsDialogLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="optionsDialogLabel">Options</h3>
+		</div>
+		<div class="modal-body">
+			<ul class="nav nav-pills">
+				<li class="active"><a href="#">General</a></li>
+				<li><a href="#">Import</a></li>
+				<li><a href="#">Export</a></li>
+			</ul>
+			<p>This is the option dialog</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
 		</div>
 	</div>
 </body>

@@ -158,7 +158,12 @@ function($, domReady)
 		
 		$("#login").submit(loginUser);
 		$("#loginPassForgotten").click(fnNotImpl);
-		$("#register").submit(fnNotImpl);
+		
+		$("#register").submit(function()
+		{
+			$("#registerDialog").modal('show');
+			return false;
+		});
 		
 		// TODO: Move to main.js
 		var options =
