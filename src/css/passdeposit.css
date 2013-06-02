@@ -61,7 +61,7 @@ body
 
 #loginPassForgotten
 {
-	padding-left: 6px; /* top,bottom inherited from padding of .btn + 1px border of .btn */
+	padding-left: 6px; /* top, bottom inherited from padding of .btn + 1px border of .btn */
 }
 
 #frontNav
