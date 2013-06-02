@@ -1,7 +1,43 @@
+/**
+ * PassDeposit
+ * 
+ * @author Max Geissler
+ */
+
+/* TODO: Check min-width on frontpage and mainpage! Use .container? */
+/* TODO: Check page crop below login/register button */
 body
 {
 	background-image: url('../img/bg.gif');
-	/* TODO: Check min-width on frontpage and mainpage! */
+}
+
+/* Remove all browser specific outlines for buttons and links */
+.btn, a
+{
+	outline: none !important;
+}
+
+/* The default of 80% is too dark, so light it up */
+.modal-backdrop,
+.modal-backdrop.fade.in
+{
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+}
+
+/* Move modal dialogs down (default: 10%) */
+.modal.fade.in
+{
+	top: 15%;
+}
+
+/* Set background color of .active to .disabled (default: transparent) */
+.pagination ul > .disabled > a:hover,
+.pagination ul > .disabled > a:focus,
+.pagination ul > .disabled > a,
+.pagination ul > .disabled > span
+{
+	background-color: #f5f5f5;
 }
 
 .btn-wide
@@ -141,30 +177,7 @@ body
 	padding-right: 8px;
 }
 
-.btn
+.color-danger
 {
-	outline: none !important;
-}
-
-/* The default of 80% is too dark, so light it up */
-.modal-backdrop,
-.modal-backdrop.fade.in
-{
-	opacity: 0.6;
-	filter: alpha(opacity=60);
-}
-
-/* Move modal dialogs down (default: 10%) */
-.modal.fade.in
-{
-	top: 15%;
-}
-
-/* Set background color of .active to .disabled (default: transparent) */
-.pagination ul > .disabled > a:hover,
-.pagination ul > .disabled > a:focus,
-.pagination ul > .disabled > a,
-.pagination ul > .disabled > span
-{
-	background-color: #f5f5f5;
+	color: #da4f49;
 }
