@@ -9,7 +9,8 @@ define(
 	"jquery",
 	"domReady",
 	"jquery.total-storage",
-	"bootstrap"
+	"bootstrap",
+	"jquery-ui"
 ],
 function($, domReady)
 {
@@ -74,6 +75,12 @@ function($, domReady)
 	
 	function loginUser()
 	{
+		if ($("#loginPass").val().length === 0)
+		{
+			$("#loginPass").effect("shake");
+			return false;
+		}
+		
 		/*$.post("passdeposit.php",
 			{
 				userName : this.userName,

@@ -16,7 +16,8 @@ requirejs.config(
 	"shim":
 	{
 		"bootstrap" : ['jquery'],
-		"jquery.total-storage": ["jquery"]
+		"jquery.total-storage": ["jquery"],
+		"jquery-ui": ["jquery"]
 	}
 });
 
