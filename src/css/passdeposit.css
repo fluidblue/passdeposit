@@ -109,24 +109,12 @@ body
 	text-align: justify;
 }
 
-#frontpage
-{
-	/*position: relative;*/
-}
-
-#frontpage .content
+#frontpage .nav-pills-content
 {
 	width: 345px;
 	
 	margin-left: auto;
 	margin-right: auto;
-	
-/*	position: relative;
-	top: 0px !important;*/
-	
-	/*position: absolute;*/
-	/*left: 50%;*/
-	/*margin-left: -173px; half the width*/
 }
 
 .btn-group-wrap

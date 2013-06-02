@@ -13,29 +13,7 @@ define(
 ],
 function($, domReady)
 {
-	var tabChangeDuration = 150;
-
-//	function changeTabContent(idContent)
-//	{
-//		// Cancel if tab is already visible
-//		if (!$(".content").is(':animated') && $(idContent).is(":visible"))
-//			return;
-//
-//		// Stop all runnning and queued animations
-//		$(".content").stop(true, true);
-//
-//		// Cleanup
-//		$(".content input").blur();
-//
-//		// Set new focus
-//		$(idContent).css("opacity", "0.0").show();
-//		setFormFocus(idContent);
-//		$(idContent).css("opacity", "1.0").hide();
-//
-//		// Fade content
-//		$(".content").fadeOut(tabChangeDuration);
-//		$(idContent).fadeIn(tabChangeDuration);
-//	}
+	var navPillFadeDuration = 200;
 
 	function setFormFocus(parent)
 	{
@@ -111,44 +89,48 @@ function($, domReady)
 		return false;
 	};
 	
+	function initNavPills()
+	{
+		// Speed up content change by bypassing CSS blur transition
+		// by using mousedown instead of click event.
+		$(".nav-pills li a").mousedown(function()
+		{
+			var parent = $(this).parent();
+			
+			// Cancel if already active
+			if (parent.hasClass("active"))
+				return;
+			
+			// Set nav-pill
+			$(".nav-pills li").removeClass("active");
+			parent.addClass("active");
+			
+			// Stop all runnning and queued animations
+			$(".nav-pills-content").stop(true, true);
+			
+			// Fade old content out, fade new content in and set focus
+			var content = $(this).attr('href');
+			$(".nav-pills-content").fadeOut(navPillFadeDuration).promise().done(function()
+			{
+				$(content).fadeIn(navPillFadeDuration);
+				setFormFocus(content);
+			});
+		});
+		
+		$(".nav-pills li a").click(function()
+		{
+			// Suppress link opening
+			return false;
+		});
+	}
+	
 	// Initialize page when DOM is ready.
 	domReady(function()
 	{
 		loadUsername();
 		setFormFocus("#login");
 		setTooltips();
-
-//		$(".content").css("position", "absolute");
-		
-		$("#frontNav li a").click(function()
-		{
-			$("#frontNav li").removeClass("active");
-			$(this).parent().addClass("active");
-			
-			/* Snappy */
-//			$(".content").addClass("hide");
-//			var content = $(this).attr('href');
-//			$(content).removeClass("hide");
-//			setFormFocus(content);
-
-			/* Fade */
-			var content = $(this).attr('href');
-			$(".content").fadeOut(tabChangeDuration).promise().done(function()
-			{
-				$(content).fadeIn(tabChangeDuration);
-				setFormFocus(content);
-			});
-
-			/* Fade through */
-//			var content = $(this).attr('href');
-//			$(".content").fadeOut(tabChangeDuration, null);
-////			alert($(".content").css("top"));
-//			$(content).fadeIn(tabChangeDuration, null);
-//			
-//			changeTabContent($(this).attr('href'));
-			
-			return false;
-		});
+		initNavPills();
 		
 		var fnNotImpl = function()
 		{
