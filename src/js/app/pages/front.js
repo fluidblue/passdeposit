@@ -14,6 +14,7 @@ define(
 function($, domReady)
 {
 	var navPillFadeDuration = 200;
+	var pageChangeFadeDuration = 200;
 
 	function setFormFocus(parent)
 	{
@@ -82,9 +83,12 @@ function($, domReady)
 		
 		saveUsername();
 		
-		// TODO: Change to module system
-		$("#frontpage").hide();
-		$("#mainpage").show();
+		// Switch to mainpage
+		$("#frontpage").fadeOut(pageChangeFadeDuration, function()
+		{
+			$("#mainpage").fadeIn(pageChangeFadeDuration);
+			$("#search").focus();
+		});
 		
 		return false;
 	};
@@ -101,16 +105,21 @@ function($, domReady)
 			if (parent.hasClass("active"))
 				return;
 			
+			// Get target (group)
+			var target = $(this).parent().parent().attr("data-target");
+			
 			// Set nav-pill
-			$(".nav-pills li").removeClass("active");
+			$(".nav-pills[data-target=" + target + "] li").removeClass("active");
 			parent.addClass("active");
 			
 			// Stop all runnning and queued animations
-			$(".nav-pills-content").stop(true, true);
+			var allContent = $("." + target + " .navContent");
+			allContent.stop(true, true);
 			
 			// Fade old content out, fade new content in and set focus
 			var content = $(this).attr('href');
-			$(".nav-pills-content").fadeOut(navPillFadeDuration).promise().done(function()
+			// TODO: Check removal of promise/done
+			allContent.fadeOut(navPillFadeDuration).promise().done(function()
 			{
 				$(content).fadeIn(navPillFadeDuration);
 				setFormFocus(content);
@@ -145,6 +154,18 @@ function($, domReady)
 		{
 			$("#registerDialog").modal('show');
 			return false;
+		});
+		
+		$("#btnLogout").click(function()
+		{
+			// TODO: Clean up data!
+			
+			// Switch to frontpage
+			$("#mainpage").fadeOut(pageChangeFadeDuration, function()
+			{
+				$("#frontpage").fadeIn(pageChangeFadeDuration);
+				setFormFocus("#login");
+			});
 		});
 		
 		// TODO: Move to main.js

@@ -40,7 +40,7 @@ body
 	background-color: #f5f5f5;
 }
 
-.btn-wide
+.btnWide
 {
 	padding-left: 35px;
 	padding-right: 35px;
@@ -109,7 +109,7 @@ body
 	text-align: justify;
 }
 
-#frontpage .nav-pills-content
+#frontpage .navContent
 {
 	width: 345px;
 	
@@ -117,7 +117,7 @@ body
 	margin-right: auto;
 }
 
-.btn-group-wrap
+.mainNav
 {
 	margin-top: 25px;
 	margin-bottom: 25px;
@@ -125,12 +125,12 @@ body
 	text-align: center;
 }
 
-.btn-group-wrap div.btn-group
+.mainNav div.btn-group
 {
 	text-align: left;
 }
 
-.btn-group-wrap div.btn-group-search
+.mainNav div.btn-group-search
 {
 	/* TODO: Why is this fix needed? Problem when zooming! */
 	height: 30px;
@@ -166,7 +166,7 @@ body
 	padding-right: 8px;
 }
 
-.color-danger
+.colorDanger
 {
 	color: #da4f49;
 }

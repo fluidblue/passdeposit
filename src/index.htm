@@ -24,46 +24,46 @@ header('content-type: text/html; charset=utf-8');
 	<script src="js/lib/require.js" data-main="js/passdeposit"></script>
 </head>
 <body>
+	<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
+	
 	<!-- Front page -->
 	<div id="frontpage">
-		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
-		
-		<ul id="frontNav" class="nav nav-pills">
+		<ul id="frontNav" class="nav nav-pills" data-target="frontNavContent">
 			<li class="active"><a href="#login">Login</a></li>
 			<li><a href="#register">Register</a></li>
 			<li><a href="#about">About</a></li>
 		</ul>
 		
-		<form id="login" autocomplete="off" class="nav-pills-content">
-			<input type="text" id="loginUser" class="input-block-level" value="" spellcheck="false" placeholder="Email address" />
-			<input type="password" id="loginPass" class="input-block-level" value="" placeholder="Password" />
-			<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" />
-			<input type="submit" id="loginButton" value="Login" class="btn btn-success btn-wide pull-right" />
-		</form>
-		
-		<form id="register" autocomplete="off" class="nav-pills-content hide">
-			<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" spellcheck="false" title="We only need your email address for sending your password hint if you forget your password." />
-			<input type="password" id="registerPass" class="input-block-level" value="" placeholder="Password" title="Use a strong password with a minimum length of 8 characters, an uppercase letter, a lowercase letter and a digit." />
-			<input type="password" id="registerPassRepeat" class="input-block-level" value="" placeholder="Repeat password" />
-			<input type="text" id="registerPassHint" class="input-block-level" value="" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." />
-			<input type="submit" id="registerButton" value="Register" class="btn btn-success btn-wide pull-right" />
-		</form>
-		
-		<div id="about" class="nav-pills-content hide">
-			PassDeposit is a highly secure online password manager,
-			which allows you to store and access your passwords online.<br />
-			<br />
-			See the <a href="https://github.com/fluidblue/passdeposit/blob/master/Readme.md#passdeposit">Readme</a>
-			for further information.<br />
-			<br />
-			PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
+		<div class="frontNavContent">
+			<form id="login" autocomplete="off" class="navContent">
+				<input type="text" id="loginUser" class="input-block-level" value="" spellcheck="false" placeholder="Email address" />
+				<input type="password" id="loginPass" class="input-block-level" value="" placeholder="Password" />
+				<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" />
+				<input type="submit" id="loginButton" value="Login" class="btn btn-success btnWide pull-right" />
+			</form>
+
+			<form id="register" autocomplete="off" class="navContent hide">
+				<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" spellcheck="false" title="We only need your email address for sending your password hint if you forget your password." />
+				<input type="password" id="registerPass" class="input-block-level" value="" placeholder="Password" title="Use a strong password with a minimum length of 8 characters, an uppercase letter, a lowercase letter and a digit." />
+				<input type="password" id="registerPassRepeat" class="input-block-level" value="" placeholder="Repeat password" />
+				<input type="text" id="registerPassHint" class="input-block-level" value="" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." />
+				<input type="submit" id="registerButton" value="Register" class="btn btn-success btnWide pull-right" />
+			</form>
+
+			<div id="about" class="navContent hide">
+				PassDeposit is a highly secure online password manager,
+				which allows you to store and access your passwords online.<br />
+				<br />
+				See the <a href="https://github.com/fluidblue/passdeposit/blob/master/Readme.md#passdeposit">Readme</a>
+				for further information.<br />
+				<br />
+				PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
+			</div>
 		</div>
 	</div>
 	
 	<!-- Main page -->
 	<div id="mainpage" class="hide">
-		<img src="img/passdeposit.png" alt="PassDeposit" class="logo" />
-		
 <!--		<div class="mainmenu hide">
 			<div class="input-append input-block-level">
 				<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
@@ -101,7 +101,7 @@ header('content-type: text/html; charset=utf-8');
 			</div>
 		</div>-->
 		
-		<div class="btn-group-wrap">
+		<div class="mainNav">
 			<div class="btn-group">
 				<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 					<i class="icon-plus icon-white"></i>
@@ -132,7 +132,7 @@ header('content-type: text/html; charset=utf-8');
 			</div>
 			<div class="btn-group">
 				<a class="btn" href="#lock"><i class="icon-lock"></i> Lock</a>
-				<a class="btn" href="#logout"><i class="icon-off"></i> Logout</a>
+				<a id="btnLogout" class="btn" href="#logout"><i class="icon-off"></i> Logout</a>
 			</div>
 		</div>
 		
@@ -227,7 +227,7 @@ header('content-type: text/html; charset=utf-8');
 				to the data being compromised.
 			</p>
 			<p>
-				Warning: <span class="color-danger">It is technically impossible to
+				Warning: <span class="colorDanger">It is technically impossible to
 				restore or reset your password</span>, if you forget it. We can only
 				send your password hint to your email address.
 			</p>
@@ -245,20 +245,22 @@ header('content-type: text/html; charset=utf-8');
 			<h3 id="optionsDialogLabel">Options</h3>
 		</div>
 		<div class="modal-body">
-			<ul class="nav nav-pills">
+			<ul class="nav nav-pills" data-target="optionsNavContent">
 				<li class="active"><a href="#options-general">General</a></li>
 				<li><a href="#options-import">Import</a></li>
 				<li><a href="#options-export">Export</a></li>
 			</ul>
-			<div id="options-general" class="nav-pills-content">
-				General settings.<br />
-				Lorem ipsum dolor
-			</div>
-			<div id="options-import" class="nav-pills-content hide">
-				Import.
-			</div>
-			<div id="options-export" class="nav-pills-content hide">
-				Export.
+			<div class="optionsNavContent">
+				<div id="options-general" class="navContent">
+					General settings.<br />
+					Lorem ipsum dolor
+				</div>
+				<div id="options-import" class="navContent hide">
+					Import.
+				</div>
+				<div id="options-export" class="navContent hide">
+					Export.
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">
