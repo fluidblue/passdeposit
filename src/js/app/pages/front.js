@@ -9,8 +9,7 @@ define(
 	"jquery",
 	"domReady",
 	"jquery.total-storage",
-	"bootstrap",
-	"jquery-ui"
+	"bootstrap"
 ],
 function($, domReady)
 {
@@ -62,23 +61,42 @@ function($, domReady)
 
 	function setTooltips()
 	{
+		var fnContent = function()
+		{
+			return $(".tooltip[data-owner=" + $(this).attr('id') + "]").html();
+		};
+		
 		var options =
 		{
 			trigger: 'focus',
-			placement: 'right'
+			placement: 'right',
+			html: true,
+			content: fnContent
 		};
 
-		$("#registerEmail").tooltip(options);
-		$("#registerPass").tooltip(options);
-		$("#registerPassHint").tooltip(options);
+		$("#registerEmail").popover(options);
+		$("#registerPass").popover(options);
+		$("#registerPassHint").popover(options);
+		
+		// Nasty fix for repositioning popover on resize
+		$(window).resize(function()
+		{
+			if ($(".popover").is(":visible"))
+			{
+				var popover = $(".popover");
+				popover.addClass("noTransition");
+				$("input:focus").popover('show');
+				popover.removeClass("noTransition");
+			}
+		});
 	}
 	
 	function loginUser()
 	{
 		if ($("#loginPass").val().length === 0)
 		{
-			$("#loginPass").effect("shake");
-			return false;
+//			$("#loginPass").addClass("invalidInput");
+//			return false;
 		}
 		
 		/*$.post("passdeposit.php",

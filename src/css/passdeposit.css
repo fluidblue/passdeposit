@@ -46,6 +46,35 @@ body
 	padding-right: 35px;
 }
 
+/* TODO: Unused? */
+.animationPause
+{
+	animation-play-state: paused !important;
+	-webkit-animation-play-state: paused !important;
+	-moz-animation-play-state: paused !important;
+	-o-animation-play-state: pause !important;
+}
+
+.noTransition
+{
+	-moz-transition: none !important;
+	-webkit-transition: none !important;
+	-o-transition: none !important;
+	transition: none !important;
+}
+
+/* Using input:focus:invalid, input:focus:invalid:focus */
+/* TODO: Unused? */
+.invalidInput:focus
+{
+	/*color: #b94a48 !important;*/
+	
+	border-color: #e9322d !important;
+	-webkit-box-shadow: 0 0 6px #f8b9b7 !important;
+	-moz-box-shadow: 0 0 6px #f8b9b7 !important;
+	box-shadow: 0 0 6px #f8b9b7 !important;
+}
+
 .logo
 {
 	display: block;

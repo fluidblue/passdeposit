@@ -43,10 +43,31 @@ header('content-type: text/html; charset=utf-8');
 			</form>
 
 			<form id="register" autocomplete="off" class="navContent hide">
-				<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" spellcheck="false" title="We only need your email address for sending your password hint if you forget your password." />
-				<input type="password" id="registerPass" class="input-block-level" value="" placeholder="Password" title="Use a strong password with a minimum length of 8 characters, an uppercase letter, a lowercase letter and a digit." />
+				<input type="text" id="registerEmail" class="input-block-level" value="" placeholder="Email address" spellcheck="false" />
+				<div class="tooltip hide" data-owner="registerEmail">
+					We only need your email address for sending
+					your password hint if you forget your password.
+				</div>
+				
+				<input type="password" id="registerPass" class="input-block-level" value="" placeholder="Password" />
+				<div class="tooltip hide" data-owner="registerPass">
+					<p>Use a strong password:</p>
+					<ul>
+						<li>8 characters or longer</li>
+						<li>At least one uppercase letter</li>
+						<li>At least one lowercase letter</li>
+						<li>At least one digit</li>
+					</ul>
+				</div>
+				
 				<input type="password" id="registerPassRepeat" class="input-block-level" value="" placeholder="Repeat password" />
-				<input type="text" id="registerPassHint" class="input-block-level" value="" placeholder="Password hint" title="In case you forget your password, the password hint will be sent to your email address." />
+				
+				<input type="text" id="registerPassHint" class="input-block-level" value="" placeholder="Password hint" />
+				<div class="tooltip hide" data-owner="registerPassHint">
+					In case you forget your password, the password hint
+					will be sent to your email address.
+				</div>
+				
 				<input type="submit" id="registerButton" value="Register" class="btn btn-success btnWide pull-right" />
 			</form>
 
