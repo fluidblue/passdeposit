@@ -22,10 +22,9 @@ Note: For testing PassDeposit locally, you can use XAMPP: <http://www.apachefrie
 ## Installation
 
 * Download the latest version from <https://github.com/fluidblue/passdeposit>
-* Copy everything in the src directory to your server
-* Import src/install/passdeposit.sql to your MySQL database (e.g. with phpMyAdmin)
-* Copy src/include/config.sample.php to src/include/config.php
-* Edit src/include/config.php to match your server configuration
+* Copy everything in the build directory (not the src directory!) to your server
+* Copy php/config.sample.php to php/config.php
+* Edit php/config.php to match your server configuration
 
 Note: In future versions there will be an automatic installer. As of now, only the above method is available.
 

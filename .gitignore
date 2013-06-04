@@ -8,7 +8,5 @@ nbactions.xml
 nb-configuration.xml
 
 # Project specific
-src/include/config.php
-
-# stuff folder
 stuff
+.sass-cache

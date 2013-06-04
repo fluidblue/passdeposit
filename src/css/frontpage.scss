@@ -1,0 +1,65 @@
+/**
+ * PassDeposit
+ * 
+ * @author Max Geissler
+ */
+
+/* TODO: Check min-width on frontpage and mainpage! Use .container? */
+
+#loginPassForgotten
+{
+	padding-left: 6px; /* top, bottom inherited from padding of .btn + 1px border of .btn */
+}
+
+#frontNav
+{
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+/* Center frontNav */
+#frontNav.nav-pills > li
+{
+	float: none;
+	display: inline-block;
+	*display: inline; /* ie7 fix */
+	zoom: 1; /* hasLayout ie7 trigger */
+}
+
+/* Center frontNav */
+#frontNav.nav-pills
+{
+	text-align: center;
+}
+
+/* Make frontNav pills fixed size */
+#frontNav.nav-pills > li
+{
+	width: 108px;
+}
+
+/* Make frontNav pills green */
+/*#frontNav.nav > li.active > a
+{
+	background-color: #46a546;
+}*/
+
+/* Better visibility of navpills in background image */
+#frontNav.nav > li:not(.active) > a:hover,
+#frontNav.nav > li:not(.active) > a:focus
+{
+	background-color: rgba(0, 0, 0, 0.06);
+}
+
+#about
+{
+	text-align: justify;
+}
+
+#frontpage .navContent
+{
+	width: 345px;
+	
+	margin-left: auto;
+	margin-right: auto;
+}
