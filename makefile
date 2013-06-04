@@ -27,19 +27,33 @@ BUILD_DIR = build
 all: clean css js html php img
 
 
+# Development target
+# ------------------
+dev: clean css-dev js-dev html php img
+	
+
 # Compile CSS
 # -----------
-css:
-	mkdir -p ./$(BUILD_DIR)/css
+css: css-base
 	sass --style compressed ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_DIR)/css/passdeposit.css
+
+css-dev: css-base
+	sass --style expanded ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_DIR)/css/passdeposit.css
+
+css-base:
+	mkdir -p ./$(BUILD_DIR)/css
 
 
 # Compile JS
 # ----------
-# Take configuration for requirejs from JS build script
-js:
-	mkdir -p ./$(BUILD_DIR)/js
+js: js-base
 	r.js -o ./$(SOURCE_DIR)/js/passdeposit-build-script.js out=./$(BUILD_DIR)/js/passdeposit.js
+
+js-dev: js-base
+	r.js -o ./$(SOURCE_DIR)/js/passdeposit-build-script.js out=./$(BUILD_DIR)/js/passdeposit.js optimize=none
+
+js-base:
+	mkdir -p ./$(BUILD_DIR)/js
 	cp ./$(SOURCE_DIR)/js/lib/html5shiv.js ./$(BUILD_DIR)/js/
 
 
