@@ -35,4 +35,4 @@ Please report bugs to <https://github.com/fluidblue/passdeposit/issues>
 
 Copyright (C) 2013 Max Geissler
 
-This program is free software, licensed under the GNU Affero General Public License (AGPL). Please see License.md for more information.
+This program is free software, licensed under the GNU Affero General Public License (AGPL). Please see [License.md](License.md) for more information.
