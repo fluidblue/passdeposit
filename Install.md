@@ -22,6 +22,7 @@ Note: For testing PassDeposit locally, you can use XAMPP: <http://www.apachefrie
 ## Installation
 
 * Download the latest version from <https://github.com/fluidblue/passdeposit>
+* Run make to compile PassDeposit. Details are given inside the makefile.
 * Copy everything in the build directory (not the src directory!) to your server
 * Copy php/config.sample.php to php/config.php
 * Edit php/config.php to match your server configuration
