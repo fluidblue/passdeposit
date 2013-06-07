@@ -10,3 +10,4 @@ nb-configuration.xml
 # Project specific
 stuff
 .sass-cache
+build
