@@ -9,7 +9,7 @@
 # * sass
 #
 # requirejs can be installed by the node.js package manager (npm):
-# sudo npm install -g <packagename>
+# sudo npm install -g requirejs
 #
 # sass can be installed by the RubyGems package manager (gem):
 # sudo gem install sass
@@ -18,8 +18,11 @@
 
 # Makefile configuration
 # ----------------------
+SHELL := /bin/bash
+PATH := $(PATH):/usr/local/bin
 SOURCE_DIR = src
 BUILD_DIR = build
+
 
 
 # Main target
@@ -27,9 +30,9 @@ BUILD_DIR = build
 all: clean css js html php img
 
 
-# Development target
-# ------------------
-dev: clean css-dev js-dev html php img
+# Development target (debug)
+# --------------------------
+debug: clean css-debug js-debug html php img
 	
 
 # Compile CSS
@@ -37,7 +40,7 @@ dev: clean css-dev js-dev html php img
 css: css-base
 	sass --style compressed ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_DIR)/css/passdeposit.css
 
-css-dev: css-base
+css-debug: css-base
 	sass --style expanded ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_DIR)/css/passdeposit.css
 
 css-base:
@@ -49,7 +52,7 @@ css-base:
 js: js-base
 	r.js -o ./$(SOURCE_DIR)/js/passdeposit-build-script.js out=./$(BUILD_DIR)/js/passdeposit.js
 
-js-dev: js-base
+js-debug: js-base
 	r.js -o ./$(SOURCE_DIR)/js/passdeposit-build-script.js out=./$(BUILD_DIR)/js/passdeposit.js optimize=none
 
 js-base:
@@ -78,5 +81,5 @@ img:
 # Clean build directory
 # ---------------------
 clean:
-	rm -Rf ./$(BUILD_DIR)/
+	-rm -R ./$(BUILD_DIR)/
 	mkdir -p ./$(BUILD_DIR)
