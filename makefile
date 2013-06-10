@@ -4,15 +4,10 @@
 # Authored by Max Geissler
 #
 #
-# PLEASE NOTE: You need to have installed the following compilers:
-# * requirejs
-# * sass
-#
-# requirejs can be installed by the node.js package manager (npm):
-# sudo npm install -g requirejs
-#
-# sass can be installed by the RubyGems package manager (gem):
-# sudo gem install sass
+# PLEASE NOTE:
+# * You need to have installed certain tools for this makefile.
+#   Run tools-install.sh to install all required tools.
+# * This makefile depends on bash. It won't work without bash.
 #
 
 
@@ -24,15 +19,14 @@ SOURCE_DIR = src
 BUILD_DIR = build
 
 
-
 # Main target
 # -----------
-all: clean css js html php img
+all: tools-check clean css js html php img
 
 
 # Development target (debug)
 # --------------------------
-debug: clean css-debug js-debug html php img
+debug: tools-check clean css-debug js-debug html php img
 	
 
 # Compile CSS
@@ -50,11 +44,11 @@ css-base:
 # Compile JS
 # ----------
 js: js-base
-	r.js -o ./$(SOURCE_DIR)/js/passdeposit-build-script.js out=./$(BUILD_DIR)/js/passdeposit.js
+	node ./scripts/passdeposit-build.js ./$(BUILD_DIR)/js/passdeposit.js
 
 js-debug: js-base
-	r.js -o ./$(SOURCE_DIR)/js/passdeposit-build-script.js out=./$(BUILD_DIR)/js/passdeposit.js optimize=none
-
+	node ./scripts/passdeposit-build.js ./$(BUILD_DIR)/js/passdeposit.js debug
+	
 js-base:
 	mkdir -p ./$(BUILD_DIR)/js
 	cp ./$(SOURCE_DIR)/js/lib/html5shiv.js ./$(BUILD_DIR)/js/
@@ -76,6 +70,12 @@ php:
 # -----------
 img:
 	cp -R ./$(SOURCE_DIR)/img ./$(BUILD_DIR)
+
+
+# Check if required tools are available
+# -------------------------------------
+tools-check:
+	@./scripts/tools-check.sh
 
 
 # Clean build directory
