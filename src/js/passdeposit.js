@@ -4,4 +4,4 @@
  * @author Max Geissler
  */
 
-// TODO
+require('./app/pages/front');
