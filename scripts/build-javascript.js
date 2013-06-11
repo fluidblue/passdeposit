@@ -74,7 +74,7 @@ shim(browserify(), shimLibs)
 	var srcOut = debug ? src : uglifyjs.minify(src, { fromString: true }).code;
 	
 	// Add license
-	srcOut = fs.readFileSync(path.join(pathMain, 'app/license.js')) + '\n' + srcOut;
+	srcOut = fs.readFileSync(path.join(pathMain, 'license.js')) + '\n' + srcOut;
 	
 	// Write output file
 	fs.writeFileSync(outFile, srcOut);

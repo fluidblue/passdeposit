@@ -257,25 +257,23 @@ header('content-type: text/html; charset=utf-8');
 	</div>
 
 	<!-- Password Forgot Dialog -->
-	<div id="pwForgotDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="pwForgotDialogLabel" aria-hidden="true">
-		<form id="pwForgot" autocomplete="off">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 id="pwForgotDialogLabel">Forgot your password?</h3>
-			</div>
-			<div class="modal-body">
-				<p>
-					We will send your password hint to your email address.<br />
-					Note: It is technically impossible to restore or reset your password.
-				</p>
-				<input type="text" id="pwForgotEmail" class="input-block-level email" value="" placeholder="Email address" spellcheck="false" />
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-				<input type="submit" value="Send" class="btn btn-primary" />
-			</div>
-		</form>
-	</div>
+	<form id="pwForgotDialog" autocomplete="off" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="pwForgotDialogLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="pwForgotDialogLabel">Forgot your password?</h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				We will send your password hint to your email address.<br />
+				Note: It is technically impossible to restore or reset your password.
+			</p>
+			<input type="text" id="pwForgotEmail" class="input-block-level email" value="" placeholder="Email address" spellcheck="false" />
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<input type="submit" value="Send" class="btn btn-primary" />
+		</div>
+	</form>
 	
 	<!-- Options Dialog -->
 	<div id="optionsDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="optionsDialogLabel" aria-hidden="true">
