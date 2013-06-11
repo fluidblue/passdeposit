@@ -32,9 +32,10 @@ if ! command -v "sass" >/dev/null 2>&1; then
 fi
 
 # Install required node modules
-npm install --skip-installed browserify
-npm install --skip-installed browserify-shim
-npm install --skip-installed uglify-js
+echo "Installing node modules to $(pwd)/node_modules"
+npm install browserify
+npm install browserify-shim
+npm install uglify-js
 
 # Finished
 echo "Successfully installed tools."

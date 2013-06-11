@@ -7,8 +7,8 @@
                    displayName="Scripts"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>scripts/build-javascript.js</itemPath>
       <itemPath>makefile</itemPath>
-      <itemPath>scripts/passdeposit-build.js</itemPath>
       <itemPath>scripts/tools-check.sh</itemPath>
       <itemPath>scripts/tools-install.sh</itemPath>
     </logicalFolder>

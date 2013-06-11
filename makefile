@@ -44,18 +44,18 @@ css-base:
 # Compile JS
 # ----------
 js: js-base
-	node ./scripts/passdeposit-build.js ./$(BUILD_DIR)/js/passdeposit.js
+	node ./scripts/build-javascript.js ./$(BUILD_DIR)/js/passdeposit.js
 
 js-debug: js-base
-	node ./scripts/passdeposit-build.js ./$(BUILD_DIR)/js/passdeposit.js debug
+	node ./scripts/build-javascript.js ./$(BUILD_DIR)/js/passdeposit.js debug
 	
 js-base:
 	mkdir -p ./$(BUILD_DIR)/js
 	cp ./$(SOURCE_DIR)/js/lib/html5shiv.js ./$(BUILD_DIR)/js/
 
 
-# Copy HTML files
-# ---------------
+# Process HTML files
+# ------------------
 html:
 	cp -R ./$(SOURCE_DIR)/html/* ./$(BUILD_DIR)
 

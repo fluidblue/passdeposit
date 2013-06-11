@@ -2,7 +2,7 @@
 
 /**
  * PassDeposit
- * Build configuration for browserify
+ * Build configuration for javascript
  * 
  * @author Max Geissler
  */
