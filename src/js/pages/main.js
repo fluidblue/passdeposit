@@ -8,19 +8,19 @@
 var $ = require('jquery');
 require('bootstrap');
 var setFormFocus = require('../components/set-form-focus');
-var pageChangeFadeDuration = require('../components/page-change');
+var config = require('../components/config');
 
 // Initializes main page
-module.exports = function()
+function init()
 {
 	$("#btnLogout").click(function()
 	{
 		// TODO: Clean up data!
 
 		// Switch to frontpage
-		$("#mainpage").fadeOut(pageChangeFadeDuration, function()
+		$("#mainpage").fadeOut(config.animations.pageChangeDuration, function()
 		{
-			$("#frontpage").fadeIn(pageChangeFadeDuration);
+			$("#frontpage").fadeIn(config.animations.pageChangeDuration);
 			setFormFocus("#login");
 		});
 	});
@@ -41,4 +41,6 @@ module.exports = function()
 	};
 
 	$("#search").typeahead(options);
-};
+}
+
+module.exports = init;

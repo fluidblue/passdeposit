@@ -7,7 +7,7 @@
 
 var $ = require('jquery');
 
-module.exports = function(parent)
+function setFormFocus(parent)
 {
 	var lastInput = null;
 
@@ -38,4 +38,6 @@ module.exports = function(parent)
 		// Focus last input
 		lastInput.focus();
 	}
-};
+}
+
+module.exports = setFormFocus;

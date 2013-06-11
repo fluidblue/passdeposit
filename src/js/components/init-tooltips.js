@@ -1,13 +1,13 @@
 /**
  * PassDeposit
- * Exports: setTooltips()
+ * Exports: initTooltips()
  * 
  * @author Max Geissler
  */
 
 var $ = require('jquery');
 
-module.exports = function()
+function initTooltips()
 {
 	var fnContent = function()
 	{
@@ -37,4 +37,6 @@ module.exports = function()
 			popover.removeClass("noTransition");
 		}
 	});
-};
+}
+
+module.exports = initTooltips;

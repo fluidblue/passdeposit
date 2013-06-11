@@ -8,10 +8,8 @@
 var $ = require('jquery');
 require('jquery.totalStorage');
 require('bootstrap');
-var initNavPills = require('../components/init-nav-pills');
 var setFormFocus = require('../components/set-form-focus');
-var setTooltips = require('../components/set-tooltips');
-var pageChangeFadeDuration = require('../components/page-change');
+var config = require('../components/config');
 
 function loadUsername()
 {
@@ -41,9 +39,9 @@ function loginUser()
 	saveUsername();
 
 	// Switch to mainpage
-	$("#frontpage").fadeOut(pageChangeFadeDuration, function()
+	$("#frontpage").fadeOut(config.animations.pageChangeDuration, function()
 	{
-		$("#mainpage").fadeIn(pageChangeFadeDuration);
+		$("#mainpage").fadeIn(config.animations.pageChangeDuration);
 		$("#search").focus();
 	});
 
@@ -51,18 +49,25 @@ function loginUser()
 };
 
 // Initializes front page
-module.exports = function()
+function init()
 {
 	loadUsername();
-	setFormFocus("#login");
-	setTooltips();
-	initNavPills();
+	setFormFocus("#login"); // TODO: Move to page change function
 
 	$("#login").submit(loginUser);
 
 	$("#register").submit(function()
 	{
 		$("#registerDialog").modal('show');
+		return false;
+	});
+
+	$("#registerDialog .modal-footer .register").click(function()
+	{
+		alert("Not implemented.");
+
+		$("#registerDialog").modal("hide");
+
 		return false;
 	});
 
@@ -81,3 +86,5 @@ module.exports = function()
 		$("#pwForgotEmail").focus();
 	});
 };
+
+module.exports = init;

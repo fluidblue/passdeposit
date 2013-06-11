@@ -10,7 +10,7 @@ var setFormFocus = require('./set-form-focus');
 
 var navPillFadeDuration = 200;
 
-module.exports = function()
+function initNavPills()
 {
 	// Speed up content change by using mousedown instead of click event.
 	$(".nav-pills li a").mousedown(function()
@@ -48,3 +48,5 @@ module.exports = function()
 		return false;
 	});
 };
+
+module.exports = initNavPills;
