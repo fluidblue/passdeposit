@@ -168,12 +168,26 @@ $(document).ready(function()
 	};
 
 	$("#login").submit(loginUser);
-	$("#loginPassForgotten").click(fnNotImpl);
 
 	$("#register").submit(function()
 	{
 		$("#registerDialog").modal('show');
 		return false;
+	});
+
+	$("#pwForgot").submit(function()
+	{
+		alert("Not implemented.");
+
+		$("#pwForgotEmail").val("");
+		$("#pwForgotDialog").modal("hide");
+
+		return false;
+	});
+
+	$("#pwForgotDialog").on('shown', function()
+	{
+		$("#pwForgotEmail").focus();
 	});
 
 	$("#btnLogout").click(function()

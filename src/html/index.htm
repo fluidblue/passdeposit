@@ -37,7 +37,7 @@ header('content-type: text/html; charset=utf-8');
 			<form id="login" autocomplete="off" class="navContent">
 				<input type="text" id="loginUser" class="input-block-level" value="" spellcheck="false" placeholder="Email address" />
 				<input type="password" id="loginPass" class="input-block-level" value="" placeholder="Password" />
-				<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" />
+				<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" data-target="#pwForgotDialog" data-toggle="modal" />
 				<input type="submit" id="loginButton" value="Login" class="btn btn-success btnWide pull-right" />
 			</form>
 
@@ -254,6 +254,27 @@ header('content-type: text/html; charset=utf-8');
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 			<button class="btn btn-primary">Register</button>
 		</div>
+	</div>
+
+	<!-- Password Forgot Dialog -->
+	<div id="pwForgotDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="pwForgotDialogLabel" aria-hidden="true">
+		<form id="pwForgot" autocomplete="off">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 id="pwForgotDialogLabel">Forgot your password?</h3>
+			</div>
+			<div class="modal-body">
+				<p>
+					We will send your password hint to your email address.<br />
+					Note: It is technically impossible to restore or reset your password.
+				</p>
+				<input type="text" id="pwForgotEmail" class="input-block-level email" value="" placeholder="Email address" spellcheck="false" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+				<input type="submit" value="Send" class="btn btn-primary" />
+			</div>
+		</form>
 	</div>
 	
 	<!-- Options Dialog -->
