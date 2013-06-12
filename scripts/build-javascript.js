@@ -13,11 +13,11 @@ var fs         = require('fs');
 var path       = require('path');
 var browserify = require('browserify');
 var shim       = require('browserify-shim');
-var uglifyjs   = require("uglify-js");
+var uglifyjs   = require('uglify-js');
 
 if (!process.argv[2])
 {
-	console.error("Missing output file.");
+	console.error('Missing output file.');
 	process.exit(1);
 }
 

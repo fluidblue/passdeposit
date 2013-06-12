@@ -8,8 +8,10 @@
 var $ = require('jquery');
 require('jquery.totalStorage');
 require('bootstrap');
+require('jquery.jGrowl');
 var setFormFocus = require('../components/set-form-focus');
 var config = require('../components/config');
+var navPills = require('../components/nav-pills');
 
 function loadUsername()
 {
@@ -23,6 +25,12 @@ function saveUsername()
 
 function loginUser()
 {
+	// Dismiss registration notification(s), if open
+	$('div.jGrowl-close').each(function()
+	{
+		$(this).triggerHandler('click');
+	});
+	
 	if ($('#loginPass').val().length === 0)
 	{
 //			$('#loginPass').addClass('invalidInput');
@@ -61,13 +69,43 @@ function init()
 		$('#registerDialog').modal('show');
 		return false;
 	});
+	
+	var registerSuccess = false;
+	
+	$('#registerDialog').on('hidden', function()
+	{
+		if (registerSuccess)
+		{
+			// Fill in login information
+			$('#loginUser').val($('#registerEmail').val());
+			$('#loginPass').val('');
+			
+			// Reset registration form
+			$('#register').each(function()
+			{
+				this.reset();
+			});
+			
+			// Save username
+			saveUsername();
+			
+			// Show confirmation message
+			$.jGrowl('You have successfully registered.<br />You can login now.', { sticky: true });
+			
+			// Show login tab
+			navPills.trigger('#frontNav', '#login');
+		}
+	});
 
 	$('#registerDialog .modal-footer .register').click(function()
 	{
-		alert('Not implemented.');
-
+		registerSuccess = false;
+		
+		//alert('Not implemented.');
+		
+		registerSuccess = true;
 		$('#registerDialog').modal('hide');
-
+		
 		return false;
 	});
 

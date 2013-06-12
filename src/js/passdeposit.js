@@ -6,14 +6,14 @@
 
 var initFrontPage = require('./pages/front');
 var initMainPage = require('./pages/main');
-var initNavPills = require('./components/init-nav-pills');
 var initTooltips = require('./components/init-tooltips');
+var navPills = require('./components/nav-pills');
 
 // Initialize page when DOM is ready.
 $(document).ready(function()
 {
 	initTooltips();
-	initNavPills();
+	navPills.init();
 	initFrontPage();
 	initMainPage();
 });

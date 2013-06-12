@@ -1,6 +1,6 @@
 /**
  * PassDeposit
- * Exports: initNavPills()
+ * NavPills
  * 
  * @author Max Geissler
  */
@@ -10,7 +10,7 @@ var setFormFocus = require('./set-form-focus');
 
 var navPillFadeDuration = 200;
 
-function initNavPills()
+function init()
 {
 	// Speed up content change by using mousedown instead of click event.
 	$('.nav-pills li a').mousedown(function()
@@ -49,4 +49,10 @@ function initNavPills()
 	});
 };
 
-module.exports = initNavPills;
+function trigger(navPillID, target)
+{
+	$(navPillID + ' a[href=' + target + ']').triggerHandler('mousedown');
+}
+
+module.exports.init = init;
+module.exports.trigger = trigger;
