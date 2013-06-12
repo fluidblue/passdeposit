@@ -5,7 +5,7 @@
  * @author Max Geissler
  */
 
-var config = {}
+var config = {};
 
 config.animations = {};
 config.animations.pageChangeDuration = 200;
