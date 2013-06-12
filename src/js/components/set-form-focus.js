@@ -11,10 +11,10 @@ function setFormFocus(parent)
 {
 	var lastInput = null;
 
-	$(parent + " input").each(function(i, obj)
+	$(parent + ' input').each(function(i, obj)
 	{
 		// Save last input which is not of type submit or button.
-		if (!$(obj).is(":submit, :button"))
+		if (!$(obj).is(':submit, :button'))
 			lastInput = $(obj);
 
 		// Focus first empty input

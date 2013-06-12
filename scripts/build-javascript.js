@@ -45,9 +45,9 @@ var shimLibs =
 		exports: null,
 		depends: { jquery: '$' }
 	},
-	'jquery-ui':
+	'jquery.jGrowl':
 	{
-		path: path.join(pathLib, 'jquery-ui.js'),
+		path: path.join(pathLib, 'jquery.jgrowl.js'),
 		exports: null,
 		depends: { jquery: '$' }
 	},

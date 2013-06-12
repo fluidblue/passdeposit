@@ -13,23 +13,23 @@ var config = require('../components/config');
 
 function loadUsername()
 {
-	$("#loginUser").val($.totalStorage("username"));
+	$('#loginUser').val($.totalStorage('username'));
 }
 
 function saveUsername()
 {
-	$.totalStorage("username", $("#loginUser").val());
+	$.totalStorage('username', $('#loginUser').val());
 }
 
 function loginUser()
 {
-	if ($("#loginPass").val().length === 0)
+	if ($('#loginPass').val().length === 0)
 	{
-//			$("#loginPass").addClass("invalidInput");
+//			$('#loginPass').addClass('invalidInput');
 //			return false;
 	}
 
-	/*$.post("passdeposit.php",
+	/*$.post('passdeposit.php',
 		{
 			userName : this.userName,
 			pass: this.passHash
@@ -39,10 +39,10 @@ function loginUser()
 	saveUsername();
 
 	// Switch to mainpage
-	$("#frontpage").fadeOut(config.animations.pageChangeDuration, function()
+	$('#frontpage').fadeOut(config.animations.pageChangeDuration, function()
 	{
-		$("#mainpage").fadeIn(config.animations.pageChangeDuration);
-		$("#search").focus();
+		$('#mainpage').fadeIn(config.animations.pageChangeDuration);
+		$('#search').focus();
 	});
 
 	return false;
@@ -52,38 +52,38 @@ function loginUser()
 function init()
 {
 	loadUsername();
-	setFormFocus("#login"); // TODO: Move to page change function
+	setFormFocus('#login'); // TODO: Move to page change function
 
-	$("#login").submit(loginUser);
+	$('#login').submit(loginUser);
 
-	$("#register").submit(function()
+	$('#register').submit(function()
 	{
-		$("#registerDialog").modal('show');
+		$('#registerDialog').modal('show');
 		return false;
 	});
 
-	$("#registerDialog .modal-footer .register").click(function()
+	$('#registerDialog .modal-footer .register').click(function()
 	{
-		alert("Not implemented.");
+		alert('Not implemented.');
 
-		$("#registerDialog").modal("hide");
-
-		return false;
-	});
-
-	$("#pwForgotDialog").submit(function()
-	{
-		alert("Not implemented.");
-
-		$("#pwForgotEmail").val("");
-		$("#pwForgotDialog").modal("hide");
+		$('#registerDialog').modal('hide');
 
 		return false;
 	});
 
-	$("#pwForgotDialog").on('shown', function()
+	$('#pwForgotDialog').submit(function()
 	{
-		$("#pwForgotEmail").focus();
+		alert('Not implemented.');
+
+		$('#pwForgotEmail').val('');
+		$('#pwForgotDialog').modal('hide');
+
+		return false;
+	});
+
+	$('#pwForgotDialog').on('shown', function()
+	{
+		$('#pwForgotEmail').focus();
 	});
 };
 
