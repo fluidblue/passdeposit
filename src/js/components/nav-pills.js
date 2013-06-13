@@ -47,7 +47,7 @@ function init()
 		// Suppress link opening
 		return false;
 	});
-};
+}
 
 function trigger(navPillID, target)
 {

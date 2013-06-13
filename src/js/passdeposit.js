@@ -8,6 +8,7 @@ var initFrontPage = require('./pages/front');
 var initMainPage = require('./pages/main');
 var initTooltips = require('./components/init-tooltips');
 var navPills = require('./components/nav-pills');
+var jGrowl = require('./components/jgrowl-extend');
 
 // Initialize page when DOM is ready.
 $(document).ready(function()
@@ -16,4 +17,5 @@ $(document).ready(function()
 	navPills.init();
 	initFrontPage();
 	initMainPage();
+	jGrowl.init();
 });

@@ -12,6 +12,7 @@ require('jquery.jGrowl');
 var setFormFocus = require('../components/set-form-focus');
 var config = require('../components/config');
 var navPills = require('../components/nav-pills');
+var jGrowl = require('../components/jgrowl-extend');
 
 function loadUsername()
 {
@@ -26,10 +27,7 @@ function saveUsername()
 function loginUser()
 {
 	// Dismiss registration notification(s), if open
-	$('div.jGrowl-close').each(function()
-	{
-		$(this).triggerHandler('click');
-	});
+	jGrowl.closeAll();
 	
 	if ($('#loginPass').val().length === 0)
 	{
@@ -90,7 +88,7 @@ function init()
 			saveUsername();
 			
 			// Show confirmation message
-			$.jGrowl('You have successfully registered.<br />You can login now.', { sticky: true });
+			$.jGrowl($('#text .loginSuccessful').html(), { sticky: true });
 			
 			// Show login tab
 			navPills.trigger('#frontNav', '#login');

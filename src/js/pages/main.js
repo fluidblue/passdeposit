@@ -9,13 +9,20 @@ var $ = require('jquery');
 require('bootstrap');
 var setFormFocus = require('../components/set-form-focus');
 var config = require('../components/config');
+var initOptionsDialog = require('./main/options');
+var jGrowl = require('../components/jgrowl-extend');
 
 // Initializes main page
 function init()
 {
+	initOptionsDialog();
+	
 	$('#btnLogout').click(function()
 	{
 		// TODO: Clean up data!
+		
+		// Close all jGrowl messages
+		jGrowl.closeAll();
 
 		// Switch to frontpage
 		$('#mainpage').fadeOut(config.animations.pageChangeDuration, function()
