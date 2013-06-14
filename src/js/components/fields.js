@@ -14,12 +14,13 @@ function init()
 	var clip = new ZeroClipboard();
 	
 	clip.on( 'load', function ( client, args ) {
-		// TODO
+		// TODO: Remove
 		alert( "movie has loaded" );
 	});
 	
 	$('.itemField .btnCopy').click(function()
 	{
+		// TODO: Not working
 		var input = $(this).parent().children('input:visible');
 
 		clip.setText(input.val());
@@ -50,7 +51,6 @@ function init()
 		
 		btnToggle.click(function()
 		{
-			// TODO: Not working
 			if (txtShow.is(':visible'))
 			{
 				txtShow.hide();
