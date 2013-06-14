@@ -1,6 +1,6 @@
 /**
  * PassDeposit
- * Modal dialogs
+ * JGrowl extensions
  * 
  * @author Max Geissler
  */
