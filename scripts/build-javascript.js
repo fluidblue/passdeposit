@@ -56,11 +56,6 @@ var shimLibs =
 		path: path.join(pathLib, 'bootstrap.js'),
 		exports: null,
 		depends: { jquery: '$' }
-	},
-	'ZeroClipboard':
-	{
-		path: path.join(pathLib, 'zeroclipboard.js'),
-		exports: 'module.exports'
 	}
 };
 

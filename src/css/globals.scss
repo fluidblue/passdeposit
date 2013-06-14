@@ -69,6 +69,12 @@ body
 	background-image: url("../media/glyphicons-halflings-white.png");
 }
 
+/* Fix non-hiding inputs */
+input.hide
+{
+	display: none;
+}
+
 .btnWide
 {
 	padding-left: 35px;
