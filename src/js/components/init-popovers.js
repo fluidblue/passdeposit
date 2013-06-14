@@ -1,13 +1,13 @@
 /**
  * PassDeposit
- * Exports: initTooltips()
+ * Exports: initPopovers()
  * 
  * @author Max Geissler
  */
 
 var $ = require('jquery');
 
-function initTooltips()
+function initPopovers()
 {
 	// Nasty fix for repositioning popover on resize
 	$(window).resize(function()
@@ -22,4 +22,4 @@ function initTooltips()
 	});
 }
 
-module.exports = initTooltips;
+module.exports = initPopovers;
