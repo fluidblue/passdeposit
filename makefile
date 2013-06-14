@@ -21,12 +21,12 @@ BUILD_DIR = build
 
 # Main target
 # -----------
-all: tools-check clean css js html php img
+all: tools-check clean css js html php media
 
 
 # Development target (debug)
 # --------------------------
-debug: tools-check clean css-debug js-debug html php img
+debug: tools-check clean css-debug js-debug html php media
 	
 
 # Compile CSS
@@ -66,10 +66,10 @@ php:
 	cp -R ./$(SOURCE_DIR)/php ./$(BUILD_DIR)
 
 
-# Copy images
+# Copy media
 # -----------
-img:
-	cp -R ./$(SOURCE_DIR)/img ./$(BUILD_DIR)
+media:
+	cp -R ./$(SOURCE_DIR)/media ./$(BUILD_DIR)
 
 
 # Check if required tools are available

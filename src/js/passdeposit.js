@@ -6,14 +6,14 @@
 
 var initFrontPage = require('./pages/front');
 var initMainPage = require('./pages/main');
-var initTooltips = require('./components/init-tooltips');
+var initPopovers = require('./components/init-popovers');
 var navPills = require('./components/nav-pills');
 var jGrowl = require('./components/jgrowl-extend');
 
 // Initialize page when DOM is ready.
 $(document).ready(function()
 {
-	initTooltips();
+	initPopovers();
 	navPills.init();
 	initFrontPage();
 	initMainPage();
