@@ -54,6 +54,36 @@ function loginUser()
 	return false;
 };
 
+// TODO: Unused?
+function showRegisterErrorTip(element, message)
+{
+	// TODO: Not working, if another popover is already attached to element
+	var content = '<div class="errorPopover">' + message + '</div>';
+	
+	var options =
+	{
+		trigger: 'manual',
+		placement: 'left',
+		html: true,
+		content: content
+	};
+
+	$(element).popover(options);
+	$(element).popover('show');
+}
+
+function setInputInvalid(element)
+{
+	element = $(element);
+	
+	element.addClass('invalidInput');
+	element.on('keydown.invalidInput', function()
+	{
+		element.off('keydown.invalidInput');
+		element.removeClass('invalidInput');
+	});
+}
+
 // Initializes front page
 function init()
 {
@@ -64,7 +94,16 @@ function init()
 
 	$('#register').submit(function()
 	{
-		$('#registerDialog').modal('show');
+		if (false)
+		{
+			setInputInvalid('#registerEmail');
+			setFormFocus('#login'); // TODO: Not working
+		}
+		else
+		{
+			$('#registerDialog').modal('show');
+		}
+		
 		return false;
 	});
 	

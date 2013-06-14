@@ -63,18 +63,6 @@ body
 	transition: none !important;
 }
 
-/* Using input:focus:invalid, input:focus:invalid:focus */
-/* TODO: Unused? */
-.invalidInput:focus
-{
-	/*color: #b94a48 !important;*/
-	
-	border-color: #e9322d !important;
-	-webkit-box-shadow: 0 0 6px #f8b9b7 !important;
-	-moz-box-shadow: 0 0 6px #f8b9b7 !important;
-	box-shadow: 0 0 6px #f8b9b7 !important;
-}
-
 .logo
 {
 	display: block;

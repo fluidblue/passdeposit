@@ -13,15 +13,17 @@ function setFormFocus(parent)
 
 	$(parent + ' input').each(function(i, obj)
 	{
+		var obj = $(obj);
+		
 		// Save last input which is not of type submit or button.
-		if (!$(obj).is(':submit, :button'))
-			lastInput = $(obj);
+		if (!obj.is(':submit, :button'))
+			lastInput = obj;
 
-		// Focus first empty input
-		if ($(obj).val().length === 0)
+		// Focus first empty input or invalid input
+		if (obj.val().length === 0 || obj.hasClass('invalidInput'))
 		{
 			// Focus input
-			$(obj).focus();
+			obj.focus();
 
 			// Do not focus again
 			lastInput = null;
@@ -29,7 +31,8 @@ function setFormFocus(parent)
 			// Exit loop
 			return false;
 		}
-
+		
+		// Continue loop
 		return true;
 	});
 
