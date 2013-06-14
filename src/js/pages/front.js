@@ -84,11 +84,32 @@ function setInputInvalid(element)
 	});
 }
 
+function initRegisterTooltips()
+{
+	var fnContent = function()
+	{
+		return $('#text .' + $(this).attr('id') + 'Info').html();
+	};
+
+	var options =
+	{
+		trigger: 'focus',
+		placement: 'right',
+		html: true,
+		content: fnContent
+	};
+
+	$('#registerEmail').popover(options);
+	$('#registerPass').popover(options);
+	$('#registerPassHint').popover(options);
+}
+
 // Initializes front page
 function init()
 {
 	loadUsername();
 	setFormFocus('#login'); // TODO: Move to page change function
+	initRegisterTooltips();
 
 	$('#login').submit(loginUser);
 
