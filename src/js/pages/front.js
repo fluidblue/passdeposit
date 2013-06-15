@@ -171,7 +171,7 @@ function init()
 	{
 		alert('Not implemented.');
 
-		$('#pwForgotEmail').val('');
+		$('#pwForgotDialog input.email').val('');
 		$('#pwForgotDialog').modal('hide');
 
 		return false;
@@ -179,7 +179,7 @@ function init()
 
 	$('#pwForgotDialog').on('shown', function()
 	{
-		$('#pwForgotEmail').focus();
+		$('#pwForgotDialog input.email').focus();
 	});
 };
 
