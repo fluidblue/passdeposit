@@ -6,6 +6,7 @@
  */
 
 var $ = require('jquery');
+require('jquery.jGrowl');
 var ZeroClipboard = require('../lib/ZeroClipboard');
 
 function init()
@@ -20,11 +21,14 @@ function init()
 	
 	$('.itemField .btnCopy').click(function()
 	{
-		// TODO: Not working
 		var input = $(this).parent().children('input:visible');
-
+		
+		// TODO: Not working
 		clip.setText(input.val());
-		alert(input.val());
+		//alert(input.val());
+		
+		// Show notification
+		$.jGrowl($('#text .copiedToClipboard').html());
 	});
 	
 	$('.itemField .btnOpen').click(function()
