@@ -58,7 +58,7 @@
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f makefile debug</buildCommand>
-          <cleanCommand>${MAKE} -f makefile</cleanCommand>
+          <cleanCommand>${MAKE} -f makefile debug</cleanCommand>
           <executablePath></executablePath>
         </makeTool>
       </makefileType>
