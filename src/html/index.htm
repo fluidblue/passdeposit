@@ -130,8 +130,8 @@ header('content-type: text/html; charset=utf-8');
 				<a class="btn" href="#optionsDialog" data-toggle="modal"><i class="icon-wrench"></i> Options</a>
 			</div>
 			<div class="btn-group">
-				<a class="btn" href="#lock"><i class="icon-lock"></i> Lock</a>
-				<a id="btnLogout" class="btn" href="#logout"><i class="icon-off"></i> Logout</a>
+				<a id="btnLock" class="btn" href="#"><i class="icon-lock"></i> Lock</a>
+				<a id="btnLogout" class="btn" href="#"><i class="icon-off"></i> Logout</a>
 			</div>
 		</div>
 		
@@ -255,6 +255,23 @@ header('content-type: text/html; charset=utf-8');
 		<div class="modal-footer">
 			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 			<input type="submit" value="Send" class="btn btn-primary" />
+		</div>
+	</form>
+	
+	<!-- Lock Dialog -->
+	<form id="lockDialog" autocomplete="off" class="modal hide fade" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="lockDialogLabel" aria-hidden="true">
+		<div class="modal-header">
+			<h3 id="lockDialogLabel">PassDeposit is locked</h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				Please enter your password to unlock your PassDeposit session.
+			</p>
+			<input type="password" class="pass input-block-level" value="" placeholder="Password" spellcheck="false" />
+		</div>
+		<div class="modal-footer">
+			<input type="button" value="Logout" class="btn btnLogout" />
+			<input type="submit" value="Unlock" class="btn btn-primary" />
 		</div>
 	</form>
 	
