@@ -38,7 +38,12 @@ function init()
 		
 		// Cancel if field is empty
 		if (uri.length === 0)
+		{
+			// Show notification
+			$.jGrowl($('#text .emptyURI').html());
+			
 			return;
+		}
 		
 		// Append protocol, if not given
 		if (uri.indexOf('://') === -1)
