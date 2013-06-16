@@ -91,3 +91,11 @@ input.hide
 {
 	background-image: $imgIcons !important;
 }
+
+/* Increase side padding (5px -> 8px) */
+.input-append .add-on,
+.input-prepend .add-on
+{
+	padding-left: 8px;
+	padding-right: 8px;
+}
