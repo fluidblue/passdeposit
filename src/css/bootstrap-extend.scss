@@ -4,6 +4,9 @@
  * @author Max Geissler
  */
 
+$imgIcons: url("../media/glyphicons-halflings.png");
+$imgIconsWhite: url("../media/glyphicons-halflings-white.png");
+
 /* Remove all browser specific outlines for buttons and links */
 .btn, a
 {
@@ -37,7 +40,7 @@
 [class^="icon-"],
 [class*=" icon-"]
 {
-	background-image: url("../media/glyphicons-halflings.png");
+	background-image: $imgIcons;
 }
 
 /* Set correct image location */
@@ -59,11 +62,32 @@
 .dropdown-submenu:hover > a > [class*=" icon-"],
 .dropdown-submenu:focus > a > [class*=" icon-"]
 {
-	background-image: url("../media/glyphicons-halflings-white.png");
+	background-image: $imgIconsWhite;
 }
 
 /* Fix non-hiding inputs */
 input.hide
 {
 	display: none;
+}
+
+/* Fix incorrect border-radius on multi-appended grouped buttons */
+.input-append > .btn-group:last-child > .btn
+{
+	-webkit-border-radius: 0 4px 4px 0;
+	-moz-border-radius: 0 4px 4px 0;
+	border-radius: 0 4px 4px 0;
+}
+
+/* Fix icons in dropdowns */
+.dropdown-menu > li > a > [class^="icon-"],
+.dropdown-menu > li > a > [class*=" icon-"]
+{
+	margin-right: 8px;
+}
+
+/* Fix disabled dropdown icons */
+.dropdown-menu > li.disabled > a > [class^="icon-"]
+{
+	background-image: $imgIcons !important;
 }

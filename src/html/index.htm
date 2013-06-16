@@ -63,43 +63,6 @@ header('content-type: text/html; charset=utf-8');
 	
 	<!-- Main page -->
 	<div id="mainpage" class="hide">
-<!--		<div class="mainmenu hide">
-			<div class="input-append input-block-level">
-				<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
-				<div class="btn-group">
-					<button class="btn">
-						<span class="caret"></span>
-					</button>
-				</div>
-			</div>
-			<div class="btn-group">
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
-					<i class="icon-plus"></i>
-					Add
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#website">Website</a></li>
-					<li><a tabindex="-1" href="#email">Email</a></li>
-					<li><a tabindex="-1" href="#shop">Shop</a></li>
-					<li><a tabindex="-1" href="#messenger">Messenger</a></li>
-					<li class="divider"></li>
-					<li><a tabindex="-1" href="#other">Other</a></li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<a class="btn" href="#copy"><i class="icon-repeat"></i> Copy</a>
-				<a class="btn" href="#delete"><i class="icon-trash"></i> Delete</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn" href="#optionsDialog" data-toggle="modal"><i class="icon-wrench"></i> Options</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn" href="#lock"><i class="icon-lock"></i> Lock</a>
-				<a class="btn" href="#logout"><i class="icon-off"></i> Logout</a>
-			</div>
-		</div>-->
-		
 		<div class="mainNav">
 			<div class="btn-group">
 				<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -108,12 +71,12 @@ header('content-type: text/html; charset=utf-8');
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#website">Website</a></li>
-					<li><a tabindex="-1" href="#email">Email</a></li>
-					<li><a tabindex="-1" href="#shop">Shop</a></li>
-					<li><a tabindex="-1" href="#messenger">Messenger</a></li>
+					<li><a tabindex="-1" href="#website"><i class="icon-globe"></i>Website</a></li>
+					<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
+					<li><a tabindex="-1" href="#shop"><i class="icon-shopping-cart"></i>Shop</a></li>
+					<li><a tabindex="-1" href="#messenger"><i class="icon-comment"></i>Messenger</a></li>
 					<li class="divider"></li>
-					<li><a tabindex="-1" href="#other">Other</a></li>
+					<li><a tabindex="-1" href="#other"><i class="icon-th"></i>Other</a></li>
 				</ul>
 			</div>
 			<div class="btn-group btn-group-search">
@@ -142,193 +105,103 @@ header('content-type: text/html; charset=utf-8');
 			<!-- TODO: Reuse dropdowns, Change to nav-pill links  -->
 			
 			<div class="itemFieldContainer">
-				<div class="btn-group">
-					<div class="itemField itemFieldWebsite input-prepend input-append">
-						<span class="add-on"><i class="icon-globe"></i></span>
-						<input type="text" placeholder="http://example.com" spellcheck="false" />
-						<button class="btn btnOpen" type="button">Open</button>
-					</div>
-				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-pencil"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#service">Service name</a></li>
-						<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-						<li><a tabindex="-1" href="#user">User</a></li>
-						<li><a tabindex="-1" href="#email">Email</a></li>
-						<li><a tabindex="-1" href="#text">Text</a></li>
-						<li><a tabindex="-1" href="#pw">Password</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnUp" href="#"><i class="icon-arrow-up"></i></a>
-					<a class="btn btnDown" href="#"><i class="icon-arrow-down"></i></a>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnRemove" href="#"><i class="icon-trash"></i></a>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="btn-group">
-					<div class="itemField itemFieldUser input-prepend input-append">
-						<span class="add-on"><i class="icon-user"></i></span>
-						<input type="text" placeholder="User" spellcheck="false" />
-						<button class="btn btnCopy" type="button">Copy</button>
-					</div>
-				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-pencil"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#service">Service name</a></li>
-						<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-						<li><a tabindex="-1" href="#user">User</a></li>
-						<li><a tabindex="-1" href="#email">Email</a></li>
-						<li><a tabindex="-1" href="#text">Text</a></li>
-						<li><a tabindex="-1" href="#pw">Password</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnUp" href="#"><i class="icon-arrow-up"></i></a>
-					<a class="btn btnDown" href="#"><i class="icon-arrow-down"></i></a>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnRemove" href="#"><i class="icon-trash"></i></a>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="btn-group">
-					<div class="itemField itemFieldEmail input-prepend input-append">
-						<span class="add-on"><i class="icon-envelope"></i></span>
-						<input type="text" placeholder="Email" spellcheck="false" />
-						<button class="btn btnCopy" type="button">Copy</button>
-					</div>
-				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-pencil"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#service">Service name</a></li>
-						<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-						<li><a tabindex="-1" href="#user">User</a></li>
-						<li><a tabindex="-1" href="#email">Email</a></li>
-						<li><a tabindex="-1" href="#text">Text</a></li>
-						<li><a tabindex="-1" href="#pw">Password</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnUp" href="#"><i class="icon-arrow-up"></i></a>
-					<a class="btn btnDown" href="#"><i class="icon-arrow-down"></i></a>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnRemove" href="#"><i class="icon-trash"></i></a>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="btn-group">
-					<div class="itemField itemFieldText input-prepend input-append">
-						<span class="add-on"><i class="icon-align-left"></i></span>
-						<input type="text" placeholder="Text" />
-						<button class="btn btnCopy" type="button">Copy</button>
-					</div>
-				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-pencil"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#service">Service name</a></li>
-						<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-						<li><a tabindex="-1" href="#user">User</a></li>
-						<li><a tabindex="-1" href="#email">Email</a></li>
-						<li><a tabindex="-1" href="#text">Text</a></li>
-						<li><a tabindex="-1" href="#pw">Password</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnUp" href="#"><i class="icon-arrow-up"></i></a>
-					<a class="btn btnDown" href="#"><i class="icon-arrow-down"></i></a>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnRemove" href="#"><i class="icon-trash"></i></a>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="btn-group">
-					<div class="itemField itemFieldServiceName input-prepend input-append">
-						<span class="add-on"><i class="icon-globe"></i></span>
-						<input type="text" placeholder="Service name, e.g. Skype" spellcheck="false" />
-						<button class="btn btnCopy" type="button">Copy</button>
-					</div>
-				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-pencil"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#service">Service name</a></li>
-						<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-						<li><a tabindex="-1" href="#user">User</a></li>
-						<li><a tabindex="-1" href="#email">Email</a></li>
-						<li><a tabindex="-1" href="#text">Text</a></li>
-						<li><a tabindex="-1" href="#pw">Password</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnUp" href="#"><i class="icon-arrow-up"></i></a>
-					<a class="btn btnDown" href="#"><i class="icon-arrow-down"></i></a>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnRemove" href="#"><i class="icon-trash"></i></a>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="btn-group">
-					<div class="itemField itemFieldPassword input-prepend input-append">
-						<span class="add-on"><i class="icon-lock"></i></span>
-						<input type="password" class="inputMasked" placeholder="Password" />
-						<input type="text" class="inputVisible hide" placeholder="Password" />
-						<button class="btn btnToggleVisiblity" type="button">
-							<span class="txtShow">Show</span>
-							<span class="txtHide hide">Hide</span>
+				<div class="itemField itemFieldWebsite input-prepend input-append">
+					<span class="add-on"><i class="icon-globe"></i></span>
+					<input type="text" placeholder="http://example.com" spellcheck="false" />
+					<button class="btn btnOpen" type="button">Open</button>
+					<div class="btn-group">
+						<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
 						</button>
-						<button class="btn btnCopy" type="button">Copy</button>
+						<ul class="dropdown-menu">
+							<li class="disabled"><a tabindex="-1" href="#"><i class="icon-arrow-up"></i>Move up</a></li>
+							<li><a tabindex="-1" href="#"><i class="icon-arrow-down"></i>Move down</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-submenu">
+								<a tabindex="-1" href="#"><i class="icon-pencil"></i>Field type</a>
+								<ul class="dropdown-menu">
+									<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
+									<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
+									<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
+									<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
+									<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
+									<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
+								</ul>
+							</li>
+							<li class="divider"></li>
+							<li><a tabindex="-1" href="#"><i class="icon-trash"></i>Remove</a></li>
+						</ul>
 					</div>
 				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-pencil"></i>
-						<span class="caret"></span>
+			</div>
+
+			<div class="itemFieldContainer">
+				<div class="itemField itemFieldUser input-prepend input-append">
+					<span class="add-on"><i class="icon-user"></i></span>
+					<input type="text" placeholder="User" spellcheck="false" />
+					<button class="btn btnCopy" type="button">Copy</button>
+				</div>
+			</div>
+
+			<div class="itemFieldContainer">
+				<div class="itemField itemFieldEmail input-prepend input-append">
+					<span class="add-on"><i class="icon-envelope"></i></span>
+					<input type="text" placeholder="Email" spellcheck="false" />
+					<button class="btn btnCopy" type="button">Copy</button>
+				</div>
+			</div>
+
+			<div class="itemFieldContainer">
+				<div class="itemField itemFieldText input-prepend input-append">
+					<span class="add-on"><i class="icon-align-left"></i></span>
+					<input type="text" placeholder="Text" />
+					<button class="btn btnCopy" type="button">Copy</button>
+				</div>
+			</div>
+
+			<div class="itemFieldContainer">
+				<div class="itemField itemFieldServiceName input-prepend input-append">
+					<span class="add-on"><i class="icon-th"></i></span>
+					<input type="text" placeholder="Service name, e.g. Skype" spellcheck="false" />
+					<button class="btn btnCopy" type="button">Copy</button>
+				</div>
+			</div>
+
+			<div class="itemFieldContainer">
+				<div class="itemField itemFieldPassword input-prepend input-append">
+					<span class="add-on"><i class="icon-lock"></i></span>
+					<input type="password" class="inputMasked" placeholder="Password" />
+					<input type="text" class="inputVisible hide" placeholder="Password" />
+					<button class="btn btnToggleVisiblity" type="button">
+						<span class="txtShow">Show</span>
+						<span class="txtHide hide">Hide</span>
 					</button>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#service">Service name</a></li>
-						<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-						<li><a tabindex="-1" href="#user">User</a></li>
-						<li><a tabindex="-1" href="#email">Email</a></li>
-						<li><a tabindex="-1" href="#text">Text</a></li>
-						<li><a tabindex="-1" href="#pw">Password</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnUp" href="#"><i class="icon-arrow-up"></i></a>
-					<a class="btn btnDown" href="#"><i class="icon-arrow-down"></i></a>
-				</div>
-				<div class="btn-group">
-					<a class="btn btnRemove" href="#"><i class="icon-trash"></i></a>
+					<button class="btn btnCopy" type="button">Copy</button>
+					<div class="btn-group">
+						<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a tabindex="-1" href="#"><i class="icon-asterisk"></i>Generate</a></li>
+							<li class="divider"></li>
+							<li><a tabindex="-1" href="#"><i class="icon-arrow-up"></i>Move up</a></li>
+							<li><a tabindex="-1" href="#"><i class="icon-arrow-down"></i>Move down</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-submenu">
+								<a tabindex="-1" href="#"><i class="icon-pencil"></i>Field type</a>
+								<ul class="dropdown-menu">
+									<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
+									<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
+									<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
+									<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
+									<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
+									<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
+								</ul>
+							</li>
+							<li class="divider"></li>
+							<li><a tabindex="-1" href="#"><i class="icon-trash"></i>Remove</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			
@@ -343,12 +216,12 @@ header('content-type: text/html; charset=utf-8');
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#service">Service name</a></li>
-					<li><a tabindex="-1" href="#uri">Web address (URI)</a></li>
-					<li><a tabindex="-1" href="#user">User</a></li>
-					<li><a tabindex="-1" href="#email">Email</a></li>
-					<li><a tabindex="-1" href="#text">Text</a></li>
-					<li><a tabindex="-1" href="#pw">Password</a></li>
+					<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
+					<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
+					<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
+					<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
+					<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
+					<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
@@ -494,6 +367,9 @@ header('content-type: text/html; charset=utf-8');
 		<div class="copiedToClipboard">
 			Copied to clipboard.<br />
 			Use CTRL+V or CMD+V to paste.
+		</div>
+		<div class="emptyURI">
+			Please enter a web address first.
 		</div>
 	</div>
 </body>
