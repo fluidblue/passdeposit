@@ -1,0 +1,26 @@
+/**
+ * PassDeposit
+ * 
+ * @author Max Geissler
+ */
+
+/* Modify jGrowl default settings */
+
+div.jGrowl
+{
+	font-family: inherit !important;
+	font-size: 12px !important;
+}
+
+div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
+{
+	/*width: 250px !important;*/
+	
+	padding-left: 13px !important;
+	padding-right: 13px !important;
+}
+
+div.jGrowl div.jGrowl-close
+{
+	font-size: 13px !important;
+}

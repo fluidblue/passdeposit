@@ -1,0 +1,69 @@
+/**
+ * PassDeposit
+ * 
+ * @author Max Geissler
+ */
+
+/* Remove all browser specific outlines for buttons and links */
+.btn, a
+{
+	outline: none !important;
+}
+
+/* The default of 80% is too dark, so light it up */
+.modal-backdrop,
+.modal-backdrop.fade.in
+{
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+}
+
+/* Move modal dialogs down (default: 10%) */
+.modal.fade.in
+{
+	top: 15%;
+}
+
+/* Set background color of .active to .disabled (default: transparent) */
+.pagination ul > .disabled > a:hover,
+.pagination ul > .disabled > a:focus,
+.pagination ul > .disabled > a,
+.pagination ul > .disabled > span
+{
+	background-color: #f5f5f5;
+}
+
+/* Set correct image location */
+[class^="icon-"],
+[class*=" icon-"]
+{
+	background-image: url("../media/glyphicons-halflings.png");
+}
+
+/* Set correct image location */
+.icon-white,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:focus > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > li > a:focus > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:focus > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"],
+.dropdown-submenu:focus > a > [class*=" icon-"]
+{
+	background-image: url("../media/glyphicons-halflings-white.png");
+}
+
+/* Fix non-hiding inputs */
+input.hide
+{
+	display: none;
+}
