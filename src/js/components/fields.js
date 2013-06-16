@@ -36,6 +36,10 @@ function init()
 		var input = $(this).parent().children('input:visible');
 		var url = input.val();
 		
+		// Cancel if field is empty
+		if (url.length === 0)
+			return;
+		
 		// Append protocol, if not given
 		if (url.indexOf('://') === -1)
 			url = 'http://' + url;
