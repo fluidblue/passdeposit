@@ -34,17 +34,17 @@ function init()
 	$('.itemField .btnOpen').click(function()
 	{
 		var input = $(this).parent().children('input:visible');
-		var url = input.val();
+		var uri = input.val();
 		
 		// Cancel if field is empty
-		if (url.length === 0)
+		if (uri.length === 0)
 			return;
 		
 		// Append protocol, if not given
-		if (url.indexOf('://') === -1)
-			url = 'http://' + url;
+		if (uri.indexOf('://') === -1)
+			uri = 'http://' + uri;
 		
-		window.open(url);
+		window.open(uri);
 	});
 	
 	$('.itemField.itemFieldPassword').each(function(i, elem)
