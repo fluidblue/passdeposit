@@ -12,7 +12,7 @@ $colorOutline: darken(#f8b9b7, 8%);
 input.invalidInput
 {
 	border-color: lighten($colorBorder, 10%);
-	background-color: #f2dede;
+	/*background-color: #f2dede;*/
 	color: $colorText;
 }
 
