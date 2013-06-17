@@ -15,15 +15,6 @@ body
 	padding-right: 35px;
 }
 
-/* TODO: Unused? */
-.animationPause
-{
-	animation-play-state: paused !important;
-	-webkit-animation-play-state: paused !important;
-	-moz-animation-play-state: paused !important;
-	-o-animation-play-state: pause !important;
-}
-
 /* Used for popover JS fix */
 .noTransition
 {
