@@ -101,6 +101,7 @@ function initRegisterTooltips()
 
 	$('#registerEmail').popover(options);
 	$('#registerPass').popover(options);
+	$('#registerPassRepeat').popover(options);
 	$('#registerPassHint').popover(options);
 }
 
