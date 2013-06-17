@@ -97,14 +97,13 @@ header('content-type: text/html; charset=utf-8');
 					<li><a tabindex="-1" href="#other"><i class="icon-th"></i>Other</a></li>
 				</ul>
 			</div>
-			<div class="btn-group heightFix">
-				<div class="input-append">
+			<div class="btn-group fullWidth">
+				<div class="input-prepend inputPrependInner input-append inputVariableWidth1 heightFix">
+					<span class="add-on"><i class="icon-search"></i></span>
 					<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
-					<div class="btn-group">
-						<button class="btn">
-							<span class="caret"></span>
-						</button>
-					</div>
+					<button class="btn">
+						<span class="caret"></span>
+					</button>
 				</div>
 			</div>
 			<div class="btn-group">
@@ -383,7 +382,7 @@ header('content-type: text/html; charset=utf-8');
 		</div>
 		<div class="registerPassHintInfo">
 			If you forget your password, this password hint
-			will be sent to your email address to help you remember your password.
+			will be sent to your email address.
 		</div>
 		<div class="loginSuccessful">
 			You have successfully registered.<br />

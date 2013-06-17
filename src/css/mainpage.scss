@@ -13,28 +13,42 @@
 		margin-top: 25px;
 		margin-bottom: 25px;
 
-		text-align: center;
+		/*text-align: center;*/
+		
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
+		
+		background-color: red;
 	}
 
 	.mainNav div.btn-group
 	{
-		text-align: left;
+		/*text-align: left;*/
 	}
 
 	.mainNav div.heightFix
 	{
-		/* TODO: Why is this fix needed? Problem when zooming! */
-		height: 30px;
+		margin-bottom: 0px;
+	}
+	
+	.mainNav .btn-group.fullWidth
+	{
+		width: auto;
 	}
 
 	#search
 	{
-		width: 350px;
+		/*width: 350px;*/
 	}
 
 	.item
 	{
-		width: 55%;
+		/* Include padding in width */
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		
+		width: 50%;
 
 		margin-left: auto;
 		margin-right: auto;
