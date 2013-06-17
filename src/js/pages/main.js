@@ -9,12 +9,14 @@ var $ = require('jquery');
 require('bootstrap');
 var initOptionsDialog = require('./main/options');
 var lockDialog = require('./main/lock');
+var logout = require('./main/logout');
 
 // Initializes main page
 function init()
 {
 	initOptionsDialog();
 	lockDialog.init();
+	logout.init();
 	
 	// TODO: Multiple typeahead
 	var options =
