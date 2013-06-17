@@ -30,9 +30,6 @@ $moveText: $prependWidth + 7px;
 
 		/* Account for the 1px gap caused by removing the border */
 		margin: 1px 0 1px 1px;
-
-		/* TODO: Remove or set for all browsers! */
-		/*box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px 0px inset;*/
 	}
 	
 	input[type=text],
