@@ -72,16 +72,24 @@ function showRegisterErrorTip(element, message)
 	$(element).popover('show');
 }
 
-function setInputInvalid(element)
+function setInputInvalid(jqElem)
 {
-	element = $(element);
-	
-	element.addClass('invalidInput');
-	element.on('keydown.invalidInput', function()
+	jqElem.addClass('invalidInput');
+	jqElem.one('keydown', function()
 	{
-		element.off('keydown.invalidInput');
-		element.removeClass('invalidInput');
+		jqElem.removeClass('invalidInput');
 	});
+}
+
+function checkNotEmpty(jqElem)
+{
+	if (jqElem.val().length === 0)
+	{
+		setInputInvalid(jqElem);
+		return false;
+	}
+	
+	return true;
 }
 
 function initRegisterTooltips()
@@ -116,14 +124,14 @@ function init()
 
 	$('#register').submit(function()
 	{
-		if (false)
+		if (checkNotEmpty($('#registerEmail')) & checkNotEmpty($('#registerPass')) &
+			checkNotEmpty($('#registerPassRepeat')) & checkNotEmpty($('#registerPassHint')))
 		{
-			setInputInvalid('#registerEmail');
-			setFormFocus('#login'); // TODO: Not working
+			$('#registerDialog').modal('show');
 		}
 		else
 		{
-			$('#registerDialog').modal('show');
+			setFormFocus('#login'); // TODO: Not working
 		}
 		
 		return false;

@@ -13,7 +13,7 @@ input.invalidInput
 {
 	border-color: lighten($colorBorder, 10%);
 	/*background-color: #f2dede;*/
-	color: $colorText;
+	/*color: $colorText;*/
 }
 
 input.invalidInput:focus
@@ -27,7 +27,7 @@ input.invalidInput:focus
 
 /* Placeholder styling: */
 
-input.invalidInput::-webkit-input-placeholder
+/*input.invalidInput::-webkit-input-placeholder
 {
 	color: $colorPlaceholder;
 }
@@ -45,4 +45,4 @@ input.invalidInput::-moz-placeholder
 input.invalidInput:-ms-input-placeholder
 {
 	color: $colorPlaceholder;
-}
+}*/
