@@ -18,23 +18,23 @@
 		width: 50%;
 		margin-left: auto;
 		margin-right: auto;
-		
+
 		background-color: red;
-	}
 
-	.mainNav div.btn-group
-	{
-		/*text-align: left;*/
-	}
+		div.btn-group
+		{
+			/*text-align: left;*/
+		}
 
-	.mainNav div.heightFix
-	{
-		margin-bottom: 0px;
-	}
-	
-	.mainNav .btn-group.fullWidth
-	{
-		width: auto;
+		div.heightFix
+		{
+			margin-bottom: 0px;
+		}
+
+		.btn-group.fullWidth
+		{
+			width: auto;
+		}
 	}
 
 	#search
