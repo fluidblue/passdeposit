@@ -8,38 +8,46 @@
 
 #mainpage
 {
+	width: 45%;
+	min-width: 680px;;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
 	.mainNav
 	{
+		$space: 10px;
+		
+		display: table;
+		
 		margin-top: 25px;
 		margin-bottom: 25px;
-
-		/*text-align: center;*/
 		
-		width: 50%;
-		margin-left: auto;
-		margin-right: auto;
-
-		background-color: red;
-
-		div.btn-group
+		/* Direct children */
+		>
 		{
-			/*text-align: left;*/
-		}
+			*
+			{
+				display: table-cell;
+				padding-right: $space;
 
-		div.heightFix
-		{
-			margin-bottom: 0px;
+				div.heightFix
+				{
+					margin-bottom: 0px;
+				}
+			}
+			
+			*:last-child
+			{
+				padding-right: 0px;
+			}
+			
+			*.fullWidth
+			{
+				width: 100%;
+				padding-right: ($space + 2px); /* Fix search field */
+			}
 		}
-
-		.btn-group.fullWidth
-		{
-			width: auto;
-		}
-	}
-
-	#search
-	{
-		/*width: 350px;*/
 	}
 
 	.item
@@ -47,15 +55,5 @@
 		/* Include padding in width */
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-		
-		width: 50%;
-
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.itemFieldContainer
-	{
-		width: 100%;
 	}
 }

@@ -119,106 +119,94 @@ header('content-type: text/html; charset=utf-8');
 			<!-- TODO: Close button (icon: &times; or up-arrow) -->
 			<!--<button class="close">&times;</button>-->
 			
-			<!-- TODO: Reuse dropdowns, Change to nav-pill links  -->
+			<!-- TODO: Reuse dropdowns  -->
 			
-			<div class="itemFieldContainer">
-				<div class="itemField itemFieldWebsite input-prepend inputPrependInner input-append inputVariableWidth2">
-					<span class="add-on"><i class="icon-globe"></i></span>
-					<input type="text" placeholder="http://example.com" spellcheck="false" />
-					<button class="btn btnOpen" type="button">Open</button>
-					<div class="btn-group">
-						<button class="btn dropdown-toggle" data-toggle="dropdown">
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a tabindex="-1" href="#"><i class="icon-arrow-up"></i>Move up</a></li>
-							<li><a tabindex="-1" href="#"><i class="icon-arrow-down"></i>Move down</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#"><i class="icon-pencil"></i>Field type</a>
-								<ul class="dropdown-menu">
-									<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
-									<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
-									<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
-									<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
-									<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
-									<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
-								</ul>
-							</li>
-							<li class="divider"></li>
-							<li><a tabindex="-1" href="#"><i class="icon-trash"></i>Remove</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="itemField itemFieldUser input-prepend inputPrependInner input-append inputVariableWidth2">
-					<span class="add-on"><i class="icon-user"></i></span>
-					<input type="text" placeholder="User" spellcheck="false" />
-					<button class="btn btnCopy" type="button">Copy</button>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="itemField itemFieldEmail input-prepend inputPrependInner input-append inputVariableWidth2">
-					<span class="add-on"><i class="icon-envelope"></i></span>
-					<input type="text" placeholder="Email address" spellcheck="false" />
-					<button class="btn btnCopy" type="button">Copy</button>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="itemField itemFieldText input-prepend inputPrependInner input-append inputVariableWidth2">
-					<span class="add-on"><i class="icon-align-left"></i></span>
-					<input type="text" placeholder="Text" />
-					<button class="btn btnCopy" type="button">Copy</button>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="itemField itemFieldServiceName input-prepend inputPrependInner input-append inputVariableWidth2">
-					<span class="add-on"><i class="icon-th"></i></span>
-					<input type="text" placeholder="Service name, e.g. Skype" spellcheck="false" />
-					<button class="btn btnCopy" type="button">Copy</button>
-				</div>
-			</div>
-
-			<div class="itemFieldContainer">
-				<div class="itemField itemFieldPassword input-prepend inputPrependInner input-append inputVariableWidth3">
-					<span class="add-on"><i class="icon-lock"></i></span>
-					<input type="password" class="inputMasked" placeholder="Password" />
-					<input type="text" class="inputVisible hide" placeholder="Password" />
-					<button class="btn btnToggleVisiblity" type="button">
-						<span class="txtShow">Show</span>
-						<span class="txtHide hide">Hide</span>
+			<div class="itemField itemFieldWebsite input-prepend inputPrependInner input-append inputVariableWidth2">
+				<span class="add-on"><i class="icon-globe"></i></span>
+				<input type="text" placeholder="http://example.com" spellcheck="false" />
+				<button class="btn btnOpen" type="button">Open</button>
+				<div class="btn-group">
+					<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
 					</button>
-					<button class="btn btnCopy" type="button">Copy</button>
-					<div class="btn-group">
-						<button class="btn dropdown-toggle" data-toggle="dropdown">
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a tabindex="-1" href="#"><i class="icon-asterisk"></i>Generate</a></li>
-							<li class="divider"></li>
-							<li><a tabindex="-1" href="#"><i class="icon-arrow-up"></i>Move up</a></li>
-							<li><a tabindex="-1" href="#"><i class="icon-arrow-down"></i>Move down</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#"><i class="icon-pencil"></i>Field type</a>
-								<ul class="dropdown-menu">
-									<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
-									<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
-									<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
-									<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
-									<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
-									<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
-								</ul>
-							</li>
-							<li class="divider"></li>
-							<li><a tabindex="-1" href="#"><i class="icon-trash"></i>Remove</a></li>
-						</ul>
-					</div>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="#"><i class="icon-arrow-up"></i>Move up</a></li>
+						<li><a tabindex="-1" href="#"><i class="icon-arrow-down"></i>Move down</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-submenu">
+							<a tabindex="-1" href="#"><i class="icon-pencil"></i>Field type</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
+								<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
+								<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
+								<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
+								<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
+								<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="#"><i class="icon-trash"></i>Remove</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="itemField itemFieldUser input-prepend inputPrependInner input-append inputVariableWidth2">
+				<span class="add-on"><i class="icon-user"></i></span>
+				<input type="text" placeholder="User" spellcheck="false" />
+				<button class="btn btnCopy" type="button">Copy</button>
+			</div>
+			
+			<div class="itemField itemFieldEmail input-prepend inputPrependInner input-append inputVariableWidth2">
+				<span class="add-on"><i class="icon-envelope"></i></span>
+				<input type="text" placeholder="Email address" spellcheck="false" />
+				<button class="btn btnCopy" type="button">Copy</button>
+			</div>
+			
+			<div class="itemField itemFieldText input-prepend inputPrependInner input-append inputVariableWidth2">
+				<span class="add-on"><i class="icon-align-left"></i></span>
+				<input type="text" placeholder="Text" />
+				<button class="btn btnCopy" type="button">Copy</button>
+			</div>
+			
+			<div class="itemField itemFieldServiceName input-prepend inputPrependInner input-append inputVariableWidth2">
+				<span class="add-on"><i class="icon-th"></i></span>
+				<input type="text" placeholder="Service name, e.g. Skype" spellcheck="false" />
+				<button class="btn btnCopy" type="button">Copy</button>
+			</div>
+			
+			<div class="itemField itemFieldPassword input-prepend inputPrependInner input-append inputVariableWidth3">
+				<span class="add-on"><i class="icon-lock"></i></span>
+				<input type="password" class="inputMasked" placeholder="Password" />
+				<input type="text" class="inputVisible hide" placeholder="Password" />
+				<button class="btn btnToggleVisiblity" type="button">
+					<span class="txtShow">Show</span>
+					<span class="txtHide hide">Hide</span>
+				</button>
+				<button class="btn btnCopy" type="button">Copy</button>
+				<div class="btn-group">
+					<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="#"><i class="icon-asterisk"></i>Generate</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="#"><i class="icon-arrow-up"></i>Move up</a></li>
+						<li><a tabindex="-1" href="#"><i class="icon-arrow-down"></i>Move down</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-submenu">
+							<a tabindex="-1" href="#"><i class="icon-pencil"></i>Field type</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="-1" href="#service"><i class="icon-th"></i>Service name</a></li>
+								<li><a tabindex="-1" href="#uri"><i class="icon-globe"></i>Web address (URI)</a></li>
+								<li><a tabindex="-1" href="#user"><i class="icon-user"></i>User</a></li>
+								<li><a tabindex="-1" href="#email"><i class="icon-envelope"></i>Email</a></li>
+								<li><a tabindex="-1" href="#text"><i class="icon-align-left"></i>Text</a></li>
+								<li><a tabindex="-1" href="#pw"><i class="icon-lock"></i>Password</a></li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="#"><i class="icon-trash"></i>Remove</a></li>
+					</ul>
 				</div>
 			</div>
 			
