@@ -42,20 +42,20 @@ var shimLibs =
 	'jquery.totalStorage':
 	{
 		path: path.join(pathLib, 'jquery.total-storage.js'),
-		exports: null,
-		depends: { jquery: '$' }
+		exports: '$',
+		depends: { 'jquery': '$' }
 	},
 	'jquery.jGrowl':
 	{
 		path: path.join(pathLib, 'jquery.jgrowl.js'),
-		exports: null,
-		depends: { jquery: '$' }
+		exports: '$',
+		depends: { 'jquery': '$' }
 	},
 	'bootstrap':
 	{
 		path: path.join(pathLib, 'bootstrap.js'),
-		exports: null,
-		depends: { jquery: '$' }
+		exports: '$',
+		depends: { 'jquery': '$' }
 	}
 };
 
