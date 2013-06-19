@@ -95,6 +95,14 @@ $moveText: $prependWidth + 7px;
 	}
 }
 
+.inputVariableWidth1NoPrepend
+{
+	@extend .inputVariableWidth1;
+	
+	/* default padding-left of input + btnDropdown width + correction */
+	padding-right: (6px + $btnDropdownWidth + 5px);
+}
+
 
 /* Variable width with 2 appended buttons: 1 normal button and 1 dropdown button */
 .inputVariableWidth2
