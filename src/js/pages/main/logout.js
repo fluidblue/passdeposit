@@ -31,6 +31,7 @@ function init()
 	$('#btnLogout').click(function()
 	{
 		logout();
+		return false;
 	});
 }
 
