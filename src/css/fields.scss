@@ -30,6 +30,9 @@ $moveText: $prependWidth + 7px;
 
 		/* Account for the 1px gap caused by removing the border */
 		margin: 1px 0 1px 1px;
+		
+		/* Pass pointer events to underlying input */
+		pointer-events: none;
 	}
 	
 	input[type=text],
