@@ -51,11 +51,23 @@ var shimLibs =
 		exports: '$',
 		depends: { 'jquery': '$' }
 	},
+	'jquery.color-git':
+	{
+		path: path.join(pathLib, 'jquery.color-git.js'),
+		exports: '$',
+		depends: { 'jquery': '$' }
+	},
 	'bootstrap':
 	{
 		path: path.join(pathLib, 'bootstrap.js'),
 		exports: '$',
 		depends: { 'jquery': '$' }
+	},
+	'bootstrap-tagmanager':
+	{
+		path: path.join(pathLib, 'bootstrap-tagmanager.js'),
+		exports: '$',
+		depends: { 'bootstrap': '$', 'jquery.color-git': '$' }
 	}
 };
 
