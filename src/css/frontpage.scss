@@ -57,15 +57,18 @@
 	text-align: justify;
 }
 
-#frontpage .navContent
+#frontpage
 {
-	width: 345px;
-	
-	margin-left: auto;
-	margin-right: auto;
-	
-	margin-top: 0;
-	margin-bottom: 0;
+	.navContent
+	{
+		width: 345px;
+
+		margin-left: auto;
+		margin-right: auto;
+
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 #pwForgotDialog .modal-body p
