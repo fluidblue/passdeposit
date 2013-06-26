@@ -56,6 +56,12 @@ var shimLibs =
 		path: path.join(pathLib, 'bootstrap.js'),
 		exports: '$',
 		depends: { 'jquery': '$' }
+	},
+	'bootstrap-tag':
+	{
+		path: path.join(pathLib, 'bootstrap-tag.js'),
+		exports: '$',
+		depends: { 'bootstrap': '$' }
 	}
 };
 

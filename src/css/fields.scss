@@ -121,3 +121,63 @@ $moveText: $prependWidth + 7px;
 	/* padding-left of input + btnDropdown width + button width + correction */
 	padding-right: ($moveText + $btnDropdownWidth + 2 * $btnWidth + 3px);
 }
+
+.itemFieldTags2
+{
+	position: relative;
+	margin-bottom: 10px;
+	
+	.tags
+	{
+		width: 100%;
+		padding-left: $moveText;
+		margin-bottom: 0;
+	}
+	
+	.addOnContainer
+	{
+		height: 100%;
+		background-color: transparent;
+		
+		/* Move the add-on above the input element */
+		position: absolute;
+
+		/* The focus brings the input to z-index 2, so needs to be higher */
+		z-index: 3;
+		
+		/* Set fixed width + 2px (padding)  */
+		width: ($prependWidth + 2px);
+		
+		/* Pass pointer events to underlying input */
+		pointer-events: none;
+		
+		/* Account for the 1px gap caused by removing the border */
+		padding: 1px 0 1px 1px;
+		
+		/* Include padding in width & height */
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	.addOn
+	{
+		display: block;
+		height: 100%;
+		
+		background-color: #eeeeee;
+		
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		
+		/* Reseparate the add-on from the input */
+		border-right: 1px solid rgb(204, 204, 204);
+		
+		padding-left: 4px;
+		
+		i
+		{
+			margin-top: 5px;
+			margin-left: 5px;
+		}
+	}
+}

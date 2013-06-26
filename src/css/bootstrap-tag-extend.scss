@@ -1,0 +1,47 @@
+/**
+ * PassDeposit
+ * 
+ * @author Max Geissler
+ */
+
+.tags
+{
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	position: relative;
+	padding-bottom: 0;
+	
+	> *
+	{
+		float: left;
+	}
+	
+	.tag
+	{
+		/* Correct height */
+		margin: 1px 5px 5px 0;
+		
+		line-height: 16px;
+		
+		padding-top: 1px;
+		padding-bottom: 1px;
+		
+		.close
+		{
+			float: none;
+			
+			/* TODO: Vertically center button */
+			margin-top: -2px;
+		}
+	}
+	
+	input[type=text]
+	{
+		/* Needed for JS */
+		min-width: 80px;
+		
+		margin-bottom: 4px !important;
+		font-size: inherit !important;
+	}
+}

@@ -10,6 +10,19 @@ require('bootstrap');
 var initOptionsDialog = require('./main/options');
 var lockDialog = require('./main/lock');
 var logout = require('./main/logout');
+require('bootstrap-tag');
+
+function initTags()
+{
+	var optTags =
+	{
+		caseInsensitive: true,
+		allowDuplicates: false,
+		source: ['test', 'test2']
+	};
+	
+	$('#mainpage .input-tag').tag(optTags);
+}
 
 // Initializes main page
 function init()
@@ -17,6 +30,8 @@ function init()
 	initOptionsDialog();
 	lockDialog.init();
 	logout.init();
+	
+	initTags();
 	
 	// TODO: Multiple typeahead
 	var options =
