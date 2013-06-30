@@ -141,6 +141,7 @@
       
       this.element.val(this.values.join(', '))
       
+      this.setPlaceholder(this.input.parent(), false);
       this.setWidth(this.input.parent())
     }
   , remove: function ( index ) {
@@ -148,6 +149,9 @@
         this.values.splice(index, 1)
         this.element.siblings('.tag:eq(' + index + ')').remove()
         this.element.val(this.values.join(', '))
+	
+	if (this.values.length == 0)
+		this.setPlaceholder(this.input.parent(), true)
 	
 	this.setWidth(this.input.parent())
       }
@@ -196,6 +200,16 @@
 			setWidth(element);
 		});
 	}
+	
+	, setPlaceholder: function(element, enabled)
+	{
+		var input = $(element).children("input[type=text]");
+		
+		if (enabled)
+			input.attr('placeholder', this.options.placeholder)
+		else
+			input.attr('placeholder', '')
+	}
     
     
   , skip: false
@@ -228,8 +242,9 @@
   }
   
   $(window).on('load', function () {
-	$(window).resize(setAllWidth);
-	setAllWidth();
+	// TODO
+	//$(window).resize(setAllWidth);
+	//setAllWidth();
 	  
     $('[data-provide="tag"]').each(function () {
       var that = $(this)

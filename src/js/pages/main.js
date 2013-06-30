@@ -18,7 +18,8 @@ function initTags()
 	{
 		caseInsensitive: true,
 		allowDuplicates: false,
-		source: ['test', 'test2']
+		source: ['test', 'test2'],
+		placeholder: 'Tags'
 	};
 	
 	$('#mainpage .input-tag').tag(optTags);
