@@ -42,13 +42,16 @@ function loginUser()
 		}
 	);*/
 
-	saveUsername();
+	saveUsername();	
 
 	// Switch to mainpage
 	$('#frontpage').fadeOut(config.animations.pageChangeDuration, function()
 	{
 		$('#mainpage').fadeIn(config.animations.pageChangeDuration);
 		$('#search').focus();
+		
+		// Empty password field
+		$('#loginPass').val('');
 	});
 
 	return false;
