@@ -96,11 +96,10 @@
       })
       
       // Resizing
-      $(window).resize(function() 
-      {
+      $(window).resize(function() {
             that.setWidth(that.input.parent())
       })
-      that.setWidth(that.input.parent())
+      // Initial resize not needed, because input's width is 100%
     }
   , inValues: function ( value ) {
       if (this.options.caseInsensitive) {
@@ -188,6 +187,11 @@
 			var lastTagLeft = lastTag.position().left;
 			var lastTagWidth = lastTag.outerWidth();
 
+			// Remove oversized padding
+			lastTagLeft -= parseInt(container.css("padding-left"));
+			lastTagLeft += parseInt(container.css("padding-right"));
+			lastTagLeft -= 1; // Border
+			
 			newWidth -= (lastTagLeft + lastTagWidth);
 
 			// Check min-width
