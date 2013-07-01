@@ -94,6 +94,13 @@
       $(that.input.data('typeahead').$menu).on('mousedown', function() {
         that.skip = true
       })
+      
+      // Resizing
+      $(window).resize(function() 
+      {
+            that.setWidth(that.input.parent())
+      })
+      that.setWidth(that.input.parent())
     }
   , inValues: function ( value ) {
       if (this.options.caseInsensitive) {
@@ -192,14 +199,6 @@
 
 		input.width(newWidth);
 	}
-
-	, setAllWidth: function()
-	{
-		$(".tags").each(function(index, element)
-		{
-			setWidth(element);
-		});
-	}
 	
 	, setPlaceholder: function(element, enabled)
 	{
@@ -242,10 +241,6 @@
   }
   
   $(window).on('load', function () {
-	// TODO
-	//$(window).resize(setAllWidth);
-	//setAllWidth();
-	  
     $('[data-provide="tag"]').each(function () {
       var that = $(this)
       if (that.data('tag')) return
