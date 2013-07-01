@@ -39,8 +39,26 @@ function init()
 		// Cancel if field is empty
 		if (uri.length === 0)
 		{
+			// Create notification
+			var options =
+			{
+				placement: 'bottom',
+				title: $('#text .emptyURI').html(),
+				trigger: 'focus'
+			};
+			
+			input.tooltip(options);
+			
+			// Destroy notification when losing focus or typing text
+			var fnDestroy = function()
+			{
+				$(this).tooltip('destroy');
+			};
+			input.one('blur', fnDestroy);
+			input.one('keydown', fnDestroy);
+			
 			// Show notification
-			$.jGrowl($('#text .emptyURI').html());
+			input.focus();
 			
 			return;
 		}
