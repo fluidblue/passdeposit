@@ -178,12 +178,12 @@
 		var container = $(element);
 		var input = container.children("input[type=text]");
 		var lastTag = container.children('.tag:last');
-
-		var fullWidth = container.width();
-		var newWidth = fullWidth;
-
+		
 		if (lastTag.length)
 		{
+			var fullWidth = container.width();
+			var newWidth = fullWidth;
+			
 			var lastTagLeft = lastTag.position().left;
 			var lastTagWidth = lastTag.outerWidth();
 
@@ -197,10 +197,14 @@
 			var minWidth = parseInt(input.css("min-width"));
 
 			if (minWidth > 0 && newWidth < minWidth)
-				newWidth = fullWidth;
+				newWidth = '100%';
+			
+			input.width(newWidth);
 		}
-
-		input.width(newWidth);
+		else
+		{
+			input.width('100%');
+		}
 	}
 	
 	, setPlaceholder: function(element, enabled)
