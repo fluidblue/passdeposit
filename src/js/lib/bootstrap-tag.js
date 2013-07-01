@@ -188,9 +188,8 @@
 			var lastTagWidth = lastTag.outerWidth();
 
 			// Remove oversized padding
-			lastTagLeft -= parseInt(container.css("padding-left"));
-			lastTagLeft += parseInt(container.css("padding-right"));
-			lastTagLeft -= 1; // Border
+			var oversize = parseInt(container.css("padding-left")) - parseInt(container.css("padding-right"));
+			lastTagLeft -= oversize;
 			
 			newWidth -= (lastTagLeft + lastTagWidth);
 
