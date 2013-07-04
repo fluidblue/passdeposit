@@ -1,8 +1,9 @@
 # Generic files to ignore
 *.DS_Store
 
-# NetBeans specific
+# IDE / Editor specific
 nbproject/private/
+PassDeposit.sublime-workspace
 
 # Project specific
 stuff
