@@ -3,7 +3,7 @@
 #
 # PassDeposit tool installation
 #
-# Authored by Max Geissler
+# Created by Max Geissler
 #
 
 # Go to main directory

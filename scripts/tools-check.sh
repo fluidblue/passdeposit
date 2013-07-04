@@ -3,7 +3,7 @@
 #
 # PassDeposit tools check
 #
-# Authored by Max Geissler
+# Created by Max Geissler
 #
 
 # Check if node and sass are available
