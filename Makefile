@@ -1,6 +1,6 @@
 #
 # PassDeposit
-# makefile
+# Makefile
 #
 # Created by Max Geissler
 #
