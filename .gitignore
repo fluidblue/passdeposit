@@ -2,7 +2,6 @@
 *.DS_Store
 
 # IDE / Editor specific
-nbproject/private/
 PassDeposit.sublime-workspace
 
 # Project specific
