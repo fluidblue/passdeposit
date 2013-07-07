@@ -7,8 +7,8 @@
 #
 # PLEASE NOTE:
 #  * You need to have installed certain tools for this makefile.
-#    Run 'make install' to install all required tools.
-#  * npm and gem need to be installed to run 'make install'
+#    Run 'make install-tools' to install all required tools.
+#  * npm and gem need to be installed to run 'make install-tools'
 #
 
 
@@ -39,7 +39,7 @@ clean:
 
 # Tool installation target
 # ------------------------
-install:
+install-tools:
 	sudo npm install -g webmake-coffee
 	sudo npm install -g uglify-js
 	sudo gem install sass
