@@ -2,7 +2,15 @@
 	"folders":
 	[
 		{
-			"path": "src"
+			"name": "Source",
+			"path": "src",
+			"file_exclude_patterns": ["*.DS_Store"]
+		},
+		{
+			"name": "Important files",
+			"path": ".",
+			"folder_exclude_patterns": ["*"],
+			"file_exclude_patterns": ["*.DS_Store", "*.sublime-project", "*.sublime-workspace", ".gitignore"]
 		}
 	]
 }
