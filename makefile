@@ -1,13 +1,14 @@
 #
-# PassDeposit makefile
+# PassDeposit
+# makefile
 #
-# Authored by Max Geissler
+# Created by Max Geissler
 #
 #
 # PLEASE NOTE:
-# * You need to have installed certain tools for this makefile.
-#   Run tools-install.sh to install all required tools.
-# * This makefile depends on bash. It won't work without bash.
+#  * You need to have installed certain tools for this makefile.
+#    Run 'make install' to install all required tools.
+#  * npm and gem need to be installed to run 'make install'
 #
 
 
@@ -21,13 +22,28 @@ BUILD_DIR = build
 
 # Main target
 # -----------
-all: tools-check clean css js html php media
+all: clean css js html media
 
 
 # Development target (debug)
 # --------------------------
-debug: tools-check clean css-debug js-debug html php media
-	
+debug: clean css-debug js-debug html media
+
+
+# Clean build directory target
+# ----------------------------
+clean:
+	-rm -R ./$(BUILD_DIR)/
+	mkdir -p ./$(BUILD_DIR)
+
+
+# Tool installation target
+# ------------------------
+install:
+	sudo npm install -g webmake-coffee
+	sudo npm install -g uglify-js
+	sudo gem install sass
+
 
 # Compile CSS
 # -----------
@@ -44,14 +60,20 @@ css-base:
 # Compile JS
 # ----------
 js: js-base
-	node ./scripts/build-javascript.js ./$(BUILD_DIR)/js/passdeposit.js
+	webmake --ext=coffee ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_DIR)/js/passdeposit.js
+
+	cat ./$(SOURCE_DIR)/js/license.js > ./$(BUILD_DIR)/js/passdeposit.min.js
+
+	uglifyjs ./$(BUILD_DIR)/js/passdeposit.js >> ./$(BUILD_DIR)/js/passdeposit.min.js
+	rm ./$(BUILD_DIR)/js/passdeposit.js
+	mv ./$(BUILD_DIR)/js/passdeposit.min.js ./$(BUILD_DIR)/js/passdeposit.js
 
 js-debug: js-base
-	node ./scripts/build-javascript.js ./$(BUILD_DIR)/js/passdeposit.js debug
-	
+#	webmake --ext=coffee --sourcemap ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_DIR)/js/passdeposit.js
+	webmake --ext=coffee ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_DIR)/js/passdeposit.js
+
 js-base:
 	mkdir -p ./$(BUILD_DIR)/js
-	cp ./$(SOURCE_DIR)/js/lib/html5shiv.js ./$(BUILD_DIR)/js/
 
 
 # Process HTML files
@@ -60,26 +82,7 @@ html:
 	cp -R ./$(SOURCE_DIR)/html/* ./$(BUILD_DIR)
 
 
-# Copy PHP files
-# --------------
-php:
-	cp -R ./$(SOURCE_DIR)/php ./$(BUILD_DIR)
-
-
 # Copy media
 # -----------
 media:
 	cp -R ./$(SOURCE_DIR)/media ./$(BUILD_DIR)
-
-
-# Check if required tools are available
-# -------------------------------------
-tools-check:
-	@./scripts/tools-check.sh
-
-
-# Clean build directory
-# ---------------------
-clean:
-	-rm -R ./$(BUILD_DIR)/
-	mkdir -p ./$(BUILD_DIR)
