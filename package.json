@@ -12,10 +12,10 @@
 	"bundledDependencies": [
 		"jquery",
 		"jquery-jgrowl",
-		"jquery-total-storage"
+		"jquery-total-storage",
 		"bootstrap",
 		"bootstrap-tag",
 		"sjcl",
 		"zeroclipboard"
-	],
+	]
 }
