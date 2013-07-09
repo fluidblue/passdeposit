@@ -5,8 +5,8 @@ Options dialog
 Created by Max Geissler
 ###
 
-require "../../lib/jquery"
-require "../../lib/bootstrap"
+require "jquery"
+require "bootstrap"
 
 init = ->
 	### Initializes option dialog ###

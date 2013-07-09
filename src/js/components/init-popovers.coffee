@@ -5,7 +5,7 @@ Initialize popovers
 Created by Max Geissler
 ###
 
-require "../lib/jquery"
+require "jquery"
 
 initPopovers = ->
 	# Nasty fix for repositioning popover on resize

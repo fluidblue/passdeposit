@@ -5,7 +5,7 @@ JGrowl extensions
 Created by Max Geissler
 ###
 
-require "../lib/jquery"
+require "jquery"
 
 closeAll = ->
 	$("div.jGrowl-close").each ->

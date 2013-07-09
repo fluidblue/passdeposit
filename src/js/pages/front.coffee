@@ -5,10 +5,10 @@ Front page initialization
 Created by Max Geissler
 ###
 
-require "../lib/jquery"
-require "../lib/jquery.total-storage"
-require "../lib/bootstrap"
-require "../lib/jquery.jGrowl"
+require "jquery"
+require "jquery-total-storage"
+require "bootstrap"
+require "jquery-jgrowl"
 setFormFocus = require "../components/set-form-focus"
 config = require "../components/config"
 navPills = require "../components/nav-pills"

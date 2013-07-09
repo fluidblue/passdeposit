@@ -5,8 +5,8 @@ Logout functions
 Created by Max Geissler
 ###
 
-require "../../lib/jquery"
-require "../../lib/bootstrap"
+require "jquery"
+require "bootstrap"
 setFormFocus = require "../../components/set-form-focus"
 jGrowl = require "../../components/jgrowl-extend"
 config = require "../../components/config"

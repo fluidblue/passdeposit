@@ -5,7 +5,7 @@ Exports: setFormFocus(parent)
 Created by Max Geissler
 ###
 
-require "../lib/jquery"
+require "jquery"
 
 setFormFocus = (parent) ->
 	lastInput = null

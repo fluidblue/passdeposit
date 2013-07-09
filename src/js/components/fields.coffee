@@ -5,9 +5,9 @@ Fields
 Created by Max Geissler
 ###
 
-require "../lib/jquery"
-require "../lib/jquery.jGrowl"
-ZeroClipboard = require "../lib/ZeroClipboard"
+require "jquery"
+require "jquery-jgrowl"
+ZeroClipboard = require "zeroclipboard"
 
 init = ->
 	ZeroClipboard.setDefaults moviePath: "media/zeroclipboard.swf"
