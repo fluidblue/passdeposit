@@ -4,6 +4,15 @@
 Created by Max Geissler
 ###
 
+# Require framework
+# The framework will attach itself to the window object
+require "jquery"
+require "jquery-jgrowl"
+require "jquery-total-storage"
+require "bootstrap"
+require "bootstrap-tag"
+
+# Require initialization files
 initFrontPage = require "./pages/front"
 initMainPage = require "./pages/main"
 initPopovers = require "./components/init-popovers"

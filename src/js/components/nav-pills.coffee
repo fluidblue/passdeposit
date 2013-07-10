@@ -5,7 +5,6 @@ NavPills
 Created by Max Geissler
 ###
 
-require "jquery"
 setFormFocus = require "./set-form-focus"
 
 navPillFadeDuration = 200

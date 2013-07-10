@@ -5,8 +5,6 @@ Lock dialog
 Created by Max Geissler
 ###
 
-require "jquery"
-require "bootstrap"
 logout = require("./logout").logout
 
 lock = ->

@@ -5,9 +5,6 @@ Options dialog
 Created by Max Geissler
 ###
 
-require "jquery"
-require "bootstrap"
-
 init = ->
 	### Initializes option dialog ###
 	

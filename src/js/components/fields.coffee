@@ -5,8 +5,6 @@ Fields
 Created by Max Geissler
 ###
 
-require "jquery"
-require "jquery-jgrowl"
 ZeroClipboard = require "zeroclipboard"
 
 init = ->

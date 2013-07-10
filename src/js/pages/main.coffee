@@ -5,9 +5,6 @@ Main page initialization
 Created by Max Geissler
 ###
 
-require "jquery"
-require "bootstrap"
-require "bootstrap-tag"
 initOptionsDialog = require "./main/options"
 lockDialog = require "./main/lock"
 logout = require "./main/logout"

@@ -5,8 +5,6 @@ JGrowl extensions
 Created by Max Geissler
 ###
 
-require "jquery"
-
 closeAll = ->
 	$("div.jGrowl-close").each ->
 		$(this).triggerHandler "click"
