@@ -243,7 +243,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="item">
+			<div class="item" data-toggle="modal" data-target="#donationDialog">
 				<div class="line">
 					<div><i class="icon-chevron-right"></i></div>
 					<div>
@@ -477,6 +477,40 @@
 			<input type="submit" value="Unlock" class="btn btn-primary" />
 		</div>
 	</form>
+
+	<!-- Donation Dialog -->
+	<div id="donationDialog" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="donationDialogLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="donationDialogLabel">Please support PassDeposit</h3>
+		</div>
+		<div class="modal-body">
+			<p class="heading">
+				What do you get?
+			</p>
+			<ul>
+				<li>Further development (increasing security)</li>
+				<li>Good feeling to support open source software</li>
+			</ul>
+			<p class="heading sep">
+				How much has been donated?
+			</p>
+			<div class="info">
+				<div class="progress progress-striped">
+					<div class="bar" style="width: 5%;"></div>
+				</div>
+				3.50 EUR have been donated this year.<br />
+				The goal is 70 EUR/year to cover the running costs (server, domain, etc.)
+			</div>
+			<div class="noinfo hide">
+				Cannot display donations, because the PayPal servers are unreachable.
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<button class="btn btn-primary" data-dismiss="modal"><i class="icon-heart icon-white"></i> Donate</button>
+		</div>
+	</div>
 	
 	<!-- Options Dialog -->
 	<div id="optionsDialog" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="optionsDialogLabel" aria-hidden="true">

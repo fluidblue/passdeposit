@@ -1,0 +1,24 @@
+/**
+ * PassDeposit
+ * 
+ * Created by Max Geissler
+ */
+
+#donationDialog
+{
+	.heading
+	{
+		font-weight: bold;
+	}
+
+	.sep
+	{
+		margin-top: 15px;
+	}
+
+	.progress
+	{
+		// Decrease bottom margin (original: 20px)
+		margin-bottom: 10px;
+	}
+}
