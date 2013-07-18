@@ -13,8 +13,15 @@
 
 		padding: 8px;
 
-		background-color: #f5f5f5;
+		background-color: rgb(245, 245, 245);
 		border: 1px solid #e3e3e3;
+
+		cursor: pointer;
+
+		&:not(.open):hover
+		{
+			background-color: rgb(240, 240, 240);
+		}
 
 		&:not(:first-child)
 		{
@@ -47,22 +54,34 @@
 			border-bottom-right-radius: $borderRadius;
 		}
 
+		&.open
+		{
+			cursor: default;
+		}
+
+		/* Set the arrow */
+		$arrowOpacityInactive: 0.3;
+		$arrowOpacityActive: 0.6;
+		& > .line > div:first-child > i
+		{
+			opacity: $arrowOpacityInactive;
+		}
+
+		&:hover > .line > div:first-child > i
+		{
+			opacity: $arrowOpacityActive;
+		}
+
+		&.open > .line > div:first-child > i
+		{
+			@extend .icon-chevron-down;
+			opacity: $arrowOpacityActive;
+		}
+
 		.line
 		{
 			display: table;
 			width: 100%;
-
-			cursor: pointer;
-
-			&.open
-			{
-				cursor: default;
-
-				& > div:first-child > i
-				{
-					@extend .icon-chevron-down;
-				}
-			}
 
 			> div
 			{
