@@ -54,16 +54,6 @@
 
 			cursor: pointer;
 
-			& > div
-			{
-				display: table-cell;
-			}
-
-			& > div:first-child
-			{
-				width: $arrowLeft;
-			}
-
 			&.open
 			{
 				cursor: default;
@@ -73,11 +63,39 @@
 					@extend .icon-chevron-down;
 				}
 			}
+
+			> div
+			{
+				display: table-cell;
+			}
+
+			> div:first-child
+			{
+				width: $arrowLeft;
+			}
+
+			// TODO: no word wrap + overflow hidden
+			.description
+			{
+				overflow: hidden;
+			}
+
+			.dot
+			{
+				// TODO: Why not working?
+				//content: "•";
+
+				padding-left: 0px;
+				padding-right: 0px;
+
+				font-weight: bold;
+			}
 		}
 
 		.content
 		{
 			$defaultMargin: 6px;
+
 			margin-top: ($defaultMargin + 6px);
 			margin-left: $arrowLeft;
 			margin-bottom: $defaultMargin;
