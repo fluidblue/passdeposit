@@ -59,7 +59,7 @@ showRegisterErrorTip = (element, message) ->
 
 setInputInvalid = (jqElem) ->
 	jqElem.addClass "invalidInput"
-	jqElem.one "keydown", ->
+	jqElem.one "keypress", ->
 		jqElem.removeClass "invalidInput"
 
 checkNotEmpty = (jqElem) ->
