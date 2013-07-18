@@ -1,41 +1,10 @@
+/* MODIFIED FOR PASSDEPOSIT */
 
 div.jGrowl {
 	z-index: 			9999;
 	color: 				#fff;
-	font-size: 			12px;
-}
 
-/** Special IE6 Style Positioning **/
-div.ie6 {
-	position: 			absolute;
-}
-
-div.ie6.top-right {
-	right: 				auto;
-	bottom: 			auto;
-	left: 				expression( ( 0 - jGrowl.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.top-left {
-	left: 				expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.bottom-right {
-	left: 				expression( ( 0 - jGrowl.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 - jGrowl.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.bottom-left {
-	left: 				expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 - jGrowl.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.center {
-	left: 				expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-	width: 				100%;
+	font-size:			12px;
 }
 
 /** Normal Style Positions **/
@@ -89,12 +58,14 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
 	padding: 				10px;
 	margin-top: 			5px;
 	margin-bottom: 			5px;
-	font-family: 			Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 				1em;
 	text-align: 			left;
 	display: 				none;
 	-moz-border-radius: 	5px;
 	-webkit-border-radius:	5px;
+	border-radius:			5px;
+
+	padding-left:			13px;
+	padding-right:			13px;
 }
 
 div.jGrowl div.jGrowl-notification {
@@ -108,22 +79,22 @@ div.jGrowl div.jGrowl-closer {
 
 div.jGrowl div.jGrowl-notification div.jGrowl-header {
 	font-weight: 			bold;
-	font-size:				.85em;
 }
 
 div.jGrowl div.jGrowl-notification div.jGrowl-close {
 	z-index:				99;
 	float: 					right;
 	font-weight: 			bold;
-	font-size: 				1em;
 	cursor:					pointer;
+
+	font-size:				14px;
+	margin-top:				-3px;
 }
 
 div.jGrowl div.jGrowl-closer {
 	padding-top: 			4px;
 	padding-bottom: 		4px;
 	cursor: 				pointer;
-	font-size:				.9em;
 	font-weight: 			bold;
 	text-align: 			center;
 }
