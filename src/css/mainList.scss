@@ -4,18 +4,17 @@
  * Created by Max Geissler
  */
 
- @import "panel.scss";
-
 #mainList
 {
 	.item
 	{
+		$borderRadius: 4px;
 		$arrowLeft: 18px;
 
 		padding: 8px;
 
-		background-color: $panelBackgroundColor;
-		border: 1px solid $panelBorderColor;
+		background-color: rgb(248, 248, 248);
+		border: 1px solid #e3e3e3;
 
 		cursor: pointer;
 
@@ -31,26 +30,28 @@
 
 		&:first-child
 		{
-			-webkit-border-top-left-radius: $panelBorderRadius;
-			-moz-border-top-left-radius: $panelBorderRadius;
-			border-top-left-radius: $panelBorderRadius;
+			-webkit-border-top-left-radius: $borderRadius;
+			-moz-border-top-left-radius: $borderRadius;
+			border-top-left-radius: $borderRadius;
 
-			-webkit-border-top-right-radius: $panelBorderRadius;
-			-moz-border-top-right-radius: $panelBorderRadius;
-			border-top-right-radius: $panelBorderRadius;
+			-webkit-border-top-right-radius: $borderRadius;
+			-moz-border-top-right-radius: $borderRadius;
+			border-top-right-radius: $borderRadius;
 
-			@extend .panelShadow;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+			-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 		}
 
 		&:last-child
 		{
-			-webkit-border-bottom-left-radius: $panelBorderRadius;
-			-moz-border-bottom-left-radius: $panelBorderRadius;
-			border-bottom-left-radius: $panelBorderRadius;
+			-webkit-border-bottom-left-radius: $borderRadius;
+			-moz-border-bottom-left-radius: $borderRadius;
+			border-bottom-left-radius: $borderRadius;
 
-			-webkit-border-bottom-right-radius: $panelBorderRadius;
-			-moz-border-bottom-right-radius: $panelBorderRadius;
-			border-bottom-right-radius: $panelBorderRadius;
+			-webkit-border-bottom-right-radius: $borderRadius;
+			-moz-border-bottom-right-radius: $borderRadius;
+			border-bottom-right-radius: $borderRadius;
 		}
 
 		&.open
