@@ -1,0 +1,36 @@
+/**
+ * PassDeposit
+ * 
+ * Created by Max Geissler
+ */
+
+/* Fix for rounded corners in modern browsers */
+div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
+{
+	-moz-border-radius: 5px !important;
+	-webkit-border-radius: 5px !important;
+	border-radius: 5px !important;
+}
+
+/* Modify jGrowl default font settings */
+div.jGrowl
+{
+	font-family: inherit !important;
+	font-size: 12px !important;
+}
+
+/* Change size of boxes */
+div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
+{
+	/*width: 250px !important;*/
+	
+	padding-left: 13px !important;
+	padding-right: 13px !important;
+}
+
+/* Correct size and position of close button */
+div.jGrowl div.jGrowl-close
+{
+	font-size: 13px !important;
+	margin-top: -1px !important;
+}
