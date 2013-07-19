@@ -30,8 +30,8 @@
 					<span class="add-on"><i class="icon-lock"></i></span>
 					<input type="password" id="loginPass" value="" placeholder="Password" />
 				</div>
-				<input type="button" id="loginPassForgotten" value="Forgot your password?" class="pull-left btn btn-link" data-target="#pwForgotDialog" data-toggle="modal" />
-				<input type="submit" id="loginButton" value="Login" class="btn btn-success btnWide pull-right" />
+				<button type="button" id="loginPassForgotten" class="pull-left btn btn-link" data-target="#pwForgotDialog" data-toggle="modal">Forgot your password?</button>
+				<button type="submit" id="loginButton" class="btn btn-success btnWide pull-right">Login</button>
 			</form>
 
 			<form id="register" autocomplete="off" class="navContent clearfix hide">
@@ -51,7 +51,7 @@
 					<span class="add-on"><i class="icon-info-sign"></i></span>
 					<input type="text" id="registerPassHint" value="" placeholder="Password hint" />
 				</div>
-				<input type="submit" id="registerButton" value="Register" class="btn btn-success btnWide pull-right" />
+				<button type="submit" id="registerButton" class="btn btn-success btnWide pull-right">Register</button>
 			</form>
 
 			<div id="about" class="navContent hide">
@@ -72,7 +72,7 @@
 		
 		<div class="mainNav">
 			<div class="btn-group">
-				<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+				<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 					<i class="icon-plus icon-white"></i>
 					Add
 					<span class="caret"></span>
@@ -89,7 +89,7 @@
 			<div class="btn-group fullWidth">
 				<div class="input-append inputVariableWidth1NoPrepend heightFix">
 					<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
-					<button class="btn">
+					<button type="button" class="btn">
 						<span class="caret"></span>
 					</button>
 				</div>
@@ -125,16 +125,16 @@
 				</div>
 				<div class="content">
 					<!-- TODO: Close button (icon: &times; or up-arrow) -->
-					<!--<button class="close">&times;</button>-->
+					<!--<button type="button" class="close">&times;</button>-->
 					
 					<!-- TODO: Reuse dropdowns  -->
 					
 					<div class="itemField itemFieldWebsite input-prepend inputPrependInner input-append inputVariableWidth2">
 						<span class="add-on"><i class="icon-globe"></i></span>
 						<input type="text" placeholder="http://example.com" spellcheck="false" />
-						<button class="btn btnOpen" type="button" tabindex="-1">Open</button>
+						<button type="button" class="btn btnOpen" tabindex="-1">Open</button>
 						<div class="btn-group">
-							<button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
@@ -161,20 +161,20 @@
 					<div class="itemField itemFieldUser input-prepend inputPrependInner input-append inputVariableWidth2">
 						<span class="add-on"><i class="icon-user"></i></span>
 						<input type="text" placeholder="User" spellcheck="false" />
-						<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+						<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 					</div>
 					
 					<div class="itemField itemFieldPassword input-prepend inputPrependInner input-append inputVariableWidth3">
 						<span class="add-on"><i class="icon-lock"></i></span>
 						<input type="password" class="inputMasked" placeholder="Password" />
 						<input type="text" class="inputVisible hide" placeholder="Password" />
-						<button class="btn btnToggleVisiblity" type="button" tabindex="-1">
+						<button type="button" class="btn btnToggleVisiblity" tabindex="-1">
 							<span class="txtShow">Show</span>
 							<span class="txtHide hide">Hide</span>
 						</button>
-						<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+						<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 						<div class="btn-group">
-							<button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
@@ -210,7 +210,7 @@
 					</div>
 					
 					<div class="btn-group">
-						<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-plus"></i>
 							<span class="caret"></span>
 						</button>
@@ -224,10 +224,10 @@
 						</ul>
 					</div>
 					<div class="btn-group">
-						<input type="submit" value="Cancel" class="btn" />
+						<button type="button" class="btn">Cancel</button>
 					</div>
 					<div class="btn-group pull-right">
-						<input type="submit" value="Save" class="btn btn-primary" />
+						<button type="button" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</div>
@@ -266,16 +266,16 @@
 		<!-- All fields -->
 		<div class="well item hide">
 			<!-- TODO: Close button (icon: &times; or up-arrow) -->
-			<!--<button class="close">&times;</button>-->
+			<!--<button type="button" class="close">&times;</button>-->
 			
 			<!-- TODO: Reuse dropdowns  -->
 			
 			<div class="itemField itemFieldWebsite input-prepend inputPrependInner input-append inputVariableWidth2">
 				<span class="add-on"><i class="icon-globe"></i></span>
 				<input type="text" placeholder="http://example.com" spellcheck="false" />
-				<button class="btn btnOpen" type="button" tabindex="-1">Open</button>
+				<button type="button" class="btn btnOpen" tabindex="-1">Open</button>
 				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+					<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
@@ -302,38 +302,38 @@
 			<div class="itemField itemFieldUser input-prepend inputPrependInner input-append inputVariableWidth2">
 				<span class="add-on"><i class="icon-user"></i></span>
 				<input type="text" placeholder="User" spellcheck="false" />
-				<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+				<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 			</div>
 			
 			<div class="itemField itemFieldEmail input-prepend inputPrependInner input-append inputVariableWidth2">
 				<span class="add-on"><i class="icon-envelope"></i></span>
 				<input type="text" placeholder="Email address" spellcheck="false" />
-				<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+				<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 			</div>
 			
 			<div class="itemField itemFieldText input-prepend inputPrependInner input-append inputVariableWidth2">
 				<span class="add-on"><i class="icon-align-left"></i></span>
 				<input type="text" placeholder="Text" />
-				<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+				<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 			</div>
 			
 			<div class="itemField itemFieldServiceName input-prepend inputPrependInner input-append inputVariableWidth2">
 				<span class="add-on"><i class="icon-th"></i></span>
 				<input type="text" placeholder="Service name, e.g. Skype" spellcheck="false" />
-				<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+				<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 			</div>
 			
 			<div class="itemField itemFieldPassword input-prepend inputPrependInner input-append inputVariableWidth3">
 				<span class="add-on"><i class="icon-lock"></i></span>
 				<input type="password" class="inputMasked" placeholder="Password" />
 				<input type="text" class="inputVisible hide" placeholder="Password" />
-				<button class="btn btnToggleVisiblity" type="button" tabindex="-1">
+				<button type="button" class="btn btnToggleVisiblity" tabindex="-1">
 					<span class="txtShow">Show</span>
 					<span class="txtHide hide">Hide</span>
 				</button>
-				<button class="btn btnCopy" type="button" tabindex="-1">Copy</button>
+				<button type="button" class="btn btnCopy" tabindex="-1">Copy</button>
 				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+					<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
@@ -376,7 +376,7 @@
 			</div>
 			
 			<div class="btn-group">
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
+				<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
 					<i class="icon-plus"></i>
 					<span class="caret"></span>
 				</button>
@@ -390,10 +390,10 @@
 				</ul>
 			</div>
 			<div class="btn-group">
-				<input type="submit" value="Cancel" class="btn" />
+				<button type="button" class="btn">Cancel</button>
 			</div>
 			<div class="btn-group pull-right">
-				<input type="submit" value="Save" class="btn btn-primary" />
+				<button type="button" class="btn btn-primary">Save</button>
 			</div>
 		</div>
 		
@@ -432,8 +432,8 @@
 			</p>
 		</div>
 		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			<button class="btn btn-primary register">Register</button>
+			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<button type="button" class="btn btn-primary register">Register</button>
 		</div>
 	</div>
 
@@ -454,7 +454,7 @@
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			<input type="submit" value="Send" class="btn btn-primary" />
+			<button type="submit" class="btn btn-primary">Send</button>
 		</div>
 	</form>
 	
@@ -473,8 +473,8 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<input type="button" value="Logout" class="btn btnLogout" />
-			<input type="submit" value="Unlock" class="btn btn-primary" />
+			<button type="button" class="btn btnLogout">Logout</button>
+			<button type="submit" class="btn btn-primary">Unlock</button>
 		</div>
 	</form>
 
@@ -507,8 +507,8 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			<button class="btn btn-primary" data-dismiss="modal"><i class="icon-heart icon-white"></i> Donate</button>
+			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="icon-heart icon-white"></i> Donate</button>
 		</div>
 	</div>
 	
@@ -538,8 +538,8 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<button class="btn btn-primary btnDo">Save changes</button>
+			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button type="button" class="btn btn-primary btnDo">Save changes</button>
 		</div>
 	</div>
 	
