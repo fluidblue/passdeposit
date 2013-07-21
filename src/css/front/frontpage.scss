@@ -79,6 +79,16 @@
 
 		margin-top: 0;
 		margin-bottom: 0;
+
+		/* Fix for popovers: Use this as container */
+		position: relative;
+
+		/* Fix for popovers: Set fixed width */
+		/* TODO: Fix problem for small resolutions */
+		.popover
+		{
+			width: 280px;
+		}
 	}
 }
 
