@@ -30,3 +30,10 @@ body
 {
 	color: #da4f49;
 }
+
+/* Upfacing caret, must have also the class 'caret' */
+.caretUp
+{
+	border-top: 0;
+	border-bottom: 4px solid black;
+}

@@ -86,9 +86,9 @@
 					<li><a tabindex="-1" href="#other"><i class="icon-th"></i>Other</a></li>
 				</ul>
 			</div>
-			<div class="btn-group fullWidth">
-				<div class="input-append inputVariableWidth1NoPrepend heightFix">
-					<input id="search" type="text" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
+			<div class="btn-group fullWidth searchBarContainer">
+				<div class="input-append inputVariableWidth1NoPrepend heightFix searchBar">
+					<input type="text" class="searchField" id="search" placeholder="Type to search..." autocomplete="off" spellcheck="false" />
 					<button type="button" class="btn">
 						<span class="caret"></span>
 					</button>
@@ -573,6 +573,11 @@
 			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 			<button type="button" class="btn btn-primary btnDo">Save changes</button>
 		</div>
+	</div>
+
+	<!-- Advanced search -->
+	<div id="searchOptions" class="hide">
+		Advanced search options...
 	</div>
 	
 	<!-- Localizable texts -->

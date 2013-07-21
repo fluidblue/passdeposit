@@ -7,6 +7,7 @@ Created by Max Geissler
 
 initPopovers = ->
 	# Nasty fix for repositioning popover on resize
+	# TODO: Correct containers!
 	$(window).resize ->
 		if $(".popover").is(":visible")
 			popover = $(".popover")
