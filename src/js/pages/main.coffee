@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 initOptionsDialog = require "./main/options"
+initDonationDialog = require "./main/donations"
 lockDialog = require "./main/lock"
 logout = require "./main/logout"
 
@@ -47,6 +48,7 @@ initAdvancedSearch = ->
 # Initializes main page
 init = ->
 	initOptionsDialog()
+	initDonationDialog()
 	lockDialog.init()
 	logout.init()
 	initTags()
