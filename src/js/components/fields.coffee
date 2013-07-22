@@ -70,8 +70,30 @@ init = ->
 		txtHide = btnToggle.children(".txtHide")
 		inputMasked = elem.children(".inputMasked")
 		inputVisible = elem.children(".inputVisible")
+		btnDropdown = elem.find(".btn.dropdown-toggle")
 
-		# TODO: Convert to => function
+		# Create password generation hint
+		options =
+			placement: "bottom"
+			title: $("#text .passGenerationHint").html()
+			trigger: "manual"
+
+		fnShowTooltip = ->
+			btnDropdown.tooltip "show"
+			return
+
+		fnHideTooltip = ->
+			btnDropdown.tooltip "hide"
+			return
+
+		btnDropdown.tooltip options
+
+		inputMasked.focus fnShowTooltip
+		inputVisible.focus fnShowTooltip
+
+		inputMasked.blur fnHideTooltip
+		inputVisible.blur fnHideTooltip
+		
 		btnToggle.click ->
 			if txtShow.is(":visible")
 				txtShow.hide()

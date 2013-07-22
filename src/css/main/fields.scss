@@ -9,6 +9,12 @@ $btnWidth: 70px;
 $btnDropdownWidth: $prependWidth + 2px;
 $moveText: $prependWidth + 7px;
 
+.itemField
+{
+	/* Tooltips will be repositioned on resize */
+	position: relative;
+}
+
 .inputPrependInner
 {
 	.add-on
