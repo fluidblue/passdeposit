@@ -1,6 +1,6 @@
 # PassDeposit Installation
 
-Please read carefully through both this document and the [readme](README.md#passdeposit)
+Please read carefully through both this document and the [readme](README.md#passdeposit).
 
 
 ## Do you need to install PassDeposit yourself?
@@ -14,7 +14,7 @@ If you decide to host your own installation, you can do so by following the inst
 
 * nginx
 * nodejs
-* MySQL 5 (or higher)
+* MySQL 5 (or later)
 
 
 ## Installation
