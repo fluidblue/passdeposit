@@ -14,6 +14,7 @@
 		$arrowLeft: 18px;
 		$colorActive: #005580;
 		$itemBackgroundColor: rgb(248, 248, 248);
+		$itemBackgroundColorActive: rgb(240, 240, 240);
 
 		padding: 8px;
 
@@ -25,7 +26,7 @@
 
 		&:not(.open):hover
 		{
-			background-color: rgb(240, 240, 240);
+			background-color: $itemBackgroundColorActive;
 			color: $colorActive;
 		}
 
@@ -60,9 +61,21 @@
 			opacity: $arrowOpacityInactive;
 		}
 
-		&:hover > .line > div:first-child > i
+		// Hover effects
+		&:not(.open):hover
 		{
-			opacity: $arrowOpacityActive;
+			// Darken arrow
+			& > .line > div:first-child > i
+			{
+				opacity: $arrowOpacityActive;
+			}
+
+			// Darken gradient for text cut
+			& > .line:after
+			{
+				$itemBackgroundColorActiveTransparent: rgba($itemBackgroundColorActive, 0);
+				@include background-image(linear-gradient(left, $itemBackgroundColorActiveTransparent 0%, $itemBackgroundColorActiveTransparent 92%, $itemBackgroundColorActive 100%));
+			}
 		}
 
 		&.open > .line > div:first-child > i
@@ -74,9 +87,26 @@
 		.line
 		{
 			// Cut text instead of wrapping
-			overflow-x: auto;
-			overflow-y: hidden;
+			overflow: hidden;
 			white-space: nowrap;
+
+			// Needed for :after
+			position: relative;
+
+			// Smoothly cut text by applying gradient
+			&:after
+			{
+				content: "";
+
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				$itemBackgroundColorTransparent: rgba($itemBackgroundColor, 0);
+				@include background-image(linear-gradient(left, $itemBackgroundColorTransparent 0%, $itemBackgroundColorTransparent 92%, $itemBackgroundColor 100%));
+			}
 
 			> div
 			{
