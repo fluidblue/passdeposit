@@ -1,6 +1,6 @@
 # PassDeposit Installation
 
-Please read carefully through both this document and Readme.md
+Please read carefully through both this document and the [readme](README.md#passdeposit)
 
 
 ## Do you need to install PassDeposit yourself?
@@ -10,22 +10,20 @@ No, you don't have to. You can use PassDeposit without installation at <http://w
 If you decide to host your own installation, you can do so by following the instructions below.
 
 
-## Requirements
+## Server requirements
 
-* SSL enabled webserver (e.g. Apache2, lighttpd, ...)
-* PHP 5.4 (or higher)
+* nginx
+* nodejs
 * MySQL 5 (or higher)
-
-Note: For testing PassDeposit locally, you can use XAMPP: <http://www.apachefriends.org/en/xampp.html>. It is however not recommended to use XAMPP for anything else then testing.
 
 
 ## Installation
 
 * Download the latest version from <https://github.com/fluidblue/passdeposit>
-* Run make to compile PassDeposit. Details are given inside the makefile.
+* Install npm and gem
+* Run 'make install-tools' to install all required tools
+* Run 'make' to compile PassDeposit.
 * Copy the build directory (not the src directory!) to your server
-* Copy php/config.sample.php to php/config.php
-* Edit php/config.php to match your server configuration
 
 Note: In future versions there will be an automatic installer. As of now, only the above method is available.
 
