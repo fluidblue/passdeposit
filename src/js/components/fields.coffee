@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 ZeroClipboard = require "zeroclipboard"
+generatePassword = require "../core/passgen"
 
 init = ->
 	ZeroClipboard.setDefaults moviePath: "media/zeroclipboard.swf"
@@ -60,6 +61,15 @@ init = ->
 
 		window.open uri
 
+		return
+
+	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
+		input = $(this).closest(".itemField.itemFieldPassword").find("input:visible")
+		input.val generatePassword()
+
+		# TODO: Show tooltip notification
+
+		e.preventDefault()
 		return
 
 	$(".itemField.itemFieldPassword").each (i, elem) ->
