@@ -33,6 +33,7 @@ init = ->
 			# TODO
 			
 			# Prevent closing of menu
+			# TODO: Bug: menu item stays highlighted
 			when "#" then e.stopPropagation()
 			
 			# Leave other menu items to other handlers
