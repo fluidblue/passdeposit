@@ -15,25 +15,16 @@
 		$colorActive: #005580;
 		$itemBackgroundColor: rgb(248, 248, 248);
 		$itemBackgroundColorActive: rgb(240, 240, 240);
+		$arrowOpacityInactive: 0.3;
+		$arrowOpacityActive: 0.6;
+		$btnOpacityInactive: $arrowOpacityInactive;
+		$btnOpacityActive: 0.8;
+		$padding: 8px;
 
-		padding: 8px;
+		/* General item styling */
 
-		background-color: $itemBackgroundColor;
-		color: #0088cc;
 		border: 1px solid #e3e3e3;
-
-		cursor: pointer;
-
-		&:not(.open):hover
-		{
-			background-color: $itemBackgroundColorActive;
-			color: $colorActive;
-		}
-
-		&:not(:first-child)
-		{
-			border-top: 0;
-		}
+		background-color: $itemBackgroundColor;
 
 		&:first-child
 		{
@@ -47,89 +38,184 @@
 			border-bottom-right-radius: $borderRadius;
 		}
 
-		&.open
+		&:not(:first-child)
 		{
-			cursor: default;
-			color: $colorActive;
+			border-top: 0;
 		}
 
-		/* Set the arrow */
-		$arrowOpacityInactive: 0.3;
-		$arrowOpacityActive: 0.6;
-		& > .line > div:first-child > i
+
+		/* General header styling */
+		.header
 		{
-			opacity: $arrowOpacityInactive;
-		}
-
-		// Hover effects
-		&:not(.open):hover
-		{
-			// Darken arrow
-			& > .line > div:first-child > i
-			{
-				opacity: $arrowOpacityActive;
-			}
-
-			// Darken gradient for text cut
-			& > .line:after
-			{
-				$itemBackgroundColorActiveTransparent: rgba($itemBackgroundColorActive, 0);
-				@include background-image(linear-gradient(left, $itemBackgroundColorActiveTransparent 0%, $itemBackgroundColorActiveTransparent 92%, $itemBackgroundColorActive 100%));
-			}
-		}
-
-		&.open > .line > div:first-child > i
-		{
-			@extend .icon-chevron-down;
-			opacity: $arrowOpacityActive;
-		}
-
-		.line
-		{
-			// Cut text instead of wrapping
-			overflow: hidden;
-			white-space: nowrap;
-
-			// Needed for :after
-			position: relative;
-
-			// Smoothly cut text by applying gradient
-			&:after
-			{
-				content: "";
-
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-
-				$itemBackgroundColorTransparent: rgba($itemBackgroundColor, 0);
-				@include background-image(linear-gradient(left, $itemBackgroundColorTransparent 0%, $itemBackgroundColorTransparent 92%, $itemBackgroundColor 100%));
-			}
+			display: table;
 
 			> div
 			{
-				display: inline-block;
+				display: table-cell;
 			}
 
-			> div:first-child
+			/* General button styling */
+			.buttons
 			{
-				width: $arrowLeft;
+				padding-right: ($padding - 2px);
+				padding-left: ($padding - 2px);
+
+				/* Table for nested a elements */
+				display: table;
+
+				> a
+				{
+					display: table-cell;
+
+					/* Size: 24x24 px */
+					padding-top: 2px;
+					padding-left: 5px;
+					padding-bottom: 2px;
+					padding-right: 5px;
+
+					/* Icon opacity */
+					opacity: $btnOpacityInactive;
+					&:hover
+					{
+						opacity: $btnOpacityActive;
+					}
+				}
 			}
 
-			.dot
+			/* General line styling */
+			.line
 			{
-				// TODO: Why not working?
-				//content: "•";
+				width: 100%;
 
-				padding-left: 2px;
-				padding-right: 2px;
+				padding: $padding;
+				padding-right: 0;
 
-				font-weight: bold;
+				cursor: pointer;
+				color: #0088cc;
+
+				> div
+				{
+					display: inline-block;
+
+					.dot
+					{
+						// TODO: Why not working?
+						//content: "•";
+
+						padding-left: 2px;
+						padding-right: 2px;
+
+						font-weight: bold;
+					}
+				}
+
+				/* Icon */
+				> div:first-child
+				{
+					width: $arrowLeft;
+
+					> i
+					{
+						opacity: $arrowOpacityInactive;
+					}
+				}
+
+				/* Description */
+				> div:last-child
+				{
+					// Cut text instead of wrapping
+					overflow: hidden;
+					white-space: nowrap;
+
+					// Needed for :after
+					position: relative;
+
+					// Smoothly cut text by applying gradient
+					// &:after
+					// {
+					// 	content: "";
+
+					// 	position: absolute;
+					// 	top: 0;
+					// 	left: 0;
+					// 	right: 0;
+					// 	bottom: 0;
+
+					// 	$itemBackgroundColorTransparent: rgba($itemBackgroundColor, 0);
+					// 	@include background-image(linear-gradient(left, $itemBackgroundColorTransparent 0%, $itemBackgroundColorTransparent 92%, $itemBackgroundColor 100%));
+					// }
+				}
 			}
 		}
 
+		/* Open item styling */
+		&.open
+		{
+			.header
+			{
+				.line
+				{
+					cursor: default;
+					color: $colorActive;
+
+					/* Icon */
+					> div:first-child > i
+					{
+						@extend .icon-chevron-down;
+						opacity: $arrowOpacityActive;
+					}
+
+					/* Add padding, because buttons are invisible */
+					padding-right: $padding;
+				}
+
+				/* Make buttons invisible, but preserve table-cell structure (keep .line working) */
+				.buttons
+				{
+					padding: 0;
+					display: table-cell;
+
+					> a
+					{
+						display: none;
+					}
+				}
+			}
+		}
+
+		/* Hover header styling */
+		&:not(.open):hover
+		{
+			background-color: $itemBackgroundColorActive;
+			
+			.header
+			{
+				> .line
+				{
+					color: $colorActive;
+
+					/* Icon */
+					> div:first-child > i
+					{
+						// Darken arrow
+						opacity: $arrowOpacityActive;
+					}
+
+					/* Description */
+					> div:last-child
+					{
+						// Darken gradient for text cut
+						// > .line:after
+						// {
+						// 	$itemBackgroundColorActiveTransparent: rgba($itemBackgroundColorActive, 0);
+						// 	@include background-image(linear-gradient(left, $itemBackgroundColorActiveTransparent 0%, $itemBackgroundColorActiveTransparent 92%, $itemBackgroundColorActive 100%));
+						// }
+					}
+				}
+			}
+		}
+
+		/* Content styling */
 		.content
 		{
 			$defaultMargin: 6px;
