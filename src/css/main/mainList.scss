@@ -10,8 +10,10 @@
 
 	.item
 	{
+		$height: 36px;
 		$borderRadius: 4px;
-		$arrowLeft: 18px;
+		$arrowWidth: 18px;
+		$arrowMargin: 3px;
 		$colorActive: #005580;
 		$itemBackgroundColor: rgb(248, 248, 248);
 		$itemBackgroundColorActive: rgb(240, 240, 240);
@@ -20,6 +22,7 @@
 		$btnOpacityInactive: $arrowOpacityInactive;
 		$btnOpacityActive: 0.8;
 		$padding: 8px;
+
 
 		/* General item styling */
 
@@ -48,24 +51,83 @@
 		.header
 		{
 			display: table;
+			width: 100%;
+			height: $height;
 
-			> div
+			.clickable
 			{
+				//background-color: gray;
 				display: table-cell;
+				width: 100%;
+
+				padding-left: $padding;
+				padding-right: $padding;
+
+				cursor: pointer;
+				color: #0088cc;
+
+				.posrel
+				{
+					/* Fix for Firefox: position relative doesn't work on table-cell => Add .posrel div */
+					position: relative;
+					line-height: $height;
+
+					.description
+					{
+						width: 100%;
+
+						position: absolute;
+						top: 0;
+						left: 0;
+
+						/* Cut text */
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+
+						/* Icon */
+						> div
+						{
+							display: inline-block;
+							width: $arrowWidth;
+							margin-right: $arrowMargin;
+
+							> i
+							{
+								opacity: $arrowOpacityInactive;
+							}
+						}
+
+						.dot
+						{
+							// TODO: Why not working?
+							//content: "•";
+
+							padding-left: 2px;
+							padding-right: 2px;
+
+							font-weight: bold;
+						}
+					}
+				}
 			}
 
 			/* General button styling */
 			.buttons
 			{
-				padding-right: ($padding - 2px);
-				padding-left: ($padding - 2px);
+				//background-color: red;
+				display: table-cell;
+				vertical-align: middle;
 
-				/* Table for nested a elements */
-				display: table;
+				/* Prevent wrapping of multiple buttons */
+				white-space: nowrap;
+
+				padding-right: ($padding - 2px);
 
 				> a
 				{
-					display: table-cell;
+					//background-color: blue;
+					display: inline-block;
 
 					/* Size: 24x24 px */
 					padding-top: 2px;
@@ -81,71 +143,6 @@
 					}
 				}
 			}
-
-			/* General line styling */
-			.line
-			{
-				width: 100%;
-
-				padding: $padding;
-				padding-right: 0;
-
-				cursor: pointer;
-				color: #0088cc;
-
-				> div
-				{
-					display: inline-block;
-
-					.dot
-					{
-						// TODO: Why not working?
-						//content: "•";
-
-						padding-left: 2px;
-						padding-right: 2px;
-
-						font-weight: bold;
-					}
-				}
-
-				/* Icon */
-				> div:first-child
-				{
-					width: $arrowLeft;
-
-					> i
-					{
-						opacity: $arrowOpacityInactive;
-					}
-				}
-
-				/* Description */
-				> div:last-child
-				{
-					// Cut text instead of wrapping
-					overflow: hidden;
-					white-space: nowrap;
-
-					// Needed for :after
-					position: relative;
-
-					// Smoothly cut text by applying gradient
-					// &:after
-					// {
-					// 	content: "";
-
-					// 	position: absolute;
-					// 	top: 0;
-					// 	left: 0;
-					// 	right: 0;
-					// 	bottom: 0;
-
-					// 	$itemBackgroundColorTransparent: rgba($itemBackgroundColor, 0);
-					// 	@include background-image(linear-gradient(left, $itemBackgroundColorTransparent 0%, $itemBackgroundColorTransparent 92%, $itemBackgroundColor 100%));
-					// }
-				}
-			}
 		}
 
 		/* Open item styling */
@@ -153,28 +150,28 @@
 		{
 			.header
 			{
-				.line
+				.clickable
 				{
 					cursor: default;
 					color: $colorActive;
 
-					/* Icon */
-					> div:first-child > i
+					.posrel
 					{
-						@extend .icon-chevron-down;
-						opacity: $arrowOpacityActive;
+						.description
+						{
+							/* Icon */
+							> div:first-child > i
+							{
+								@extend .icon-chevron-down;
+								opacity: $arrowOpacityActive;
+							}
+						}
 					}
-
-					/* Add padding, because buttons are invisible */
-					padding-right: $padding;
 				}
 
-				/* Make buttons invisible, but preserve table-cell structure (keep .line working) */
+				/* Make buttons invisible, but preserve table-cell structure */
 				.buttons
 				{
-					padding: 0;
-					display: table-cell;
-
 					> a
 					{
 						display: none;
@@ -190,26 +187,21 @@
 			
 			.header
 			{
-				> .line
+				.clickable
 				{
 					color: $colorActive;
 
-					/* Icon */
-					> div:first-child > i
+					.posrel
 					{
-						// Darken arrow
-						opacity: $arrowOpacityActive;
-					}
-
-					/* Description */
-					> div:last-child
-					{
-						// Darken gradient for text cut
-						// > .line:after
-						// {
-						// 	$itemBackgroundColorActiveTransparent: rgba($itemBackgroundColorActive, 0);
-						// 	@include background-image(linear-gradient(left, $itemBackgroundColorActiveTransparent 0%, $itemBackgroundColorActiveTransparent 92%, $itemBackgroundColorActive 100%));
-						// }
+						.description
+						{
+							/* Icon */
+							> div:first-child > i
+							{
+								/* Darken arrow */
+								opacity: $arrowOpacityActive;
+							}
+						}
 					}
 				}
 			}
@@ -218,12 +210,13 @@
 		/* Content styling */
 		.content
 		{
-			$defaultMargin: 6px;
+			$leftMargin: ($padding + $arrowWidth + $arrowMargin);
+			$margin: ($leftMargin * 0.75);
 
-			margin-top: ($defaultMargin + 6px);
-			margin-left: $arrowLeft;
-			margin-bottom: $defaultMargin;
-			margin-right: ($defaultMargin + 250px);
+			margin-top: ($margin - 12px);
+			margin-left: $leftMargin;
+			margin-bottom: $margin;
+			margin-right: ($margin + 250px);
 		}
 	}
 }
