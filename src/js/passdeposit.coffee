@@ -13,18 +13,16 @@ require "bootstrap"
 require "bootstrap-tag"
 
 # Require initialization files
-initFrontPage = require "./pages/front"
-initMainPage = require "./pages/main"
+frontPage = require "./pages/front"
+mainPage = require "./pages/main"
 navPills = require "./components/nav-pills"
 jGrowl = require "./components/jgrowl-extend"
-fields = require "./components/fields"
 
 # Initialize page when DOM is ready.
 $(document).ready ->
 	navPills.init()
-	initFrontPage()
-	initMainPage()
+	frontPage.init()
+	mainPage.init()
 	jGrowl.init()
-	fields.init()
 	
 	return

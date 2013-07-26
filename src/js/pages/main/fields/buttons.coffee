@@ -5,25 +5,15 @@ Field buttons
 Created by Max Geissler
 ###
 
-ZeroClipboard = require "zeroclipboard"
-generatePassword = require "../../core/passgen"
+clipboard = require "../clipboard"
+generatePassword = require "../../../core/passgen"
 
 init = ->
-	ZeroClipboard.setDefaults moviePath: "media/zeroclipboard.swf"
-	clip = new ZeroClipboard()
-
-	clip.on "load", (client, args) ->
-		# TODO: Remove
-		alert "movie has loaded"
-		return
-
 	$(".itemField .btnCopy").click ->
 		input = $(this).parent().children("input:visible")
 		
-		# TODO: Not working
-		clip.setText input.val()
-		
-		#alert(input.val());
+		# Copy to clipboard
+		clipboard.setText input.val()
 		
 		# Show notification
 		$.jGrowl $("#text .copiedToClipboard").html()

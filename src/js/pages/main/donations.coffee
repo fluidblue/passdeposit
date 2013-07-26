@@ -11,4 +11,4 @@ init = ->
 		$("#donationDialog").modal("hide")
 		return true
 
-module.exports = init
+module.exports.init = init

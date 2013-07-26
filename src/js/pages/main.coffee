@@ -5,10 +5,13 @@ Main page initialization
 Created by Max Geissler
 ###
 
-initOptionsDialog = require "./main/options"
-initDonationDialog = require "./main/donations"
+optionsDialog = require "./main/options"
+donationDialog = require "./main/donations"
 lockDialog = require "./main/lock"
 logout = require "./main/logout"
+mainList = require "./main/mainList"
+fields = require "./main/fields"
+clipboard = require "./main/clipboard"
 
 initTags = ->
 	optTags =
@@ -47,12 +50,15 @@ initAdvancedSearch = ->
 
 # Initializes main page
 init = ->
-	initOptionsDialog()
-	initDonationDialog()
+	optionsDialog.init()
+	donationDialog.init()
 	lockDialog.init()
 	logout.init()
 	initTags()
 	initAdvancedSearch()
+	mainList.init()
+	fields.init()
+	clipboard.init()
 	
 	# TODO: Multiple typeahead
 	options = source: ["Alabama", "Alaska", "Arizona", "Arkansas", "California",
@@ -67,4 +73,4 @@ init = ->
 
 	$("#search").typeahead options
 
-module.exports = init
+module.exports.init = init

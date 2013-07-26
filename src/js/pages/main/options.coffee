@@ -28,4 +28,4 @@ init = ->
 		
 		return
 
-module.exports = init
+module.exports.init = init

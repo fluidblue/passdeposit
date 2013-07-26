@@ -155,4 +155,4 @@ init = ->
 		$("#pwForgotDialog input.email").focus()
 		return
 
-module.exports = init
+module.exports.init = init
