@@ -22,10 +22,12 @@ init = ->
 
 	# Create web address tooltip
 	# TODO: Use selector
+	# TODO: Enable animation (Bug when focus already set and bug with arrow)
 	options =
-		placement: "top"
+		placement: "bottom"
 		title: $("#text .infoURI").html()
 		trigger: "focus"
+		animation: false
 
 	$(".itemField.itemFieldWebAddress input[type=text]").tooltip options
 
@@ -35,6 +37,11 @@ init = ->
 		
 		# Cancel if field is empty
 		if uri.length == 0
+			# TODO: Testing
+			# input.on "hidden.bs.tooltip", ->
+			# 	console.log "test"
+			# 	return
+
 			# Show notification
 			input.attr("data-original-title", $("#text .emptyURI").html()).tooltip("fixTitle")
 
@@ -49,7 +56,6 @@ init = ->
 				input.tooltip("show")
 			
 			# Set focus
-			# TODO: Bug when focus already set
 			input.focus()
 
 			return
