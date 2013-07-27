@@ -10,7 +10,7 @@ generatePassword = require "../../../core/passgen"
 
 init = ->
 	$(".itemField .btnCopy").click ->
-		input = $(this).parent().children("input:visible")
+		input = $(this).parent().children("input[type=text]")
 		
 		# Copy to clipboard
 		clipboard.setText input.val()
@@ -20,32 +20,39 @@ init = ->
 
 		return
 
-	$(".itemField .btnOpen").click ->
-		input = $(this).parent().children("input:visible")
+	# Create web address tooltip
+	options =
+		placement: "bottom"
+		title: $("#text .emptyURI").html()
+		trigger: "manual"
+
+	$(".itemField.itemFieldWebAddress input[type=text]").tooltip options
+
+	$(".itemField.itemFieldWebAddress .btnOpen").click ->
+		input = $(this).parent().children("input[type=text]")
 		uri = input.val()
 		
 		# Cancel if field is empty
 		if uri.length == 0
-			# Create notification
-			options =
-				placement: "bottom"
-				title: $("#text .emptyURI").html()
-				trigger: "focus"
-
-			input.tooltip options
-			
-			# Destroy notification when losing focus or typing text
-			fnDestroy = ->
-				$(this).tooltip "destroy"
-
-			input.one "blur", fnDestroy
-			input.one "keydown", fnDestroy
-			
 			# Show notification
+			fnShow = ->
+				input.tooltip "show"
+			
+			# Hide notification when losing focus or typing text
+			fnHide = ->
+				input.tooltip "hide"
+				input.off "blur.tooltip"
+				input.off "keydown.tooltip"
+
+			input.one "focus.tooltip", fnShow
+			input.one "blur.tooltip", fnHide
+			input.one "keydown.tooltip", fnHide
+		
+			# Set focus
 			input.focus()
 			return
 		
-		# Append protocol, if not given
+		# Append http protocol, if not given
 		if uri.indexOf("://") == -1
 			uri = "http://" + uri
 
