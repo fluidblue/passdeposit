@@ -21,10 +21,11 @@ init = ->
 		return
 
 	# Create web address tooltip
+	# TODO: Use selector
 	options =
-		placement: "bottom"
-		title: $("#text .emptyURI").html()
-		trigger: "manual"
+		placement: "top"
+		title: $("#text .infoURI").html()
+		trigger: "focus"
 
 	$(".itemField.itemFieldWebAddress input[type=text]").tooltip options
 
@@ -35,21 +36,22 @@ init = ->
 		# Cancel if field is empty
 		if uri.length == 0
 			# Show notification
-			fnShow = ->
-				input.tooltip "show"
-			
-			# Hide notification when losing focus or typing text
-			fnHide = ->
-				input.tooltip "hide"
-				input.off "blur.tooltip"
-				input.off "keydown.tooltip"
+			input.attr("data-original-title", $("#text .emptyURI").html()).tooltip("fixTitle")
 
-			input.one "focus.tooltip", fnShow
-			input.one "blur.tooltip", fnHide
-			input.one "keydown.tooltip", fnHide
-		
+			# Restore original tooltip
+			input.one "blur.tooltipRestore", ->
+				input.attr("data-original-title", $("#text .infoURI").html()).tooltip("fixTitle")
+				input.off "keydown.tooltipRestore"
+
+			input.one "keydown.tooltipRestore", ->
+				input.attr("data-original-title", $("#text .infoURI").html()).tooltip("fixTitle")
+				input.off "blur.tooltipRestore"
+				input.tooltip("show")
+			
 			# Set focus
+			# TODO: Bug when focus already set
 			input.focus()
+
 			return
 		
 		# Append http protocol, if not given
