@@ -68,11 +68,46 @@ init = ->
 
 		return
 
+	# Create password generation tooltip
+	# TODO: Use selector
+	options =
+		placement: "bottom"
+		title: $("#text .passGenerated").html()
+		trigger: "manual"
+		animation: true
+
+	# Create tooltip on both the password and text input.
+	# Also assign focus function to hide tooltip
+	$(".itemField.itemFieldPassword input[type=password]").tooltip(options).focus ->
+		$(this).tooltip("hide")
+		return
+
+	$(".itemField.itemFieldPassword input[type=text]").tooltip(options).focus ->
+		$(this).tooltip("hide")
+		return
+
 	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
-		input = $(this).closest(".itemField.itemFieldPassword").find("input:visible")
+		elem = $(this).closest(".itemField.itemFieldPassword")
+		input = elem.find("input[type=password]:visible, input[type=text]:visible")
 		input.val generatePassword()
 
-		# TODO: Show tooltip notification
+		# Show tooltip notification
+		input.tooltip("show")
+
+		# Cancel timeout of previous notifications
+		oldTimeoutID = elem.data("tooltipTimeoutID")
+		if oldTimeoutID?
+			window.clearTimeout oldTimeoutID
+
+		# Set timeout to hide the tooltip automatically
+		newTimeoutID = window.setTimeout ->
+			input.tooltip("hide")
+			elem.data("tooltipTimeoutID", null)
+			return
+		, 3000
+
+		# Save new timeout ID
+		elem.data "tooltipTimeoutID", newTimeoutID
 
 		e.preventDefault()
 		return
