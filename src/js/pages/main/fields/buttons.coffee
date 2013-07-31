@@ -79,13 +79,19 @@ initTooltipPassGen = ->
 		trigger: "manual"
 		animation: true
 
-	# Create tooltip on both the password and text input.
-	# Also assign focus function to hide tooltip
-	$(".itemField.itemFieldPassword input[type=password]").tooltip(options).focus ->
+	# Create tooltip on both password and text input
+	inputMasked = $(".itemField.itemFieldPassword input[type=password]")
+	inputVisible = $(".itemField.itemFieldPassword input[type=text]")
+
+	inputMasked.tooltip options
+	inputVisible.tooltip options
+
+	# Hide tooltip on focus
+	inputMasked.focus ->
 		$(this).tooltip("hide")
 		return
 
-	$(".itemField.itemFieldPassword input[type=text]").tooltip(options).focus ->
+	inputVisible.focus ->
 		$(this).tooltip("hide")
 		return
 
