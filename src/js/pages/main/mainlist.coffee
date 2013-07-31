@@ -11,7 +11,7 @@ init = ->
 	# Add tooltips
 	options =
 		placement: "top"
-		title: $("#text .copypass").html()
+		title: $("#text .copyPass").html()
 		trigger: "hover"
 		animation: false
 		#selector: "#mainList .header .buttons a"
@@ -20,7 +20,7 @@ init = ->
 	#$("body").tooltip options
 	$("#mainList .header .buttons a.btnPass").tooltip options
 
-	options.title = $("#text .openaddress").html()
+	options.title = $("#text .openAddress").html()
 	$("#mainList .header .buttons a.btnOpen").tooltip options
 
 	# Add functionality
