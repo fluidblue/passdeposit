@@ -5,13 +5,13 @@ Main page initialization
 Created by Max Geissler
 ###
 
-optionsDialog = require "./main/options"
-donationDialog = require "./main/donations"
-lockDialog = require "./main/lock"
-logout = require "./main/logout"
-mainList = require "./main/mainList"
-fields = require "./main/fields"
-clipboard = require "./main/clipboard"
+optionsDialog = require "./options"
+donationDialog = require "./donations"
+lockDialog = require "./lock"
+logout = require "./logout"
+mainList = require "./mainList"
+fields = require "./fields"
+clipboard = require "./clipboard"
 
 initTags = ->
 	optTags =

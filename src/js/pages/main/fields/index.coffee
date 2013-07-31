@@ -5,8 +5,8 @@ Fields
 Created by Max Geissler
 ###
 
-buttons = require "./fields/buttons"
-menu = require "./fields/menu"
+buttons = require "./buttons"
+menu = require "./menu"
 
 init = ->
 	buttons.init()
