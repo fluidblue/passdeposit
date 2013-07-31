@@ -105,19 +105,19 @@ initMenuBtnPassGen = ->
 		input.tooltip("show")
 
 		# Cancel timeout of previous notifications
-		oldTimeoutID = elem.data("tooltipTimeoutID")
+		oldTimeoutID = input.data("tooltipTimeoutID")
 		if oldTimeoutID?
 			window.clearTimeout oldTimeoutID
 
 		# Set timeout to hide the tooltip automatically
 		newTimeoutID = window.setTimeout ->
 			input.tooltip("hide")
-			elem.data("tooltipTimeoutID", null)
+			input.data("tooltipTimeoutID", null)
 			return
 		, 3000
 
 		# Save new timeout ID
-		elem.data "tooltipTimeoutID", newTimeoutID
+		input.data "tooltipTimeoutID", newTimeoutID
 
 		e.preventDefault()
 		return
