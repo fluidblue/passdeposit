@@ -8,7 +8,7 @@ Created by Max Geissler
 clipboard = require "../clipboard"
 generatePassword = require "../../../core/passgen"
 
-init = ->
+initBtnCopy = ->
 	$(".itemField .btnCopy").click ->
 		input = $(this).parent().children("input[type=text]")
 		
@@ -20,6 +20,7 @@ init = ->
 
 		return
 
+initTooltipWebAddress = ->
 	# Create web address tooltip
 	# TODO: Use selector
 	# TODO: Enable animation (Bug when focus already set and bug with arrow)
@@ -31,6 +32,7 @@ init = ->
 
 	$(".itemField.itemFieldWebAddress input[type=text]").tooltip options
 
+initBtnOpen = ->
 	$(".itemField.itemFieldWebAddress .btnOpen").click ->
 		input = $(this).parent().children("input[type=text]")
 		uri = input.val()
@@ -68,6 +70,7 @@ init = ->
 
 		return
 
+initTooltipPassGen = ->
 	# Create password generation tooltip
 	# TODO: Use selector
 	options =
@@ -86,6 +89,7 @@ init = ->
 		$(this).tooltip("hide")
 		return
 
+initMenuBtnPassGen = ->
 	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
 		elem = $(this).closest(".itemField.itemFieldPassword")
 		input = elem.find("input[type=password]:visible, input[type=text]:visible")
@@ -112,12 +116,10 @@ init = ->
 		e.preventDefault()
 		return
 
+initTooltipPassGenHint = ->
 	$(".itemField.itemFieldPassword").each (i, elem) ->
 		elem = $(elem)
 
-		btnToggle = elem.children(".btnToggleVisiblity")
-		txtShow = btnToggle.children(".txtShow")
-		txtHide = btnToggle.children(".txtHide")
 		inputMasked = elem.children(".inputMasked")
 		inputVisible = elem.children(".inputVisible")
 		btnDropdown = elem.find(".btn.dropdown-toggle")
@@ -144,6 +146,20 @@ init = ->
 		inputMasked.blur fnHideTooltip
 		inputVisible.blur fnHideTooltip
 		
+		# Continue with loop
+		return true
+
+initBtnToggleVisibility = ->
+	$(".itemField.itemFieldPassword").each (i, elem) ->
+		elem = $(elem)
+
+		btnToggle = elem.children(".btnToggleVisiblity")
+		txtShow = btnToggle.children(".txtShow")
+		txtHide = btnToggle.children(".txtHide")
+		inputMasked = elem.children(".inputMasked")
+		inputVisible = elem.children(".inputVisible")
+		btnDropdown = elem.find(".btn.dropdown-toggle")
+
 		btnToggle.click ->
 			if txtShow.is(":visible")
 				txtShow.hide()
@@ -164,5 +180,14 @@ init = ->
 
 		# Continue with loop
 		return true
+
+init = ->
+	initBtnCopy()
+	initTooltipWebAddress()
+	initBtnOpen()
+	initTooltipPassGen()
+	initMenuBtnPassGen()
+	initTooltipPassGenHint()
+	initBtnToggleVisibility()
 
 module.exports.init = init
