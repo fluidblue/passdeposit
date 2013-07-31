@@ -104,6 +104,9 @@ initMenuBtnPassGen = ->
 		# Show tooltip notification
 		input.tooltip("show")
 
+		# Hide tooltip of hidden input
+		elem.find("input[type=password]:hidden, input[type=text]:hidden").tooltip("hide")
+
 		# Cancel timeout of previous notifications
 		oldTimeoutID = input.data("tooltipTimeoutID")
 		if oldTimeoutID?
