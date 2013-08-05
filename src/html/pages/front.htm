@@ -1,0 +1,55 @@
+<!-- Front page -->
+<div id="frontpage">
+	<img src="media/passdeposit.png" alt="PassDeposit" class="logo" />
+	
+	<ul id="frontNav" class="nav nav-pills" data-target="frontNavContent">
+		<li class="active"><a href="#login">Login</a></li>
+		<li><a href="#register">Register</a></li>
+		<li><a href="#about">About</a></li>
+	</ul>
+	
+	<div class="frontNavContent">
+		<form id="login" autocomplete="off" class="navContent clearfix">
+			<div class="input-prepend inputPrependInner inputVariableWidth0">
+				<span class="add-on"><i class="icon-user"></i></span>
+				<input type="text" id="loginUser" value="" spellcheck="false" placeholder="Email address" />
+			</div>
+			<div class="input-prepend inputPrependInner inputVariableWidth0">
+				<span class="add-on"><i class="icon-lock"></i></span>
+				<input type="password" id="loginPass" value="" placeholder="Password" />
+			</div>
+			<button type="button" id="loginPassForgotten" class="pull-left btn btn-link" data-target="#pwForgotDialog" data-toggle="modal">Forgot your password?</button>
+			<button type="submit" id="loginButton" class="btn btn-success btnWide pull-right">Login</button>
+		</form>
+
+		<form id="register" autocomplete="off" class="navContent clearfix hide">
+			<div class="input-prepend inputPrependInner inputVariableWidth0">
+				<span class="add-on"><i class="icon-envelope"></i></span>
+				<input type="text" id="registerEmail" value="" placeholder="Email address" spellcheck="false" />
+			</div>
+			<div class="input-prepend inputPrependInner inputVariableWidth0">
+				<span class="add-on"><i class="icon-lock"></i></span>
+				<input type="password" id="registerPass" value="" placeholder="Password" />
+			</div>
+			<div class="input-prepend inputPrependInner inputVariableWidth0">
+				<span class="add-on"><i class="icon-repeat"></i></span>
+				<input type="password" id="registerPassRepeat" value="" placeholder="Repeat password" />
+			</div>
+			<div class="input-prepend inputPrependInner inputVariableWidth0">
+				<span class="add-on"><i class="icon-info-sign"></i></span>
+				<input type="text" id="registerPassHint" value="" placeholder="Password hint" />
+			</div>
+			<button type="submit" id="registerButton" class="btn btn-success btnWide pull-right">Register</button>
+		</form>
+
+		<div id="about" class="navContent hide">
+			PassDeposit is a highly secure online password manager,
+			which allows you to store and access your passwords online.<br />
+			<br />
+			See the <a href="https://github.com/fluidblue/passdeposit/blob/master/README.md#passdeposit">Readme</a>
+			for further information.<br />
+			<br />
+			PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
+		</div>
+	</div>
+</div>

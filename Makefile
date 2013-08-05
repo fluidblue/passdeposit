@@ -42,6 +42,7 @@ clean:
 install-tools:
 	sudo npm install -g webmake-coffee
 	sudo npm install -g uglify-js
+	sudo npm install -g htmlcat
 	sudo gem install sass
 
 
@@ -79,7 +80,7 @@ js-base:
 # Process HTML files
 # ------------------
 html:
-	cp -R ./$(SOURCE_DIR)/html/* ./$(BUILD_DIR)
+	htmlcat --in ./$(SOURCE_DIR)/html/index.htm --out ./$(BUILD_DIR)/index.htm
 
 
 # Copy media
