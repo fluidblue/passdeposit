@@ -35,6 +35,21 @@
 		display: table;
 		
 		padding-bottom: 25px;
+
+		.relative
+		{
+			position: relative;
+		}
+
+		.searchBarContainer
+		{
+			width: 100%;
+		}
+
+		div.heightFix
+		{
+			margin-bottom: 0px;
+		}
 		
 		/* Direct children */
 		>
@@ -43,11 +58,6 @@
 			{
 				display: table-cell;
 				padding-right: $space;
-
-				div.heightFix
-				{
-					margin-bottom: 0px;
-				}
 			}
 			
 			*:last-child
