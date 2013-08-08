@@ -89,11 +89,13 @@ initTooltipPassGen = ->
 
 	# Hide tooltip on focus
 	inputMasked.focus ->
-		$(this).tooltip("hide")
+		inputMasked.tooltip("hide")
+		inputVisible.tooltip("hide")
 		return
 
 	inputVisible.focus ->
-		$(this).tooltip("hide")
+		inputMasked.tooltip("hide")
+		inputVisible.tooltip("hide")
 		return
 
 initMenuBtnPassGen = ->
