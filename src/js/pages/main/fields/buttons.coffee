@@ -20,7 +20,6 @@ initBtnCopy = ->
 
 		return
 
-# TODO: Not working anymore.
 initTooltipWebAddress = ->
 	# Create web address tooltip
 	# TODO: Use selector
