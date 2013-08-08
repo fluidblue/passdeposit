@@ -214,6 +214,15 @@
 			margin-left: $leftMargin;
 			margin-bottom: $margin;
 			margin-right: ($margin + 250px);
+
+			.actionButtons
+			{
+				.btn:not(:first-child)
+				{
+					// Space between buttons: 10px
+					margin-left: 6px;
+				}
+			}
 		}
 	}
 }
