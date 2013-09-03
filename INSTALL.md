@@ -12,7 +12,6 @@ If you decide to host your own installation, you can do so by following the inst
 
 ## Server requirements
 
-* nginx
 * nodejs
 * MySQL 5 (or later)
 
@@ -23,7 +22,7 @@ If you decide to host your own installation, you can do so by following the inst
 * Install npm and gem
 * Run 'make install-tools' to install all required tools
 * Run 'make' to compile PassDeposit.
-* Copy the build directory (not the src directory!) to your server
+* Run 'node build/server'
 
 Note: In future versions there will be an automatic installer. As of now, only the above method is available.
 
