@@ -22,6 +22,7 @@ if cluster.isMaster
 
 	cluster.on "exit", (worker, code, signal) ->
 		console.log "worker " + worker.process.pid + " died"
+		# TODO: Restart worker?
 
 	console.log "PassDeposit is running at https://localhost:" + port
 else
