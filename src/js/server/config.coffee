@@ -37,7 +37,7 @@ getArgv = ->
 
 	if argv.help
 		optimist.showHelp()
-		process.exit 0
+		process.exit
 
 	return argv
 
@@ -66,7 +66,7 @@ load = ->
 		content = fs.readFileSync configFile
 	catch e
 		console.log "Error: The config file '" + configFile + "' could not be loaded."
-		process.exit 1
+		process.exit
 	
 	# Convert to object
 	config = JSON.parse content
@@ -74,18 +74,9 @@ load = ->
 	# Merge with default config
 	config = mergeRecursive defaultConfig, config
 
-	# Resolve path function
-	resolvePath = (relative) ->
-		return path.resolve(path.dirname(configFile), relative)
-
-	# Load certificate
-	try
-		config.https.options =
-			key: fs.readFileSync(resolvePath(config.https.privateKey))
-			cert: fs.readFileSync(resolvePath(config.https.certificate))
-	catch e
-		console.log "Error: Could not load certificate/privateKey (specified in '" + configFile + "')"
-		process.exit 1
+	# Set paths
+	config.basePath = path.normalize(path.dirname(configFile))
+	config.configFile = configFile
 
 	return config
 

@@ -7,15 +7,26 @@ Created by Max Geissler
 https = require("https")
 fs = require("fs")
 querystring = require("querystring")
+path = require("path")
 staticFiles = require("./staticFiles")
 dynamic = require("./dynamic")
 
 init = (config) ->
+	options = {}
+
+	# Load certificate
+	try
+		options.key = fs.readFileSync(path.resolve(config.basePath, config.https.privateKey))
+		options.cert = fs.readFileSync(path.resolve(config.basePath, config.https.certificate))
+	catch e
+		console.log "Error: Could not load certificate/privateKey (specified in '" + config.configFile + "')"
+		process.exit
+
 	# Load static files
 	staticFiles.load (files) ->
-
+		
 		# Define HTTPS handler
-		handler = (req, res) ->
+		httpsHandler = (req, res) ->
 			# TODO: Only in debug
 			console.log req.socket.address().address + " requests " + req.url
 
@@ -62,7 +73,7 @@ init = (config) ->
 					res.end "404 Not Found"
 
 		# Create HTTPS server
-		server = https.createServer(config.https.options, handler)
+		server = https.createServer(options, httpsHandler)
 		server.listen config.port
 
 module.exports.init = init
