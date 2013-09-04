@@ -9,8 +9,6 @@ path = require("path")
 zlib = require("zlib")
 crypto = require("crypto")
 
-httpdocs = path.resolve(path.dirname(require.main.filename), "../httpdocs")
-
 md5 = (data) ->
 	return crypto.createHash('md5').update(data).digest("hex")
 
@@ -82,7 +80,11 @@ loadStaticFile = (uri, file, callback) ->
 		callback(staticFile)
 
 load = (callback) ->
+	# Get file list
+	httpdocs = path.resolve(path.dirname(require.main.filename), "../httpdocs")
 	fileList = getFileList(httpdocs)
+
+	# Load all static files
 	staticFiles = []
 
 	loadAllFiles = ->
