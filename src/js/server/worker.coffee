@@ -8,6 +8,7 @@ https = require("https")
 fs = require("fs")
 querystring = require("querystring")
 staticFiles = require("./staticFiles")
+dynamic = require("./dynamic")
 
 privateKey = "cert/privatekey.pem"
 certificate = "cert/certificate.pem"
@@ -31,16 +32,6 @@ init = (port) ->
 
 			# Check if dynamic content is requested
 			if url == "/passdeposit"
-				# TODO: Remove
-				postHTML = "<html><head><title>Post Example</title></head>" +
-				"<body>" +
-				"<form method=\"post\">" +
-				"Input 1: <input name=\"input1\"><br>" +
-				"Input 2: <input name=\"input2\"><br>" +
-				"<input type=\"submit\">" +
-				"</form>" +
-				"</body></html>"
-
 				# Get POST data
 				postData = ""
 
@@ -49,9 +40,11 @@ init = (port) ->
 
 				req.on "end", ->
 					postObject = querystring.parse(postData)
-					console.log "POSTed: " + postObject.input1
-					res.writeHead 200
-					res.end postHTML
+					dynamic.serve postObject, (response) ->
+						# Send data
+						# Response: 200 OK
+						res.writeHead 200, response.headers
+						res.end response.content
 			else
 				# Set default page
 				if url == "/" || url == ""
