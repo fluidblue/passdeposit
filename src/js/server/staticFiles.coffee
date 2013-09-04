@@ -9,7 +9,7 @@ path = require("path")
 zlib = require("zlib")
 crypto = require("crypto")
 
-httpdocs = path.resolve(path.dirname(require.main.filename), "../public")
+httpdocs = path.resolve(path.dirname(require.main.filename), "../httpdocs")
 
 md5 = (data) ->
 	return crypto.createHash('md5').update(data).digest("hex")
@@ -27,7 +27,7 @@ getContentType = (uri) ->
 		when ".swf" then "application/x-shockwave-flash"
 		else "text/plain"
 
-getFileList = ->
+getFileList = (directory) ->
 	files = []
 
 	walkDir = (root, relative) ->
@@ -47,8 +47,8 @@ getFileList = ->
 			else if stats.isDirectory()
 				walkDir(root, relativePath)
 
-	# Recursively walk through httpdocs directory
-	walkDir httpdocs, ""
+	# Recursively walk through directory
+	walkDir directory, ""
 
 	return files
 
@@ -82,7 +82,7 @@ loadStaticFile = (uri, file, callback) ->
 		callback(staticFile)
 
 load = (callback) ->
-	fileList = getFileList()
+	fileList = getFileList(httpdocs)
 	staticFiles = []
 
 	loadAllFiles = ->

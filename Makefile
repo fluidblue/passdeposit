@@ -18,7 +18,7 @@ SHELL := /bin/bash
 PATH := $(PATH):/usr/local/bin
 SOURCE_DIR = src
 BUILD_DIR = build
-BUILD_PUBLIC_DIR = $(BUILD_DIR)/public
+BUILD_HTTPDOCS_DIR = $(BUILD_DIR)/httpdocs
 BUILD_SERVER_DIR = $(BUILD_DIR)/server
 
 
@@ -51,44 +51,44 @@ install-tools:
 # Compile CSS
 # -----------
 css: css-base
-	sass --style compressed ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_PUBLIC_DIR)/css/passdeposit.css
+	sass --style compressed ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_HTTPDOCS_DIR)/css/passdeposit.css
 
 css-debug: css-base
-	sass --style expanded ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_PUBLIC_DIR)/css/passdeposit.css
+	sass --style expanded ./$(SOURCE_DIR)/css/passdeposit.scss ./$(BUILD_HTTPDOCS_DIR)/css/passdeposit.css
 
 css-base:
-	mkdir -p ./$(BUILD_PUBLIC_DIR)/css
+	mkdir -p ./$(BUILD_HTTPDOCS_DIR)/css
 
 
 # Compile JS
 # ----------
 js: js-base
-	webmake --ext=coffee ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_PUBLIC_DIR)/js/passdeposit.js
+	webmake --ext=coffee ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 
-	cat ./$(SOURCE_DIR)/js/license.js > ./$(BUILD_PUBLIC_DIR)/js/passdeposit.min.js
+	cat ./$(SOURCE_DIR)/js/license.js > ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js
 
-	uglifyjs ./$(BUILD_PUBLIC_DIR)/js/passdeposit.js >> ./$(BUILD_PUBLIC_DIR)/js/passdeposit.min.js
-	rm ./$(BUILD_PUBLIC_DIR)/js/passdeposit.js
-	mv ./$(BUILD_PUBLIC_DIR)/js/passdeposit.min.js ./$(BUILD_PUBLIC_DIR)/js/passdeposit.js
+	uglifyjs ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js >> ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js
+	rm ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
+	mv ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 
 js-debug: js-base
-#	webmake --ext=coffee --sourcemap ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_PUBLIC_DIR)/js/passdeposit.js
-	webmake --ext=coffee ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_PUBLIC_DIR)/js/passdeposit.js
+#	webmake --ext=coffee --sourcemap ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
+	webmake --ext=coffee ./$(SOURCE_DIR)/js/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 
 js-base:
-	mkdir -p ./$(BUILD_PUBLIC_DIR)/js
+	mkdir -p ./$(BUILD_HTTPDOCS_DIR)/js
 
 
 # Process HTML files
 # ------------------
 html:
-	htmlcat --in ./$(SOURCE_DIR)/html/index.htm --out ./$(BUILD_PUBLIC_DIR)/index.htm
+	htmlcat --in ./$(SOURCE_DIR)/html/index.htm --out ./$(BUILD_HTTPDOCS_DIR)/index.htm
 
 
 # Copy media
 # -----------
 media:
-	cp -R ./$(SOURCE_DIR)/media ./$(BUILD_PUBLIC_DIR)
+	cp -R ./$(SOURCE_DIR)/media ./$(BUILD_HTTPDOCS_DIR)
 
 
 # Compile server
