@@ -1,0 +1,23 @@
+{
+	"author": "Max Geissler",
+	"name": "passdeposit",
+	"description": "PassDeposit is a highly secure online password manager.",
+	"homepage": "http://www.passdeposit.com",
+	"version": "0.0.1",
+	"preferGlobal": true,
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fluidblue/passdeposit"
+	},
+
+	"bugs": {
+		"url": "https://github.com/fluidblue/passdeposit/issues"
+	},
+
+	"dependencies": {
+		"optimist": "0.6.x"
+	},
+
+	"bin": "./passdeposit.js"
+}

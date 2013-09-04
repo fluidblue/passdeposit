@@ -1,14 +1,13 @@
 {
 	"author": "Max Geissler",
-	"name": "passdeposit",
-	"description": "PassDeposit is a highly secure online password manager.",
+	"name": "passdeposit-dev",
+	"description": "PassDeposit development package. Runtime package: passdeposit",
 	"homepage": "http://www.passdeposit.com",
-	"version": "0.0.2",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/fluidblue/passdeposit"
+
+	"dependencies": {
+		"optimist": "0.6.x",
 	},
-	"dependencies" : {},
+
 	"bundledDependencies": [
 		"jquery",
 		"jquery-jgrowl",

@@ -24,12 +24,12 @@ BUILD_SERVER_DIR = $(BUILD_DIR)/server
 
 # Main target
 # -----------
-all: clean css js html media server
+all: clean css js html media server package
 
 
 # Development target (debug)
 # --------------------------
-debug: clean css-debug js-debug html media server-debug
+debug: clean css-debug js-debug html media server-debug package
 
 
 # Clean build directory target
@@ -98,3 +98,9 @@ server:
 
 server-debug:
 	coffee --compile --bare --map --output ./$(BUILD_SERVER_DIR) ./$(SOURCE_DIR)/js/server
+
+# Copy package data
+# -----------------
+package:
+	cp ./$(SOURCE_DIR)/npm/* ./$(BUILD_DIR)/
+	cp *.md ./$(BUILD_DIR)/

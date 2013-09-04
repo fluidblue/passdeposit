@@ -9,3 +9,4 @@ stuff
 .sass-cache
 build
 config
+node_modules/optimist
