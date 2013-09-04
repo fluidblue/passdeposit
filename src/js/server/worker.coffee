@@ -10,15 +10,7 @@ querystring = require("querystring")
 staticFiles = require("./staticFiles")
 dynamic = require("./dynamic")
 
-privateKey = "cert/privatekey.pem"
-certificate = "cert/certificate.pem"
-
-init = (port) ->
-	# Load certificate
-	options =
-		key: fs.readFileSync(privateKey)
-		cert: fs.readFileSync(certificate)
-
+init = (config) ->
 	# Load static files
 	staticFiles.load (files) ->
 
@@ -70,7 +62,7 @@ init = (port) ->
 					res.end "404 Not Found"
 
 		# Create HTTPS server
-		server = https.createServer(options, handler)
-		server.listen port
+		server = https.createServer(config.https.options, handler)
+		server.listen config.port
 
 module.exports.init = init

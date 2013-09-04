@@ -81,7 +81,7 @@ loadStaticFile = (uri, file, callback) ->
 
 load = (callback) ->
 	# Get file list
-	httpdocs = path.resolve(path.dirname(require.main.filename), "../httpdocs")
+	httpdocs = path.resolve(__dirname, "../httpdocs")
 	fileList = getFileList(httpdocs)
 
 	# Load all static files
