@@ -4,12 +4,12 @@
 Created by Max Geissler
 ###
 
-https = require("https")
-fs = require("fs")
-querystring = require("querystring")
-path = require("path")
-staticFiles = require("./staticFiles")
-dynamic = require("./dynamic")
+https = require "https"
+fs = require "fs"
+querystring = require "querystring"
+path = require "path"
+staticFiles = require "./staticFiles"
+dynamic = require "./dynamic"
 
 init = (config) ->
 	options = {}

@@ -4,9 +4,9 @@
 Created by Max Geissler
 ###
 
-fs = require("fs")
-path = require("path")
-optimist = require("optimist")
+fs = require "fs"
+path = require "path"
+optimist = require "optimist"
 
 defaultConfig =
 	port: "8000"

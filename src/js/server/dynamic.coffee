@@ -4,7 +4,7 @@
 Created by Max Geissler
 ###
 
-zlib = require("zlib")
+zlib = require "zlib"
 
 serve = (post, callback) ->
 	# Create content

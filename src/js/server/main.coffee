@@ -4,15 +4,16 @@
 Created by Max Geissler
 ###
 
-cluster = require("cluster")
-numCPUs = require("os").cpus().length
-config = require("./config")
-worker = require("./worker")
+cluster = require "cluster"
+os = require "os"
+config = require "./config"
+worker = require "./worker"
 
 cfg = config.load()
 
 if cluster.isMaster
 	# Create as many instances as CPUs are present
+	numCPUs = os.cpus().length
 	i = numCPUs
 
 	while i > 0

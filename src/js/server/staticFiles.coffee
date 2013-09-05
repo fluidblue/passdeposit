@@ -4,10 +4,10 @@
 Created by Max Geissler
 ###
 
-fs = require("fs")
-path = require("path")
-zlib = require("zlib")
-crypto = require("crypto")
+fs = require "fs"
+path = require "path"
+zlib = require "zlib"
+crypto = require "crypto"
 
 md5 = (data) ->
 	return crypto.createHash('md5').update(data).digest("hex")
