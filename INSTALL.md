@@ -12,23 +12,30 @@ If you decide to host your own installation, you can do so by following the inst
 
 ## Installation
 
-Server requirements:
-
+**Server requirements**
+pa
 * nodejs
 * npm  (node package manager)
 * MySQL 5 (or later)
 
-Install using npm:
+**Install using npm** (don't forget the **--global** option)
 
-	sudo npm install -g passdeposit
+	sudo npm install --global passdeposit
 
-Start PassDeposit:
+**Start PassDeposit**
 
 	passdeposit --config path/to/config.json
 
 An example configuration is given in the [configuration](#configuration) section in this document.
 
-**Warning**: Your PassDeposit installation will not automatically update itself. Please check regularly for new versions and update your installation if necessary.
+
+
+**Warning**: Your PassDeposit installation will not automatically update itself.
+You can manually update PassDeposit with:
+
+	sudo npm update --global passdeposit
+
+After updating, you need to restart PassDeposit.
 
 
 ## Configuration
@@ -39,8 +46,8 @@ Save your configuration to a file, e.g. config.json:
 		"port": "8000",
 
 		"https": {
-			"certificate": "cert/certificate.pem",
-			"privateKey": "cert/privatekey.pem"
+			"certificate": "path/to/certificate.pem",
+			"privateKey": "path/to/privatekey.pem"
 		},
 
 		"database": {
@@ -66,4 +73,4 @@ You only need this type of installation if you want to help developing.
 * Install npm and gem
 * Run 'make install-tools' to install all required development tools
 * Run 'make' to build PassDeposit. Alternatively run 'make debug' to build the debug version.
-* Start PassDeposit with './build/passdeposit.js'
+* Start PassDeposit with 'node build/passdeposit.js'
