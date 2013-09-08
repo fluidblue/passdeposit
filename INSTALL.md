@@ -13,7 +13,7 @@ If you decide to host your own installation, you can do so by following the inst
 ## Installation
 
 **Server requirements**
-pa
+
 * nodejs
 * npm  (node package manager)
 * MySQL 5 (or later)
