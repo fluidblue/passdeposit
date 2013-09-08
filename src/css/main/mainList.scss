@@ -213,14 +213,36 @@
 			margin-top: ($margin - 12px);
 			margin-left: $leftMargin;
 			margin-bottom: $margin;
-			margin-right: ($margin + 250px);
+			margin-right: $margin;
 
-			.actionButtons
+			.contentLeft
 			{
-				.btn:not(:first-child)
+				display: inline-block;
+				// margin-right: 250px;
+				width: 70%;
+
+				.actionButtons
 				{
-					// Space between buttons: 10px
-					margin-left: 6px;
+					.btn:not(:first-child)
+					{
+						// Space between buttons: 10px
+						margin-left: 6px;
+					}
+				}
+			}
+
+			.contentRight
+			{
+				// float: left;
+				display: inline-block;
+				// margin-left: -250px;
+
+				.well
+				{
+					.btn
+					{
+						float: right;
+					}
 				}
 			}
 		}

@@ -42,24 +42,43 @@
 			</div>
 		</div>
 		<div class="content">
-			<!-- Include fields -->
-			{% include fields/uri.htm %}
-			{% include fields/user.htm %}
-			{% include fields/pass.htm %}
-			{% include fields/tags.htm %}
-			
-			<div class="btn-group">
-				<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-					<i class="icon-plus"></i>
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					{% include fields/dropdown/items/fieldtypes.htm %}
-				</ul>
+			<div class="contentLeft">
+				<!-- Include fields -->
+				{% include fields/uri.htm %}
+				{% include fields/user.htm %}
+				{% include fields/pass.htm %}
+				{% include fields/tags.htm %}
+				
+				<div class="btn-group">
+					<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-plus"></i>
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						{% include fields/dropdown/items/fieldtypes.htm %}
+					</ul>
+				</div>
+				<div class="actionButtons pull-right">
+					<button type="button" class="btn">Cancel</button>
+					<button type="button" class="btn btn-primary">Save</button>
+				</div>
 			</div>
-			<div class="actionButtons pull-right">
-				<button type="button" class="btn">Cancel</button>
-				<button type="button" class="btn btn-primary">Save</button>
+			<div class="contentRight">
+				<div class="well">
+					Encryption: AES 256<br />
+					Created: 2013-08-25<br />
+					Modified: 2013-09-10
+				</div>
+				<div class="well">
+					<b>Delete</b><br />
+					Permanently delete this item
+					<button type="button" class="btn">Delete</button>
+				</div>
+				<div class="well">
+					<b>Duplicate</b><br />
+					Save item, copy it and edit the copy.
+					<button type="button" class="btn">Duplicate</button>
+				</div>
 			</div>
 		</div>
 	</div>
