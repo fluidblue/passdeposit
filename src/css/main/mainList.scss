@@ -219,7 +219,7 @@
 			{
 				display: inline-block;
 				// margin-right: 250px;
-				width: 70%;
+				width: 65%;
 
 				.actionButtons
 				{
@@ -227,6 +227,16 @@
 					{
 						// Space between buttons: 10px
 						margin-left: 6px;
+					}
+
+					.btnDuplicate
+					{
+						margin-right: 12px;
+					}
+
+					.btnDelete:hover
+					{
+						color: #900;
 					}
 				}
 			}

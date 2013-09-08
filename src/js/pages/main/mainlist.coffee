@@ -34,4 +34,16 @@ init = ->
 		e.preventDefault()
 		return
 
+	# Add tooltips for delete and duplicate buttons
+	options =
+		placement: "top"
+		trigger: "hover"
+		animation: false
+
+	options.title = $("#text .tooltipDelete").html()
+	$("#mainList .content .actionButtons .btnDelete").tooltip options
+
+	options.title = $("#text .tooltipDuplicate").html()
+	$("#mainList .content .actionButtons .btnDuplicate").tooltip options
+
 module.exports.init = init
