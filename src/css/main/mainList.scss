@@ -223,20 +223,10 @@
 
 				.actionButtons
 				{
-					.btn:not(:first-child)
+					> *:not(:first-child)
 					{
 						// Space between buttons: 10px
 						margin-left: 6px;
-					}
-
-					.btnDuplicate
-					{
-						margin-right: 6px;
-					}
-
-					.btnDelete:hover
-					{
-						color: #900;
 					}
 				}
 			}
