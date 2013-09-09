@@ -134,7 +134,7 @@
 
 					/* Icon opacity */
 					opacity: $btnOpacityInactive;
-					&:hover
+					&:hover, &:focus
 					{
 						opacity: $btnOpacityActive;
 					}

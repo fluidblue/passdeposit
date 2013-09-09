@@ -12,7 +12,7 @@ init = ->
 	options =
 		placement: "top"
 		title: $("#text .copyPass").html()
-		trigger: "hover"
+		trigger: "hover focus"
 		animation: false
 		#selector: "#mainList .header .buttons a"
 	
@@ -37,7 +37,7 @@ init = ->
 	# Add tooltips for delete and duplicate buttons
 	options =
 		placement: "top"
-		trigger: "hover"
+		trigger: "hover focus"
 		animation: false
 
 	options.title = $("#text .tooltipDelete").html()
