@@ -36,7 +36,7 @@ init = ->
 
 	# Add tooltips for delete and duplicate buttons
 	options =
-		placement: "top"
+		placement: "bottom"
 		trigger: "hover focus"
 		animation: false
 
