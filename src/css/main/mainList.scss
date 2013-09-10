@@ -215,35 +215,49 @@
 			margin-bottom: $margin;
 			margin-right: $margin;
 
-			.contentLeft
-			{
-				display: inline-block;
-				// margin-right: 250px;
-				width: 65%;
+			position: relative;
 
-				.actionButtons
+			.innerContent
+			{
+				background-color: red;
+				display: table;
+				position: relative;
+				width: 100%;
+
+				> *
 				{
-					> *:not(:first-child)
+					display: table-cell;
+					position: relative;
+				}
+
+				.contentLeft
+				{
+					background-color: green;
+					width: 65%;
+
+					.actionButtons
 					{
-						// Space between buttons: 10px
-						margin-left: 6px;
+						> *:not(:first-child)
+						{
+							// Space between buttons: 10px
+							margin-left: 6px;
+						}
 					}
 				}
-			}
 
-			.contentRight
-			{
-				// float: left;
-				display: inline-block;
-				// margin-left: -250px;
-
-				.well
+				.contentRight
 				{
-					margin-left: 10px;
+					background-color: blue;
+					white-space: nowrap;
 
-					table tr td:first-child
+					.well
 					{
-						padding-right: 10px;
+						padding-left: 10px;
+
+						table tr td:first-child
+						{
+							padding-right: 10px;
+						}
 					}
 				}
 			}

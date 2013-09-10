@@ -42,47 +42,49 @@
 			</div>
 		</div>
 		<div class="content">
-			<div class="contentLeft">
-				<!-- Include fields -->
-				{% include fields/uri.htm %}
-				{% include fields/user.htm %}
-				{% include fields/pass.htm %}
-				{% include fields/tags.htm %}
-				
-				<div class="btn-group">
-					<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-plus"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						{% include fields/dropdown/items/fieldtypes.htm %}
-					</ul>
-				</div>
-				<div class="actionButtons pull-right">
+			<div class="innerContent">
+				<div class="contentLeft">
+					<!-- Include fields -->
+					{% include fields/uri.htm %}
+					{% include fields/user.htm %}
+					{% include fields/pass.htm %}
+					{% include fields/tags.htm %}
+					
 					<div class="btn-group">
-						<button type="button" class="btn btnDelete">Delete</button>
-						<button type="button" class="btn btnDuplicate">Duplicate</button>
+						<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-plus"></i>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							{% include fields/dropdown/items/fieldtypes.htm %}
+						</ul>
 					</div>
-					<button type="button" class="btn btnCancel">Cancel</button>
-					<button type="button" class="btn btn-primary btnSave">Save</button>
+					<div class="actionButtons pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btnDelete">Delete</button>
+							<button type="button" class="btn btnDuplicate">Duplicate</button>
+						</div>
+						<button type="button" class="btn btnCancel">Cancel</button>
+						<button type="button" class="btn btn-primary btnSave">Save</button>
+					</div>
 				</div>
-			</div>
-			<div class="contentRight">
-				<div class="well">
-					<table>
-						<tr>
-							<td>Encryption:</td>
-							<td>AES 256</td>
-						</tr>
-						<tr>
-							<td>Created:</td>
-							<td>2013-08-25</td>
-						</tr>
-						<tr>
-							<td>Modified:</td>
-							<td>2013-09-10</td>
-						</tr>
-					</table>
+				<div class="contentRight">
+					<div class="well">
+						<table>
+							<tr>
+								<td>Encryption:</td>
+								<td>AES 256</td>
+							</tr>
+							<tr>
+								<td>Created:</td>
+								<td>2013-08-25</td>
+							</tr>
+							<tr>
+								<td>Modified:</td>
+								<td>2013-09-10</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
