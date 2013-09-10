@@ -220,20 +220,23 @@
 			.innerContent
 			{
 				background-color: red;
+
 				display: table;
-				position: relative;
 				width: 100%;
 
+				/* Direct childs are table cells */
 				> *
 				{
 					display: table-cell;
-					position: relative;
+					vertical-align: top;
 				}
 
 				.contentLeft
 				{
-					background-color: green;
-					width: 65%;
+					background-color: blue;
+
+					/* Fill remaining space */
+					width: 100%;
 
 					.actionButtons
 					{
@@ -247,12 +250,14 @@
 
 				.contentRight
 				{
-					background-color: blue;
+					background-color: green;
+
+					/* Prevent content wrapping */
 					white-space: nowrap;
 
 					.well
 					{
-						padding-left: 10px;
+						padding-left: 10px; // TODO
 
 						table tr td:first-child
 						{
