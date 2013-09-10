@@ -239,9 +239,11 @@
 
 				.well
 				{
-					.btn
+					margin-left: 10px;
+
+					table tr td:first-child
 					{
-						float: right;
+						padding-right: 10px;
 					}
 				}
 			}
