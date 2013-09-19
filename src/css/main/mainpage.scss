@@ -44,11 +44,27 @@
 		.searchBarContainer
 		{
 			width: 100%;
-		}
 
-		div.heightFix
-		{
-			margin-bottom: 0px;
+			.searchBar
+			{
+				width: 100%;
+				box-sizing: border-box;
+
+				/* Space for dropdown button */
+				padding-right: 33px;
+
+				/* Height fix */
+				margin-bottom: 0px;
+
+				input
+				{
+					width: 100%;
+					box-sizing: border-box;
+
+					/* Manually set height */
+					height: 30px;
+				}
+			}
 		}
 		
 		/* Direct children */
@@ -68,7 +84,6 @@
 			*.fullWidth
 			{
 				width: 100%;
-				padding-right: ($space + 2px); /* Fix search field */
 			}
 		}
 	}
