@@ -217,51 +217,56 @@
 
 			position: relative;
 
-			.innerContent
+			.innerTab
 			{
-				background-color: red;
-
 				display: table;
-				width: 100%;
+				height: 100%;
 
-				/* Direct childs are table cells */
-				> *
+				.innerContent
 				{
-					display: table-cell;
-					vertical-align: top;
-				}
-
-				.contentLeft
-				{
-					background-color: blue;
-
-					/* Fill remaining space */
+					display: table-row;
 					width: 100%;
+					height: 100%;
 
-					.actionButtons
+					> *
 					{
-						> *:not(:first-child)
+						display: table-cell;
+						vertical-align: top;
+					}
+
+					.contentLeft
+					{
+						width: 100%;
+
+						.actionButtons
 						{
-							// Space between buttons: 10px
-							margin-left: 6px;
+							> *:not(:first-child)
+							{
+								// Space between buttons: 10px
+								margin-left: 6px;
+							}
 						}
 					}
-				}
 
-				.contentRight
-				{
-					background-color: green;
-
-					/* Prevent content wrapping */
-					white-space: nowrap;
-
-					.well
+					.contentRight
 					{
-						padding-left: 10px; // TODO
+						height: 100%;
+						padding-left: 20px;
 
-						table tr td:first-child
+						/* Prevent content wrapping */
+						white-space: nowrap;
+
+						.well
 						{
-							padding-right: 10px;
+							height: 100%;
+							margin-bottom: 0;
+
+							//color: #666; // TODO
+
+							table tr td:first-child
+							{
+								padding-right: 10px;
+							}
 						}
 					}
 				}

@@ -1,13 +1,16 @@
-<div class="itemField itemFieldEmail input-prepend inputPrependInner input-append inputVariableWidth2">
-	<span class="add-on"><i class="icon-envelope"></i></span>
-	<input type="text" placeholder="Email address" spellcheck="false" />
+<div class="itemField input-append">
+	<div>
+		<span class="add-on"><i class="icon-envelope"></i></span>
+		<input type="text" placeholder="Email address" spellcheck="false" />
+	</div>
+	<div>
+		{% include buttons/copy.htm %}
 
-	{% include buttons/copy.htm %}
+		<div class="btn-group">
+			{% include buttons/dropdown.htm %}
 
-	<div class="btn-group">
-		{% include buttons/dropdown.htm %}
-
-		<!-- Drodown menu -->
-		{% include dropdown/dropdown.htm %}
+			<!-- Drodown menu -->
+			{% include dropdown/dropdown.htm %}
+		</div>
 	</div>
 </div>

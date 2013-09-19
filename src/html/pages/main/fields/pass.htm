@@ -1,19 +1,22 @@
-<div class="itemField itemFieldPassword input-prepend inputPrependInner input-append inputVariableWidth3">
-	<span class="add-on"><i class="icon-lock"></i></span>
-	<input type="password" class="inputMasked" placeholder="Password" />
-	<input type="text" class="inputVisible hide" placeholder="Password" />
+<div class="itemField input-append">
+	<div>
+		<span class="add-on"><i class="icon-lock"></i></span>
+		<input type="password" class="inputMasked" placeholder="Password" />
+		<input type="text" class="inputVisible hide" placeholder="Password" />
+	</div>
+	<div>
+		<button type="button" class="btn btnToggleVisiblity" tabindex="-1">
+			<span class="txtShow">Show</span>
+			<span class="txtHide hide">Hide</span>
+		</button>
 
-	<button type="button" class="btn btnToggleVisiblity" tabindex="-1">
-		<span class="txtShow">Show</span>
-		<span class="txtHide hide">Hide</span>
-	</button>
+		{% include buttons/copy.htm %}
+		
+		<div class="btn-group">
+			{% include buttons/dropdown.htm %}
 
-	{% include buttons/copy.htm %}
-	
-	<div class="btn-group">
-		{% include buttons/dropdown.htm %}
-
-		<!-- Drodown menu with Generate button -->
-		{% include dropdown/dropdowngen.htm %}
+			<!-- Drodown menu with Generate button -->
+			{% include dropdown/dropdowngen.htm %}
+		</div>
 	</div>
 </div>
