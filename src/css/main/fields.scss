@@ -16,7 +16,7 @@ $moveText: $prependWidth + 7px;
 	white-space: normal;
 
 	/* Tooltips will be repositioned on resize */
-	//position: relative; // TODO
+	//position: relative; // Seems not necessary. (TODO: Check)
 
 	> div
 	{

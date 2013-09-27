@@ -10,7 +10,7 @@ generatePassword = require "../../../core/passgen"
 
 initBtnCopy = ->
 	$(".itemField .btnCopy").click ->
-		input = $(this).parent().children("input[type=text]")
+		input = $(this).closest(".itemField").find("input[type=text]:visible, input[type=password]:visible")
 		
 		# Copy to clipboard
 		clipboard.setText input.val()
@@ -34,7 +34,7 @@ initTooltipWebAddress = ->
 
 initBtnOpen = ->
 	$(".itemField.itemFieldWebAddress .btnOpen").click ->
-		input = $(this).parent().children("input[type=text]")
+		input = $(this).closest(".itemField").find("input[type=text]")
 		uri = input.val()
 		
 		# Cancel if field is empty
@@ -100,14 +100,14 @@ initTooltipPassGen = ->
 initMenuBtnPassGen = ->
 	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
 		elem = $(this).closest(".itemField.itemFieldPassword")
-		input = elem.find("input[type=password]:visible, input[type=text]:visible")
+		input = elem.find("input[type=text]:visible, input[type=password]:visible")
 		input.val generatePassword()
 
 		# Show tooltip notification
 		input.tooltip("show")
 
 		# Hide tooltip of hidden input
-		elem.find("input[type=password]:hidden, input[type=text]:hidden").tooltip("hide")
+		elem.find("input[type=text]:hidden, input[type=password]:hidden").tooltip("hide")
 
 		# Cancel timeout of previous notifications
 		oldTimeoutID = input.data("tooltipTimeoutID")
@@ -164,11 +164,11 @@ initBtnToggleVisibility = ->
 	$(".itemField.itemFieldPassword").each (i, elem) ->
 		elem = $(elem)
 
-		btnToggle = elem.children(".btnToggleVisiblity")
-		txtShow = btnToggle.children(".txtShow")
-		txtHide = btnToggle.children(".txtHide")
-		inputMasked = elem.children(".inputMasked")
-		inputVisible = elem.children(".inputVisible")
+		btnToggle = elem.find(".btnToggleVisiblity")
+		txtShow = btnToggle.find(".txtShow")
+		txtHide = btnToggle.find(".txtHide")
+		inputMasked = elem.find(".inputMasked")
+		inputVisible = elem.find(".inputVisible")
 		btnDropdown = elem.find(".btn.dropdown-toggle")
 
 		btnToggle.click ->
