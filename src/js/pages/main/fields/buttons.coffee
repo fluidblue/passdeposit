@@ -22,15 +22,19 @@ initBtnCopy = ->
 
 initTooltipWebAddress = ->
 	# Create web address tooltip
-	# TODO: Use selector
 	# TODO: Enable animation (Bug when focus already set and bug with arrow)
+
 	options =
 		placement: "bottom"
 		title: $("#text .infoURI").html()
 		trigger: "focus"
 		animation: false
 
-	$(".itemField.itemFieldWebAddress input[type=text]").tooltip options
+	$(".itemField.itemFieldWebAddress").each (i, elem) ->
+		$(elem).find("input[type=text]").tooltip options
+		
+		# Continue with loop
+		return true
 
 initBtnOpen = ->
 	$(".itemField.itemFieldWebAddress .btnOpen").click ->
@@ -72,30 +76,34 @@ initBtnOpen = ->
 
 initTooltipPassGen = ->
 	# Create password generation tooltip
-	# TODO: Use selector
+
 	options =
 		placement: "bottom"
 		title: $("#text .passGenerated").html()
 		trigger: "manual"
 		animation: true
 
-	# Create tooltip on both password and text input
-	inputMasked = $(".itemField.itemFieldPassword input[type=password]")
-	inputVisible = $(".itemField.itemFieldPassword input[type=text]")
+	$(".itemField.itemFieldPassword").each (i, elem) ->
+		# Create tooltip on both password and text input
+		inputMasked = $(elem).find("input[type=password]")
+		inputVisible = $(elem).find("input[type=text]")
 
-	inputMasked.tooltip options
-	inputVisible.tooltip options
+		inputMasked.tooltip options
+		inputVisible.tooltip options
 
-	# Hide tooltip on focus
-	inputMasked.focus ->
-		inputMasked.tooltip("hide")
-		inputVisible.tooltip("hide")
-		return
+		# Hide tooltip on focus
+		inputMasked.focus ->
+			inputMasked.tooltip("hide")
+			inputVisible.tooltip("hide")
+			return
 
-	inputVisible.focus ->
-		inputMasked.tooltip("hide")
-		inputVisible.tooltip("hide")
-		return
+		inputVisible.focus ->
+			inputMasked.tooltip("hide")
+			inputVisible.tooltip("hide")
+			return
+		
+		# Continue with loop
+		return true
 
 initMenuBtnPassGen = ->
 	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
