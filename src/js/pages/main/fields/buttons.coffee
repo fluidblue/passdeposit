@@ -139,8 +139,8 @@ initTooltipPassGenHint = ->
 	$(".itemField.itemFieldPassword").each (i, elem) ->
 		elem = $(elem)
 
-		inputMasked = elem.children(".inputMasked")
-		inputVisible = elem.children(".inputVisible")
+		inputMasked = elem.find(".inputMasked")
+		inputVisible = elem.find(".inputVisible")
 		btnDropdown = elem.find(".btn.dropdown-toggle")
 
 		# Create password generation hint
