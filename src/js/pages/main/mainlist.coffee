@@ -46,6 +46,58 @@ initActionButtons = ->
 		popover.popover("hide")
 		return
 
+	$(document).on "click", "#mainList .content .btnSave", ->
+		item = $(this).closest(".item")
+
+		id = item.data("item-id")
+		# exist = id?
+
+		# Get fields
+		fields = new Array()
+
+		item.find(".itemField").each (i, elem) ->
+			elem = $(elem)
+
+			# Get value
+			value = elem.find("input[type=text]:visible, input[type=password]:visible").val()
+
+			# Get type
+			type = "text"
+			if elem.hasClass("itemFieldEmail")
+				type = "email"
+			else if elem.hasClass("itemFieldPassword")
+				type = "pass"
+			else if elem.hasClass("itemFieldServiceName")
+				type = "service"
+			else if elem.hasClass("itemFieldWebAddress")
+				type = "uri"
+			else if elem.hasClass("itemFieldUser")
+				type = "user"
+
+			# Add to array
+			fields.push
+				"type": type
+				"value": value
+			
+			# Continue with loop
+			return true
+		
+		# Get tags
+		tags = new Array()
+
+		for tag in item.find(".input-tag").val().split(",")
+			tag = $.trim(tag)
+			tags.push tag
+
+		# Create item object
+		item =
+			"fields": fields
+			"tags": tags
+
+		alert JSON.stringify(item)
+
+		return
+
 init = ->
 	# Add tooltips
 	options =
