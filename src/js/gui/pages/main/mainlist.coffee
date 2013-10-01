@@ -97,9 +97,11 @@ initActionButtons = ->
 		# Get tags
 		tags = new Array()
 
-		for tag in item.find(".input-tag").val().split(",")
-			tag = $.trim(tag)
-			tags.push tag
+		val = item.find(".input-tag").val()
+		if val? && val.length > 0
+			for tag in val.split(",")
+				tag = $.trim(tag)
+				tags.push tag
 
 		# Create item object
 		itemObj =
