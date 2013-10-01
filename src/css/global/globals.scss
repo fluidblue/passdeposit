@@ -57,3 +57,20 @@ span.key
 	margin-left: 1px;
 	margin-right: 1px;
 }
+
+/* Disable text selection */
+*:not(input)
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Do not show text cursor on unselectable texts */
+body
+{
+	cursor: default;
+}
