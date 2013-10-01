@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 clipboard = require "./clipboard"
-core = require "../../core"
+core = require "../../../core"
 
 initActionButtons = ->
 	# Add tooltips for delete and duplicate buttons
