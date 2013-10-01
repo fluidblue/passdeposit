@@ -238,14 +238,26 @@
 					{
 						width: 100%;
 
+						/* Prevent double spacing */
+						> *:last-child
+						{
+							margin-bottom: 0;
+						}
+
 						.actionButtons
 						{
 							> *:not(:first-child)
 							{
-								// Space between buttons: 10px
+								/* Space between buttons: 10px */
 								margin-left: 6px;
 							}
 						}
+					}
+
+					/* Space between action buttons and fields */
+					&:last-child .contentLeft
+					{
+						padding-top: 15px;
 					}
 
 					.contentRight
@@ -261,7 +273,7 @@
 							height: 100%;
 							margin-bottom: 0;
 
-							//color: #666; // TODO
+							color: #777;
 
 							table tr td:first-child
 							{
