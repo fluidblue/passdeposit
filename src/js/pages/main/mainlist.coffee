@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 clipboard = require "./clipboard"
+core = require "../../core"
 
 initActionButtons = ->
 	# Add tooltips for delete and duplicate buttons
@@ -49,9 +50,6 @@ initActionButtons = ->
 	$(document).on "click", "#mainList .content .btnSave", ->
 		item = $(this).closest(".item")
 
-		id = item.data("item-id")
-		# exist = id?
-
 		# Get fields
 		fields = new Array()
 
@@ -90,11 +88,19 @@ initActionButtons = ->
 			tags.push tag
 
 		# Create item object
-		item =
+		itemObj =
 			"fields": fields
 			"tags": tags
 
-		alert JSON.stringify(item)
+		# Process item
+		id = item.data("item-id")
+		exist = id? && id != 0
+
+		if exist
+			itemObj.id = id
+			core.item.modify(itemObj)
+		else
+			core.item.add(itemObj)
 
 		return
 
