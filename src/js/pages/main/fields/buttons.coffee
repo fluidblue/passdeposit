@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 clipboard = require "../clipboard"
-generatePassword = require "../../../core/passgen"
+core = require "../../../core"
 
 initBtnCopy = ->
 	$(".itemField .btnCopy").click ->
@@ -109,7 +109,7 @@ initMenuBtnPassGen = ->
 	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
 		elem = $(this).closest(".itemField.itemFieldPassword")
 		input = elem.find("input[type=text]:visible, input[type=password]:visible")
-		input.val generatePassword()
+		input.val core.passgen.generatePassword()
 
 		# Show tooltip notification
 		input.tooltip("show")

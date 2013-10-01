@@ -27,4 +27,4 @@ generatePassword = ->
 
 	return password
 
-module.exports = generatePassword
+module.exports.generatePassword = generatePassword
