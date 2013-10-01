@@ -47,6 +47,10 @@ initActionButtons = ->
 		popover.popover("hide")
 		return
 
+	$(document).on "click", "#mainList .content .btnCancel", ->
+		alert "cancel"
+		return
+
 	$(document).on "click", "#mainList .content .btnSave", ->
 		item = $(this).closest(".item")
 
