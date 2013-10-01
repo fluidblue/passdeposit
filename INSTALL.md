@@ -60,8 +60,8 @@ Save your configuration to a file, e.g. config.json:
 
 You need a certificate for PassDeposit. You can generate a self-signed certificate using the following commands:
 
-	openssl genrsa -out privatekey.pem 1024 
-	openssl req -new -key privatekey.pem -out certrequest.csr 
+	openssl genrsa -out privatekey.pem 4096
+	openssl req -new -key privatekey.pem -out certrequest.csr
 	openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
   
 
