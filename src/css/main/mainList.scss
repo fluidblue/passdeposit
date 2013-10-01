@@ -204,6 +204,15 @@
 			}
 		}
 
+		/* Closed item styling */
+		&:not(.open)
+		{
+			.content
+			{
+				display: none;
+			}
+		}
+
 		/* Content styling */
 		.content
 		{

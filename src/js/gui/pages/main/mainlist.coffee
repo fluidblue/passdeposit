@@ -149,14 +149,11 @@ init = ->
 	$("#mainList .header .clickable").click (e) ->
 		item = $(this).closest(".item")
 
+		# Open or close item
 		if item.hasClass("open")
-			# Close item
-			item.find(".content").css("display", "none")
 			item.removeClass("open")
 		else
-			# Open item
 			item.addClass("open")
-			item.find(".content").css("display", "block")
 
 		return
 
