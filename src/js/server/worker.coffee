@@ -20,7 +20,7 @@ init = (config) ->
 		options.cert = fs.readFileSync(path.resolve(config.basePath, config.https.certificate))
 	catch e
 		console.log "Error: Could not load certificate/privateKey (specified in '" + config.configFile + "')"
-		process.exit
+		process.exit 0
 
 	# Load static files
 	staticFiles.load (files) ->

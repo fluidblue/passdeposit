@@ -66,7 +66,7 @@ load = ->
 		content = fs.readFileSync configFile
 	catch e
 		console.log "Error: The config file '" + configFile + "' could not be loaded."
-		process.exit
+		process.exit 0
 	
 	# Convert to object
 	config = JSON.parse content

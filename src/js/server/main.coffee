@@ -22,10 +22,11 @@ if cluster.isMaster
 		i--
 
 	cluster.on "exit", (worker, code, signal) ->
+		exitCode = worker.process.exitCode
+		
 		if exitCode != 0
 			# Log error
 			pid = worker.process.pid
-			exitCode = worker.process.exitCode
 			console.log "Error: worker " + pid + " died (" + exitCode + "). Restarting worker..."
 
 			# Restart worker
