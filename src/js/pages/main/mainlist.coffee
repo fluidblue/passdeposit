@@ -120,7 +120,6 @@ init = ->
 	options.title = $("#text .openAddress").html()
 	$("#mainList .header .buttons a.btnOpen").tooltip options
 
-	# Add functionality
 	$("#mainList .header .buttons a.btnPass").click (e) ->
 		# TODO
 		clipboard.setText "test"
@@ -129,6 +128,20 @@ init = ->
 		$.jGrowl $("#text .copiedToClipboard").html()
 
 		e.preventDefault()
+		return
+
+	$("#mainList .header .clickable").click (e) ->
+		item = $(this).closest(".item")
+
+		if item.hasClass("open")
+			# Close item
+			item.find(".content").css("display", "none")
+			item.removeClass("open")
+		else
+			# Open item
+			item.addClass("open")
+			item.find(".content").css("display", "block")
+
 		return
 
 	initActionButtons()
