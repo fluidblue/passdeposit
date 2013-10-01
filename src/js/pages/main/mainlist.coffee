@@ -29,7 +29,7 @@ initActionButtons = ->
 		html: true
 		content: $("#text .popoverDeleteContent").html()
 		title: $("#text .popoverDeleteTitle").html()
-		container: "body" # Avoid jumping butttons
+		container: "body" # Preserve btn-group
 
 	popover = $("#mainList .content .actionButtons .btnDelete").popover options
 
@@ -43,7 +43,17 @@ initActionButtons = ->
 		return
 
 	$(document).on "click", ".popover .btnConfirmDelete", ->
-		alert "Deleted."
+		# TODO: Wrong .item!
+		item = $(this).closest(".item")
+		id = item.data("item-id")
+		exist = id? && id != 0
+
+		if exist
+			core.item.remove(id)
+		else
+			# TODO: Check!
+			item.trigger("click")
+
 		popover.popover("hide")
 		return
 
