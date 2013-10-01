@@ -9,8 +9,8 @@
 $imgIcons: url("../media/glyphicons-halflings.png");
 $imgIconsWhite: url("../media/glyphicons-halflings-white.png");
 
-/* Remove all browser specific outlines for buttons and links */
-.btn, a, button
+/* Remove all browser specific outlines for buttons, links and inputs */
+.btn, a, button, input, div
 {
 	outline: none !important;
 }
