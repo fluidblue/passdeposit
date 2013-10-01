@@ -48,7 +48,7 @@
 			.searchBar
 			{
 				width: 100%;
-				box-sizing: border-box;
+				@include box-sizing(border-box);
 
 				/* Space for dropdown button */
 				padding-right: 33px;
@@ -59,7 +59,7 @@
 				input
 				{
 					width: 100%;
-					box-sizing: border-box;
+					@include box-sizing(border-box);
 
 					/* Manually set height */
 					height: 30px;
