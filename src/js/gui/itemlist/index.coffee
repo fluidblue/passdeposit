@@ -9,11 +9,38 @@ quickbuttons = require "./quickbuttons"
 toggleview = require "./toggleview"
 actionbuttons = require "./actionbuttons"
 
+formatDate = (num) ->
+	date = new Date(num)
+
+	day = date.getDate()
+	month = date.getMonth() + 1 # Months are zero based
+	year = date.getFullYear()
+
+	if day < 10
+		day = "0" + day.toString()
+
+	if month < 10
+		month = "0" + month.toString()
+
+	return year + "-" + month + "-" + day
+
+formatEncryption = (enc) ->
+	return switch enc
+		when "aes256" then "AES 256"
+		else "Unknown"
+
 add = (item) ->
 	# Create new item from template
 	template = $("#mainpage .itemTemplate").clone()
 	template.removeClass("hide")
 	template.removeClass("itemTemplate")
+
+	# Add info texts
+	itemInfoContainer = template.find(".content .itemInfoContainer")
+
+	itemInfoContainer.find(".infoEncryption").html(formatEncryption(item.encryption.type))
+	itemInfoContainer.find(".infoCreated").html(formatDate(item.dateCreated))
+	itemInfoContainer.find(".infoModified").html(formatDate(item.dateModified))
 
 	# Add fields
 	itemFieldContainer = template.find(".content .itemFieldContainer")
