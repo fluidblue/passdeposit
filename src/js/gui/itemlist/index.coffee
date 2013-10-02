@@ -10,13 +10,33 @@ toggleview = require "./toggleview"
 actionbuttons = require "./actionbuttons"
 
 add = (item) ->
-	# TODO
-	console.log item
-
 	# Create new item from template
 	template = $("#mainpage .itemTemplate").clone()
 	template.removeClass("hide")
 	template.removeClass("itemTemplate")
+
+	# Add fields
+	itemFieldContainer = template.find(".content .itemFieldContainer")
+
+	# Loop through fields in reverse order
+	for field in item.fields by -1
+		# Get field class
+		fieldClass = switch field.type
+			when "email" then "itemFieldEmail"
+			when "pass" then "itemFieldPassword"
+			when "service" then "itemFieldServiceName"
+			when "uri" then "itemFieldWebAddress"
+			when "user" then "itemFieldUser"
+			else "itemFieldText"
+
+		# Clone field template
+		fieldTemplate = $("#mainpage .itemFieldTemplates ." + fieldClass).clone()
+
+		# Set field value
+		fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
+
+		# Add field template
+		fieldTemplate.prependTo(itemFieldContainer)
 
 	# Initialize template
 	quickbuttons.initTemplate(template)
@@ -44,6 +64,18 @@ init = ->
 		},
 
 		"fields": [
+			{
+				"type": "email",
+				"value": "__crypted__"
+			},
+			{
+				"type": "service",
+				"value": "__crypted__"
+			},
+			{
+				"type": "text",
+				"value": "__crypted__"
+			},
 			{
 				"type": "uri",
 				"value": "__crypted__"

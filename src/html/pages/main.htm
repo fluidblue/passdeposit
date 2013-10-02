@@ -16,6 +16,16 @@
 
 	<!-- Item template -->
 	{% include main/item.htm %}
+
+	<!-- Field templates -->
+	<div class="itemFieldTemplates hide">
+		{% include main/fields/uri.htm %}
+		{% include main/fields/user.htm %}
+		{% include main/fields/pass.htm %}
+		{% include main/fields/email.htm %}
+		{% include main/fields/service.htm %}
+		{% include main/fields/text.htm %}
+	</div>
 	
 	<!-- Pagination -->
 	<div class="pagination pagination-centered">
