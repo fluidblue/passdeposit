@@ -1,0 +1,220 @@
+[
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "uri",
+				"value": "http://www.example.com"
+			},
+			{
+				"type": "user",
+				"value": "fluidblue"
+			},
+			{
+				"type": "pass",
+				"value": "password"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	},
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "service",
+				"value": "Skype"
+			},
+			{
+				"type": "user",
+				"value": "fluidblue"
+			},
+			{
+				"type": "pass",
+				"value": "password"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	},
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "uri",
+				"value": "http://www.example.com"
+			},
+			{
+				"type": "user",
+				"value": "fluidblue"
+			},
+			{
+				"type": "pass",
+				"value": "password"
+			},
+			{
+				"type": "text",
+				"value": "This text is long long long long long long long long long long long long long long"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	},
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "email",
+				"value": "fluidblue@gmail.com"
+			},
+			{
+				"type": "pass",
+				"value": "password"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	},
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "text",
+				"value": "Some text"
+			},
+			{
+				"type": "uri",
+				"value": "http://www.example.com"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	},
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "uri",
+				"value": "http://www.example.com"
+			},
+			{
+				"type": "email",
+				"value": "fluidblue@gmail.com"
+			},
+			{
+				"type": "pass",
+				"value": "password"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	},
+	{
+		"dateCreated": 1335205592410,
+		"dateModified": 1335205592410,
+
+		"encryption": {
+			"type": "aes256",
+			"param0": 0,
+			"param1": 1
+		},
+
+		"fields": [
+			{
+				"type": "email",
+				"value": "fluidblue@gmail.com"
+			},
+			{
+				"type": "service",
+				"value": "ServiceName"
+			},
+			{
+				"type": "text",
+				"value": "Some text"
+			},
+			{
+				"type": "uri",
+				"value": "http://www.example.com"
+			},
+			{
+				"type": "user",
+				"value": "fluidblue"
+			},
+			{
+				"type": "pass",
+				"value": "password"
+			}
+		],
+
+		"tags": [
+			123,
+			124
+		]
+	}
+]

@@ -156,53 +156,9 @@ init = ->
 	actionbuttons.init()
 
 	# TODO: Remove
-	item = jQuery.parseJSON '{
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
-
-		"encryption": {
-			"type": "aes256",
-			"param0": 0,
-			"param1": 1
-		},
-
-		"fields": [
-			{
-				"type": "email",
-				"value": "fluidblue@gmail.com"
-			},
-			{
-				"type": "service",
-				"value": "ServiceName"
-			},
-			{
-				"type": "text",
-				"value": "Some text"
-			},
-			{
-				"type": "uri",
-				"value": "http://www.example.com"
-			},
-			{
-				"type": "user",
-				"value": "fluidblue"
-			},
-			{
-				"type": "pass",
-				"value": "password"
-			}
-		],
-
-		"tags": [
-			123,
-			124
-		]
-	}'
-	add(item)
-	add(item)
-	add(item)
-	add(item)
-	add(item)
+	items = require "./testfields.json"
+	for item in items
+		add(item)
 
 module.exports.init = init
 module.exports.add = add
