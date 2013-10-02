@@ -12,6 +12,10 @@ init = ->
 		# Open or close item
 		if item.hasClass("open")
 			item.removeClass("open")
+
+			# Close delete button popover
+			item.find(".popover").css("display", "none")
+			item.find(".content .actionButtons .btnDelete").popover("hide")
 		else
 			item.addClass("open")
 
