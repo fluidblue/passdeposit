@@ -5,8 +5,17 @@
 	<!-- Main navigation bar -->
 	{% include main/mainnav.htm %}
 
+	<!-- Advanced search -->
+	<div id="searchOptions" class="hide">
+		Advanced search options.<br />
+		Coming soon.
+	</div>
+
 	<!-- Main item list -->
-	{% include main/mainlist.htm %}
+	<div id="mainList"></div>
+
+	<!-- Item template -->
+	{% include main/item.htm %}
 	
 	<!-- Pagination -->
 	<div class="pagination pagination-centered">
@@ -22,9 +31,4 @@
 			<li><a href="#">&raquo;</a></li>
 		</ul>
 	</div>
-</div>
-
-<!-- Advanced search -->
-<div id="searchOptions" class="hide">
-	Advanced search options...
 </div>

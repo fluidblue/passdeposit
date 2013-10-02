@@ -5,4 +5,4 @@ GUI API
 Created by Max Geissler
 ###
 
-# No exports so far.
+module.exports.itemlist = require "./itemlist"

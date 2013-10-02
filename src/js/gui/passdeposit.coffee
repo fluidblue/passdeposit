@@ -15,6 +15,7 @@ require "bootstrap-tag"
 # Require initialization files
 frontPage = require "./pages/front"
 mainPage = require "./pages/main"
+itemlist = require "./itemlist"
 navPills = require "./components/nav-pills"
 jGrowl = require "./components/jgrowl-extend"
 
@@ -23,6 +24,7 @@ $(document).ready ->
 	navPills.init()
 	frontPage.init()
 	mainPage.init()
+	itemlist.init()
 	jGrowl.init()
 	
 	return

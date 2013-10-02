@@ -1,0 +1,73 @@
+<div class="item itemTemplate hide">
+	<div class="header">
+		<div class="clickable">
+			<div class="posrel">
+				<div class="description">
+					<div>
+						<i class="icon-chevron-right"></i>
+					</div>username
+					<span class="dot">•</span>
+					www.example.com
+				</div>
+			</div>
+		</div>
+		<div class="buttons">
+			<a href="#" target="_blank" class="btnOpen">
+				<i class="icon-share-alt"></i>
+			</a><a href="#" class="btnPass">
+				<i class="icon-lock"></i>
+			</a>
+		</div>
+	</div>
+	<div class="content">
+		<div class="innerTab">
+			<div class="innerContent">
+				<div class="contentLeft">
+					<!-- Fields -->
+					{% include fields/tags.htm %}
+				</div>
+				<div class="contentRight">
+					<div class="well">
+						<table>
+							<tr>
+								<td>Encryption:</td>
+								<td>AES 256</td>
+							</tr>
+							<tr>
+								<td>Created:</td>
+								<td>2013-08-25</td>
+							</tr>
+							<tr>
+								<td>Modified:</td>
+								<td>2013-09-10</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="innerContent">
+				<div class="contentLeft">
+					<!-- Control buttons -->
+					<div class="btn-group">
+						<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-plus"></i>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							{% include fields/dropdown/items/fieldtypes.htm %}
+						</ul>
+					</div>
+					<div class="actionButtons pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btnDelete">Delete</button>
+							<button type="button" class="btn btnDuplicate">Duplicate</button>
+						</div>
+						<button type="button" class="btn btnCancel">Cancel</button>
+						<button type="button" class="btn btn-primary btnSave">Save</button>
+					</div>
+				</div>
+				<div class="contentRight"></div>
+			</div>
+		</div>
+	</div>
+</div>

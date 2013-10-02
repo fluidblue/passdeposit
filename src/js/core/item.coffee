@@ -5,8 +5,6 @@ Item manipulations
 Created by Max Geissler
 ###
 
-# TODO
-
 add = (item) ->
 	console.log item
 
