@@ -14,7 +14,7 @@ down = (field) ->
 	return
 
 remove = (field) ->
-	console.log("remove")
+	field.remove()
 	return
 
 init = ->
