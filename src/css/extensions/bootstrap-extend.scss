@@ -92,6 +92,7 @@ input.hide
 .dropdown-menu > li.disabled > a > [class^="icon-"]
 {
 	background-image: $imgIcons !important;
+	// TODO: opacity: 0.65;
 }
 
 /* Darken progressbar background */

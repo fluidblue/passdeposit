@@ -8,11 +8,11 @@ Created by Max Geissler
 core = require "../../../../core"
 
 up = (elem) ->
-	console.log("up")
+	elem.after(elem.prev())
 	return
 
 down = (elem) ->
-	console.log("down")
+	elem.before(elem.next(":not(.itemFieldTags)"))
 	return
 
 remove = (elem) ->
