@@ -23,7 +23,10 @@ init = ->
 		# Add field
 		item = $(this).closest(".item")
 		itemFieldContainer = field.getContainer(item)
-		field.add(itemFieldContainer, newField)
+		elem = field.add(itemFieldContainer, newField)
+
+		# Focus
+		elem.find("input[type=password], input[type=text]").focus()
 
 		e.preventDefault()
 		return

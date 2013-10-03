@@ -53,7 +53,7 @@ add = (itemFieldContainer, field) ->
 	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
 
 	# Insert before tag field
-	itemFieldContainer.children("*:last").before(fieldTemplate)
+	return fieldTemplate.insertBefore(itemFieldContainer.children("*:last"))
 
 module.exports.find = find
 module.exports.getType = getType
