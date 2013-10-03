@@ -42,9 +42,6 @@ webAddress = (addr) ->
 	return addr
 
 title = (fields) ->
-	title = ""
-	dot = ' <span class="dot">•</span> '
-
 	user = ""
 	email = ""
 	service = ""
@@ -61,28 +58,47 @@ title = (fields) ->
 			when "text" then text = field.value
 
 	# Create title:
-	# (Username | Email) * (ServiceName) * (WebAddress) * (Text)
+	#     (Username | Email) * (ServiceName) * (WebAddress) * (Text)
 	# If only WebAddress & Text are present:
-	# Text * WebAddress
+	#     Text * WebAddress
+	# If title is still empty
+	#     Email
+	# If title is still empty
+	#     "Untitled"
+
+	title = ""
+	dot = ' <span class="dot">•</span> '
+
+	addPart = (current, part) ->
+		if current.length > 0
+			return current + dot + part
+		else
+			return part
 
 	if user.length <= 0 && email.length <= 0 && service.length <= 0 &&
 	uri.length > 0 && text.length > 0
 		title = text + dot + uri
 	else
 		if user.length > 0
-			title += user
+			title = user
 
 		if title.length <= 0 && email.length > 0
-			title += email
+			title = email
 
 		if service.length > 0
-			title += dot + service
+			title = addPart(title, service)
 
 		if uri.length > 0
-			title += dot + uri
+			title = addPart(title, uri)
 
 		if text.length > 0
-			title += dot + text
+			title = addPart(title, text)
+
+		if title.length <= 0
+			title = email
+
+		if title.length <= 0
+			title = "Untitled"
 
 	return title
 
