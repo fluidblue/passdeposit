@@ -6,7 +6,6 @@ Created by Max Geissler
 ###
 
 clipboard = require "../clipboard"
-core = require "../../../../core"
 
 initBtnCopy = ->
 	$(".itemField .btnCopy").click ->
@@ -105,36 +104,6 @@ initTooltipPassGen = ->
 		# Continue with loop
 		return true
 
-initMenuBtnPassGen = ->
-	$(".itemField.itemFieldPassword .dropdown-menu a[href=#generate]").click (e) ->
-		elem = $(this).closest(".itemField.itemFieldPassword")
-		input = elem.find("input[type=text]:visible, input[type=password]:visible")
-		input.val core.passgen.generatePassword()
-
-		# Show tooltip notification
-		input.tooltip("show")
-
-		# Hide tooltip of hidden input
-		elem.find("input[type=text]:hidden, input[type=password]:hidden").tooltip("hide")
-
-		# Cancel timeout of previous notifications
-		oldTimeoutID = input.data("tooltipTimeoutID")
-		if oldTimeoutID?
-			window.clearTimeout oldTimeoutID
-
-		# Set timeout to hide the tooltip automatically
-		newTimeoutID = window.setTimeout ->
-			input.tooltip("hide")
-			input.data("tooltipTimeoutID", null)
-			return
-		, 3000
-
-		# Save new timeout ID
-		input.data "tooltipTimeoutID", newTimeoutID
-
-		e.preventDefault()
-		return
-
 initTooltipPassGenHint = ->
 	$(".itemField.itemFieldPassword").each (i, elem) ->
 		elem = $(elem)
@@ -205,7 +174,6 @@ init = ->
 	initTooltipWebAddress()
 	initBtnOpen()
 	initTooltipPassGen()
-	initMenuBtnPassGen()
 	initTooltipPassGenHint()
 	initBtnToggleVisibility()
 
