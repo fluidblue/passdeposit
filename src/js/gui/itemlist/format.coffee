@@ -98,7 +98,7 @@ title = (fields) ->
 			title = email
 
 		if title.length <= 0
-			title = $("#text .untitled").html()
+			title = $.trim($("#text .untitled").html())
 
 	return title
 
