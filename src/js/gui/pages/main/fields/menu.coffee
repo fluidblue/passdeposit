@@ -18,7 +18,7 @@ remove = (field) ->
 	return
 
 init = ->
-	$(".itemField .dropdown-menu a").click (e) ->
+	$(document).on "click", "#mainList .content .menuFieldContext .dropdown-menu a", (e) ->
 		elem = $(this)
 		href = elem.attr("href")
 		field = elem.closest(".itemField")
