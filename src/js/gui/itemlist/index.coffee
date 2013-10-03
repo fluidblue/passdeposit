@@ -60,6 +60,7 @@ init = ->
 	toggleview.init()
 	actionbuttons.init()
 	menuaddfield.init()
+	quickbuttons.init()
 
 	# TODO: Remove
 	items = require "./testfields.json"
