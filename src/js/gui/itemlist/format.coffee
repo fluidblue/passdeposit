@@ -23,7 +23,7 @@ date = (num) ->
 encryption = (enc) ->
 	return switch enc
 		when "aes256" then "AES 256"
-		else "Unknown"
+		else enc
 
 webAddress = (addr) ->
 	if addr.indexOf("http://") == 0
