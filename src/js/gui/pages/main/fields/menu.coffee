@@ -8,13 +8,11 @@ Created by Max Geissler
 core = require "../../../../core"
 
 up = (elem) ->
-	swapped = elem.after(elem.prev())
-	swapped.find("input[type=text]:visible, input[type=password]:visible").focus()
+	elem.after(elem.prev())
 	return
 
 down = (elem) ->
-	swapped = elem.before(elem.next(":not(.itemFieldTags)"))
-	swapped.find("input[type=text]:visible, input[type=password]:visible").focus()
+	elem.before(elem.next(":not(.itemFieldTags)"))
 	return
 
 remove = (elem) ->
