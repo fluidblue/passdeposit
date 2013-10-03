@@ -98,7 +98,7 @@ title = (fields) ->
 			title = email
 
 		if title.length <= 0
-			title = "Untitled"
+			title = $("#text .untitled").html()
 
 	return title
 
