@@ -5,6 +5,8 @@ itemlist quick buttons
 Created by Max Geissler
 ###
 
+format = require "./format"
+
 initTooltips = (template) ->
 	buttonContainer = template.find(".header .buttons")
 
@@ -46,12 +48,35 @@ initBtnOpen = ->
 		uriField = item.find(".content .itemFieldWebAddress")
 		input = uriField.find("input[type=text]")
 
+		# Make valid uri
+		uri = format.validUri(input.val())
+
 		# Set correct href
-		elem.attr("href", input.val())
+		elem.attr("href", uri)
 
 		return
 
+setButtons = (item) ->
+	buttonContainer = item.find(".header .buttons")
+
+	# jQuery's hide() and show() don't work here,
+	# because they break the design.
+
+	# Default display value:
+	defaultDisplay = "inline-block"
+
+	if item.find(".content .itemFieldWebAddress").length > 0
+		buttonContainer.find(".btnOpen").css("display", defaultDisplay)
+	else
+		buttonContainer.find(".btnOpen").css("display", "none")
+
+	if item.find(".content .itemFieldPassword").length > 0
+		buttonContainer.find(".btnPass").css("display", defaultDisplay)
+	else
+		buttonContainer.find(".btnPass").css("display", "none")
+
 initTemplate = (template) ->
+	setButtons(template)
 	initTooltips(template)
 
 init = ->
@@ -61,3 +86,4 @@ init = ->
 
 module.exports.initTemplate = initTemplate
 module.exports.init = init
+module.exports.setButtons = setButtons

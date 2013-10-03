@@ -20,16 +20,7 @@ add = (item) ->
 
 	# Add title
 	titleContainer = template.find(".header .title")
-	titleContainer.html(format.title(item))
-
-	# Set quickbuttons
-	buttonContainer = template.find(".header .buttons")
-
-	if !fields.find(item.fields, "uri")?
-		buttonContainer.find(".btnOpen").hide()
-
-	if !fields.find(item.fields, "pass")?
-		buttonContainer.find(".btnPass").hide()
+	titleContainer.html(format.title(item.fields))
 
 	# Add info texts
 	itemInfoContainer = template.find(".content .itemInfoContainer")
@@ -41,8 +32,8 @@ add = (item) ->
 	# Add fields
 	itemFieldContainer = fields.getContainer(template)
 
-	for f in item.fields
-		fields.add(itemFieldContainer, f)
+	for field in item.fields
+		fields.add(itemFieldContainer, field)
 
 	# Initialize template
 	quickbuttons.initTemplate(template)

@@ -10,15 +10,6 @@ menu = require "./menu"
 tags = require "./tags"
 tooltips = require "./tooltips"
 
-# Return first field that matches the given type.
-# If no such field is found, null is returned.
-find = (fields, type) ->
-	for field in fields
-		if field.type == type
-			return field
-
-	return null
-
 getClass = (type) ->
 	return switch type
 		when "email" then "itemFieldEmail"
@@ -78,6 +69,38 @@ replace = (elem, field) ->
 	# Return new field
 	return fieldTemplate
 
+getFields = (item) ->
+	fieldList = new Array()
+
+	item.find(".itemField").each (i, elem) ->
+		elem = $(elem)
+
+		# Get value
+		value = ""
+		elem.find("input[type=text], input[type=password]").each (i, elem) ->
+			elem = $(elem)
+
+			if elem.css("display") != "none"
+				value = elem.val()
+
+				# Break loop
+				return false
+
+			# Continue loop
+			return true
+
+		# Get type
+		type = getType(elem)
+
+		# Add to array
+		fieldList.push
+			"type": type
+			"value": value
+		
+		# Continue with loop
+		return true
+
+	return fieldList
 
 initTemplate = (template) ->
 	tags.initTemplate(template)
@@ -89,9 +112,8 @@ init = ->
 
 module.exports.init = init
 module.exports.initTemplate = initTemplate
-
-module.exports.find = find
 module.exports.getType = getType
 module.exports.getContainer = getContainer
 module.exports.add = add
 module.exports.replace = replace
+module.exports.getFields = getFields

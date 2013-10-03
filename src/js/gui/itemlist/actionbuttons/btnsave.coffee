@@ -13,26 +13,6 @@ init = ->
 	$(document).on "click", "#mainList .content .btnSave", (e) ->
 		item = $(this).closest(".item")
 
-		# Get fields
-		fieldList = new Array()
-
-		item.find(".itemField").each (i, elem) ->
-			elem = $(elem)
-
-			# Get value
-			value = elem.find("input[type=text]:visible, input[type=password]:visible").val()
-
-			# Get type
-			type = fields.getType(elem)
-
-			# Add to array
-			fieldList.push
-				"type": type
-				"value": value
-			
-			# Continue with loop
-			return true
-		
 		# Get tags
 		tags = new Array()
 
@@ -44,7 +24,7 @@ init = ->
 
 		# Create item object
 		itemObj =
-			"fields": fieldList
+			"fields": fields.getFields(item)
 			"tags": tags
 
 		# Process item

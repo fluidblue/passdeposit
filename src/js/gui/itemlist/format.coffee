@@ -5,6 +5,13 @@ itemlist formats
 Created by Max Geissler
 ###
 
+validUri = (uri) ->
+	# Append http protocol, if not given
+	if uri.indexOf("://") == -1
+		uri = "http://" + uri
+
+	return uri
+
 date = (num) ->
 	date = new Date(num)
 
@@ -34,7 +41,7 @@ webAddress = (addr) ->
 
 	return addr
 
-title = (item) ->
+title = (fields) ->
 	title = ""
 	dot = ' <span class="dot">•</span> '
 
@@ -45,7 +52,7 @@ title = (item) ->
 	text = ""
 
 	# Loop through fields in reverse order
-	for field in item.fields by -1
+	for field in fields by -1
 		switch field.type
 			when "user" then user = field.value
 			when "email" then email = field.value
@@ -79,6 +86,7 @@ title = (item) ->
 
 	return title
 
+module.exports.validUri = validUri
 module.exports.date = date
 module.exports.encryption = encryption
 module.exports.title = title

@@ -5,6 +5,8 @@ Field buttons
 Created by Max Geissler
 ###
 
+format = require "../format"
+
 initBtnCopy = ->
 	$(document).on "click", "#mainList .itemField .btnCopy", (e) ->
 		field = $(this).closest(".itemField")
@@ -48,11 +50,8 @@ initBtnOpen = ->
 
 			return
 		
-		# Append http protocol, if not given
-		if uri.indexOf("://") == -1
-			uri = "http://" + uri
-
-		window.open uri
+		# Open new window
+		window.open format.validUri(uri)
 
 		return
 

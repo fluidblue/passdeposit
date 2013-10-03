@@ -166,13 +166,10 @@
 					}
 				}
 
-				/* Make buttons invisible, but preserve table-cell structure */
+				/* Make buttons invisible */
 				.buttons
 				{
-					> a
-					{
-						display: none;
-					}
+					display: none;
 				}
 			}
 		}
