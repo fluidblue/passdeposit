@@ -8,6 +8,7 @@ Created by Max Geissler
 buttons = require "./buttons"
 menu = require "./menu"
 tags = require "./tags"
+tooltips = require "./tooltips"
 
 # Return first field that matches the given type.
 # If no such field is found, null is returned.
@@ -82,6 +83,7 @@ initTemplate = (template) ->
 	tags.initTemplate(template)
 
 init = ->
+	tooltips.init()
 	buttons.init()
 	menu.init()
 
