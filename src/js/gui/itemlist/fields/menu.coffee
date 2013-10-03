@@ -5,8 +5,8 @@ Field menu
 Created by Max Geissler
 ###
 
-core = require "../../../../core"
-field = require "../../../itemlist/field"
+core = require "../../../core"
+field = require "."
 
 up = (elem) ->
 	elem.after(elem.prev())

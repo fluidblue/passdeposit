@@ -5,14 +5,11 @@ Field buttons
 Created by Max Geissler
 ###
 
-clipboard = require "../clipboard"
-
 initBtnCopy = ->
 	$(".itemField .btnCopy").click ->
 		input = $(this).closest(".itemField").find("input[type=text]:visible, input[type=password]:visible")
 		
-		# Copy to clipboard
-		clipboard.setText input.val()
+		# TODO: Copy to clipboard
 		
 		# Show notification
 		$.jGrowl $("#text .copiedToClipboard").html()

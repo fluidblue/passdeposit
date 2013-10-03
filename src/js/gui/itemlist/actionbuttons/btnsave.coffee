@@ -7,14 +7,14 @@ Created by Max Geissler
 
 core = require "../../../core"
 itemid = require "./itemid"
-field = require "../field"
+fields = require "../fields"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnSave", (e) ->
 		item = $(this).closest(".item")
 
 		# Get fields
-		fields = new Array()
+		fieldList = new Array()
 
 		item.find(".itemField").each (i, elem) ->
 			elem = $(elem)
@@ -23,10 +23,10 @@ init = ->
 			value = elem.find("input[type=text]:visible, input[type=password]:visible").val()
 
 			# Get type
-			type = field.getType(elem)
+			type = fields.getType(elem)
 
 			# Add to array
-			fields.push
+			fieldList.push
 				"type": type
 				"value": value
 			
@@ -44,7 +44,7 @@ init = ->
 
 		# Create item object
 		itemObj =
-			"fields": fields
+			"fields": fieldList
 			"tags": tags
 
 		# Process item

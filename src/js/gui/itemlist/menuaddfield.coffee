@@ -5,7 +5,7 @@ itemlist add field menu
 Created by Max Geissler
 ###
 
-field = require "./field"
+fields = require "./fields"
 
 init = ->
 	$(document).on "click", "#mainList .content .menuAddField .dropdown-menu a", (e) ->
@@ -22,8 +22,8 @@ init = ->
 
 		# Add field
 		item = $(this).closest(".item")
-		itemFieldContainer = field.getContainer(item)
-		elem = field.add(itemFieldContainer, newField)
+		itemFieldContainer = fields.getContainer(item)
+		elem = fields.add(itemFieldContainer, newField)
 
 		# Focus
 		elem.find("input[type=password], input[type=text]").focus()

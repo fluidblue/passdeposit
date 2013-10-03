@@ -9,17 +9,7 @@ optionsDialog = require "./options"
 donationDialog = require "./donations"
 lockDialog = require "./lock"
 logout = require "./logout"
-fields = require "./fields"
 clipboard = require "./clipboard"
-
-initTags = ->
-	optTags =
-		caseInsensitive: true
-		allowDuplicates: false
-		source: ["test", "test2"]
-		placeholder: "Tags"
-
-	$("#mainpage .input-tag").tag optTags
 
 initAdvancedSearch = ->
 	# Init search field popover
@@ -53,9 +43,7 @@ init = ->
 	donationDialog.init()
 	lockDialog.init()
 	logout.init()
-	initTags()
 	initAdvancedSearch()
-	fields.init()
 	clipboard.init()
 	
 	# TODO: Multiple typeahead

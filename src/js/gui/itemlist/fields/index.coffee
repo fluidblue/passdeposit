@@ -5,6 +5,10 @@ itemlist field manipulations
 Created by Max Geissler
 ###
 
+buttons = require "./buttons"
+menu = require "./menu"
+tags = require "./tags"
+
 # Return first field that matches the given type.
 # If no such field is found, null is returned.
 find = (fields, type) ->
@@ -72,6 +76,17 @@ replace = (elem, field) ->
 
 	# Return new field
 	return fieldTemplate
+
+
+initTemplate = (template) ->
+	tags.initTemplate(template)
+
+init = ->
+	buttons.init()
+	menu.init()
+
+module.exports.init = init
+module.exports.initTemplate = initTemplate
 
 module.exports.find = find
 module.exports.getType = getType
