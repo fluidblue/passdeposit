@@ -8,35 +8,9 @@ Created by Max Geissler
 quickbuttons = require "./quickbuttons"
 toggleview = require "./toggleview"
 actionbuttons = require "./actionbuttons"
+menuaddfield = require "./menuaddfield"
 format = require "./format"
-
-# Return first field that matches the given type.
-# If no such field is found, null is returned.
-getField = (fields, type) ->
-	for field in fields
-		if field.type == type
-			return field
-
-	return null
-
-addField = (itemFieldContainer, field) ->
-	# Get field class
-	fieldClass = switch field.type
-		when "email" then "itemFieldEmail"
-		when "pass" then "itemFieldPassword"
-		when "service" then "itemFieldServiceName"
-		when "uri" then "itemFieldWebAddress"
-		when "user" then "itemFieldUser"
-		else "itemFieldText"
-
-	# Clone field template
-	fieldTemplate = $("#mainpage .itemFieldTemplates ." + fieldClass).clone()
-
-	# Set field value
-	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
-
-	# Insert before tag field
-	itemFieldContainer.children("*:last").before(fieldTemplate)
+field = require "./field"
 
 add = (item) ->
 	# Create new item from template
@@ -51,10 +25,10 @@ add = (item) ->
 	# Set quickbuttons
 	buttonContainer = template.find(".header .buttons")
 
-	if !getField(item.fields, "uri")?
+	if !field.find(item.fields, "uri")?
 		buttonContainer.find(".btnOpen").hide()
 
-	if !getField(item.fields, "pass")?
+	if !field.find(item.fields, "pass")?
 		buttonContainer.find(".btnPass").hide()
 
 	# Add info texts
@@ -65,10 +39,10 @@ add = (item) ->
 	itemInfoContainer.find(".infoModified").html(format.date(item.dateModified))
 
 	# Add fields
-	itemFieldContainer = template.find(".content .itemFieldContainer")
-	
-	for field in item.fields
-		addField(itemFieldContainer, field)
+	itemFieldContainer = field.getContainer(template)
+
+	for f in item.fields
+		field.add(itemFieldContainer, f)
 
 	# Initialize template
 	quickbuttons.initTemplate(template)
@@ -83,6 +57,7 @@ clear = ->
 init = ->
 	toggleview.init()
 	actionbuttons.init()
+	menuaddfield.init()
 
 	# TODO: Remove
 	items = require "./testfields.json"

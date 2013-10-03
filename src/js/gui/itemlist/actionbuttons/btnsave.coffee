@@ -7,6 +7,7 @@ Created by Max Geissler
 
 core = require "../../../core"
 itemid = require "./itemid"
+field = require "../field"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnSave", (e) ->
@@ -22,17 +23,7 @@ init = ->
 			value = elem.find("input[type=text]:visible, input[type=password]:visible").val()
 
 			# Get type
-			type = "text"
-			if elem.hasClass("itemFieldEmail")
-				type = "email"
-			else if elem.hasClass("itemFieldPassword")
-				type = "pass"
-			else if elem.hasClass("itemFieldServiceName")
-				type = "service"
-			else if elem.hasClass("itemFieldWebAddress")
-				type = "uri"
-			else if elem.hasClass("itemFieldUser")
-				type = "user"
+			type = field.getType(elem)
 
 			# Add to array
 			fields.push
