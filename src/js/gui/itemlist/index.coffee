@@ -8,80 +8,7 @@ Created by Max Geissler
 quickbuttons = require "./quickbuttons"
 toggleview = require "./toggleview"
 actionbuttons = require "./actionbuttons"
-
-formatDate = (num) ->
-	date = new Date(num)
-
-	day = date.getDate()
-	month = date.getMonth() + 1 # Months are zero based
-	year = date.getFullYear()
-
-	if day < 10
-		day = "0" + day.toString()
-
-	if month < 10
-		month = "0" + month.toString()
-
-	return year + "-" + month + "-" + day
-
-formatEncryption = (enc) ->
-	return switch enc
-		when "aes256" then "AES 256"
-		else "Unknown"
-
-formatWebAddress = (addr) ->
-	if addr.indexOf("http://") == 0
-		return addr.substring(7)
-
-	if addr.indexOf("https://") == 0
-		return addr.substring(8)
-
-	return addr
-
-formatTitle = (item) ->
-	title = ""
-	dot = ' <span class="dot">•</span> '
-
-	user = ""
-	email = ""
-	service = ""
-	uri = ""
-	text = ""
-
-	# Loop through fields in reverse order
-	for field in item.fields by -1
-		switch field.type
-			when "user" then user = field.value
-			when "email" then email = field.value
-			when "service" then service = field.value
-			when "uri" then uri = formatWebAddress(field.value)
-			when "text" then text = field.value
-
-	# Create title:
-	# (Username | Email) * (ServiceName) * (WebAddress) * (Text)
-	# If only WebAddress & Text are present:
-	# Text * WebAddress
-
-	if user.length <= 0 && email.length <= 0 && service.length <= 0 &&
-	uri.length > 0 && text.length > 0
-		title = text + dot + uri
-	else
-		if user.length > 0
-			title += user
-
-		if title.length <= 0 && email.length > 0
-			title += email
-
-		if service.length > 0
-			title += dot + service
-
-		if uri.length > 0
-			title += dot + uri
-
-		if text.length > 0
-			title += dot + text
-
-	return title
+format = require "./format"
 
 # Return first field that matches the given type.
 # If no such field is found, null is returned.
@@ -100,7 +27,7 @@ add = (item) ->
 
 	# Add title
 	titleContainer = template.find(".header .title")
-	titleContainer.html(formatTitle(item))
+	titleContainer.html(format.title(item))
 
 	# Set quickbuttons
 	buttonContainer = template.find(".header .buttons")
@@ -114,9 +41,9 @@ add = (item) ->
 	# Add info texts
 	itemInfoContainer = template.find(".content .itemInfoContainer")
 
-	itemInfoContainer.find(".infoEncryption").html(formatEncryption(item.encryption.type))
-	itemInfoContainer.find(".infoCreated").html(formatDate(item.dateCreated))
-	itemInfoContainer.find(".infoModified").html(formatDate(item.dateModified))
+	itemInfoContainer.find(".infoEncryption").html(format.encryption(item.encryption.type))
+	itemInfoContainer.find(".infoCreated").html(format.date(item.dateCreated))
+	itemInfoContainer.find(".infoModified").html(format.date(item.dateModified))
 
 	# Add fields
 	itemFieldContainer = template.find(".content .itemFieldContainer")
