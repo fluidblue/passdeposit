@@ -19,6 +19,25 @@ getField = (fields, type) ->
 
 	return null
 
+addField = (itemFieldContainer, field) ->
+	# Get field class
+	fieldClass = switch field.type
+		when "email" then "itemFieldEmail"
+		when "pass" then "itemFieldPassword"
+		when "service" then "itemFieldServiceName"
+		when "uri" then "itemFieldWebAddress"
+		when "user" then "itemFieldUser"
+		else "itemFieldText"
+
+	# Clone field template
+	fieldTemplate = $("#mainpage .itemFieldTemplates ." + fieldClass).clone()
+
+	# Set field value
+	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
+
+	# Insert before tag field
+	itemFieldContainer.children("*:last").before(fieldTemplate)
+
 add = (item) ->
 	# Create new item from template
 	template = $("#mainpage .itemTemplate").clone()
@@ -47,26 +66,9 @@ add = (item) ->
 
 	# Add fields
 	itemFieldContainer = template.find(".content .itemFieldContainer")
-
-	# Loop through fields in reverse order
-	for field in item.fields by -1
-		# Get field class
-		fieldClass = switch field.type
-			when "email" then "itemFieldEmail"
-			when "pass" then "itemFieldPassword"
-			when "service" then "itemFieldServiceName"
-			when "uri" then "itemFieldWebAddress"
-			when "user" then "itemFieldUser"
-			else "itemFieldText"
-
-		# Clone field template
-		fieldTemplate = $("#mainpage .itemFieldTemplates ." + fieldClass).clone()
-
-		# Set field value
-		fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
-
-		# Add field template
-		fieldTemplate.prependTo(itemFieldContainer)
+	
+	for field in item.fields
+		addField(itemFieldContainer, field)
 
 	# Initialize template
 	quickbuttons.initTemplate(template)
