@@ -42,7 +42,7 @@ getType = (elem) ->
 getContainer = (item) ->
 	return item.find(".content .itemFieldContainer")
 
-add = (itemFieldContainer, field) ->
+createTemplate = (field) ->
 	# Get field class
 	fieldClass = getClass(field.type)
 
@@ -52,10 +52,29 @@ add = (itemFieldContainer, field) ->
 	# Set field value
 	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
 
+	# Return initialized template
+	return fieldTemplate
+
+add = (itemFieldContainer, field) ->
+	# Create new field
+	fieldTemplate = createTemplate(field)
+
 	# Insert before tag field
 	return fieldTemplate.insertBefore(itemFieldContainer.children("*:last"))
+
+replace = (elem, field) ->
+	# Create new field
+	fieldTemplate = createTemplate(field)
+
+	# Insert before tag field
+	fieldTemplate.insertBefore(elem)
+	elem.remove()
+
+	# Return new field
+	return fieldTemplate
 
 module.exports.find = find
 module.exports.getType = getType
 module.exports.getContainer = getContainer
 module.exports.add = add
+module.exports.replace = replace

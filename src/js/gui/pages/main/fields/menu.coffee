@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 core = require "../../../../core"
+field = require "../../../itemlist/field"
 
 up = (elem) ->
 	elem.after(elem.prev())
@@ -47,23 +48,30 @@ passgen = (elem) ->
 	return
 
 typechange = (elem, type) ->
-	console.log("typechange: " + type)
+	input = elem.find("input[type=text]:visible, input[type=password]:visible")
+
+	newField =
+		type: type
+		value: input.val()
+
+	field.replace(elem, newField)
+
 	return
 
 init = ->
 	$(document).on "click", "#mainList .content .menuFieldContext .dropdown-menu a", (e) ->
 		elem = $(this)
 		href = elem.attr("href")
-		field = elem.closest(".itemField")
+		fld = elem.closest(".itemField")
 
 		switch href
 			# Handle structure actions
-			when "#up" then up(field)
-			when "#down" then down(field)
-			when "#remove" then remove(field)
+			when "#up" then up(fld)
+			when "#down" then down(fld)
+			when "#remove" then remove(fld)
 
 			# Handle password generation
-			when "#generate" then passgen(field)
+			when "#generate" then passgen(fld)
 			
 			# Prevent closing of menu
 			when "#"
@@ -71,7 +79,7 @@ init = ->
 				e.stopPropagation()
 			
 			# Handle type change
-			else typechange(field, href.substr(1))
+			else typechange(fld, href.substr(1))
 
 		e.preventDefault()
 		return
