@@ -10,6 +10,15 @@ menu = require "./menu"
 tags = require "./tags"
 tooltips = require "./tooltips"
 
+# Return first field that matches the given type.
+# If no such field is found, null is returned.
+find = (fields, type) ->
+	for field in fields
+		if field.type == type
+			return field
+
+	return null
+
 getClass = (type) ->
 	return switch type
 		when "email" then "itemFieldEmail"
@@ -112,6 +121,7 @@ init = ->
 
 module.exports.init = init
 module.exports.initTemplate = initTemplate
+module.exports.find = find
 module.exports.getType = getType
 module.exports.getContainer = getContainer
 module.exports.add = add

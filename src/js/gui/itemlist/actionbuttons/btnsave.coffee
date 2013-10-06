@@ -8,6 +8,8 @@ Created by Max Geissler
 core = require "../../../core"
 itemid = require "./itemid"
 fields = require "../fields"
+quickbuttons = require "../quickbuttons"
+format = require "../format"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnSave", (e) ->
@@ -22,9 +24,12 @@ init = ->
 				tag = $.trim(tag)
 				tags.push tag
 
+		# Get fields
+		fieldList = fields.getFields(item)
+
 		# Create item object
 		itemObj =
-			"fields": fields.getFields(item)
+			"fields": fieldList
 			"tags": tags
 
 		# Process item
@@ -36,6 +41,13 @@ init = ->
 			core.item.modify(itemObj)
 		else
 			core.item.add(itemObj)
+
+		# Update quickbuttons
+		quickbuttons.setButtons(item, fieldList)
+
+		# Update title
+		title = format.title(fieldList)
+		item.find(".header .title").html(title)
 
 		return
 

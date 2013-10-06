@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 format = require "./format"
+fields = require "./fields"
 
 initTooltips = (template) ->
 	buttonContainer = template.find(".header .buttons")
@@ -23,14 +24,8 @@ initTooltips = (template) ->
 
 initBtnPass = ->
 	$(document).on "click", "#mainList .item .header a.btnPass", (e) ->
-		item = $(this).closest(".item")
-		passField = item.find(".content .itemFieldPassword")
-
-		inputMasked = passField.find(".inputMasked")
-		inputVisible = passField.find(".inputVisible")
-
-		value = if inputMasked.css("display") == "none" then inputVisible.val() else inputMasked.val()
-
+		value = $(this).data("pass")
+		
 		# TODO: Copy to clipboard
 		console.log("copy to clipboard: " + value)
 
@@ -40,49 +35,41 @@ initBtnPass = ->
 		e.preventDefault()
 		return
 
-initBtnOpen = ->
-	$(document).on "click", "#mainList .item .header a.btnOpen", (e) ->
-		elem = $(this)
-
-		item = elem.closest(".item")
-		uriField = item.find(".content .itemFieldWebAddress")
-		input = uriField.find("input[type=text]")
-
-		# Make valid uri
-		uri = format.validUri(input.val())
-
-		# Set correct href
-		elem.attr("href", uri)
-
-		return
-
-setButtons = (item) ->
-	buttonContainer = item.find(".header .buttons")
-
+setBtnVisible = (btn, visible) ->
 	# jQuery's hide() and show() don't work here,
 	# because they break the design.
 
 	# Default display value:
 	defaultDisplay = "inline-block"
 
-	if item.find(".content .itemFieldWebAddress").length > 0
-		buttonContainer.find(".btnOpen").css("display", defaultDisplay)
+	if visible
+		btn.css("display", defaultDisplay)
 	else
-		buttonContainer.find(".btnOpen").css("display", "none")
+		btn.css("display", "none")
 
-	if item.find(".content .itemFieldPassword").length > 0
-		buttonContainer.find(".btnPass").css("display", defaultDisplay)
-	else
-		buttonContainer.find(".btnPass").css("display", "none")
+setButtons = (item, fieldList) ->
+	buttonContainer = item.find(".header .buttons")
+	btnOpen = buttonContainer.find(".btnOpen")
+	btnPass = buttonContainer.find(".btnPass")
+
+	# Get fields
+	fieldUri = fields.find(fieldList, "uri")
+	fieldPass = fields.find(fieldList, "pass")
+
+	# Set data for buttons
+	if fieldUri? then btnOpen.attr("href", fieldUri.value)
+	if fieldPass? then btnPass.data("pass", fieldPass.value)
+
+	# Set visibility of buttons
+	setBtnVisible(btnOpen, fieldUri != null)
+	setBtnVisible(btnPass, fieldPass != null)
 
 initTemplate = (template) ->
-	setButtons(template)
 	initTooltips(template)
 
 init = ->
-	# Add button events
+	# Add button event
 	initBtnPass()
-	initBtnOpen()
 
 module.exports.initTemplate = initTemplate
 module.exports.init = init

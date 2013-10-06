@@ -35,6 +35,9 @@ add = (item) ->
 	for field in item.fields
 		fields.add(itemFieldContainer, field)
 
+	# Set quickbuttons
+	quickbuttons.setButtons(template, item.fields)
+
 	# Initialize template
 	quickbuttons.initTemplate(template)
 	actionbuttons.initTemplate(template)
