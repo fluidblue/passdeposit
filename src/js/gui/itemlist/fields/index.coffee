@@ -54,15 +54,18 @@ createTemplate = (field) ->
 	# Clone field template
 	fieldTemplate = $("#mainpage .itemFieldTemplates ." + fieldClass).clone()
 
-	# Set field value
-	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
-
 	# Return initialized template
 	return fieldTemplate
 
 add = (itemFieldContainer, field) ->
 	# Create new field
 	fieldTemplate = createTemplate(field)
+
+	# Set field value
+	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
+
+	# Initialize tooltips
+	tooltips.initFieldTemplate(fieldTemplate, field.type)
 
 	# Insert before tag field
 	return fieldTemplate.insertBefore(itemFieldContainer.children("*:last"))
@@ -115,7 +118,6 @@ initTemplate = (template) ->
 	tags.initTemplate(template)
 
 init = ->
-	tooltips.init()
 	buttons.init()
 	menu.init()
 

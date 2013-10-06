@@ -5,7 +5,7 @@ Field buttons
 Created by Max Geissler
 ###
 
-initTooltipWebAddress = ->
+initTooltipWebAddress = (fieldTemplate) ->
 	# Create web address tooltip
 	# TODO: Enable animation (Bug when focus already set and bug with arrow)
 
@@ -15,79 +15,70 @@ initTooltipWebAddress = ->
 		trigger: "focus"
 		animation: false
 
-	$(".itemField.itemFieldWebAddress").each (i, elem) ->
-		$(elem).find("input[type=text]").tooltip options
-		
-		# Continue with loop
-		return true
+	fieldTemplate.find("input[type=text]").tooltip options
 
-initTooltipPassGen = ->
+initTooltipPassGen = (fieldTemplate) ->
 	# Create password generation tooltip
-
 	options =
 		placement: "bottom"
 		title: $("#text .passGenerated").html()
 		trigger: "manual"
 		animation: true
 
-	$(".itemField.itemFieldPassword").each (i, elem) ->
-		# Create tooltip on both password and text input
-		inputMasked = $(elem).find("input[type=password]")
-		inputVisible = $(elem).find("input[type=text]")
+	# Create tooltip on both password and text input
+	inputMasked = fieldTemplate.find("input[type=password]")
+	inputVisible = fieldTemplate.find("input[type=text]")
 
-		inputMasked.tooltip options
-		inputVisible.tooltip options
+	inputMasked.tooltip options
+	inputVisible.tooltip options
 
-		# Hide tooltip on focus
-		inputMasked.focus ->
-			inputMasked.tooltip("hide")
-			inputVisible.tooltip("hide")
-			return
+	# Hide tooltip on focus
+	inputMasked.focus ->
+		inputMasked.tooltip("hide")
+		inputVisible.tooltip("hide")
+		return
 
-		inputVisible.focus ->
-			inputMasked.tooltip("hide")
-			inputVisible.tooltip("hide")
-			return
-		
-		# Continue with loop
-		return true
+	inputVisible.focus ->
+		inputMasked.tooltip("hide")
+		inputVisible.tooltip("hide")
+		return
 
-initTooltipPassGenHint = ->
-	$(".itemField.itemFieldPassword").each (i, elem) ->
-		elem = $(elem)
+initTooltipPassGenHint = (fieldTemplate) ->
+	inputMasked = fieldTemplate.find(".inputMasked")
+	inputVisible = fieldTemplate.find(".inputVisible")
+	btnDropdown = fieldTemplate.find(".btn.dropdown-toggle")
 
-		inputMasked = elem.find(".inputMasked")
-		inputVisible = elem.find(".inputVisible")
-		btnDropdown = elem.find(".btn.dropdown-toggle")
+	# Create password generation hint
+	options =
+		placement: "bottom"
+		title: $("#text .passGenerationHint").html()
+		trigger: "manual"
 
-		# Create password generation hint
-		options =
-			placement: "bottom"
-			title: $("#text .passGenerationHint").html()
-			trigger: "manual"
+	fnShowTooltip = ->
+		btnDropdown.tooltip "show"
+		return
 
-		fnShowTooltip = ->
-			btnDropdown.tooltip "show"
-			return
+	fnHideTooltip = ->
+		btnDropdown.tooltip "hide"
+		return
 
-		fnHideTooltip = ->
-			btnDropdown.tooltip "hide"
-			return
+	btnDropdown.tooltip options
 
-		btnDropdown.tooltip options
+	inputMasked.focus fnShowTooltip
+	inputVisible.focus fnShowTooltip
 
-		inputMasked.focus fnShowTooltip
-		inputVisible.focus fnShowTooltip
+	inputMasked.blur fnHideTooltip
+	inputVisible.blur fnHideTooltip
 
-		inputMasked.blur fnHideTooltip
-		inputVisible.blur fnHideTooltip
-		
-		# Continue with loop
-		return true
+initFieldTemplate = (fieldTemplate, type) ->
+	switch type
+		when "uri"
+			initTooltipWebAddress(fieldTemplate)
 
-init = ->
-	initTooltipWebAddress()
-	initTooltipPassGen()
-	initTooltipPassGenHint()
+		when "pass"
+			initTooltipPassGen(fieldTemplate)
+			initTooltipPassGenHint(fieldTemplate)
 
-module.exports.init = init
+		else return
+
+module.exports.initFieldTemplate = initFieldTemplate
