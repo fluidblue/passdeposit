@@ -1,7 +1,7 @@
 {
 	"author": "Max Geissler",
 	"name": "passdeposit",
-	"description": "PassDeposit is a highly secure online password manager.",
+	"description": "PassDeposit is a simple and secure online password manager.",
 	"homepage": "http://www.passdeposit.com",
 	"version": "0.0.1",
 	"preferGlobal": true,
