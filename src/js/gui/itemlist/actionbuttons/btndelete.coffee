@@ -40,6 +40,7 @@ initTemplate = (template) ->
 		if exist
 			# Remove item
 			core.item.remove(id)
+			template.remove()
 		else
 			# Cancel creation of new item
 			template.find(".content .btnCancel").trigger("click")
