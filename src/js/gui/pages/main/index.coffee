@@ -10,6 +10,7 @@ donationDialog = require "./donations"
 lockDialog = require "./lock"
 logout = require "./logout"
 clipboard = require "./clipboard"
+btnAdd = require "./btnAdd"
 
 initAdvancedSearch = ->
 	# Init search field popover
@@ -45,6 +46,7 @@ init = ->
 	logout.init()
 	initAdvancedSearch()
 	clipboard.init()
+	btnAdd.init()
 	
 	# TODO: Multiple typeahead
 	options = source: ["Alabama", "Alaska", "Arizona", "Arkansas", "California",

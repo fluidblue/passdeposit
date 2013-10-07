@@ -12,7 +12,7 @@ menuaddfield = require "./menuaddfield"
 format = require "./format"
 fields = require "./fields"
 
-add = (item) ->
+add = (item, open = false) ->
 	# Create new item from template
 	template = $("#mainpage .itemTemplate").clone()
 	template.removeClass("hide")
@@ -20,7 +20,11 @@ add = (item) ->
 
 	# Add title
 	titleContainer = template.find(".header .title")
-	titleContainer.html(format.title(item.fields))
+
+	if item.title?
+		titleContainer.html(item.title)
+	else
+		titleContainer.html(format.title(item.fields))
 
 	# Add info texts
 	itemInfoContainer = template.find(".content .itemInfoContainer")
@@ -42,6 +46,9 @@ add = (item) ->
 	quickbuttons.initTemplate(template)
 	actionbuttons.initTemplate(template)
 	fields.initTemplate(template)
+
+	# Open item
+	if open then template.addClass("open")
 
 	# Add item to mainList
 	template.appendTo("#mainList")
