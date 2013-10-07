@@ -61,8 +61,8 @@ setButtons = (item, fieldList) ->
 	if fieldPass? then btnPass.data("pass", fieldPass.value)
 
 	# Set visibility of buttons
-	setBtnVisible(btnOpen, fieldUri != null)
-	setBtnVisible(btnPass, fieldPass != null)
+	setBtnVisible(btnOpen, fieldUri? && fieldUri.length > 0)
+	setBtnVisible(btnPass, fieldPass? && fieldPass.length > 0)
 
 initTemplate = (template) ->
 	initTooltips(template)
