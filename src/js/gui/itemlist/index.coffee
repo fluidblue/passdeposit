@@ -11,6 +11,7 @@ actionbuttons = require "./actionbuttons"
 menuaddfield = require "./menuaddfield"
 format = require "./format"
 fields = require "./fields"
+itemid = require "./itemid"
 
 add = (item, open = false) ->
 	# Create new item from template
@@ -49,6 +50,9 @@ add = (item, open = false) ->
 
 	# Open item
 	if open then template.addClass("open")
+
+	# Set item's id
+	itemid.set(template, item.id)
 
 	# Add item to mainList
 	template.appendTo("#mainList")

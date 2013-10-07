@@ -13,6 +13,8 @@ init = ->
 		type = href.substr(1)
 
 		item =
+			id: 0
+
 			dateCreated: 0
 			dateModified: 0
 

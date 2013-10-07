@@ -5,7 +5,7 @@ itemlist action button: duplicate
 Created by Max Geissler
 ###
 
-itemid = require "./itemid"
+itemid = require "../itemid"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnDuplicate", (e) ->

@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 core = require "../../../core"
-itemid = require "./itemid"
+itemid = require "../itemid"
 
 initTemplate = (template) ->
 	btnDelete = template.find(".content .actionButtons .btnDelete")

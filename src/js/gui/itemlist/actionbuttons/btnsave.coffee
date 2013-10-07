@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 core = require "../../../core"
-itemid = require "./itemid"
+itemid = require "../itemid"
 fields = require "../fields"
 quickbuttons = require "../quickbuttons"
 format = require "../format"
