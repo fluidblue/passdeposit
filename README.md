@@ -1,6 +1,6 @@
 # PassDeposit
 
-PassDeposit is a highly secure online password manager.
+PassDeposit is a simple and secure online password manager.
 It allows you to store and access your passwords online.
 
 You may be asking yourself: Can I trust PassDeposit? Yes you can!
