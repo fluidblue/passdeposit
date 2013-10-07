@@ -17,6 +17,10 @@ init = ->
 		# Mark current item as new
 		itemid.set(item, 0)
 
+		# Set new title
+		titleContainer = item.find(".header .title")
+		titleContainer.html($("#text .addOther").html())
+
 		# TODO: Resort or clear item list
 
 		# Show notification
