@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 itemid = require "../itemid"
+quickbuttons = require "../quickbuttons"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnDuplicate", (e) ->
@@ -20,6 +21,9 @@ init = ->
 		# Set new title
 		titleContainer = item.find(".header .title")
 		titleContainer.html($("#text .addOther").html())
+
+		# Disable quickbuttons
+		quickbuttons.setButtons(item, [])
 
 		# TODO: Resort or clear item list
 
