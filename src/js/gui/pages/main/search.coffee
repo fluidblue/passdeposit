@@ -58,13 +58,23 @@ search = (value) ->
 
 initSearchHandlers = ->
 	$("#search").on "keypress", (e) ->
-		value = $(this).val() + String.fromCharCode(e.which)
-		search(value)
+		searchField = $(this)
+		value = searchField.val() + String.fromCharCode(e.which)
+
+		if searchField.data("search-value") != value
+			searchField.data("search-value", value)
+			search(value)
+
 		return
 
 	$("#search").on "change keyup input", (e) ->
-		value = $(this).val()
-		search(value)
+		searchField = $(this)
+		value = searchField.val()
+
+		if searchField.data("search-value") != value
+			searchField.data("search-value", value)
+			search(value)
+
 		return
 
 init = ->
