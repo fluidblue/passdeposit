@@ -16,13 +16,7 @@ init = ->
 		item = $(this).closest(".item")
 
 		# Get tags
-		tags = new Array()
-
-		val = item.find(".input-tag").val()
-		if val? && val.length > 0
-			for tag in val.split(",")
-				tag = $.trim(tag)
-				tags.push tag
+		tags = fields.getTags(item)
 
 		# Get fields
 		fieldList = fields.getFields(item)

@@ -81,6 +81,17 @@ replace = (elem, field) ->
 	# Return new field
 	return fieldTemplate
 
+getTags = (item) ->
+	tags = new Array()
+
+	val = item.find(".input-tag").val()
+	if val? && val.length > 0
+		for tag in val.split(",")
+			tag = $.trim(tag)
+			tags.push tag
+
+	return tags
+
 getFields = (item) ->
 	fieldList = new Array()
 
@@ -128,4 +139,5 @@ module.exports.getType = getType
 module.exports.getContainer = getContainer
 module.exports.add = add
 module.exports.replace = replace
+module.exports.getTags = getTags
 module.exports.getFields = getFields
