@@ -13,7 +13,10 @@ validUri = (uri) ->
 	return uri
 
 date = (num) ->
-	date = new Date(num)
+	if num == 0
+		date = new Date()
+	else
+		date = new Date(num)
 
 	day = date.getDate()
 	month = date.getMonth() + 1 # Months are zero based
