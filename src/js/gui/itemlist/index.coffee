@@ -20,7 +20,7 @@ defaultAddOptions =
 
 add = (item, options = null) ->
 	# Merge options
-	options = $.extend({}, defaultAddOptions, options)
+	options = $.extend(true, {}, defaultAddOptions, options)
 
 	# Create new item from template
 	template = $("#mainpage .itemTemplate").clone()
