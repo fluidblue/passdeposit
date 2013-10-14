@@ -58,8 +58,10 @@ init = ->
 				pushField("user")
 				pushField("pass")
 
-		itemlist.clear()
-		itemlist.add(item, true)
+		itemlist.add item,
+			open: true
+			position: "top"
+			focus: true
 
 		e.preventDefault()
 		return

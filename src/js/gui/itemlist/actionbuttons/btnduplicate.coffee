@@ -5,33 +5,49 @@ itemlist action button: duplicate
 Created by Max Geissler
 ###
 
-itemid = require "../itemid"
-quickbuttons = require "../quickbuttons"
+fields = require "../fields"
+itemlist = require ".."
+btnsave = require "../actionbuttons/btnsave"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnDuplicate", (e) ->
 		item = $(this).closest(".item")
 
-		# Save item
-		item.find(".content .btnSave").trigger("click")
+		# Get tags
+		tags = fields.getTags(item)
 
-		# Mark current item as new
-		itemid.set(item, 0)
+		# Get fields
+		fieldList = fields.getFields(item)
 
-		# Set new title
-		titleContainer = item.find(".header .title")
-		titleContainer.html($("#text .addOther").html())
+		# Save and close
+		btnsave.save(item, tags, fieldList)
+		item.removeClass("open")
 
-		# Disable quickbuttons
-		quickbuttons.setButtons(item, [])
+		# Duplicate item
+		item =
+			id: 0
+
+			dateCreated: 0
+			dateModified: 0
+
+			encryption:
+				type: "aes256"
+
+			title: $("#text .addOther").html()
+
+			fields: fieldList
+			tags: tags
+
+		# Add duplicate
+		itemlist.add item,
+			open: true
+			position: "top"
+			focus: true
 
 		# TODO: Resort or clear item list
 
 		# Show notification
 		$.jGrowl $("#text .duplicatedItem").html()
-
-		# Hide tooltip
-		$(this).tooltip("hide")
 
 		return
 

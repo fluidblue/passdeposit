@@ -13,7 +13,15 @@ format = require "./format"
 fields = require "./fields"
 itemid = require "./itemid"
 
-add = (item, open = false) ->
+defaultAddOptions =
+	open: false
+	position: "bottom"
+	focus: false
+
+add = (item, options = null) ->
+	# Merge options
+	options = $.extend({}, defaultAddOptions, options)
+
 	# Create new item from template
 	template = $("#mainpage .itemTemplate").clone()
 	template.removeClass("hide")
@@ -49,13 +57,22 @@ add = (item, open = false) ->
 	fields.initTemplate(template)
 
 	# Open item
-	if open then template.addClass("open")
+	if options.open then template.addClass("open")
 
 	# Set item's id
 	itemid.set(template, item.id)
 
 	# Add item to mainList
-	template.appendTo("#mainList")
+	if options.position == "top"
+		template.prependTo("#mainList")
+	else
+		template.appendTo("#mainList")
+
+	# Focus first field
+	if options.focus
+		template.find(".itemFieldContainer > *:first-child").find("input[type=text]:visible, input[type=password]:visible").focus()
+
+	return true
 
 clear = ->
 	$("#mainList").empty()
