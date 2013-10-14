@@ -75,7 +75,15 @@ add = (item, options = null) ->
 	return true
 
 clear = ->
-	$("#mainList").empty()
+	$("#mainList").children().each (i, elem) ->
+		elem = $(elem)
+		
+		# Remove all items which are saved
+		if itemid.get(elem) != 0
+			elem.remove()
+
+		# Continue with loop
+		return true
 
 init = ->
 	fields.init()
@@ -83,11 +91,6 @@ init = ->
 	actionbuttons.init()
 	menuaddfield.init()
 	quickbuttons.init()
-
-	# TODO: Remove
-	items = require "./testfields.json"
-	for item in items
-		add(item)
 
 module.exports.init = init
 module.exports.add = add

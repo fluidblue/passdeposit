@@ -11,6 +11,10 @@ lockDialog = require "./lock"
 logout = require "./logout"
 clipboard = require "./clipboard"
 btnAdd = require "./btnAdd"
+itemlist = require "../../itemlist"
+
+# TODO: Remove
+testItems = require "../../itemlist/testfields.json"
 
 initAdvancedSearch = ->
 	# Init search field popover
@@ -53,8 +57,17 @@ initTypeahead = ->
 	$("#search").typeahead options
 
 search = (value) ->
-	# TODO
-	console.log value
+	# Clear itemlist
+	itemlist.clear()
+
+	# Start searching when value is not empty
+	if value.length > 0
+		# TODO
+		console.log value
+
+		# TODO: Remove
+		for item in testItems
+			itemlist.add(item)
 
 initSearchHandlers = ->
 	$("#search").on "keypress", (e) ->
