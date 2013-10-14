@@ -11,6 +11,7 @@ actionbuttons = require "./actionbuttons"
 menuaddfield = require "./menuaddfield"
 format = require "./format"
 fields = require "./fields"
+tags = require "./tags"
 itemid = require "./itemid"
 
 defaultAddOptions =
@@ -43,18 +44,18 @@ add = (item, options = null) ->
 	itemInfoContainer.find(".infoModified").html(format.date(item.dateModified))
 
 	# Add fields
-	itemFieldContainer = fields.getContainer(template)
+	fields.setFields(template, item.fields)
 
-	for field in item.fields
-		fields.add(itemFieldContainer, field)
+	# Add tags
+	tags.initTemplate(template)
+	tags.set(template, item.tags)
 
 	# Set quickbuttons
 	quickbuttons.setButtons(template, item.fields)
 
-	# Initialize template
+	# Initialize buttons
 	quickbuttons.initTemplate(template)
 	actionbuttons.initTemplate(template)
-	fields.initTemplate(template)
 
 	# Open item
 	if options.open then template.addClass("open")

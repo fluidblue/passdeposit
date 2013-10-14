@@ -8,14 +8,15 @@ Created by Max Geissler
 core = require "../../../core"
 itemid = require "../itemid"
 fields = require "../fields"
+tags = require "../tags"
 quickbuttons = require "../quickbuttons"
 format = require "../format"
 
-save = (item, tags, fieldList) ->
+save = (item, tagList, fieldList) ->
 	# Create item object
 	itemObj =
 		"fields": fieldList
-		"tags": tags
+		"tags": tagList
 
 	# Process item
 	id = itemid.get(item)
@@ -41,13 +42,13 @@ init = ->
 		item = $(this).closest(".item")
 
 		# Get tags
-		tags = fields.getTags(item)
+		tagList = tags.get(item)
 
 		# Get fields
 		fieldList = fields.getFields(item)
 
 		# Save
-		save(item, tags, fieldList)
+		save(item, tagList, fieldList)
 
 		return
 

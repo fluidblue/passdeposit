@@ -7,7 +7,6 @@ Created by Max Geissler
 
 buttons = require "./buttons"
 menu = require "./menu"
-tags = require "./tags"
 tooltips = require "./tooltips"
 
 # Return first field that matches the given type.
@@ -81,16 +80,11 @@ replace = (elem, field) ->
 	# Return new field
 	return fieldTemplate
 
-getTags = (item) ->
-	tagList = new Array()
+setFields = (item, fieldList) ->
+	itemFieldContainer = getContainer(item)
 
-	val = item.find(".input-tag").val()
-	if val? && val.length > 0
-		for tag in val.split(",")
-			tag = $.trim(tag)
-			tagList.push tag
-
-	return tagList
+	for field in fieldList
+		add(itemFieldContainer, field)
 
 getFields = (item) ->
 	fieldList = new Array()
@@ -125,19 +119,15 @@ getFields = (item) ->
 
 	return fieldList
 
-initTemplate = (template) ->
-	tags.initTemplate(template)
-
 init = ->
 	buttons.init()
 	menu.init()
 
 module.exports.init = init
-module.exports.initTemplate = initTemplate
 module.exports.find = find
 module.exports.getType = getType
 module.exports.getContainer = getContainer
 module.exports.add = add
 module.exports.replace = replace
-module.exports.getTags = getTags
+module.exports.setFields = setFields
 module.exports.getFields = getFields

@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 fields = require "../fields"
+tags = require "../tags"
 itemlist = require ".."
 btnsave = require "../actionbuttons/btnsave"
 
@@ -14,13 +15,13 @@ init = ->
 		item = $(this).closest(".item")
 
 		# Get tags
-		tags = fields.getTags(item)
+		tagList = tags.get(item)
 
 		# Get fields
 		fieldList = fields.getFields(item)
 
 		# Save and close
-		btnsave.save(item, tags, fieldList)
+		btnsave.save(item, tagList, fieldList)
 		item.removeClass("open")
 
 		# Duplicate item
@@ -36,7 +37,7 @@ init = ->
 			title: $("#text .addOther").html()
 
 			fields: fieldList
-			tags: tags
+			tags: tagList
 
 		# Add duplicate
 		itemlist.add newItem,
