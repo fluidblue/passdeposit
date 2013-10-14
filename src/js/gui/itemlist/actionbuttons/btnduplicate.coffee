@@ -24,7 +24,7 @@ init = ->
 		item.removeClass("open")
 
 		# Duplicate item
-		item =
+		newItem =
 			id: 0
 
 			dateCreated: 0
@@ -39,7 +39,7 @@ init = ->
 			tags: tags
 
 		# Add duplicate
-		itemlist.add item,
+		itemlist.add newItem,
 			open: true
 			position: "top"
 			focus: true
