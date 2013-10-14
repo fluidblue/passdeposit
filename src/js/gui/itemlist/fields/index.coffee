@@ -82,15 +82,15 @@ replace = (elem, field) ->
 	return fieldTemplate
 
 getTags = (item) ->
-	tags = new Array()
+	tagList = new Array()
 
 	val = item.find(".input-tag").val()
 	if val? && val.length > 0
 		for tag in val.split(",")
 			tag = $.trim(tag)
-			tags.push tag
+			tagList.push tag
 
-	return tags
+	return tagList
 
 getFields = (item) ->
 	fieldList = new Array()
