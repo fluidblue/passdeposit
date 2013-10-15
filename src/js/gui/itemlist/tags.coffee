@@ -6,8 +6,12 @@ Created by Max Geissler
 ###
 
 set = (item, tagList) ->
-	# TODO
-	console.log tagList
+	input = item.find("input[type=text]")
+
+	for tag in tagList
+		# Add tags
+		input.val(tag)
+		input.trigger("blur")
 
 get = (item) ->
 	tagList = new Array()
