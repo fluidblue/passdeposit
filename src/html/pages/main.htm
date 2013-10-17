@@ -12,7 +12,10 @@
 	</div>
 
 	<!-- Main item list -->
-	<div id="mainList"></div>
+	<div id="mainList" class="hide"></div>
+
+	<!-- Landing page -->
+	{% include main/landingpage.htm %}
 
 	<!-- Item template -->
 	{% include main/item.htm %}
@@ -28,7 +31,7 @@
 	</div>
 	
 	<!-- Pagination -->
-	<div class="pagination pagination-centered">
+	<div class="pagination pagination-centered hide">
 		<ul>
 			<li class="disabled"><a href="#">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

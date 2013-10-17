@@ -1,0 +1,78 @@
+/**
+ * PassDeposit
+ * 
+ * Created by Max Geissler
+ */
+
+#landingPage
+{
+	padding: 40px;
+	text-align: center;
+
+	> h1
+	{
+		margin: 0;
+		//font-weight: bold;
+		//text-shadow: 0px -2px 0px #333, 0px 2px 3px #666;
+	}
+
+	.info
+	{
+		margin-top: 20px;
+	}
+
+	.donate
+	{
+		margin-top: 50px;
+	}
+
+	.social
+	{
+		margin-top: 30px;
+		
+		> a
+		{
+			display: inline-block;
+
+			width: 32px;
+			height: 32px;
+
+			background-image: url('../media/social.png');
+		}
+
+		.facebook
+		{
+			background-position: -192px 0px;
+		}
+
+		.googleplus
+		{
+			background-position: -160px 0px;
+		}
+
+		.twitter
+		{
+			background-position: 0px 0px;
+		}
+
+		.linkedin
+		{
+			background-position: -128px 0px;
+		}
+
+		.pinterest
+		{
+			background-position: -96px 0px;
+		}
+
+		.reddit
+		{
+			background-position: -64px 0px;
+		}
+
+		.tumblr
+		{
+			background-position: -32px 0px;
+		}
+	}
+}

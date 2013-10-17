@@ -16,6 +16,27 @@ itemlist = require "../../itemlist"
 # TODO: Remove
 testItems = require "../../itemlist/testfields.json"
 
+search = (value) ->
+	# Clear itemlist
+	itemlist.clear()
+
+	# Start searching when value is not empty
+	if value.length > 0
+		# Show mainList
+		$("#landingPage").hide()
+		$("#mainList").show()
+
+		# TODO
+		console.log value
+
+		# TODO: Remove
+		for item in testItems
+			itemlist.add(item)
+	else
+		# Show landing page
+		$("#mainList").hide()
+		$("#landingPage").show()
+
 initAdvancedSearch = ->
 	# Init search field popover
 
@@ -55,19 +76,6 @@ initTypeahead = ->
 		"Wisconsin", "Wyoming"]
 
 	$("#search").typeahead options
-
-search = (value) ->
-	# Clear itemlist
-	itemlist.clear()
-
-	# Start searching when value is not empty
-	if value.length > 0
-		# TODO
-		console.log value
-
-		# TODO: Remove
-		for item in testItems
-			itemlist.add(item)
 
 initSearchHandlers = ->
 	$("#search").on "keypress", (e) ->
