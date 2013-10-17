@@ -43,36 +43,64 @@
 		.facebook
 		{
 			background-position: -192px 0px;
+			&:hover
+			{
+				background-position: -192px -32px;
+			}
 		}
 
 		.googleplus
 		{
 			background-position: -160px 0px;
+			&:hover
+			{
+				background-position: -160px -32px;
+			}
 		}
 
 		.twitter
 		{
 			background-position: 0px 0px;
+			&:hover
+			{
+				background-position: 0px -32px;
+			}
 		}
 
 		.linkedin
 		{
 			background-position: -128px 0px;
+			&:hover
+			{
+				background-position: -128px -32px;
+			}
 		}
 
 		.pinterest
 		{
 			background-position: -96px 0px;
+			&:hover
+			{
+				background-position: -96px -32px;
+			}
 		}
 
 		.reddit
 		{
 			background-position: -64px 0px;
+			&:hover
+			{
+				background-position: -64px -32px;
+			}
 		}
 
 		.tumblr
 		{
 			background-position: -32px 0px;
+			&:hover
+			{
+				background-position: -32px -32px;
+			}
 		}
 	}
 }
