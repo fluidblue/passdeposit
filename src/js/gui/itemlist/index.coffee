@@ -47,8 +47,7 @@ add = (item, options = null) ->
 	fields.setFields(template, item.fields)
 
 	# Add tags
-	tags.initTemplate(template)
-	tags.set(template, item.tags)
+	tags.init(template, item.tags)
 
 	# Set quickbuttons
 	quickbuttons.setButtons(template, item.fields)

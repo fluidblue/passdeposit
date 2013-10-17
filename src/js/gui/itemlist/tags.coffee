@@ -5,13 +5,19 @@ itemlist tag manipulations
 Created by Max Geissler
 ###
 
-set = (item, tagList) ->
-	input = item.find("input[type=text]")
+init = (item, tagList) ->
+	input = item.find(".itemFieldTags .input-tag")
 
-	for tag in tagList
-		# Add tags
-		input.val(tag)
-		input.trigger("blur")
+	# Add start values
+	input.val tagList.join(", ")
+
+	optTags =
+		caseInsensitive: true
+		allowDuplicates: false
+		source: ["test", "test2"]
+		placeholder: "Tags"
+
+	input.tag optTags
 
 get = (item) ->
 	tagList = new Array()
@@ -24,15 +30,5 @@ get = (item) ->
 
 	return tagList
 
-initTemplate = (template) ->
-	optTags =
-		caseInsensitive: true
-		allowDuplicates: false
-		source: ["test", "test2"]
-		placeholder: "Tags"
-
-	template.find(".itemFieldTags .input-tag").tag optTags
-
-module.exports.initTemplate = initTemplate
-module.exports.set = set
+module.exports.init = init
 module.exports.get = get
