@@ -21,6 +21,9 @@ init = ->
 			# Open the item
 			item.addClass("open")
 
+			# Fix width of tags
+			$(window).triggerHandler("tags-fix-width")
+
 		return
 
 module.exports.init = init
