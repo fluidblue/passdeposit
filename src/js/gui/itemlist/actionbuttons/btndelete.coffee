@@ -7,6 +7,7 @@ Created by Max Geissler
 
 core = require "../../../core"
 itemid = require "../itemid"
+itemlist = require ".."
 
 initTemplate = (template) ->
 	btnDelete = template.find(".content .actionButtons .btnDelete")
@@ -40,7 +41,7 @@ initTemplate = (template) ->
 		if exist
 			# Remove item
 			core.item.remove(id)
-			template.remove()
+			itemlist.remove(template)
 		else
 			# Cancel creation of new item
 			template.find(".content .btnCancel").trigger("click")

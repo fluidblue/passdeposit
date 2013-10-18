@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 itemid = require "../itemid"
+itemlist = require ".."
 
 init = ->
 	$(document).on "click", "#mainList .content .btnCancel", (e) ->
@@ -13,7 +14,7 @@ init = ->
 		id = itemid.get(item)
 
 		if id == 0
-			item.remove()
+			itemlist.remove(item)
 		else
 			# TODO
 			console.log "reset data"

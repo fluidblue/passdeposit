@@ -68,14 +68,24 @@ add = (item, options = null) ->
 	else
 		template.appendTo("#mainList")
 
+	# Show mainList
+	show(true)
+
 	# Focus first field
 	if options.focus
 		template.find(".itemFieldContainer > *:first-child").find("input[type=text]:visible, input[type=password]:visible").focus()
 
 	return true
 
+remove = (item) ->
+	item.remove()
+	visible = $("#mainList").children().length > 0
+	show(visible)
+
 clear = ->
-	$("#mainList").children().each (i, elem) ->
+	mainList = $("#mainList")
+
+	mainList.children().each (i, elem) ->
 		elem = $(elem)
 		
 		# Remove all items which are saved
@@ -84,6 +94,19 @@ clear = ->
 
 		# Continue with loop
 		return true
+
+	visible = mainList.children().length > 0
+	show(visible)
+
+show = (visible) ->
+	if visible
+		# Show mainList
+		$("#landingPage").hide()
+		$("#mainList").show()
+	else
+		# Show landing page
+		$("#mainList").hide()
+		$("#landingPage").show()
 
 init = ->
 	fields.init()
@@ -94,4 +117,5 @@ init = ->
 
 module.exports.init = init
 module.exports.add = add
+module.exports.remove = remove
 module.exports.clear = clear

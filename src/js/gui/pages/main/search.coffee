@@ -22,20 +22,12 @@ search = (value) ->
 
 	# Start searching when value is not empty
 	if value.length > 0
-		# Show mainList
-		$("#landingPage").hide()
-		$("#mainList").show()
-
 		# TODO
 		console.log value
 
-		# TODO: Remove
+		# TODO: Remove test
 		for item in testItems
 			itemlist.add(item)
-	else
-		# Show landing page
-		$("#mainList").hide()
-		$("#landingPage").show()
 
 initAdvancedSearch = ->
 	# Init search field popover
