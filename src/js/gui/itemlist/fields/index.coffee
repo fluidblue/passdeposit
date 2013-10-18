@@ -53,6 +53,11 @@ createTemplate = (field) ->
 	# Clone field template
 	fieldTemplate = $("#mainpage .itemFieldTemplates ." + fieldClass).clone()
 
+	# Set value
+	# (:visible is not needed, because password input will be default for pass field)
+	input = fieldTemplate.find("input[type=password], input[type=text]")
+	input.val(field.value)
+
 	# Return initialized template
 	return fieldTemplate
 
