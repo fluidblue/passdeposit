@@ -8,7 +8,7 @@ zlib = require "zlib"
 
 serve = (post, callback) ->
 	# Create content
-	content = '{ "test": "a", "test2": "b" }'
+	content = JSON.stringify(post)
 
 	# gzip content
 	zlib.gzip content, (_, result) ->
