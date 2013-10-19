@@ -12,7 +12,7 @@ serve = (post, callback) ->
 
 	# gzip content
 	zlib.gzip content, (_, result) ->
-		# Define reponse
+		# Define response
 		response =
 			# gzipped content
 			content: result
