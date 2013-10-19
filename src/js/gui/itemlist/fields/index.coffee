@@ -8,6 +8,7 @@ Created by Max Geissler
 buttons = require "./buttons"
 menu = require "./menu"
 tooltips = require "./tooltips"
+completeuri = require "./completeuri"
 
 # Return first field that matches the given type.
 # If no such field is found, null is returned.
@@ -127,6 +128,7 @@ getFields = (item) ->
 init = ->
 	buttons.init()
 	menu.init()
+	completeuri.init()
 
 module.exports.init = init
 module.exports.find = find
