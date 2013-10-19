@@ -5,10 +5,18 @@ Created by Max Geissler
 ###
 
 zlib = require "zlib"
+command = require "./command"
 
 serve = (post, callback) ->
-	# Create content
-	content = JSON.stringify(post)
+	# Get command (and the corresponding data)
+	commandObject = {}
+
+	if post.data?
+		commandObject = JSON.parse(post.data)
+
+	# Process command
+	result = command.process(commandObject.cmd, commandObject.data)
+	content = JSON.stringify(result)
 
 	# gzip content
 	zlib.gzip content, (_, result) ->
