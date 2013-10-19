@@ -5,7 +5,7 @@ Server communication
 Created by Max Geissler
 ###
 
-send = (commandObject, success, fail, tries = 3) ->
+send = (commandObject, success = null, fail = null, tries = 3) ->
 	complete = (jqXHR, status) ->
 		# Check for error
 		if status == "success" || status == "notmodified"
