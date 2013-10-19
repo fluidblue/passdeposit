@@ -8,16 +8,18 @@ Created by Max Geissler
 command = require "./command"
 
 add = (item) ->
-	console.log item
+	fail = (status) ->
+		console.log "Failed to add item (status: " + status + ")"
+
+	success = (response) ->
+		console.log response
 
 	# Send command
 	command.send
 		cmd: "add"
 		data: item
-		success: ->
-			console.log "success"
-		fail: (status) ->
-			console.log status
+		success: success
+		fail: fail
 
 modify = (item) ->
 	console.log item

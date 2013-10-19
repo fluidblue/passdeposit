@@ -11,23 +11,30 @@ send = (options) ->
 		options.tries = 3
 
 	complete = (jqXHR, status) ->
-		# Check for error
+		# Cancel if succeeded
 		if status == "success" || status == "notmodified"
-			# Call success callback
-			if options.success? then options.success()
+			return
+
+		# Check retry
+		if options.tries > 1
+			options.tries--
+			
+			# Resend request after 1sec
+			window.setTimeout ->
+				send(options)
+				return
+			, 1000
+			
 		else
-			if options.tries > 1
-				options.tries--
-				
-				# Resend request after 1sec
-				window.setTimeout ->
-					send(options)
-					return
-				, 1000
-				
-			else
-				# Call fail callback
-				if options.fail? then options.fail(status)
+			# Call fail callback
+			if options.fail? then options.fail(status)
+
+		return
+
+	success = (data, status, jqXHR) ->
+		# Call success callback
+		if options.success?
+			options.success(data)
 
 		return
 
@@ -40,7 +47,8 @@ send = (options) ->
 		url: "passdeposit"
 		data:
 			obj: JSON.stringify(obj)
-		complete: complete
 		dataType: "json"
+		complete: complete
+		success: success
 
 module.exports.send = send
