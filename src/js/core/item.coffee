@@ -5,13 +5,13 @@ Item manipulations
 Created by Max Geissler
 ###
 
-com = require "./com"
+command = require "./command"
 
 add = (item) ->
 	console.log item
 
 	# Send command
-	com.send
+	command.send
 		cmd: "add"
 		data: item
 		success: ->
