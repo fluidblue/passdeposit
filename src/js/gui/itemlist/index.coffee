@@ -86,18 +86,21 @@ remove = (item) ->
 	visible = $("#mainList").children().length > 0
 	show(visible)
 
-clear = ->
+clear = (all = false) ->
 	mainList = $("#mainList")
 
-	mainList.children().each (i, elem) ->
-		elem = $(elem)
-		
-		# Remove all items which are saved
-		if itemid.get(elem) != 0
-			elem.remove()
+	if all
+		mainList.empty()
+	else
+		mainList.children().each (i, elem) ->
+			elem = $(elem)
+			
+			# Remove all items which are saved
+			if itemid.get(elem) != 0
+				elem.remove()
 
-		# Continue with loop
-		return true
+			# Continue with loop
+			return true
 
 	visible = mainList.children().length > 0
 	show(visible)

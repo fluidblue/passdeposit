@@ -8,9 +8,11 @@ Created by Max Geissler
 setFormFocus = require "../../components/set-form-focus"
 jGrowl = require "../../components/jgrowl-extend"
 config = require "../../../config"
+itemlist = require "../../itemlist"
 
 logout = ->
 	# TODO: Clean up data!
+	itemlist.clear(true)
 	
 	# Close all jGrowl messages
 	jGrowl.closeAll()
