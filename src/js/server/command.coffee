@@ -5,11 +5,15 @@ Created by Max Geissler
 ###
 
 add = (item) ->
-	return item
+	ret =
+		status: "success"
+		id: 100
+
+	return ret
 
 process = (cmd, data) ->
 	invalid =
-		code: "invalid"
+		status: "invalidcommand"
 
 	switch cmd
 		when "add" then add(data)

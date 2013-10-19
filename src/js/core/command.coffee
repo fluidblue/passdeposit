@@ -17,24 +17,20 @@ send = (options) ->
 
 		# Check retry
 		if options.tries > 1
+			# Resend request
 			options.tries--
-			
-			# Resend request after 1sec
-			window.setTimeout ->
-				send(options)
-				return
-			, 1000
-			
+			send(options)
 		else
 			# Call fail callback
-			if options.fail? then options.fail(status)
+			if options.callback? then options.callback
+				status: "ajax:" + status
 
 		return
 
 	success = (data, status, jqXHR) ->
-		# Call success callback
-		if options.success?
-			options.success(data)
+		# Success
+		if options.callback?
+			options.callback(data)
 
 		return
 
