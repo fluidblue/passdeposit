@@ -71,6 +71,10 @@ initTypeahead = ->
 
 initSearchHandlers = ->
 	$("#search").on "keypress", (e) ->
+		# Ignore enter
+		if e.which == 13
+			return
+
 		searchField = $(this)
 		value = searchField.val() + String.fromCharCode(e.which)
 
