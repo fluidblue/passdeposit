@@ -5,10 +5,20 @@ Server communication
 Created by Max Geissler
 ###
 
+config = require "../config"
+
 send = (options) ->
 	# Try 3 times
 	if !options.tries?
 		options.tries = 3
+
+	# Define default handler
+	if !options.callback?
+		options.callback = (response) ->
+			if response.status != "success"
+				console.log "Ajax request failed: " + response.status
+
+			return
 
 	complete = (jqXHR, status) ->
 		# Cancel if succeeded
@@ -21,17 +31,15 @@ send = (options) ->
 			options.tries--
 			send(options)
 		else
-			# Call fail callback
-			if options.callback? then options.callback
+			# Failed
+			options.callback
 				status: "ajax:" + status
 
 		return
 
 	success = (data, status, jqXHR) ->
 		# Success
-		if options.callback?
-			options.callback(data)
-
+		options.callback(data)
 		return
 
 	obj =

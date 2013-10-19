@@ -8,17 +8,25 @@ Created by Max Geissler
 command = require "./command"
 
 add = (item, callback) ->
-	# Send command
+	# Send command to server
 	command.send
 		cmd: "add"
 		data: item
 		callback: callback
 
 modify = (item, callback) ->
-	console.log item
+	# Send command to server
+	command.send
+		cmd: "modify"
+		data: item
+		callback: callback
 
 remove = (id, callback) ->
-	console.log "Delete item: " + id
+	# Send command to server
+	command.send
+		cmd: "delete"
+		data: id
+		callback: callback
 
 module.exports.add = add
 module.exports.modify = modify
