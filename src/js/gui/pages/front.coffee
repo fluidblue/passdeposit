@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 setFormFocus = require "../components/set-form-focus"
-config = require "../components/config"
+config = require "../../config"
 navPills = require "../components/nav-pills"
 jGrowl = require "../components/jgrowl-extend"
 

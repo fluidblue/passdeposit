@@ -7,7 +7,7 @@ Created by Max Geissler
 
 setFormFocus = require "../../components/set-form-focus"
 jGrowl = require "../../components/jgrowl-extend"
-config = require "../../components/config"
+config = require "../../../config"
 
 logout = ->
 	# TODO: Clean up data!
