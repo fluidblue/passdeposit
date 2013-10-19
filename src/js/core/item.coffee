@@ -5,28 +5,19 @@ Item manipulations
 Created by Max Geissler
 ###
 
-send = (commandObject) ->
-	success = (data) ->
-		console.log data
-
-	error = (jqXHR, textStatus) ->
-		console.log textStatus
-
-	$.ajax
-		type: "POST"
-		url: "passdeposit"
-		data:
-			obj: JSON.stringify(commandObject)
-		success: success
-		dataType: "json"
+com = require "./com"
 
 add = (item) ->
 	console.log item
 
 	# Send command
-	send
+	com.send
 		cmd: "add"
 		data: item
+	, ->
+		console.log "success"
+	, (status) ->
+		console.log status
 
 modify = (item) ->
 	console.log item
