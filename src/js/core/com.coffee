@@ -5,31 +5,41 @@ Server communication
 Created by Max Geissler
 ###
 
-send = (commandObject, success = null, fail = null, tries = 3) ->
+send = (options) ->
+	# Try 3 times
+	if !options.tries?
+		options.tries = 3
+
 	complete = (jqXHR, status) ->
 		# Check for error
 		if status == "success" || status == "notmodified"
 			# Call success callback
-			if success? then success()
+			if options.success? then options.success()
 		else
-			if tries > 1
+			if options.tries > 1
+				options.tries--
+				
 				# Resend request after 1sec
 				window.setTimeout ->
-					send(commandObject, success, fail, tries - 1)
+					send(options)
 					return
 				, 1000
 				
 			else
 				# Call fail callback
-				if fail? then fail(status)
+				if options.fail? then options.fail(status)
 
 		return
+
+	obj =
+		cmd: options.cmd
+		data: options.data
 
 	$.ajax
 		type: "POST"
 		url: "passdeposit"
 		data:
-			obj: JSON.stringify(commandObject)
+			obj: JSON.stringify(obj)
 		complete: complete
 		dataType: "json"
 

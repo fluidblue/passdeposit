@@ -14,10 +14,10 @@ add = (item) ->
 	com.send
 		cmd: "add"
 		data: item
-	, ->
-		console.log "success"
-	, (status) ->
-		console.log status
+		success: ->
+			console.log "success"
+		fail: (status) ->
+			console.log status
 
 modify = (item) ->
 	console.log item
