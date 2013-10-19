@@ -11,8 +11,8 @@ serve = (post, callback) ->
 	# Get command (and the corresponding data)
 	commandObject = {}
 
-	if post.data?
-		commandObject = JSON.parse(post.data)
+	if post.obj?
+		commandObject = JSON.parse(post.obj)
 
 	# Process command
 	result = command.process(commandObject.cmd, commandObject.data)

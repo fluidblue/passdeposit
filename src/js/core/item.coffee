@@ -6,8 +6,19 @@ Created by Max Geissler
 ###
 
 send = (commandObject) ->
-	$.post "passdeposit",
-		data: JSON.stringify(commandObject)
+	success = (data) ->
+		console.log data
+
+	error = (jqXHR, textStatus) ->
+		console.log textStatus
+
+	$.ajax
+		type: "POST"
+		url: "passdeposit"
+		data:
+			obj: JSON.stringify(commandObject)
+		success: success
+		dataType: "json"
 
 add = (item) ->
 	console.log item
