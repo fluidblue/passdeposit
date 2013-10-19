@@ -9,10 +9,17 @@ command = require "./command"
 
 add = (item) ->
 	callback = (response) ->
-		if response.status == "success"
-			console.log response
-		else
-			console.log "Failed to add item (" + response.status + ")"
+		if response.status != "success"
+			# Show error
+			errorMsg = $("#text .itemSaveFailed").html()
+			errorMsg = errorMsg.replace(/%1/g, response.status)
+
+			$.jGrowl errorMsg
+
+			return
+
+		# TODO
+		#response.id
 
 	# Send command
 	command.send
