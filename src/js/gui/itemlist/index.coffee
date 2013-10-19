@@ -71,6 +71,10 @@ add = (item, options = null) ->
 	# Show mainList
 	show(true)
 
+	# Fix width of tags
+	if options.open
+		$(window).triggerHandler("tags-fix-width")
+
 	# Focus first field
 	if options.focus
 		template.find(".itemFieldContainer > *:first-child").find("input[type=text]:visible, input[type=password]:visible").focus()
