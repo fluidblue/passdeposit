@@ -22,11 +22,26 @@ save = (item, tagList, fieldList) ->
 	id = itemid.get(item)
 	exist = id != 0
 
+	# Define callback
+	callback = (response) ->
+		if response.status != "success"
+			# Show error
+			errorMsg = $("#text .itemSaveFailed").html()
+			errorMsg = errorMsg.replace(/%1/g, response.status)
+
+			$.jGrowl errorMsg
+
+			return
+
+		# Set response id
+		itemid.set(item, response.id)
+
+	# Call core procedure
 	if exist
 		itemObj.id = id
-		core.item.modify(itemObj)
+		core.item.modify(itemObj, callback)
 	else
-		core.item.add(itemObj)
+		core.item.add(itemObj, callback)
 
 	# Update quickbuttons
 	quickbuttons.setButtons(item, fieldList)

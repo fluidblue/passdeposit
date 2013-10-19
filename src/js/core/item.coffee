@@ -7,30 +7,17 @@ Created by Max Geissler
 
 command = require "./command"
 
-add = (item) ->
-	callback = (response) ->
-		if response.status != "success"
-			# Show error
-			errorMsg = $("#text .itemSaveFailed").html()
-			errorMsg = errorMsg.replace(/%1/g, response.status)
-
-			$.jGrowl errorMsg
-
-			return
-
-		# TODO
-		#response.id
-
+add = (item, callback) ->
 	# Send command
 	command.send
 		cmd: "add"
 		data: item
 		callback: callback
 
-modify = (item) ->
+modify = (item, callback) ->
 	console.log item
 
-remove = (id) ->
+remove = (id, callback) ->
 	console.log "Delete item: " + id
 
 module.exports.add = add
