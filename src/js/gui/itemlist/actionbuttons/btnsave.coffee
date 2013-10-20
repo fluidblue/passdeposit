@@ -11,6 +11,7 @@ fields = require "../fields"
 tags = require "../tags"
 quickbuttons = require "../quickbuttons"
 format = require "../format"
+info = require "../info"
 
 save = (item, tagList, fieldList) ->
 	# Create item object
@@ -33,8 +34,11 @@ save = (item, tagList, fieldList) ->
 
 			return
 
-		# Set response id
-		itemid.set(item, response.id)
+		# TODO: Update item cache
+
+		# Update gui
+		itemid.set(item, response.item.id)
+		info.set(item, response.item)
 
 	# Call core procedure
 	if exist

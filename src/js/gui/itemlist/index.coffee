@@ -13,6 +13,7 @@ format = require "./format"
 fields = require "./fields"
 tags = require "./tags"
 itemid = require "./itemid"
+info = require "./info"
 
 defaultAddOptions =
 	open: false
@@ -37,11 +38,7 @@ add = (item, options = null) ->
 		titleContainer.html(format.title(item.fields))
 
 	# Add info texts
-	itemInfoContainer = template.find(".content .itemInfoContainer")
-
-	itemInfoContainer.find(".infoEncryption").html(format.encryption(item.encryption.type))
-	itemInfoContainer.find(".infoCreated").html(format.date(item.dateCreated))
-	itemInfoContainer.find(".infoModified").html(format.date(item.dateModified))
+	info.set(template, item)
 
 	# Add fields
 	fields.setFields(template, item.fields)

@@ -24,7 +24,7 @@ modify = (item, callback) ->
 remove = (id, callback) ->
 	# Send command to server
 	command.send
-		cmd: "delete"
+		cmd: "remove"
 		data: id
 		callback: callback
 
