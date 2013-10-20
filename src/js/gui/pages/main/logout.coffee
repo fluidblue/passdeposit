@@ -11,14 +11,15 @@ config = require "../../../config"
 itemlist = require "../../itemlist"
 
 logout = ->
-	# TODO: Clean up data!
-	itemlist.clear(true)
-	
 	# Close all jGrowl messages
 	jGrowl.closeAll()
 	
 	# Switch to frontpage
 	$("#mainpage").fadeOut config.animations.pageChangeDuration, ->
+		# TODO: Clean up data!
+		itemlist.clear(true)
+
+		# Show frontpage
 		$("#frontpage").fadeIn config.animations.pageChangeDuration
 		setFormFocus "#login"
 
