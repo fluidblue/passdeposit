@@ -5,6 +5,8 @@ itemlist action button tooltips
 Created by Max Geissler
 ###
 
+text = require "../../components/text"
+
 initTemplate = (template) ->
 	# Add tooltips for delete and duplicate buttons
 	options =
@@ -13,10 +15,10 @@ initTemplate = (template) ->
 		animation: false
 		container: template # Avoid jumping buttons (preserve btn-group)
 
-	options.title = $("#text .tooltipDelete").html()
+	options.title = text.get("tooltipDelete")
 	template.find(".content .actionButtons .btnDelete").tooltip options
 
-	options.title = $("#text .tooltipDuplicate").html()
+	options.title = text.get("tooltipDuplicate")
 	template.find(".content .actionButtons .btnDuplicate").tooltip options
 
 module.exports.initTemplate = initTemplate

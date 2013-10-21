@@ -8,6 +8,7 @@ Created by Max Geissler
 core = require "../../../core"
 itemid = require "../itemid"
 itemlist = require ".."
+text = require "../../components/text"
 
 initTemplate = (template) ->
 	btnDelete = template.find(".content .actionButtons .btnDelete")
@@ -17,8 +18,8 @@ initTemplate = (template) ->
 		trigger: "manual"
 		placement: "bottom"
 		html: true
-		content: $("#text .popoverDeleteContent").html()
-		title: $("#text .popoverDeleteTitle").html()
+		content: text.get("popoverDeleteContent")
+		title: text.get("popoverDeleteTitle")
 		container: template # Avoid jumping buttons (preserve btn-group)
 
 	btnDelete.popover options

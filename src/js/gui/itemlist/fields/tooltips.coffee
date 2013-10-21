@@ -5,13 +5,15 @@ Field buttons
 Created by Max Geissler
 ###
 
+text = require "../../components/text"
+
 initTooltipWebAddress = (fieldTemplate) ->
 	# Create web address tooltip
 	# TODO: Enable animation (Bug when focus already set and bug with arrow)
 
 	options =
 		placement: "bottom"
-		title: $("#text .infoURI").html()
+		title: text.get("infoURI")
 		trigger: "focus"
 		animation: false
 
@@ -21,7 +23,7 @@ initTooltipPassGen = (fieldTemplate) ->
 	# Create password generation tooltip
 	options =
 		placement: "bottom"
-		title: $("#text .passGenerated").html()
+		title: text.get("passGenerated")
 		trigger: "manual"
 		animation: true
 
@@ -51,7 +53,7 @@ initTooltipPassGenHint = (fieldTemplate) ->
 	# Create password generation hint
 	options =
 		placement: "bottom"
-		title: $("#text .passGenerationHint").html()
+		title: text.get("passGenerationHint")
 		trigger: "manual"
 
 	fnShowTooltip = ->

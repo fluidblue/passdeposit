@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 format = require "../format"
+text = require "../../components/text"
 
 initBtnCopy = ->
 	$(document).on "click", "#mainList .itemField .btnCopy", (e) ->
@@ -16,7 +17,7 @@ initBtnCopy = ->
 		console.log("copy to clipboard: " + input.val())
 		
 		# Show notification
-		$.jGrowl $("#text .copiedToClipboard").html()
+		$.jGrowl text.get("copiedToClipboard")
 
 		return
 
@@ -33,15 +34,15 @@ initBtnOpen = ->
 			# 	return
 
 			# Show notification
-			input.attr("data-original-title", $("#text .emptyURI").html()).tooltip("fixTitle")
+			input.attr("data-original-title", text.get("emptyURI")).tooltip("fixTitle")
 
 			# Restore original tooltip
 			input.one "blur.tooltipRestore", ->
-				input.attr("data-original-title", $("#text .infoURI").html()).tooltip("fixTitle")
+				input.attr("data-original-title", text.get("infoURI")).tooltip("fixTitle")
 				input.off "keydown.tooltipRestore"
 
 			input.one "keydown.tooltipRestore", ->
-				input.attr("data-original-title", $("#text .infoURI").html()).tooltip("fixTitle")
+				input.attr("data-original-title", text.get("infoURI")).tooltip("fixTitle")
 				input.off "blur.tooltipRestore"
 				input.tooltip("show")
 			

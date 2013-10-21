@@ -9,6 +9,7 @@ fields = require "../fields"
 tags = require "../tags"
 itemlist = require ".."
 btnsave = require "../actionbuttons/btnsave"
+text = require "../../components/text"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnDuplicate", (e) ->
@@ -34,7 +35,7 @@ init = ->
 			encryption:
 				type: "aes256"
 
-			title: $("#text .addOther").html()
+			title: text.get("addOther")
 
 			fields: fieldList
 			tags: tagList
@@ -48,7 +49,7 @@ init = ->
 		# TODO: Resort or clear item list
 
 		# Show notification
-		$.jGrowl $("#text .duplicatedItem").html()
+		$.jGrowl text.get("duplicatedItem")
 
 		return
 

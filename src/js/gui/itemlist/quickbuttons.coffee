@@ -7,6 +7,7 @@ Created by Max Geissler
 
 format = require "./format"
 fields = require "./fields"
+text = require "../components/text"
 
 initTooltips = (template) ->
 	buttonContainer = template.find(".header .buttons")
@@ -16,10 +17,10 @@ initTooltips = (template) ->
 		trigger: "hover focus"
 		animation: false
 
-	options.title = $("#text .copyPass").html()
+	options.title = text.get("copyPass")
 	buttonContainer.find(".btnPass").tooltip options
 
-	options.title = $("#text .openAddress").html()
+	options.title = text.get("openAddress")
 	buttonContainer.find(".btnOpen").tooltip options
 
 initBtnPass = ->
@@ -30,7 +31,7 @@ initBtnPass = ->
 		console.log("copy to clipboard: " + value)
 
 		# Show notification
-		$.jGrowl $("#text .copiedToClipboard").html()
+		$.jGrowl text.get("copiedToClipboard")
 
 		e.preventDefault()
 		return

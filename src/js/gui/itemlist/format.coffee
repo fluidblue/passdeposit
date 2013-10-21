@@ -5,6 +5,8 @@ itemlist formats
 Created by Max Geissler
 ###
 
+text = require "../components/text"
+
 validUri = (uri) ->
 	# Append http protocol, if not given
 	if uri.indexOf("://") == -1
@@ -101,7 +103,7 @@ title = (fields) ->
 			title = email
 
 		if title.length <= 0
-			title = $.trim($("#text .untitled").html())
+			title = $.trim(text.get("untitled"))
 
 	return title
 

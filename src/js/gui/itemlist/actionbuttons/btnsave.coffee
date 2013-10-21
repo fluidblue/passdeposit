@@ -12,6 +12,7 @@ tags = require "../tags"
 quickbuttons = require "../quickbuttons"
 format = require "../format"
 info = require "../info"
+text = require "../../components/text"
 
 save = (item, tagList, fieldList) ->
 	# Create item object
@@ -27,11 +28,7 @@ save = (item, tagList, fieldList) ->
 	callback = (response) ->
 		if response.status != "success"
 			# Show error
-			errorMsg = $("#text .itemSaveFailed").html()
-			errorMsg = errorMsg.replace(/%1/g, response.status)
-
-			$.jGrowl errorMsg
-
+			$.jGrowl text.get("itemSaveFailed", response.status)
 			return
 
 		# TODO: Update item cache

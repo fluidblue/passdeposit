@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 itemlist = require "../../itemlist"
+text = require "../../components/text"
 
 init = ->
 	$("#mainpage .mainNav .btnAdd .dropdown-menu a").click (e) ->
@@ -31,29 +32,29 @@ init = ->
 
 		switch type
 			when "website"
-				item.title = $("#text .addWebsite").html()
+				item.title = text.get("addWebsite")
 				pushField("uri")
 				pushField("user")
 				pushField("pass")
 
 			when "email"
-				item.title = $("#text .addEmail").html()
+				item.title = text.get("addEmail")
 				pushField("email")
 				pushField("pass")
 
 			when "messenger"
-				item.title = $("#text .addMessenger").html()
+				item.title = text.get("addMessenger")
 				pushField("service")
 				pushField("user")
 				pushField("pass")
 
 			when "bookmark"
-				item.title = $("#text .addBookmark").html()
+				item.title = text.get("addBookmark")
 				pushField("text")
 				pushField("uri")
 
 			else
-				item.title = $("#text .addOther").html()
+				item.title = text.get("addOther")
 				pushField("service")
 				pushField("user")
 				pushField("pass")

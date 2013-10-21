@@ -5,6 +5,8 @@ Options dialog
 Created by Max Geissler
 ###
 
+text = require "../../components/text"
+
 init = ->
 	### Initializes option dialog ###
 	
@@ -24,7 +26,7 @@ init = ->
 
 	$("#optionsDialog").on "hidden", ->
 		if saveOptions
-			$.jGrowl $("#text .optionsSaved").html()
+			$.jGrowl text.get("optionsSaved")
 		
 		return
 

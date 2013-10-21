@@ -9,6 +9,7 @@ setFormFocus = require "../components/set-form-focus"
 config = require "../../config"
 navPills = require "../components/nav-pills"
 jGrowl = require "../components/jgrowl-extend"
+text = require "../components/text"
 
 loadUsername = ->
 	$("#loginUser").val $.totalStorage("username")
@@ -70,7 +71,7 @@ checkNotEmpty = (jqElem) ->
 
 initRegisterTooltips = ->
 	fnContent = ->
-		$("#text ." + $(this).attr("id") + "Info").html()
+		text.get($(this).attr("id") + "Info")
 
 	options =
 		trigger: "focus"
@@ -123,7 +124,7 @@ init = ->
 			saveUsername()
 			
 			# Show confirmation message
-			$.jGrowl $("#text .loginSuccessful").html(),
+			$.jGrowl text.get("loginSuccessful"),
 				sticky: true
 
 			# Show login tab
