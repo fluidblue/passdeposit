@@ -9,6 +9,9 @@ get = (key, replacements...) ->
 	# Get language string
 	value = $("#text ." + key).html()
 
+	# Trim value
+	value = $.trim(value)
+
 	# Replace placeholders (%i)
 	i = 0
 	for replacement in replacements

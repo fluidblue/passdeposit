@@ -103,7 +103,7 @@ title = (fields) ->
 			title = email
 
 		if title.length <= 0
-			title = $.trim(text.get("untitled"))
+			title = text.get("untitled")
 
 	return title
 

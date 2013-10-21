@@ -33,7 +33,7 @@ add = (item, options = null) ->
 	titleContainer = template.find(".header .title")
 
 	if item.title?
-		titleContainer.html($.trim(item.title))
+		titleContainer.html(item.title)
 	else
 		titleContainer.html(format.title(item.fields))
 
