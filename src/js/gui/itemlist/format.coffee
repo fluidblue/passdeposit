@@ -51,7 +51,7 @@ title = (fields) ->
 	email = ""
 	service = ""
 	uri = ""
-	text = ""
+	txt = ""
 
 	# Loop through fields in reverse order
 	for field in fields by -1
@@ -60,7 +60,7 @@ title = (fields) ->
 			when "email" then email = field.value
 			when "service" then service = field.value
 			when "uri" then uri = webAddress(field.value)
-			when "text" then text = field.value
+			when "text" then txt = field.value
 
 	# Create title:
 	#     (Username | Email) * (ServiceName) * (WebAddress) * (Text)
@@ -81,8 +81,8 @@ title = (fields) ->
 			return part
 
 	if user.length <= 0 && email.length <= 0 && service.length <= 0 &&
-	uri.length > 0 && text.length > 0
-		title = text + dot + uri
+	uri.length > 0 && txt.length > 0
+		title = txt + dot + uri
 	else
 		if user.length > 0
 			title = user
@@ -96,8 +96,8 @@ title = (fields) ->
 		if uri.length > 0
 			title = addPart(title, uri)
 
-		if text.length > 0
-			title = addPart(title, text)
+		if txt.length > 0
+			title = addPart(title, txt)
 
 		if title.length <= 0
 			title = email
