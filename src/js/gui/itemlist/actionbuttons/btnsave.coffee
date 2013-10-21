@@ -40,6 +40,9 @@ save = (item, tagList, fieldList) ->
 		itemid.set(item, response.item.id)
 		info.set(item, response.item)
 
+		# Show notification
+		$.jGrowl text.get("itemSaveSucceeded")
+
 	# Call core procedure
 	if exist
 		itemObj.id = id
