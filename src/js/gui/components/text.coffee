@@ -5,12 +5,24 @@ Language strings
 Created by Max Geissler
 ###
 
-get = (key, replacements...) ->
-	# Get language string
-	value = $("#text ." + key).html()
+cache = {}
 
-	# Trim value
-	value = $.trim(value)
+get = (key, replacements...) ->
+	value = ""
+
+	# Check cache
+	if cache[key]?
+		# Use cached value
+		value = cache[key]
+	else
+		# Get language string
+		value = $("#text ." + key).html()
+
+		# Trim value
+		value = $.trim(value)
+
+		# Save to cache
+		cache[key] = value
 
 	# Replace placeholders (%i)
 	i = 0
