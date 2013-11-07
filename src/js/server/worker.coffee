@@ -10,8 +10,12 @@ querystring = require "querystring"
 path = require "path"
 staticFiles = require "./staticFiles"
 dynamic = require "./dynamic"
+database = require "./database"
 
 init = (config) ->
+	# Connect to database
+	database.init(config)
+
 	options = {}
 
 	# Load certificate
