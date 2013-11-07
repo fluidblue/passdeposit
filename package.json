@@ -5,7 +5,8 @@
 	"homepage": "http://www.passdeposit.com",
 
 	"dependencies": {
-		"optimist": "0.6.x"
+		"optimist": "0.6.x",
+		"mongojs": "0.9.x"
 	},
 
 	"bundledDependencies": [
