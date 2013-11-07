@@ -16,9 +16,8 @@ init = (config) ->
 	# Connect to database
 	database.init(config)
 
-	options = {}
-
 	# Load certificate
+	options = {}
 	try
 		options.key = fs.readFileSync(path.resolve(config.basePath, config.https.privateKey))
 		options.cert = fs.readFileSync(path.resolve(config.basePath, config.https.certificate))
