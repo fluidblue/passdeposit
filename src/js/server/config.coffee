@@ -16,10 +16,11 @@ defaultConfig =
 		privateKey: ""
 
 	database:
-		type: "mysql"
+		type: "mongodb"
 		host: "localhost"
-		user: "root"
+		user: ""
 		password: ""
+		database: "passdeposit"
 
 getArgv = ->
 	argv = optimist

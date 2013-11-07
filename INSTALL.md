@@ -15,8 +15,8 @@ If you decide to host your own installation, you can do so by following the inst
 **Server requirements**
 
 * nodejs
-* npm  (node package manager)
-* MySQL 5 (or later)
+* npm (node package manager)
+* MongoDB
 
 **Install using npm** (don't forget the **--global** option)
 
@@ -51,10 +51,11 @@ Save your configuration to a file, e.g. config.json:
 		},
 
 		"database": {
-			"type": "mysql",
+			"type": "mongodb",
 			"host": "localhost",
-			"user": "root",
-			"password": ""
+			"user": "",
+			"password": "",
+			"database": "passdeposit"
 		}
 	}
 
