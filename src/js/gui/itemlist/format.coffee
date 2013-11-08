@@ -14,11 +14,13 @@ validUri = (uri) ->
 
 	return uri
 
-date = (num) ->
-	if num == 0
+date = (date) ->
+	# Set current date if none is given
+	if !date?
 		date = new Date()
-	else
-		date = new Date(num)
+	# Make sure we have a Date() and not an ugly string or something worse.
+	else if !(date instanceof Date)
+		date = new Date(date)
 
 	day = date.getDate()
 	month = date.getMonth() + 1 # Months are zero based

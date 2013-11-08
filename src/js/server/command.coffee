@@ -8,7 +8,7 @@ database = require "./database"
 
 add = (item, callback) ->
 	# Add timestamp
-	timestamp = Date.now()
+	timestamp = new Date()
 	item.dateCreated = timestamp
 	item.dateModified = timestamp
 
@@ -28,9 +28,11 @@ add = (item, callback) ->
 			item: item
 
 modify = (item, callback) ->
-	# TODO
-	item.dateCreated = 0
-	item.dateModified = 0
+	# Update timestamp
+	timestamp = new Date()
+	item.dateModified = timestamp
+
+	# TODO: Move to client
 	item.encryption =
 		type: "aes256"
 		param0: 0

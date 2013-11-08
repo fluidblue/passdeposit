@@ -16,9 +16,6 @@ init = ->
 		item =
 			id: 0
 
-			dateCreated: 0
-			dateModified: 0
-
 			encryption:
 				type: "aes256"
 

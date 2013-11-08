@@ -2,8 +2,8 @@
 	{
 		"id": 1,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
@@ -34,8 +34,8 @@
 	{
 		"id": 2,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
@@ -66,8 +66,8 @@
 	{
 		"id": 3,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
@@ -102,8 +102,8 @@
 	{
 		"id": 4,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
@@ -130,8 +130,8 @@
 	{
 		"id": 5,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
@@ -158,8 +158,8 @@
 	{
 		"id": 6,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
@@ -190,8 +190,8 @@
 	{
 		"id": 7,
 
-		"dateCreated": 1335205592410,
-		"dateModified": 1335205592410,
+		"dateCreated": "2013-11-07T15:42:36.900Z",
+		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
 			"type": "aes256",
