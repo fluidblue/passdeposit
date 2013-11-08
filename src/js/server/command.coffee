@@ -13,17 +13,19 @@ add = (item, callback) ->
 	item.dateModified = timestamp
 
 	database.get().users.insert item, (err, saved) ->
+		if err || !saved
+			callback
+				status: "db:failed"
+
+			return
+		
 		# The id of the inserted item is saved to item._id
 		# Convert item._id to item.id
 		database.mongo2id(item)
 
-		if err || !saved
-			callback
-				status: "db:failed"
-		else
-			callback
-				status: "success"
-				item: item
+		callback
+			status: "success"
+			item: item
 
 modify = (item, callback) ->
 	# TODO
