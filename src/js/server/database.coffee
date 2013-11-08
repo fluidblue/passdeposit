@@ -52,6 +52,15 @@ init = (config) ->
 	# Connect
 	db = mongojs.connect(databaseUri, collections)
 
+	# Test connection (with ping)
+	db.runCommand
+		ping: 1
+	, (err, res) ->
+		if err || !res.ok
+			# The database is down
+			console.log "Error: Could not connect to database"
+			process.exit 0
+
 module.exports.init = init
 module.exports.get = get
 module.exports.mongo2id = mongo2id
