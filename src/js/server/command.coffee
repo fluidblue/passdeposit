@@ -12,13 +12,6 @@ add = (item, callback) ->
 	item.dateCreated = timestamp
 	item.dateModified = timestamp
 
-	# Add encryption details
-	# TODO: Move to client
-	item.encryption =
-		type: "aes256"
-		param0: 0
-		param1: 1
-
 	database.get().users.insert item, (err, saved) ->
 		# The id of the inserted item is saved to item._id
 		# Convert item._id to item.id

@@ -8,6 +8,13 @@ Created by Max Geissler
 command = require "./command"
 
 add = (item, callback) ->
+	# Add encryption details
+	# TODO: Encrypt
+	item.encryption =
+		type: "aes256"
+		param0: 0
+		param1: 1
+
 	# Send command to server
 	command.send
 		cmd: "add"
