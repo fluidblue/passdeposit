@@ -37,10 +37,15 @@ modify = (item, callback) ->
 		item: item
 
 remove = (id, callback) ->
-	# TODO
+	database.getModel("item").findByIdAndRemove id, (err) ->
+		if err
+			callback
+				status: "db:failed"
 
-	callback
-		status: "success"
+			return
+
+		callback
+			status: "success"
 
 process = (cmd, data, callback) ->
 	invalid =
