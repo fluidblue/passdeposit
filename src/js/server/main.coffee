@@ -25,7 +25,15 @@ if cluster.isMaster
 	cluster.on "exit", (worker, code, signal) ->
 		exitCode = worker.process.exitCode
 		
-		if exitCode != 0
+		if exitCode == 0
+			# Kill all other workers
+			for id of cluster.workers
+				cluster.workers[id].kill()
+
+			# Exit the master process
+			log.info "Shutting down..."
+			process.exit 0
+		else
 			# Log error
 			pid = worker.process.pid
 			log.error "Worker " + pid + " died (" + exitCode + "). Restarting worker..."
