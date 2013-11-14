@@ -118,8 +118,22 @@ init = (config, callback) ->
 
 	databaseUri += config.database.database
 
+	# Set connection options
+	options =
+		server:
+			poolSize: 5 # Concurrent connections to server
+			auto_reconnect: true
+			socketOptions:
+				keepAlive: 1
+		replset:
+			socketOptions:
+				keepAlive: 1
+
 	# Connect
-	mongoose.connect(databaseUri)
+	mongoose.connect databaseUri, options, (err) ->
+		if err
+			log.error "Could not connect to database"
+			process.exit 0
 
 	# Set handlers
 	mongoose.connection.on "error", (err) ->
