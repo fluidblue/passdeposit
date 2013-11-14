@@ -36,8 +36,11 @@ init = (config) ->
 			
 			# Define HTTPS handler
 			httpsHandler = (req, res) ->
+				# Get client ID
+				clientID = req.socket.address().address
+
 				# TODO: Only in debug
-				log.info req.socket.address().address + " requests " + req.url
+				log.info clientID + " requests " + req.url
 
 				# Separate URL from query string
 				url = req.url.split("?")[0]
@@ -52,7 +55,7 @@ init = (config) ->
 
 					req.on "end", ->
 						postObject = querystring.parse(postData)
-						dynamic.serve postObject, (response) ->
+						dynamic.serve clientID, postObject, (response) ->
 							# Send data
 							# Response: 200 OK
 							res.writeHead 200, response.headers

@@ -7,7 +7,7 @@ Created by Max Geissler
 zlib = require "zlib"
 command = require "./command"
 
-serve = (post, callback) ->
+serve = (clientID, post, callback) ->
 	# Get command (and the corresponding data)
 	commandObject = {}
 
@@ -15,7 +15,7 @@ serve = (post, callback) ->
 		commandObject = JSON.parse(post.obj)
 
 	# Process command
-	command.process commandObject.cmd, commandObject.data, (result) ->
+	command.process clientID, commandObject.cmd, commandObject.data, (result) ->
 		content = JSON.stringify(result)
 
 		# gzip content

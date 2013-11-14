@@ -5,6 +5,7 @@ Created by Max Geissler
 ###
 
 database = require "./database"
+log = require "./log"
 
 add = (item, callback) ->
 	# Add timestamp
@@ -59,7 +60,9 @@ remove = (id, callback) ->
 		callback
 			status: "success"
 
-process = (cmd, data, callback) ->
+process = (clientID, cmd, data, callback) ->
+	log.info clientID + " executes " + cmd
+
 	invalid =
 		status: "invalidcommand"
 
