@@ -32,9 +32,21 @@ modify = (item, callback) ->
 	timestamp = new Date()
 	item.dateModified = timestamp
 
-	callback
-		status: "success"
-		item: item
+	database.getModel("item").findByIdAndUpdate item.id,
+		$set: item
+	, (err, doc) ->
+		if err
+			callback
+				status: "db:failed"
+
+			return
+		
+		# Convert mongoose document into plain javascript object
+		item = doc.toClient()
+
+		callback
+			status: "success"
+			item: item
 
 remove = (id, callback) ->
 	database.getModel("item").findByIdAndRemove id, (err) ->
