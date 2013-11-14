@@ -12,15 +12,6 @@ models = {}
 getModel = (name) ->
 	return models[name]
 
-toDBFormat = (obj) ->
-	# Convert object to database format
-	
-	if obj.id
-		obj._id = obj.id
-		delete obj.id
-
-	return obj
-
 createModels = ->
 	# Create schema for user
 	userSchema = mongoose.Schema
@@ -150,4 +141,3 @@ init = (config, callback) ->
 
 module.exports.init = init
 module.exports.getModel = getModel
-module.exports.toDBFormat = toDBFormat
