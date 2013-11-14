@@ -4,32 +4,103 @@
 Created by Max Geissler
 ###
 
-mongojs = require "mongojs"
+mongoose = require "mongoose"
 
-db = null
+models = {}
 
-mongo2id = (item) ->
-	# Convert MongoDB ObjectID to id string
-	item.id = item._id.toString()
-	delete item._id
+getModel = (name) ->
+	return models[name]
 
-	return item
-
+# TODO: Rename, remove(?)
 id2mongo = (item) ->
 	# Convert id string to MongoDB ObjectID
-	item._id = mongojs.ObjectId(item.id)
-	delete item.id
+	if item.id
+		item._id = mongoose.Schema.ObjectId(item.id)
+		delete item.id
 
 	return item
 
-get = ->
-	return db
+createModels = ->
+	# Create schema for user
+	userSchema = mongoose.Schema
+		email: String
+		password: String
+		passwordHint: String
+		
+		created: Date
+		lastActive: Date
+	,
+		versionKey: false
 
-init = (config) ->
+	# Create schema for field
+	fieldSchema = mongoose.Schema
+		type:
+			type: String
+		value: String
+	,
+		versionKey: false
+		id: false
+		_id: false
+
+	# Create schema for item
+	itemSchema = mongoose.Schema
+		dateCreated: Date
+		dateModified: Date
+
+		encryption:
+			type:
+				type: String
+			options: mongoose.Schema.Types.Mixed
+
+		fields: [fieldSchema]
+
+		tags: [Number]
+	,
+		versionKey: false
+
+	# Create schema for tags
+	tagsSchema = mongoose.Schema
+		encryption:
+			type:
+				type: String
+			options: mongoose.Schema.Types.Mixed
+
+		tags: [
+			key: Number
+			value: String
+		]
+	,
+		versionKey: false
+
+	# Define toClient method used by each schema
+	toClient = ->
+		# Convert mongoose document into plain javascript object
+		obj = this.toObject()
+
+		# Rename id field
+		if obj._id?
+			obj.id = obj._id.toString()
+			delete obj._id
+
+		return obj
+
+	compileSchema = (name, collection, schema) ->
+		# Add toClient method to schema
+		schema.methods.toClient = toClient
+
+		# Compile schema to model
+		# (Sets model and collection name)
+		models[name] = mongoose.model(collection, schema)
+
+	compileSchema "user", "users", userSchema
+	compileSchema "item", "items", itemSchema
+	compileSchema "tags", "tags", tagsSchema
+
+init = (config, callback) ->
 	# Build database connection URI:
-	# user:password@example.com/database
+	# mongodb://user:password@example.com/database
 
-	databaseUri = ""
+	databaseUri = "mongodb://"
 
 	if config.database.user.length > 0
 		databaseUri += config.database.user
@@ -46,22 +117,20 @@ init = (config) ->
 
 	databaseUri += config.database.database
 
-	# Collections
-	collections = ["users"]
-
 	# Connect
-	db = mongojs.connect(databaseUri, collections)
+	mongoose.connect(databaseUri)
 
-	# Test connection (with ping)
-	db.runCommand
-		ping: 1
-	, (err, res) ->
-		if err || !res.ok
-			# The database is down
-			console.log "Error: Could not connect to database"
-			process.exit 0
+	# Set handlers
+	mongoose.connection.on "error", (err) ->
+		# The database is down
+		console.log "Error: Could not connect to database"
+
+	mongoose.connection.once "open", ->
+		# Connected to database
+
+		createModels()
+		callback()
 
 module.exports.init = init
-module.exports.get = get
-module.exports.mongo2id = mongo2id
+module.exports.getModel = getModel
 module.exports.id2mongo = id2mongo

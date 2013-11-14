@@ -6,7 +6,7 @@
 
 	"dependencies": {
 		"optimist": "0.6.x",
-		"mongojs": "0.9.x"
+		"mongoose": "3.8.x"
 	},
 
 	"bundledDependencies": [

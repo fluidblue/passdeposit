@@ -12,16 +12,16 @@ add = (item, callback) ->
 	item.dateCreated = timestamp
 	item.dateModified = timestamp
 
-	database.get().users.insert item, (err, saved) ->
-		if err || !saved
+	database.getModel("item").create item, (err, doc) ->
+		if err
 			callback
 				status: "db:failed"
 
 			return
 		
-		# The id of the inserted item is saved to item._id
-		# Convert item._id to item.id
-		database.mongo2id(item)
+		# Convert mongoose document into plain javascript object
+		# The ID of the newly inserted item will be included in the object
+		item = doc.toClient()
 
 		callback
 			status: "success"
@@ -31,12 +31,6 @@ modify = (item, callback) ->
 	# Update timestamp
 	timestamp = new Date()
 	item.dateModified = timestamp
-
-	# TODO: Move to client
-	item.encryption =
-		type: "aes256"
-		param0: 0
-		param1: 1
 
 	callback
 		status: "success"

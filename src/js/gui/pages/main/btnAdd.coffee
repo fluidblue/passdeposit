@@ -18,6 +18,9 @@ init = ->
 
 			encryption:
 				type: "aes256"
+				options:
+					param0: 0
+					param1: 1
 
 			fields: []
 			tags: []

@@ -12,8 +12,9 @@ add = (item, callback) ->
 	# TODO: Encrypt
 	item.encryption =
 		type: "aes256"
-		param0: 0
-		param1: 1
+		options:
+			param0: 0
+			param1: 1
 
 	# Send command to server
 	command.send
@@ -22,6 +23,14 @@ add = (item, callback) ->
 		callback: callback
 
 modify = (item, callback) ->
+	# Add encryption details
+	# TODO: Encrypt
+	item.encryption =
+		type: "aes256"
+		options:
+			param0: 0
+			param1: 1
+	
 	# Send command to server
 	command.send
 		cmd: "modify"

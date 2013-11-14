@@ -7,8 +7,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
@@ -39,8 +41,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
@@ -71,8 +75,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
@@ -107,8 +113,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
@@ -135,8 +143,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
@@ -163,8 +173,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
@@ -195,8 +207,10 @@
 
 		"encryption": {
 			"type": "aes256",
-			"param0": 0,
-			"param1": 1
+			"options": {
+				"param0": 0,
+				"param1": 1
+			}
 		},
 
 		"fields": [
