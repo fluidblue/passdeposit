@@ -139,6 +139,9 @@ init = (config, callback) ->
 	mongoose.connection.on "error", (err) ->
 		log.error "Database says: '" + err + "'"
 
+		# TODO: Do not exit, but limit reconnecting and notifying user
+		process.exit 0
+
 	mongoose.connection.once "open", ->
 		# Connected to database
 
