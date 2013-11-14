@@ -51,16 +51,13 @@ createModels = ->
 		versionKey: false
 
 	# Create schema for tags
-	tagsSchema = mongoose.Schema
+	tagListSchema = mongoose.Schema
 		encryption:
 			type:
 				type: String
 			options: mongoose.Schema.Types.Mixed
 
-		tags: [
-			key: Number
-			value: String
-		]
+		tags: [String]
 	,
 		versionKey: false
 
@@ -86,7 +83,7 @@ createModels = ->
 
 	compileSchema "user", "users", userSchema
 	compileSchema "item", "items", itemSchema
-	compileSchema "tags", "tags", tagsSchema
+	compileSchema "taglist", "taglists", tagListSchema
 
 init = (config, callback) ->
 	# Build database connection URI:
