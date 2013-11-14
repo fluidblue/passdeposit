@@ -11,14 +11,14 @@ models = {}
 getModel = (name) ->
 	return models[name]
 
-# TODO: Rename, remove(?)
-id2mongo = (item) ->
-	# Convert id string to MongoDB ObjectID
-	if item.id
-		item._id = mongoose.Schema.ObjectId(item.id)
-		delete item.id
+toDBFormat = (obj) ->
+	# Convert object to database format
+	
+	if obj.id
+		obj._id = obj.id
+		delete obj.id
 
-	return item
+	return obj
 
 createModels = ->
 	# Create schema for user
@@ -133,4 +133,4 @@ init = (config, callback) ->
 
 module.exports.init = init
 module.exports.getModel = getModel
-module.exports.id2mongo = id2mongo
+module.exports.toDBFormat = toDBFormat
