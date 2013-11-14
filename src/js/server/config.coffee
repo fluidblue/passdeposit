@@ -7,6 +7,7 @@ Created by Max Geissler
 fs = require "fs"
 path = require "path"
 optimist = require "optimist"
+log = require "./log"
 
 defaultConfig =
 	port: "8000"
@@ -66,7 +67,7 @@ load = ->
 	try
 		content = fs.readFileSync configFile
 	catch e
-		console.log "Error: The config file '" + configFile + "' could not be loaded."
+		log.error "The config file '" + configFile + "' could not be loaded."
 		process.exit 0
 	
 	# Convert to object

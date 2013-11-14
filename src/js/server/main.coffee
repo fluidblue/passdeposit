@@ -8,6 +8,7 @@ cluster = require "cluster"
 os = require "os"
 config = require "./config"
 worker = require "./worker"
+log = require "./log"
 
 cfg = config.load()
 
@@ -27,13 +28,13 @@ if cluster.isMaster
 		if exitCode != 0
 			# Log error
 			pid = worker.process.pid
-			console.log "Error: worker " + pid + " died (" + exitCode + "). Restarting worker..."
+			log.error "Worker " + pid + " died (" + exitCode + "). Restarting worker..."
 
 			# Restart worker
 			# TODO: Check if worker has run longer than 1 minute
 			cluster.fork()
 
-	console.log "PassDeposit is running at https://localhost:" + cfg.port
+	log.info "PassDeposit is running at https://localhost:" + cfg.port
 else
 	# Initialize worker
 	worker.init(cfg)

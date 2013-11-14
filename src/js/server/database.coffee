@@ -5,6 +5,7 @@ Created by Max Geissler
 ###
 
 mongoose = require "mongoose"
+log = require "./log"
 
 models = {}
 
@@ -122,8 +123,7 @@ init = (config, callback) ->
 
 	# Set handlers
 	mongoose.connection.on "error", (err) ->
-		# The database is down
-		console.log "Error: Could not connect to database"
+		log.error "Database says: '" + err + "'"
 
 	mongoose.connection.once "open", ->
 		# Connected to database

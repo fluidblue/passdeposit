@@ -11,6 +11,7 @@ path = require "path"
 staticFiles = require "./staticFiles"
 dynamic = require "./dynamic"
 database = require "./database"
+log = require "./log"
 
 loadCertificate = (config) ->
 	options = {}
@@ -19,7 +20,7 @@ loadCertificate = (config) ->
 		options.key = fs.readFileSync(path.resolve(config.basePath, config.https.privateKey))
 		options.cert = fs.readFileSync(path.resolve(config.basePath, config.https.certificate))
 	catch e
-		console.log "Error: Could not load certificate/privateKey (specified in '" + config.configFile + "')"
+		log.error "Could not load certificate/privateKey (specified in '" + config.configFile + "')"
 		process.exit 0
 
 	return options
@@ -36,7 +37,7 @@ init = (config) ->
 			# Define HTTPS handler
 			httpsHandler = (req, res) ->
 				# TODO: Only in debug
-				console.log req.socket.address().address + " requests " + req.url
+				log.info req.socket.address().address + " requests " + req.url
 
 				# Separate URL from query string
 				url = req.url.split("?")[0]
