@@ -13,7 +13,7 @@ add = (item, callback) ->
 	item.dateModified = timestamp
 
 	database.getModel("item").create item, (err, doc) ->
-		if err
+		if err || !doc?
 			callback
 				status: "db:failed"
 
@@ -35,7 +35,7 @@ modify = (item, callback) ->
 	database.getModel("item").findByIdAndUpdate item.id,
 		$set: item
 	, (err, doc) ->
-		if err
+		if err || !doc?
 			callback
 				status: "db:failed"
 
