@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 command = require "./command"
+taglist = require "./taglist"
 
 add = (item, callback) ->
 	# Add encryption details

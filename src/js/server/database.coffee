@@ -57,7 +57,10 @@ createModels = ->
 				type: String
 			options: mongoose.Schema.Types.Mixed
 
-		tags: [String]
+		tags: [
+			tag: String
+			items: [String]
+		]
 	,
 		versionKey: false
 
