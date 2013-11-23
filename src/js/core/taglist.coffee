@@ -5,59 +5,50 @@ tagList
 Created by Max Geissler
 ###
 
-tagList = []
+tagList = {}
 
-add = (tag, itemID) ->
-	for entry in tagList
-		if entry.tag == tag
-			# Add reference to existing entry
-			entry.items[] = itemID
-			return
+add = (itemID, tags) ->
+	for tag in tags
+		if tagList[tag]?
+			# Add itemID to existing tag
+			tagList[tag][] = itemID
+		else
+			# Create new tag
+			tagList[tag] = [itemID]
 
-	# Add new entry
-	tagList[] =
-		tag: tag
-		items: [itemID]
-
-remove = (tag, itemID) ->
-	for key, entry of tagList
-		if entry.tag == tag
-			# Delete reference to this item
-			index = entry.items.indexOf(itemID)
+remove = (itemID, tags) ->
+	for tag in tags
+		if tagList[tag]?
+			# Delete reference to item
+			index = tagList[tag].indexOf(itemID)
 
 			if index != -1
-				delete entry.items[index]
+				delete tagList[tag][index]
 
 			# Remove entire tag entry, if no references are left
-			if entry.items.length == 0
-				tagList.splice(key, 1)
+			if tagList[tag].length == 0
+				delete tagList[tag]
 
-			return
+modify = (itemID, tags) ->
+	# Remove old tags
+	for tag of tagList
+		# Check if itemID is referenced
+		indexTagList = tagList[tag].indexOf(itemID)
 
-update = (prevTags, newTags, itemID) ->
-	prevIndex = oldTags.length - 1
+		if indexTagList != -1
+			# Check if the tag is present in new tags
+			indexTags = tags.indexOf(tag)
+			if indexTags != -1
+				delete tags[indexTags]
+			else
+				delete tagList[tag][indexTagList]
 
-	while prevIndex >= 0
-		newIndex = newTags.indexOf(oldTags[i])
+	# Add new tags
+	for tag in tags
+		tagList[tag] = [itemID]
 
-		# If tag is present in both prevTags and newTags,
-		# we don't need to modify it.
-		if newIndex != -1
-			delete prevTags[prevIndex]
-			delete newTags[newIndex] 
-
-		prevIndex--
-
-	# prevTags now contain tags to be removed
-	for tag in prevTags
-		remove(tag, itemID)
-
-	# newTags now contain tags to be added
-	for tag in newTags
-		add(tag, itemID)
-
-save = ->
+create = ->
 	# TODO
 
 module.exports.update = update
-module.exports.save = save
+module.exports.create = create

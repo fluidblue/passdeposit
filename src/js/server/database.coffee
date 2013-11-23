@@ -46,21 +46,7 @@ createModels = ->
 
 		fields: [fieldSchema]
 
-		tags: [Number]
-	,
-		versionKey: false
-
-	# Create schema for tags
-	tagListSchema = mongoose.Schema
-		encryption:
-			type:
-				type: String
-			options: mongoose.Schema.Types.Mixed
-
-		tags: [
-			tag: String
-			items: [String]
-		]
+		tags: [String]
 	,
 		versionKey: false
 
@@ -86,7 +72,6 @@ createModels = ->
 
 	compileSchema "user", "users", userSchema
 	compileSchema "item", "items", itemSchema
-	compileSchema "taglist", "taglists", tagListSchema
 
 init = (config, callback) ->
 	# Build database connection URI:
