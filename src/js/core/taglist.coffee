@@ -50,5 +50,7 @@ modify = (itemID, tags) ->
 create = ->
 	# TODO
 
-module.exports.update = update
+module.exports.add = add
+module.exports.remove = remove
+module.exports.modify = modify
 module.exports.create = create
