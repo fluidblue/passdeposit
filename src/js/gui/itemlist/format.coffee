@@ -34,10 +34,15 @@ date = (date) ->
 
 	return year + "-" + month + "-" + day
 
-encryption = (enc) ->
-	return switch enc
+encryption = (encryption) ->
+	# Output default encryption if no encryption is given
+	if !encryption?
+		encryption =
+			type: "aes256"
+
+	return switch encryption.type
 		when "aes256" then "AES 256"
-		else enc
+		else encryption.type
 
 webAddress = (addr) ->
 	if addr.indexOf("http://") == 0

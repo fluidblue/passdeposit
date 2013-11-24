@@ -11,7 +11,7 @@ set = (template, item) ->
 	itemInfoContainer = template.find(".content .itemInfoContainer")
 
 	# Add info texts
-	itemInfoContainer.find(".infoEncryption").html(format.encryption(item.encryption.type))
+	itemInfoContainer.find(".infoEncryption").html(format.encryption(item.encryption))
 	itemInfoContainer.find(".infoCreated").html(format.date(item.dateCreated))
 	itemInfoContainer.find(".infoModified").html(format.date(item.dateModified))
 
