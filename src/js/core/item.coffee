@@ -7,15 +7,11 @@ Created by Max Geissler
 
 command = require "./command"
 taglist = require "./taglist"
+crypt = require "./crypt"
 
 add = (item, callback) ->
-	# Add encryption details
-	# TODO: Encrypt
-	item.encryption =
-		type: "aes256"
-		options:
-			param0: 0
-			param1: 1
+	# Encrypt
+	item = crypt.encrypt(item)
 
 	# Send command to server
 	command.send
@@ -31,13 +27,8 @@ add = (item, callback) ->
 			callback(response)
 
 modify = (item, callback) ->
-	# Add encryption details
-	# TODO: Encrypt
-	item.encryption =
-		type: "aes256"
-		options:
-			param0: 0
-			param1: 1
+	# Encrypt
+	item = crypt.encrypt(item)
 	
 	# Send command to server
 	command.send
