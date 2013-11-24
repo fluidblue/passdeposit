@@ -31,8 +31,6 @@ save = (item, tagList, fieldList) ->
 			$.jGrowl text.get("itemSaveFailed", response.status)
 			return
 
-		# TODO: Update item cache
-
 		# Update gui
 		itemid.set(item, response.item.id)
 		info.set(item, response.item)
