@@ -11,7 +11,7 @@ add = (itemID, tags) ->
 	for tag in tags
 		if tagList[tag]?
 			# Add itemID to existing tag
-			tagList[tag][] = itemID
+			tagList[tag].push itemID
 		else
 			# Create new tag
 			tagList[tag] = [itemID]
