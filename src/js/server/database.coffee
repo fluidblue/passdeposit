@@ -28,7 +28,7 @@ createModels = ->
 	fieldSchema = mongoose.Schema
 		type:
 			type: String
-		value: String
+		value: mongoose.Schema.Types.Mixed
 	,
 		versionKey: false
 		id: false

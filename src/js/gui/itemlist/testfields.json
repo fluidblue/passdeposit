@@ -6,11 +6,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [
@@ -40,11 +37,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [
@@ -74,11 +68,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [
@@ -112,11 +103,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [
@@ -142,11 +130,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [
@@ -172,11 +157,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [
@@ -206,11 +188,8 @@
 		"dateModified": "2013-11-08T15:42:36.900Z",
 
 		"encryption": {
-			"type": "aes256",
-			"options": {
-				"param0": 0,
-				"param1": 1
-			}
+			"type": "none",
+			"options": null
 		},
 
 		"fields": [

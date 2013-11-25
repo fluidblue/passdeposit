@@ -34,16 +34,6 @@ date = (date) ->
 
 	return year + "-" + month + "-" + day
 
-encryption = (encryption) ->
-	# Output default encryption if no encryption is given
-	if !encryption?
-		encryption =
-			type: "aes256"
-
-	return switch encryption.type
-		when "aes256" then "AES 256"
-		else encryption.type
-
 webAddress = (addr) ->
 	if addr.indexOf("http://") == 0
 		return addr.substring(7)
@@ -116,5 +106,4 @@ title = (fields) ->
 
 module.exports.validUri = validUri
 module.exports.date = date
-module.exports.encryption = encryption
 module.exports.title = title
