@@ -13,7 +13,7 @@ availableEncryptions =
 		type: "none"
 		options: null
 	
-	sjcl:
+	aes256:
 		type: "sjcl"
 		options:
 			v: 1
@@ -25,15 +25,14 @@ availableEncryptions =
 			cipher: "aes"
 
 # Default encryption
-defaultEncryption = availableEncryptions.sjcl
+defaultEncryption = availableEncryptions.aes256
 
 # Holds the master password
 password = null
+# TODO: Remove
+password = "pass"
 
 encrypt = (item, encryption = defaultEncryption) ->
-	# TODO: Remove
-	password = "pass"
-
 	# Cancel if master password is unknown
 	if !password?
 		console.log "Error: Master password unknown"
@@ -43,6 +42,9 @@ encrypt = (item, encryption = defaultEncryption) ->
 
 	# Define encryption function
 	switch encryption.type
+		when "none"
+			fnEncrypt = (str) ->
+				return str
 		when "sjcl"
 			fnEncrypt = (str) ->
 				# Encrypt with SJCL lib
@@ -78,9 +80,40 @@ encrypt = (item, encryption = defaultEncryption) ->
 decrypt = (item) ->
 	# Cancel if master password is unknown
 	if !password?
+		console.log "Error: Master password unknown"
 		return null
 
-	# TODO
+	fnDecrypt = null
+
+	# Define decryption function
+	switch item.encryption.type
+		when "none"
+			fnDecrypt = (value) ->
+				return value
+		when "sjcl"
+			fnDecrypt = (value) ->
+				# Create crypt object from encryption options and value
+				crypt = item.encryption.options
+				crypt.iv = value.iv
+				crypt.salt = value.salt
+				crypt.ct = value.ct
+
+				# Stringify it for SJCL
+				str = JSON.stringify(crypt)
+
+				# Decrypt with SJCL lib
+				return sjcl.decrypt(password, str)
+		else
+			console.log "Error: Unknown encryption: " + item.encryption.type
+			return null
+
+	# Decrypt fields
+	for key, entry of item.fields
+		item.fields[key].value = fnDecrypt(entry.value)
+
+	# Decrypt tags
+	for key, value of item.tags
+		item.tags[key] = fnDecrypt(value)
 
 	return item
 
@@ -97,3 +130,4 @@ format = (encryption) ->
 module.exports.encrypt = encrypt
 module.exports.decrypt = decrypt
 module.exports.format = format
+module.exports.availableEncryptions = availableEncryptions

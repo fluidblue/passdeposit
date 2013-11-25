@@ -15,6 +15,7 @@ itemlist = require "../../itemlist"
 
 # TODO: Remove
 testItems = require "../../itemlist/testfields.json"
+crypt = require "../../../core/crypt"
 
 search = (value) ->
 	# Clear itemlist
@@ -27,7 +28,7 @@ search = (value) ->
 
 		# TODO: Remove test
 		for item in testItems
-			itemlist.add(item)
+			itemlist.add(crypt.decrypt(item))
 
 initAdvancedSearch = ->
 	# Init search field popover

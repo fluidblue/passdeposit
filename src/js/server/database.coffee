@@ -46,7 +46,7 @@ createModels = ->
 
 		fields: [fieldSchema]
 
-		tags: [String]
+		tags: [mongoose.Schema.Types.Mixed]
 	,
 		versionKey: false
 
