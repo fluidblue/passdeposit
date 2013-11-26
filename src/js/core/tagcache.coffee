@@ -5,6 +5,8 @@ tagList
 Created by Max Geissler
 ###
 
+itemcache = require "./itemcache"
+
 tagList = {}
 
 add = (itemID, tags) ->
@@ -48,7 +50,8 @@ modify = (itemID, tags) ->
 		tagList[tag] = [itemID]
 
 create = ->
-	# TODO
+	for id, item of itemcache.get()
+		add(id, item.tags)
 
 module.exports.add = add
 module.exports.remove = remove

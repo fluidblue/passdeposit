@@ -21,8 +21,27 @@ get = (id = undefined) ->
 load = ->
 	# TODO: Load from DB
 	for item in testItems
-		itemsEncrypted[item.id] = item
-		itemsDecrypted[item.id] = crypt.decrypt(item)
+		add(item)
 
-module.exports.load = load
+add = (itemCrypted) ->
+	itemsEncrypted[itemCrypted.id] = itemCrypted
+	itemsDecrypted[itemCrypted.id] = crypt.decrypt(itemCrypted)
+
+	# Return decrypted item
+	return itemsDecrypted[itemCrypted.id]
+
+modify = (itemCrypted) ->
+	# Exactly the same as adding
+	return add(itemCrypted)
+
+remove = (id) ->
+	delete itemsEncrypted[id]
+	delete itemsDecrypted[id]
+
+	return true
+
 module.exports.get = get
+module.exports.load = load
+module.exports.add = add
+module.exports.modify = modify
+module.exports.remove = remove

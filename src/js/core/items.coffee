@@ -6,41 +6,43 @@ Created by Max Geissler
 ###
 
 command = require "./command"
-taglist = require "./taglist"
+tagcache = require "./tagcache"
 crypt = require "./crypt"
 itemcache = require "./itemcache"
 
 add = (item, callback) ->
 	# Encrypt
-	item = crypt.encrypt(item)
+	itemCrypted = crypt.encrypt(item)
 
 	# Send command to server
 	command.send
 		cmd: "add"
-		data: item
+		data: itemCrypted
 		callback: (response) ->
 			if response.status == "success"
-				# TODO: Update item cache
+				# Update item cache
+				itemcache.add(response.item)
 
-				# Update taglist
-				taglist.add(response.item.id, response.item.tags)
+				# Update tagcache
+				tagcache.add(response.item.id, response.item.tags)
 
 			callback(response)
 
 modify = (item, callback) ->
 	# Encrypt
-	item = crypt.encrypt(item)
+	itemCrypted = crypt.encrypt(item)
 	
 	# Send command to server
 	command.send
 		cmd: "modify"
-		data: item
+		data: itemCrypted
 		callback: (response) ->
 			if response.status == "success"
-				# TODO: Update item cache
+				# Update item cache
+				itemcache.modify(response.item)
 
-				# Update taglist
-				taglist.modify(response.item.id, response.item.tags)
+				# Update tagcache
+				tagcache.modify(response.item.id, response.item.tags)
 
 			callback(response)
 
@@ -51,15 +53,20 @@ remove = (id, callback) ->
 		data: id
 		callback: (response) ->
 			if response.status == "success"
-				# TODO: Update item cache
+				# Update item cache
+				itemcache.remove(response.item.id)
 
-				# Update taglist
-				taglist.remove(id)
+				# Update tagcache
+				tagcache.remove(id)
 
 			callback(response)
+
+load = ->
+	itemcache.load()
+	tagcache.create()
 
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove
 module.exports.get = itemcache.get
-module.exports.load = itemcache.load
+module.exports.load = load

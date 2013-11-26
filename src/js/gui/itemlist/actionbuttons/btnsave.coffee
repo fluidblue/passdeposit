@@ -31,9 +31,12 @@ save = (item, tagList, fieldList) ->
 			$.jGrowl text.get("itemSaveFailed", response.status)
 			return
 
+		# Get unencrypted item
+		itemDecrypted = core.items.get(response.item.id)
+
 		# Update gui
 		itemid.set(item, response.item.id)
-		info.set(item, response.item)
+		info.set(item, itemDecrypted)
 
 		# Show notification
 		$.jGrowl text.get("itemSaveSucceeded")
