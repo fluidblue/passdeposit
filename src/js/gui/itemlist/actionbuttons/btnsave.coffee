@@ -41,9 +41,9 @@ save = (item, tagList, fieldList) ->
 	# Call core procedure
 	if exist
 		itemObj.id = id
-		core.item.modify(itemObj, callback)
+		core.items.modify(itemObj, callback)
 	else
-		core.item.add(itemObj, callback)
+		core.items.add(itemObj, callback)
 
 	# Update quickbuttons
 	quickbuttons.setButtons(item, fieldList)

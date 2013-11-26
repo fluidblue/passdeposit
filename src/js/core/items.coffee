@@ -8,6 +8,7 @@ Created by Max Geissler
 command = require "./command"
 taglist = require "./taglist"
 crypt = require "./crypt"
+itemcache = require "./itemcache"
 
 add = (item, callback) ->
 	# Encrypt
@@ -60,3 +61,5 @@ remove = (id, callback) ->
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove
+module.exports.get = itemcache.get
+module.exports.load = itemcache.load

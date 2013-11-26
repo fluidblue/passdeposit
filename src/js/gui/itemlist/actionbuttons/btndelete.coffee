@@ -41,7 +41,7 @@ initTemplate = (template) ->
 
 		if exist
 			# Remove item
-			core.item.remove(id)
+			core.items.remove(id)
 			itemlist.remove(template)
 		else
 			# Cancel creation of new item

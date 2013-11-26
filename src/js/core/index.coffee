@@ -6,4 +6,5 @@ Created by Max Geissler
 ###
 
 module.exports.passgen = require "./passgen"
-module.exports.item = require "./item"
+module.exports.items = require "./items"
+module.exports.crypt = require "./crypt"

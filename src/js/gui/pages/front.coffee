@@ -10,6 +10,7 @@ config = require "../../config"
 navPills = require "../components/nav-pills"
 jGrowl = require "../components/jgrowl-extend"
 text = require "../components/text"
+core = require "../../core"
 
 loadUsername = ->
 	$("#loginUser").val $.totalStorage("username")
@@ -33,6 +34,9 @@ loginUser = ->
 	#	);
 	
 	saveUsername()
+
+	# Load items
+	core.items.load()
 	
 	# Switch to mainpage
 	$("#frontpage").fadeOut config.animations.pageChangeDuration, ->

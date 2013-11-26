@@ -12,10 +12,7 @@ logout = require "./logout"
 clipboard = require "./clipboard"
 btnAdd = require "./btnAdd"
 itemlist = require "../../itemlist"
-
-# TODO: Remove
-testItems = require "../../itemlist/testfields.json"
-crypt = require "../../../core/crypt"
+core = require "../../../core"
 
 search = (value) ->
 	# Clear itemlist
@@ -23,12 +20,12 @@ search = (value) ->
 
 	# Start searching when value is not empty
 	if value.length > 0
-		# TODO
+		# TODO: Remove
 		console.log value
 
-		# TODO: Remove test
-		for item in testItems
-			itemlist.add(crypt.decrypt(item))
+		# TODO: Remove
+		for id, item of core.items.get()
+			itemlist.add(item)
 
 initAdvancedSearch = ->
 	# Init search field popover
