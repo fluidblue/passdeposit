@@ -9,6 +9,8 @@ fields = require "./fields"
 
 init = ->
 	$(document).on "click", "#mainList .content .menuAddField .dropdown-menu a", (e) ->
+		e.preventDefault()
+
 		# Get command
 		href = $(this).attr("href")
 
@@ -28,7 +30,6 @@ init = ->
 		# Focus
 		elem.find("input[type=password], input[type=text]").focus()
 
-		e.preventDefault()
 		return
 
 module.exports.init = init

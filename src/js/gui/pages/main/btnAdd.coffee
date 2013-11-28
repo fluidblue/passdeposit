@@ -10,6 +10,8 @@ text = require "../../components/text"
 
 init = ->
 	$("#mainpage .mainNav .btnAdd .dropdown-menu a").click (e) ->
+		e.preventDefault()
+		
 		href = $(this).attr("href")
 		type = href.substr(1)
 
@@ -57,7 +59,6 @@ init = ->
 			position: "top"
 			focus: true
 
-		e.preventDefault()
 		return
 
 module.exports.init = init

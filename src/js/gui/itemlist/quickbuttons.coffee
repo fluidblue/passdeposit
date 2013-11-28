@@ -25,6 +25,8 @@ initTooltips = (template) ->
 
 initBtnPass = ->
 	$(document).on "click", "#mainList .item .header a.btnPass", (e) ->
+		e.preventDefault()
+
 		value = $(this).data("pass")
 		
 		# TODO: Copy to clipboard
@@ -33,7 +35,6 @@ initBtnPass = ->
 		# Show notification
 		$.jGrowl text.get("copiedToClipboard")
 
-		e.preventDefault()
 		return
 
 setBtnVisible = (btn, visible) ->

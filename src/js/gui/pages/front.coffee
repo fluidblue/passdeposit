@@ -95,18 +95,18 @@ init = ->
 	initRegisterTooltips()
 
 	$("#login").submit (e) ->
-		loginUser()
-
 		e.preventDefault()
+		loginUser()
 		return
 
 	$("#register").submit (e) ->
+		e.preventDefault()
+
 		if checkNotEmpty($("#registerEmail")) & checkNotEmpty($("#registerPass")) & checkNotEmpty($("#registerPassRepeat")) & checkNotEmpty($("#registerPassHint"))
 			$("#registerDialog").modal "show"
 		else
 			setFormFocus "#login" # TODO: Not working
 
-		e.preventDefault()
 		return
 
 	registerSuccess = false
@@ -137,6 +137,8 @@ init = ->
 		return
 
 	$("#registerDialog .modal-footer .register").click (e) ->
+		e.preventDefault()
+
 		registerSuccess = false
 		
 		#alert('Not implemented.');
@@ -144,16 +146,16 @@ init = ->
 		registerSuccess = true
 		$("#registerDialog").modal "hide"
 
-		e.preventDefault()
 		return
 
 	$("#pwForgotDialog").submit (e) ->
+		e.preventDefault()
+
 		alert "Not implemented."
 
 		$("#pwForgotDialog input.email").val ""
 		$("#pwForgotDialog").modal "hide"
 
-		e.preventDefault()
 		return
 
 	$("#pwForgotDialog").on "shown", ->

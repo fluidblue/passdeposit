@@ -13,9 +13,8 @@ lock = ->
 
 init = ->
 	$("#btnLock").click (e) ->
-		lock()
-
 		e.preventDefault()
+		lock()
 		return
 
 	$("#lockDialog").on "shown", ->
@@ -23,16 +22,19 @@ init = ->
 		return
 
 	$("#lockDialog").submit (e) ->
+		e.preventDefault()
+
 		# Remove password
 		$("#lockDialog input.pass").val ""
 		
 		# Close dialog
 		$("#lockDialog").modal "hide"
 
-		e.preventDefault()
 		return
 
 	$("#lockDialog .btnLogout").click (e) ->
+		e.preventDefault()
+
 		# Remove password, if any
 		$("#lockDialog input.pass").val ""
 		
@@ -44,7 +46,6 @@ init = ->
 		# Close dialog
 		$("#lockDialog").modal "hide"
 
-		e.preventDefault()
 		return
 
 module.exports.init = init

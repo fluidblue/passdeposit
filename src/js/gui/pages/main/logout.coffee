@@ -25,9 +25,8 @@ logout = ->
 
 init = ->
 	$("#btnLogout").click (e) ->
-		logout()
-
 		e.preventDefault()
+		logout()
 		return
 
 module.exports.init = init

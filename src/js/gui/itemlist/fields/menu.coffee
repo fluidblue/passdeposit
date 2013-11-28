@@ -60,6 +60,8 @@ typechange = (elem, type) ->
 
 init = ->
 	$(document).on "click", "#mainList .content .menuFieldContext .dropdown-menu a", (e) ->
+		e.preventDefault()
+
 		elem = $(this)
 		href = elem.attr("href")
 		fld = elem.closest(".itemField")
@@ -81,7 +83,6 @@ init = ->
 			# Handle type change
 			else typechange(fld, href.substr(1))
 
-		e.preventDefault()
 		return
 
 module.exports.init = init
