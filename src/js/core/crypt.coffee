@@ -48,16 +48,13 @@ encrypt = (item, encryption = defaultEncryption) ->
 		when "sjcl"
 			fnEncrypt = (str) ->
 				# Encrypt with SJCL lib
-				enc = sjcl.encrypt(password, str, encryption.options)
-
-				# Parse JSON to get object
-				obj = JSON.parse(enc)
+				enc = sjcl.json._encrypt(password, str, encryption.options)
 
 				# Return only relevant information
 				ret =
-					iv: obj.iv
-					salt: obj.salt
-					ct: obj.ct
+					iv: sjcl.codec.base64.fromBits(enc.iv)
+					salt: sjcl.codec.base64.fromBits(enc.salt)
+					ct: sjcl.codec.base64.fromBits(enc.ct)
 
 				return ret
 		else
@@ -92,17 +89,14 @@ decrypt = (item) ->
 				return value
 		when "sjcl"
 			fnDecrypt = (value) ->
-				# Create crypt object from encryption options and value
-				crypt = item.encryption.options
-				crypt.iv = value.iv
-				crypt.salt = value.salt
-				crypt.ct = value.ct
-
-				# Stringify it for SJCL
-				str = JSON.stringify(crypt)
+				# Create raw ciphertext object from value
+				crypt =
+					iv: sjcl.codec.base64.toBits(value.iv)
+					salt: sjcl.codec.base64.toBits(value.salt)
+					ct: sjcl.codec.base64.toBits(value.ct)
 
 				# Decrypt with SJCL lib
-				return sjcl.decrypt(password, str)
+				return sjcl.json._decrypt(password, item.encryption.options, crypt)
 		else
 			console.log "Error: Unknown encryption: " + item.encryption.type
 			return null
