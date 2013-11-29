@@ -47,13 +47,23 @@ encrypt = (item, encryption = defaultEncryption) ->
 				return str
 		when "sjcl"
 			fnEncrypt = (str) ->
-				# Encrypt with SJCL lib
-				enc = sjcl.json._encrypt(password, str, encryption.options)
+				# Always use a fresh random salt
+				salt = sjcl.random.randomWords(2, 0)
+
+				# Create the key from password and salt:
+				# PBKDF2-HMAC-SHA256 with given iteration count
+				key = sjcl.misc.pbkdf2(password, salt, encryption.options.iter)
+
+				# Shorten key to encryption keysize length
+				key = key.slice(0, encryption.options.ks / 32)
+
+				# Encrypt with SJCL
+				enc = sjcl.json._encrypt(key, str, encryption.options)
 
 				# Return only relevant information
 				ret =
 					iv: sjcl.codec.base64.fromBits(enc.iv)
-					salt: sjcl.codec.base64.fromBits(enc.salt)
+					salt: sjcl.codec.base64.fromBits(salt)
 					ct: sjcl.codec.base64.fromBits(enc.ct)
 
 				return ret
