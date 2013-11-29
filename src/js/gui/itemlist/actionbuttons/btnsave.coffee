@@ -15,6 +15,11 @@ info = require "../info"
 text = require "../../components/text"
 
 save = (item, tagList, fieldList) ->
+	# Make a copy of fieldList to have an unencrypted version for later.
+	# Use JSON, because it is the most efficient way:
+	# http://jsperf.com/cloning-an-object/2
+	fieldListUnencrypted = JSON.parse(JSON.stringify(fieldList))
+
 	# Create item object
 	itemObj =
 		"fields": fieldList
@@ -49,10 +54,10 @@ save = (item, tagList, fieldList) ->
 		core.items.add(itemObj, callback)
 
 	# Update quickbuttons
-	quickbuttons.setButtons(item, fieldList)
+	quickbuttons.setButtons(item, fieldListUnencrypted)
 
 	# Update title
-	title = format.title(fieldList)
+	title = format.title(fieldListUnencrypted)
 	item.find(".header .title").html(title)
 
 	return true
