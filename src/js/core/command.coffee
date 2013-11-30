@@ -7,6 +7,11 @@ Created by Max Geissler
 
 config = require "../config"
 
+session = null
+
+setSession = (s) ->
+	session = s
+
 send = (options) ->
 	# Try 3 times
 	if !options.tries?
@@ -45,6 +50,9 @@ send = (options) ->
 	obj =
 		cmd: options.cmd
 		data: options.data
+
+	if options.session? && options.session == true
+		obj.session = session
 
 	$.ajax
 		type: "POST"
