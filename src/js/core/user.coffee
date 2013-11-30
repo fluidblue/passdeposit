@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 crypt = require "./crypt"
+command = require "./command"
 
 create = (email, password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
