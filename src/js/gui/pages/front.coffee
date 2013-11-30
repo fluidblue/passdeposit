@@ -22,19 +22,37 @@ loginUser = ->
 	# Dismiss registration notification(s), if open
 	jGrowl.closeAll()
 
-	# Get login data
-	email = $("#loginUser").val()
-	password = $("#loginPass").val()
+	# Get fields
+	passField = $("#loginPass")
+	userField = $("#loginUser")
 
-	# TODO
-	#if password.length == 0
-		#$('#loginPass').addClass('invalidInput');
-		#return false;
+	# Get login data
+	email = userField.val()
+	password = passField.val()
 	
 	core.user.login email, password, (response) ->
 		if response.status != "success"
-			# TODO
-			alert "Failed to login."
+			# Notify user
+			userField.addClass "invalidInput"
+			userField.one "keypress.loginfailed", ->
+				userField.removeClass "invalidInput"
+				return
+
+			passField.addClass "invalidInput"
+			passField.one "keypress.loginfailed", ->
+				passField.removeClass "invalidInput"
+
+				userField.removeClass "invalidInput"
+				userField.off "keypress.loginfailed"
+				return
+
+			passField.val ""
+
+			if email.length == 0
+				userField.focus()
+			else
+				passField.focus()
+
 			return
 
 		saveUsername()
@@ -44,12 +62,14 @@ loginUser = ->
 			if response.status != "success"
 				# TODO
 				alert "Failed to load items from DB"
-			
-			# Empty password field
-			$("#loginPass").val ""
+				return
 
 			# Switch to mainpage
 			$("#frontpage").fadeOut config.animations.pageChangeDuration, ->
+				# Empty password field
+				$("#loginPass").val ""
+
+				# Show mainpage
 				$("#mainpage").fadeIn config.animations.pageChangeDuration
 				$("#search").focus()
 
@@ -73,6 +93,7 @@ setInputInvalid = (jqElem) ->
 	jqElem.addClass "invalidInput"
 	jqElem.one "keypress", ->
 		jqElem.removeClass "invalidInput"
+		return
 
 checkNotEmpty = (jqElem) ->
 	if jqElem.val().length == 0
