@@ -24,7 +24,6 @@ load = ->
 		add(item)
 
 add = (itemCrypted) ->
-	# TODO: Make copy, instead of reference!
 	itemsEncrypted[itemCrypted.id] = itemCrypted
 	itemsDecrypted[itemCrypted.id] = crypt.decrypt(itemCrypted)
 
