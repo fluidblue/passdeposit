@@ -127,7 +127,7 @@ key = (password, salt) ->
 	# Create key from password and salt:
 	# PBKDF2-HMAC-SHA256 with iteration count 1000
 	key = sjcl.misc.pbkdf2(password, salt, 1000)
-	return sjcl.codec.hex.fromBits(key)
+	return sjcl.codec.base64.fromBits(key)
 
 deepCopy = (obj) ->
 	# Make a deep copy of the object.

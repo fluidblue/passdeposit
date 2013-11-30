@@ -20,20 +20,20 @@ session = ->
 	# Hash it
 	hash = sjcl.hash.sha256.hash(random)
 
-	# Return hex representation
-	return sjcl.codec.hex.fromBits(hash)
+	# Return base64 representation
+	return sjcl.codec.base64.fromBits(hash)
 
 serverKey = (clientKey, salt) ->
-	# Convert to bits
-	clientKey = sjcl.codec.hex.toBits(clientKey)
+	# Convert from base64 to bits
+	clientKey = sjcl.codec.base64.toBits(clientKey)
 	salt = sjcl.codec.base64.toBits(salt)
 
 	# Create a server key from client key and salt:
 	# PBKDF2-HMAC-SHA256 with iteration count 1000
 	serverKey = sjcl.misc.pbkdf2(clientKey, salt, 1000)
 
-	# Return hex representation
-	return sjcl.codec.hex.fromBits(serverKey) 
+	# Return base64 representation
+	return sjcl.codec.base64.fromBits(serverKey) 
 
 module.exports.salt = salt
 module.exports.session = session
