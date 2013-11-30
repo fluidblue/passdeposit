@@ -41,8 +41,13 @@ initTemplate = (template) ->
 
 		if exist
 			# Remove item
-			core.items.remove(id)
-			itemlist.remove(template)
+			core.items.remove id, (response) ->
+				if response.status != "success"
+					# Show error
+					$.jGrowl text.get("itemDeleteFailed", response.status)
+					return
+
+				itemlist.remove(template)
 		else
 			# Cancel creation of new item
 			template.find(".content .btnCancel").trigger("click")
