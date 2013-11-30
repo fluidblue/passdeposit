@@ -16,11 +16,15 @@ createModels = ->
 	# Create schema for user
 	userSchema = mongoose.Schema
 		email: String
-		password: String
+		password:
+			key: String
+			salt: String
 		passwordHint: String
 		
 		created: Date
 		lastActive: Date
+
+		session: String
 	,
 		versionKey: false
 
