@@ -133,7 +133,7 @@ init = ->
 		if checkNotEmpty($("#registerEmail")) & checkNotEmpty($("#registerPass")) & checkNotEmpty($("#registerPassRepeat")) & checkNotEmpty($("#registerPassHint"))
 			$("#registerDialog").modal "show"
 		else
-			setFormFocus "#login" # TODO: Not working
+			setFormFocus "#register"
 
 		return
 
