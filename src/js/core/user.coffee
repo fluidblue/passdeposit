@@ -48,6 +48,12 @@ login = (email, password, callback) ->
 
 			callback(response)
 
+logout = ->
+	# Clear values
+	userid = null
+	session = null
+	masterpassword = null
+
 getID = ->
 	return userid
 
@@ -59,6 +65,7 @@ getPassword = ->
 
 module.exports.create = create
 module.exports.login = login
+module.exports.logout = logout
 module.exports.getID = getID
 module.exports.getSession = getSession
 module.exports.getPassword = getPassword
