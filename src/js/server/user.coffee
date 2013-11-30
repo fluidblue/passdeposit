@@ -87,7 +87,7 @@ login = (email, key, callback) ->
 			callback
 				status: "success"
 				session: session
-				userid: userID
+				userid: userID.toString()
 
 authenticate = (userid, session, callback) ->
 	if !userid? || !session?
