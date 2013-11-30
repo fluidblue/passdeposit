@@ -6,11 +6,14 @@ Created by Max Geissler
 
 database = require "./database"
 
-add = (item, callback) ->
+add = (userid, item, callback) ->
 	# Add timestamp
 	timestamp = new Date()
 	item.dateCreated = timestamp
 	item.dateModified = timestamp
+
+	# Add userID
+	item._user = userid
 
 	database.getModel("item").create item, (err, doc) ->
 		if err || !doc?
@@ -27,29 +30,35 @@ add = (item, callback) ->
 			status: "success"
 			item: item
 
-modify = (item, callback) ->
+modify = (userid, item, callback) ->
 	# Update timestamp
 	timestamp = new Date()
 	item.dateModified = timestamp
 
-	database.getModel("item").findByIdAndUpdate item.id,
+	conditions =
+		_id: item.id
+		_user: userid
+
+	database.getModel("item").update conditions,
 		$set: item
-	, (err, doc) ->
-		if err || !doc?
+	, (err, numberAffected, raw) ->
+		if err || numberAffected != 1
 			callback
 				status: "db:failed"
 
 			return
-		
-		# Convert mongoose document into plain javascript object
-		item = doc.toClient()
 
+		# TODO: Do not return entire item, but only dateModified
 		callback
 			status: "success"
 			item: item
 
-remove = (id, callback) ->
-	database.getModel("item").findByIdAndRemove id, (err) ->
+remove = (userid, id, callback) ->
+	conditions =
+		_id: id
+		_user: userid
+
+	database.getModel("item").remove conditions, (err) ->
 		if err
 			callback
 				status: "db:failed"
@@ -59,9 +68,24 @@ remove = (id, callback) ->
 		callback
 			status: "success"
 
-get = ->
-	# TODO
-	return
+get = (userid, callback) ->
+	conditions =
+		_user: userid
+
+	database.getModel("item").find conditions, (err, docs) ->
+		if err || !docs?
+			callback
+				status: "db:failed"
+
+			return
+
+		# Convert mongoose documents into plain javascript objects
+		for key, doc of docs
+			docs[key] = docs[key].toClient()
+
+		callback
+			status: "success"
+			items: docs
 
 module.exports.add = add
 module.exports.modify = modify

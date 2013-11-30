@@ -26,16 +26,16 @@ process = (clientID, params, callback) ->
 			user.login(params.data.email, params.data.key, callback)
 		when "item.add"
 			authenticate ->
-				item.add(params.data, callback)
+				item.add(params.userid, params.data, callback)
 		when "item.modify" 
 			authenticate ->
-				item.modify(params.data, callback)
+				item.modify(params.userid, params.data, callback)
 		when "item.remove" 
 			authenticate ->
-				item.remove(params.data, callback)
+				item.remove(params.userid, params.data, callback)
 		when "item.get"
 			authenticate ->
-				item.get(callback)
+				item.get(params.userid, callback)
 		else
 			callback
 				status: "invalidcommand"
