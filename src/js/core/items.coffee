@@ -18,6 +18,7 @@ add = (item, callback) ->
 	command.send
 		cmd: "item.add"
 		data: itemCrypted
+		session: true
 		callback: (response) ->
 			if response.status == "success"
 				# Update item cache
@@ -36,6 +37,7 @@ modify = (item, callback) ->
 	command.send
 		cmd: "item.modify"
 		data: itemCrypted
+		session: true
 		callback: (response) ->
 			if response.status == "success"
 				# Update item cache
@@ -51,6 +53,7 @@ remove = (id, callback) ->
 	command.send
 		cmd: "item.remove"
 		data: id
+		session: true
 		callback: (response) ->
 			if response.status == "success"
 				# Update item cache
