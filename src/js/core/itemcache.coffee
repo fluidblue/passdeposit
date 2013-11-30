@@ -5,9 +5,8 @@ Item cache
 Created by Max Geissler
 ###
 
-# TODO: Remove
-testItems = require "./testfields.json"
 crypt = require "./crypt"
+command = require "./command"
 
 itemsEncrypted = {}
 itemsDecrypted = {}
@@ -18,10 +17,24 @@ get = (id = undefined) ->
 	else
 		return itemsDecrypted
 
-load = ->
-	# TODO: Load from DB
-	for item in testItems
-		add(item)
+load = (callback) ->
+	# Get all items from server
+	command.send
+		cmd: "item.get"
+		authenticate: true
+		callback: (response) ->
+			if response.status == "success"
+				for item in response.items
+					# Update item cache
+					add(item)
+
+					# Update tagcache
+					tagcache.add(item.id, item.tags)
+
+				callback(true)
+			else
+				console.log "Error: Loading items failed: " + response.status
+				callback(false)
 
 add = (itemCrypted) ->
 	itemsEncrypted[itemCrypted.id] = itemCrypted

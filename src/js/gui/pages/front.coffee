@@ -36,17 +36,20 @@ loginUser = ->
 	saveUsername()
 
 	# Load items
-	core.items.load()
-	
-	# Switch to mainpage
-	$("#frontpage").fadeOut config.animations.pageChangeDuration, ->
-		$("#mainpage").fadeIn config.animations.pageChangeDuration
-		$("#search").focus()
-		
-		# Empty password field
-		$("#loginPass").val ""
+	core.items.load (success) ->
+		if success
+			# Empty password field
+			$("#loginPass").val ""
 
-		return
+			# Switch to mainpage
+			$("#frontpage").fadeOut config.animations.pageChangeDuration, ->
+				$("#mainpage").fadeIn config.animations.pageChangeDuration
+				$("#search").focus()
+
+				return
+		else
+			# TODO
+			alert "Failed to load items from DB"
 
 # TODO: Unused?
 showRegisterErrorTip = (element, message) ->
