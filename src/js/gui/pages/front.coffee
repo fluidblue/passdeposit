@@ -143,14 +143,22 @@ init = ->
 
 		return
 
-	$("#registerDialog .modal-footer .register").click (e) ->
+	$("#registerDialog .btn.register").click (e) ->
 		e.preventDefault()
 
 		registerSuccess = false
-		
-		#alert('Not implemented.');
 
-		registerSuccess = true
+		email = $("#registerEmail").val()
+		password = $("#registerPass").val()
+		passwordHint = $("#registerPassHint").val()
+
+		core.user.create email, password, passwordHint, (response) ->
+			if response.status == "success"
+				registerSuccess = true
+			else
+				# TODO
+				alert "Failed to create user: " + response.status
+
 		$("#registerDialog").modal "hide"
 
 		return
