@@ -67,9 +67,9 @@ process = (clientID, cmd, data, callback) ->
 		status: "invalidcommand"
 
 	switch cmd
-		when "add" then add(data, callback)
-		when "modify" then modify(data, callback)
-		when "remove" then remove(data, callback)
+		when "item.add" then add(data, callback)
+		when "item.modify" then modify(data, callback)
+		when "item.remove" then remove(data, callback)
 		else callback(invalid)
 
 module.exports.process = process

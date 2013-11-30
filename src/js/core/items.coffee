@@ -16,7 +16,7 @@ add = (item, callback) ->
 
 	# Send command to server
 	command.send
-		cmd: "add"
+		cmd: "item.add"
 		data: itemCrypted
 		callback: (response) ->
 			if response.status == "success"
@@ -34,7 +34,7 @@ modify = (item, callback) ->
 	
 	# Send command to server
 	command.send
-		cmd: "modify"
+		cmd: "item.modify"
 		data: itemCrypted
 		callback: (response) ->
 			if response.status == "success"
@@ -49,7 +49,7 @@ modify = (item, callback) ->
 remove = (id, callback) ->
 	# Send command to server
 	command.send
-		cmd: "remove"
+		cmd: "item.remove"
 		data: id
 		callback: (response) ->
 			if response.status == "success"
