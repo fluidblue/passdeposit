@@ -5,6 +5,7 @@ Created by Max Geissler
 ###
 
 crypt = require "./crypt"
+database = require "./database"
 
 create = (email, key, passwordHint, callback) ->
 	# TODO: Check email, passwordHint
