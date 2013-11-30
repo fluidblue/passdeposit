@@ -88,5 +88,19 @@ login = (email, key, callback) ->
 				session: session
 				userid: userID
 
+authenticate = (userid, session, callback) ->
+	if !userid? || !session?
+		callback(false)
+		return
+
+	conditions =
+		_id: userid
+		session: session
+
+	database.getModel("user").count conditions, (err, count) ->
+		authenticated = !err && count == 1
+		callback(authenticated)
+
 module.exports.create = create
 module.exports.login = login
+module.exports.authenticate = authenticate

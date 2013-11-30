@@ -9,13 +9,13 @@ command = require "./command"
 
 serve = (clientID, post, callback) ->
 	# Get command (and the corresponding data)
-	commandObject = {}
+	params = {}
 
 	if post.obj?
-		commandObject = JSON.parse(post.obj)
+		params = JSON.parse(post.obj)
 
 	# Process command
-	command.process clientID, commandObject.cmd, commandObject.data, (result) ->
+	command.process clientID, params, (result) ->
 		content = JSON.stringify(result)
 
 		# gzip content

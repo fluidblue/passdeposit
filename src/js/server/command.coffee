@@ -8,19 +8,36 @@ log = require "./log"
 item = require "./item"
 user = require "./user"
 
-process = (clientID, cmd, data, callback) ->
-	log.info clientID + " executes " + cmd
+process = (clientID, params, callback) ->
+	log.info clientID + " executes " + params.cmd
 
-	invalid =
-		status: "invalidcommand"
+	authenticate = (callback2) ->
+		user.authenticate params.userid, params.session, (authenticated) ->
+			if authenticated
+				callback2()
+			else
+				callback
+					status: "auth:failed"
 
-	switch cmd
-		when "item.add" then item.add(data, callback)
-		when "item.modify" then item.modify(data, callback)
-		when "item.remove" then item.remove(data, callback)
-		when "item.get" then item.get(callback)
-		when "user.create" then user.create(data.email, data.key, data.passwordHint, callback)
-		when "user.login" then user.login(data.email, data.key, callback)
-		else callback(invalid)
+	switch params.cmd
+		when "user.create"
+			user.create(params.data.email, params.data.key, params.data.passwordHint, callback)
+		when "user.login"
+			user.login(params.data.email, params.data.key, callback)
+		when "item.add"
+			authenticate ->
+				item.add(params.data, callback)
+		when "item.modify" 
+			authenticate ->
+				item.modify(params.data, callback)
+		when "item.remove" 
+			authenticate ->
+				item.remove(params.data, callback)
+		when "item.get"
+			authenticate ->
+				item.get(callback)
+		else
+			callback
+				status: "invalidcommand"
 
 module.exports.process = process
