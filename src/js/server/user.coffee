@@ -56,7 +56,7 @@ login = (email, key, callback) ->
 			return
 
 		# Authenticate user
-		serverKey = serverKey(key, doc.password.salt)
+		serverKey = crypt.serverKey(key, doc.password.salt)
 		if serverKey != doc.password.key
 			callback
 				status: "auth:failed"
