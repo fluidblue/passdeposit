@@ -68,8 +68,11 @@ login = (email, key, callback) ->
 		# Get current timestamp
 		timestamp = new Date()
 
+		# Get ID
+		userID = doc._id
+
 		# Save session
-		userModel.findByIdAndUpdate doc._id,
+		userModel.findByIdAndUpdate userID,
 			$set:
 				session: session
 				lastActive: timestamp
@@ -83,6 +86,7 @@ login = (email, key, callback) ->
 			callback
 				status: "success"
 				session: session
+				userid: userID
 
 module.exports.create = create
 module.exports.login = login

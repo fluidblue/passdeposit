@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 sjcl = require "sjcl"
+user = require "./user"
 
 # Define encryptions
 availableEncryptions =
@@ -27,12 +28,9 @@ availableEncryptions =
 # Default encryption
 defaultEncryption = availableEncryptions.aes256
 
-# Holds the master password
-password = null
-# TODO: Remove
-password = "pass"
-
 encrypt = (item, encryption = defaultEncryption) ->
+	password = user.getPassword()
+
 	# Cancel if master password is unknown
 	if !password?
 		console.log "Error: Master password unknown"
@@ -85,6 +83,8 @@ encrypt = (item, encryption = defaultEncryption) ->
 	return item
 
 decrypt = (item) ->
+	password = user.getPassword()
+	
 	# Cancel if master password is unknown
 	if !password?
 		console.log "Error: Master password unknown"

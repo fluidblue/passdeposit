@@ -5,12 +5,7 @@ Server communication
 Created by Max Geissler
 ###
 
-config = require "../config"
-
-session = null
-
-setSession = (s) ->
-	session = s
+user = require "./user"
 
 send = (options) ->
 	# Try 3 times
@@ -51,8 +46,9 @@ send = (options) ->
 		cmd: options.cmd
 		data: options.data
 
-	if options.session? && options.session == true
-		obj.session = session
+	if options.authenticate? && options.authenticate == true
+		obj.userid = user.getID()
+		obj.session = user.getSession()
 
 	$.ajax
 		type: "POST"

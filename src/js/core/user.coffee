@@ -8,6 +8,12 @@ Created by Max Geissler
 crypt = require "./crypt"
 command = require "./command"
 
+# User's ID, current session and plaintext master password
+# These values are only set if the user is logged in.
+userid = null
+session = null
+masterpassword = null
+
 create = (email, password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
@@ -35,10 +41,24 @@ login = (email, password, callback) ->
 			key: key
 		callback: (response) ->
 			if response.status == "success"
-				# Save session
-				command.setSession(response.session)
+				# Save userID and session
+				userid = response.userid
+				session = response.session
+				masterpassword = password
 
 			callback(response)
 
+getID = ->
+	return userid
+
+getSession = ->
+	return session
+
+getPassword = ->
+	return masterpassword
+
 module.exports.create = create
 module.exports.login = login
+module.exports.getID = getID
+module.exports.getSession = getSession
+module.exports.getPassword = getPassword
