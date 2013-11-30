@@ -17,7 +17,7 @@ createModels = ->
 	userSchema = mongoose.Schema
 		email:
 			type: String
-			index: true
+			unique: true
 
 		password:
 			key: String
