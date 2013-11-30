@@ -59,6 +59,11 @@ remove = (id, callback) ->
 		callback
 			status: "success"
 
+get = ->
+	# TODO
+	return
+
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove
+module.exports.get = get
