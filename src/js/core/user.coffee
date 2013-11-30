@@ -7,6 +7,8 @@ Created by Max Geissler
 
 crypt = require "./crypt"
 command = require "./command"
+itemcache = require "./itemcache"
+tagcache = require "./tagcache"
 
 # User's ID, current session and plaintext master password
 # These values are only set if the user is logged in.
@@ -54,6 +56,10 @@ logout = ->
 	credentials.userid = null
 	credentials.session = null
 	credentials.password = null
+
+	# Clear caches
+	itemcache.clear()
+	tagcache.clear()
 
 getID = ->
 	if !credentials.userid?

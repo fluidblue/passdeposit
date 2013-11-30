@@ -49,6 +49,10 @@ modify = (itemID, tags) ->
 	for tag in tags
 		tagList[tag] = [itemID]
 
+clear = ->
+	tagList = {}
+
 module.exports.add = add
 module.exports.remove = remove
 module.exports.modify = modify
+module.exports.clear = clear

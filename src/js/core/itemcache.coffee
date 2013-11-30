@@ -33,7 +33,12 @@ remove = (id) ->
 
 	return true
 
+clear = ->
+	itemsEncrypted = {}
+	itemsDecrypted = {}
+
 module.exports.get = get
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove
+module.exports.clear = clear

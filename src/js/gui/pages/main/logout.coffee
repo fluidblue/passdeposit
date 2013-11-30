@@ -9,6 +9,7 @@ setFormFocus = require "../../components/set-form-focus"
 jGrowl = require "../../components/jgrowl-extend"
 config = require "../../../config"
 itemlist = require "../../itemlist"
+core = require "../../../core"
 
 logout = ->
 	# Close all jGrowl messages
@@ -16,8 +17,11 @@ logout = ->
 	
 	# Switch to frontpage
 	$("#mainpage").fadeOut config.animations.pageChangeDuration, ->
-		# TODO: Clean up data!
+		# Clear all data
+		core.user.logout()
 		itemlist.clear(true)
+
+		# TODO: Reset dialogs
 
 		# Show frontpage
 		$("#frontpage").fadeIn config.animations.pageChangeDuration
