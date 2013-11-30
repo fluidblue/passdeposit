@@ -57,7 +57,7 @@ remove = (id, callback) ->
 		callback: (response) ->
 			if response.status == "success"
 				# Update item cache
-				itemcache.remove(response.item.id)
+				itemcache.remove(id)
 
 				# Update tagcache
 				tagcache.remove(id)
