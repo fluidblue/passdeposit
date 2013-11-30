@@ -16,7 +16,7 @@ send = (options) ->
 	if !options.callback?
 		options.callback = (response) ->
 			if response.status != "success"
-				console.log "Ajax request failed: " + response.status
+				throw "Ajax request failed: " + response.status
 
 			return
 

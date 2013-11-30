@@ -10,9 +10,10 @@ command = require "./command"
 
 # User's ID, current session and plaintext master password
 # These values are only set if the user is logged in.
-userid = null
-session = null
-masterpassword = null
+credentials =
+	userid: null
+	session: null
+	password: null
 
 create = (email, password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
@@ -42,26 +43,35 @@ login = (email, password, callback) ->
 		callback: (response) ->
 			if response.status == "success"
 				# Save userID and session
-				userid = response.userid
-				session = response.session
-				masterpassword = password
+				credentials.userid = response.userid
+				credentials.session = response.session
+				credentials.password = password
 
 			callback(response)
 
 logout = ->
 	# Clear values
-	userid = null
-	session = null
-	masterpassword = null
+	credentials.userid = null
+	credentials.session = null
+	credentials.password = null
 
 getID = ->
-	return userid
+	if !credentials.userid?
+		throw "Error: User is not logged in"
+
+	return credentials.userid
 
 getSession = ->
-	return session
+	if !credentials.session?
+		throw "Error: User is not logged in"
+
+	return credentials.session
 
 getPassword = ->
-	return masterpassword
+	if !credentials.password?
+		throw "Error: User is not logged in"
+
+	return credentials.password
 
 module.exports.create = create
 module.exports.login = login

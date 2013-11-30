@@ -30,12 +30,6 @@ defaultEncryption = availableEncryptions.aes256
 
 encrypt = (item, encryption = defaultEncryption) ->
 	password = user.getPassword()
-
-	# Cancel if master password is unknown
-	if !password?
-		console.log "Error: Master password unknown"
-		return null
-
 	fnEncrypt = null
 
 	# Define encryption function
@@ -66,8 +60,7 @@ encrypt = (item, encryption = defaultEncryption) ->
 
 				return ret
 		else
-			console.log "Error: Unknown encryption: " + encryption.type
-			return null
+			throw "Error: Unknown encryption: " + encryption.type
 
 	# Encrypt fields
 	for key, entry of item.fields
@@ -84,12 +77,6 @@ encrypt = (item, encryption = defaultEncryption) ->
 
 decrypt = (item) ->
 	password = user.getPassword()
-	
-	# Cancel if master password is unknown
-	if !password?
-		console.log "Error: Master password unknown"
-		return null
-
 	fnDecrypt = null
 
 	# Define decryption function
@@ -108,8 +95,7 @@ decrypt = (item) ->
 				# Decrypt with SJCL lib
 				return sjcl.json._decrypt(password, item.encryption.options, crypt)
 		else
-			console.log "Error: Unknown encryption: " + item.encryption.type
-			return null
+			throw "Error: Unknown encryption: " + item.encryption.type
 
 	# Decrypt fields
 	for key, entry of item.fields
