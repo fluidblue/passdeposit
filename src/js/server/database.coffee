@@ -48,6 +48,10 @@ createModels = ->
 		dateCreated: Date
 		dateModified: Date
 
+		_user:
+			type: mongoose.Schema.Types.ObjectId
+			index: true
+
 		encryption:
 			type:
 				type: String
@@ -69,6 +73,10 @@ createModels = ->
 		if obj._id?
 			obj.id = obj._id.toString()
 			delete obj._id
+
+		# Remove user reference
+		if obj._user?
+			delete obj._user
 
 		return obj
 
