@@ -18,12 +18,12 @@ add = (itemID, tags) ->
 			# Create new tag
 			tagList[tag] = [itemID]
 
-remove = (itemID, tags) ->
-	for tag in tags
+remove = (itemID) ->
+	for tag of tagList
 		if tagList[tag]?
-			# Delete reference to item
 			index = tagList[tag].indexOf(itemID)
 
+			# Delete reference to item
 			if index != -1
 				delete tagList[tag][index]
 
