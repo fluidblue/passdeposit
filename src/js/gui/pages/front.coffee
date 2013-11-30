@@ -22,22 +22,29 @@ loginUser = ->
 	# Dismiss registration notification(s), if open
 	jGrowl.closeAll()
 
-	#$("#loginPass").val().length == 0
+	# Get login data
+	email = $("#loginUser").val()
+	password = $("#loginPass").val()
+
+	# TODO
+	#if password.length == 0
 		#$('#loginPass').addClass('invalidInput');
 		#return false;
 	
-	#$.post('passdeposit.php',
-	#		{
-	#			userName : this.userName,
-	#			pass: this.passHash
-	#		}
-	#	);
-	
-	saveUsername()
+	core.user.login email, password, (response) ->
+		if response.status != "success"
+			# TODO
+			alert "Failed to login."
+			return
 
-	# Load items
-	core.items.load (success) ->
-		if success
+		saveUsername()
+
+		# Load items from database
+		core.items.load (response) ->
+			if response.status != "success"
+				# TODO
+				alert "Failed to load items from DB"
+			
 			# Empty password field
 			$("#loginPass").val ""
 
@@ -47,9 +54,6 @@ loginUser = ->
 				$("#search").focus()
 
 				return
-		else
-			# TODO
-			alert "Failed to load items from DB"
 
 # TODO: Unused?
 showRegisterErrorTip = (element, message) ->

@@ -49,11 +49,6 @@ modify = (itemID, tags) ->
 	for tag in tags
 		tagList[tag] = [itemID]
 
-create = ->
-	for id, item of itemcache.get()
-		add(id, item.tags)
-
 module.exports.add = add
 module.exports.remove = remove
 module.exports.modify = modify
-module.exports.create = create

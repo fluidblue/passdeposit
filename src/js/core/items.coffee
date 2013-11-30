@@ -64,9 +64,23 @@ remove = (id, callback) ->
 
 			callback(response)
 
-load = ->
-	itemcache.load()
-	tagcache.create()
+load = (callback) ->
+	# Get all items from server
+	command.send
+		cmd: "item.get"
+		authenticate: true
+		callback: (response) ->
+			if response.status == "success"
+				for item in response.items
+					# Update item cache
+					itemcache.add(item)
+
+					# Update tagcache
+					tagcache.add(item.id, item.tags)
+			else
+				console.log "Error: Loading items failed: " + response.status
+
+			callback(response)
 
 module.exports.add = add
 module.exports.modify = modify
