@@ -63,7 +63,7 @@ css-base:
 # Compile JS
 # ----------
 js: js-base
-	webmake --ext=coffee ./$(SOURCE_DIR)/js/gui/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
+	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/gui/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 
 	cat ./$(SOURCE_DIR)/js/license.js > ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js
 
@@ -72,8 +72,8 @@ js: js-base
 	mv ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 
 js-debug: js-base
-#	webmake --ext=coffee --sourcemap ./$(SOURCE_DIR)/js/gui/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
-	webmake --ext=coffee ./$(SOURCE_DIR)/js/gui/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
+#	webmake --ext=coffee --ignore-errors --sourcemap ./$(SOURCE_DIR)/js/gui/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
+	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/gui/passdeposit.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 
 js-base:
 	mkdir -p ./$(BUILD_HTTPDOCS_DIR)/js
