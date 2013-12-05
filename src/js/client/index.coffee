@@ -13,11 +13,11 @@ require "bootstrap"
 require "bootstrap-tag"
 
 # Require initialization files
-frontPage = require "./pages/front"
-mainPage = require "./pages/main"
-itemlist = require "./itemlist"
-navPills = require "./components/nav-pills"
-jGrowl = require "./components/jgrowl-extend"
+frontPage = require "./gui/pages/front"
+mainPage = require "./gui/pages/main"
+itemlist = require "./gui/itemlist"
+navPills = require "./gui/components/nav-pills"
+jGrowl = require "./gui/components/jgrowl-extend"
 
 # Initialize page when DOM is ready.
 $(document).ready ->
