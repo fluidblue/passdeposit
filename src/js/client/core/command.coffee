@@ -8,9 +8,9 @@ Created by Max Geissler
 user = require "./user"
 
 send = (options) ->
-	# Try 3 times
+	# Try 2 times
 	if !options.tries?
-		options.tries = 3
+		options.tries = 2
 
 	# Define default handler
 	if !options.callback?
