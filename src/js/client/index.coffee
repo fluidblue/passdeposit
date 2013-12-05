@@ -12,15 +12,10 @@ require "jquery-total-storage"
 require "bootstrap"
 require "bootstrap-tag"
 
-# Require page files
-global = require "./gui/global"
-front = require "./gui/front"
-main = require "./gui/main"
+# Require GUI
+gui = require "./gui"
 
-# Initialize page when DOM is ready.
+# Initialize GUI when DOM is ready
 $(document).ready ->
-	global.init()
-	front.init()
-	main.init()
-	
+	gui.init()
 	return

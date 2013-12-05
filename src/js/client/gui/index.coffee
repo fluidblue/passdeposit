@@ -5,4 +5,13 @@ GUI API
 Created by Max Geissler
 ###
 
-module.exports.itemlist = require "./itemlist"
+global = require "./global"
+front = require "./front"
+main = require "./main"
+
+init = ->
+	global.init()
+	front.init()
+	main.init()
+
+module.exports.init = init
