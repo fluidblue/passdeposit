@@ -14,7 +14,7 @@ format = require "../format"
 info = require "../info"
 global = require "../../../global"
 
-save = (item, tagList, fieldList) ->
+save = (item, tagList, fieldList, showSuccessNotification = true) ->
 	# Create item object
 	itemObj =
 		"fields": fieldList
@@ -39,7 +39,8 @@ save = (item, tagList, fieldList) ->
 		info.set(item, itemDecrypted)
 
 		# Show notification
-		$.jGrowl global.text.get("itemSaveSucceeded")
+		if showSuccessNotification
+			$.jGrowl global.text.get("itemSaveSucceeded")
 
 	# Call core procedure
 	if exist
