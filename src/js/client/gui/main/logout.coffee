@@ -5,15 +5,14 @@ Logout functions
 Created by Max Geissler
 ###
 
-setFormFocus = require "../global/set-form-focus"
-jGrowl = require "../global/jgrowl-extend"
+global = require "../global"
 config = require "../../../config"
 itemlist = require "./itemlist"
 core = require "../../core"
 
 logout = ->
 	# Close all jGrowl messages
-	jGrowl.closeAll()
+	global.jGrowlExtend.closeAll()
 	
 	# Switch to frontpage
 	$("#mainpage").fadeOut config.animations.pageChangeDuration, ->
@@ -25,7 +24,7 @@ logout = ->
 
 		# Show frontpage
 		$("#frontpage").fadeIn config.animations.pageChangeDuration
-		setFormFocus "#login"
+		global.setFormFocus "#login"
 
 init = ->
 	$("#btnLogout").click (e) ->

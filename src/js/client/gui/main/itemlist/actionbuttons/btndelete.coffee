@@ -8,7 +8,7 @@ Created by Max Geissler
 core = require "../../../../core"
 itemid = require "../itemid"
 itemlist = require ".."
-text = require "../../../global/text"
+global = require "../../../global"
 
 initTemplate = (template) ->
 	btnDelete = template.find(".content .actionButtons .btnDelete")
@@ -18,8 +18,8 @@ initTemplate = (template) ->
 		trigger: "manual"
 		placement: "bottom"
 		html: true
-		content: text.get("popoverDeleteContent")
-		title: text.get("popoverDeleteTitle")
+		content: global.text.get("popoverDeleteContent")
+		title: global.text.get("popoverDeleteTitle")
 		container: template # Avoid jumping buttons (preserve btn-group)
 
 	btnDelete.popover options
@@ -44,7 +44,7 @@ initTemplate = (template) ->
 			core.items.remove id, (response) ->
 				if response.status != "success"
 					# Show error
-					$.jGrowl text.get("itemDeleteFailed", response.status)
+					$.jGrowl global.text.get("itemDeleteFailed", response.status)
 					return
 
 				itemlist.remove(template)

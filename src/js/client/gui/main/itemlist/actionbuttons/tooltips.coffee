@@ -5,7 +5,7 @@ itemlist action button tooltips
 Created by Max Geissler
 ###
 
-text = require "../../../global/text"
+global = require "../../../global"
 
 initTemplate = (template) ->
 	# Add tooltips for delete and duplicate buttons
@@ -15,10 +15,10 @@ initTemplate = (template) ->
 		animation: false
 		container: template # Avoid jumping buttons (preserve btn-group)
 
-	options.title = text.get("tooltipDelete")
+	options.title = global.text.get("tooltipDelete")
 	template.find(".content .actionButtons .btnDelete").tooltip options
 
-	options.title = text.get("tooltipDuplicate")
+	options.title = global.text.get("tooltipDuplicate")
 	template.find(".content .actionButtons .btnDuplicate").tooltip options
 
 module.exports.initTemplate = initTemplate

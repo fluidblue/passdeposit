@@ -5,7 +5,7 @@ Field buttons
 Created by Max Geissler
 ###
 
-text = require "../../../global/text"
+global = require "../../../global"
 
 initTooltipWebAddress = (fieldTemplate) ->
 	# Create web address tooltip
@@ -13,7 +13,7 @@ initTooltipWebAddress = (fieldTemplate) ->
 
 	options =
 		placement: "bottom"
-		title: text.get("infoURI")
+		title: global.text.get("infoURI")
 		trigger: "focus"
 		animation: false
 
@@ -23,7 +23,7 @@ initTooltipPassGen = (fieldTemplate) ->
 	# Create password generation tooltip
 	options =
 		placement: "bottom"
-		title: text.get("passGenerated")
+		title: global.text.get("passGenerated")
 		trigger: "manual"
 		animation: true
 
@@ -53,7 +53,7 @@ initTooltipPassGenHint = (fieldTemplate) ->
 	# Create password generation hint
 	options =
 		placement: "bottom"
-		title: text.get("passGenerationHint")
+		title: global.text.get("passGenerationHint")
 		trigger: "manual"
 
 	fnShowTooltip = ->

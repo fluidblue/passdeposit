@@ -9,7 +9,7 @@ fields = require "../fields"
 tags = require "../tags"
 itemlist = require ".."
 btnsave = require "../actionbuttons/btnsave"
-text = require "../../../global/text"
+global = require "../../../global"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnDuplicate", (e) ->
@@ -29,7 +29,7 @@ init = ->
 		newItem =
 			id: 0
 
-			title: text.get("addOther")
+			title: global.text.get("addOther")
 
 			fields: fieldList
 			tags: tagList
@@ -43,7 +43,7 @@ init = ->
 		# TODO: Resort or clear item list
 
 		# Show notification
-		$.jGrowl text.get("duplicatedItem")
+		$.jGrowl global.text.get("duplicatedItem")
 
 		return
 

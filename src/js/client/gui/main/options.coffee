@@ -5,7 +5,7 @@ Options dialog
 Created by Max Geissler
 ###
 
-text = require "../global/text"
+global = require "../global"
 
 init = ->
 	### Initializes option dialog ###
@@ -26,7 +26,7 @@ init = ->
 
 	$("#optionsDialog").on "hidden", ->
 		if saveOptions
-			$.jGrowl text.get("optionsSaved")
+			$.jGrowl global.text.get("optionsSaved")
 		
 		return
 

@@ -5,7 +5,7 @@ NavPills
 Created by Max Geissler
 ###
 
-setFormFocus = require "./set-form-focus"
+setFormFocus = require "./setFormFocus"
 
 navPillFadeDuration = 200
 

@@ -7,7 +7,7 @@ Created by Max Geissler
 
 format = require "./format"
 fields = require "./fields"
-text = require "../../global/text"
+global = require "../../global"
 
 initTooltips = (template) ->
 	buttonContainer = template.find(".header .buttons")
@@ -17,10 +17,10 @@ initTooltips = (template) ->
 		trigger: "hover focus"
 		animation: false
 
-	options.title = text.get("copyPass")
+	options.title = global.text.get("copyPass")
 	buttonContainer.find(".btnPass").tooltip options
 
-	options.title = text.get("openAddress")
+	options.title = global.text.get("openAddress")
 	buttonContainer.find(".btnOpen").tooltip options
 
 initBtnPass = ->
@@ -33,7 +33,7 @@ initBtnPass = ->
 		console.log("copy to clipboard: " + value)
 
 		# Show notification
-		$.jGrowl text.get("copiedToClipboard")
+		$.jGrowl global.text.get("copiedToClipboard")
 
 		return
 

@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 itemlist = require "./itemlist"
-text = require "../global/text"
+global = require "../global"
 
 init = ->
 	$("#mainpage .mainNav .btnAdd .dropdown-menu a").click (e) ->
@@ -27,29 +27,29 @@ init = ->
 
 		switch type
 			when "website"
-				item.title = text.get("addWebsite")
+				item.title = global.text.get("addWebsite")
 				pushField("uri")
 				pushField("user")
 				pushField("pass")
 
 			when "email"
-				item.title = text.get("addEmail")
+				item.title = global.text.get("addEmail")
 				pushField("email")
 				pushField("pass")
 
 			when "messenger"
-				item.title = text.get("addMessenger")
+				item.title = global.text.get("addMessenger")
 				pushField("service")
 				pushField("user")
 				pushField("pass")
 
 			when "bookmark"
-				item.title = text.get("addBookmark")
+				item.title = global.text.get("addBookmark")
 				pushField("text")
 				pushField("uri")
 
 			else
-				item.title = text.get("addOther")
+				item.title = global.text.get("addOther")
 				pushField("service")
 				pushField("user")
 				pushField("pass")

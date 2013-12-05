@@ -5,7 +5,7 @@ itemlist formats
 Created by Max Geissler
 ###
 
-text = require "../../global/text"
+global = require "../../global"
 
 validUri = (uri) ->
 	# Append http protocol, if not given
@@ -100,7 +100,7 @@ title = (fields) ->
 			title = email
 
 		if title.length <= 0
-			title = text.get("untitled")
+			title = global.text.get("untitled")
 
 	return title
 

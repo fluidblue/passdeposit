@@ -5,11 +5,8 @@ Front page initialization
 Created by Max Geissler
 ###
 
-setFormFocus = require "../global/set-form-focus"
+global = require "../global"
 config = require "../../../config"
-navPills = require "../global/nav-pills"
-jGrowl = require "../global/jgrowl-extend"
-text = require "../global/text"
 core = require "../../core"
 
 loadUsername = ->
@@ -20,7 +17,7 @@ saveUsername = ->
 
 loginUser = ->
 	# Dismiss registration notification(s), if open
-	jGrowl.closeAll()
+	global.jGrowlExtend.closeAll()
 
 	# Get fields
 	passField = $("#loginPass")
@@ -103,7 +100,7 @@ checkNotEmpty = (jqElem) ->
 
 initRegisterTooltips = ->
 	fnContent = ->
-		text.get($(this).attr("id") + "Info")
+		global.text.get($(this).attr("id") + "Info")
 
 	options =
 		trigger: "focus"
@@ -119,7 +116,7 @@ initRegisterTooltips = ->
 # Initializes front page
 init = ->
 	loadUsername()
-	setFormFocus "#login" # TODO: Move to page change function
+	global.setFormFocus "#login" # TODO: Move to page change function
 	initRegisterTooltips()
 
 	$("#login").submit (e) ->
@@ -133,7 +130,7 @@ init = ->
 		if checkNotEmpty($("#registerEmail")) & checkNotEmpty($("#registerPass")) & checkNotEmpty($("#registerPassRepeat")) & checkNotEmpty($("#registerPassHint"))
 			$("#registerDialog").modal "show"
 		else
-			setFormFocus "#register"
+			global.setFormFocus "#register"
 
 		return
 
@@ -156,11 +153,11 @@ init = ->
 			saveUsername()
 			
 			# Show confirmation message
-			$.jGrowl text.get("loginSuccessful"),
+			$.jGrowl global.text.get("loginSuccessful"),
 				sticky: true
 
 			# Show login tab
-			navPills.trigger "#frontNav", "#login"
+			global.navPills.trigger "#frontNav", "#login"
 
 		return
 

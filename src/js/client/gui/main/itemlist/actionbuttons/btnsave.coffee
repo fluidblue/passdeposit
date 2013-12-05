@@ -12,7 +12,7 @@ tags = require "../tags"
 quickbuttons = require "../quickbuttons"
 format = require "../format"
 info = require "../info"
-text = require "../../../global/text"
+global = require "../../../global"
 
 save = (item, tagList, fieldList) ->
 	# Create item object
@@ -28,7 +28,7 @@ save = (item, tagList, fieldList) ->
 	callback = (response) ->
 		if response.status != "success"
 			# Show error
-			$.jGrowl text.get("itemSaveFailed", response.status)
+			$.jGrowl global.text.get("itemSaveFailed", response.status)
 			return
 
 		# Get unencrypted item
@@ -39,7 +39,7 @@ save = (item, tagList, fieldList) ->
 		info.set(item, itemDecrypted)
 
 		# Show notification
-		$.jGrowl text.get("itemSaveSucceeded")
+		$.jGrowl global.text.get("itemSaveSucceeded")
 
 	# Call core procedure
 	if exist
