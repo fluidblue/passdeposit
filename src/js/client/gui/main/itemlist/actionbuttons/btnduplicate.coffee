@@ -9,7 +9,7 @@ fields = require "../fields"
 tags = require "../tags"
 itemlist = require ".."
 btnsave = require "../actionbuttons/btnsave"
-text = require "../../components/text"
+text = require "../../../global/text"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnDuplicate", (e) ->

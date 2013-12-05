@@ -5,7 +5,7 @@ Field menu
 Created by Max Geissler
 ###
 
-core = require "../../../core"
+core = require "../../../../core"
 field = require "."
 
 up = (elem) ->

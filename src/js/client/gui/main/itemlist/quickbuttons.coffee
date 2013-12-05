@@ -7,7 +7,7 @@ Created by Max Geissler
 
 format = require "./format"
 fields = require "./fields"
-text = require "../components/text"
+text = require "../../global/text"
 
 initTooltips = (template) ->
 	buttonContainer = template.find(".header .buttons")

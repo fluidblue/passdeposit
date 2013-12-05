@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 format = require "../format"
-text = require "../../components/text"
+text = require "../../../global/text"
 
 initBtnCopy = ->
 	$(document).on "click", "#mainList .itemField .btnCopy", (e) ->

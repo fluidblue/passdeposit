@@ -5,7 +5,7 @@ Field buttons
 Created by Max Geissler
 ###
 
-text = require "../../components/text"
+text = require "../../../global/text"
 
 initTooltipWebAddress = (fieldTemplate) ->
 	# Create web address tooltip

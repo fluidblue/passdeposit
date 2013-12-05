@@ -5,14 +5,14 @@ itemlist action button: save
 Created by Max Geissler
 ###
 
-core = require "../../../core"
+core = require "../../../../core"
 itemid = require "../itemid"
 fields = require "../fields"
 tags = require "../tags"
 quickbuttons = require "../quickbuttons"
 format = require "../format"
 info = require "../info"
-text = require "../../components/text"
+text = require "../../../global/text"
 
 save = (item, tagList, fieldList) ->
 	# Create item object

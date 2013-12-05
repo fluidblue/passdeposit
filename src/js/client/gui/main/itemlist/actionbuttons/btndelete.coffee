@@ -5,10 +5,10 @@ itemlist action button: delete
 Created by Max Geissler
 ###
 
-core = require "../../../core"
+core = require "../../../../core"
 itemid = require "../itemid"
 itemlist = require ".."
-text = require "../../components/text"
+text = require "../../../global/text"
 
 initTemplate = (template) ->
 	btnDelete = template.find(".content .actionButtons .btnDelete")

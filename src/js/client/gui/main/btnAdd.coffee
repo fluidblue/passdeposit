@@ -5,8 +5,8 @@ Add button
 Created by Max Geissler
 ###
 
-itemlist = require "../../itemlist"
-text = require "../../components/text"
+itemlist = require "./itemlist"
+text = require "../global/text"
 
 init = ->
 	$("#mainpage .mainNav .btnAdd .dropdown-menu a").click (e) ->

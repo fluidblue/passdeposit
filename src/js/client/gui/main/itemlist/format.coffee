@@ -5,7 +5,7 @@ itemlist formats
 Created by Max Geissler
 ###
 
-text = require "../components/text"
+text = require "../../global/text"
 
 validUri = (uri) ->
 	# Append http protocol, if not given

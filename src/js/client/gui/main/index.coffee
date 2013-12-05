@@ -12,6 +12,7 @@ logout = require "./logout"
 clipboard = require "./clipboard"
 btnAdd = require "./btnAdd"
 search = require "./search"
+itemlist = require "./itemlist"
 
 # Initializes main page
 init = ->
@@ -22,5 +23,6 @@ init = ->
 	clipboard.init()
 	btnAdd.init()
 	search.init()
+	itemlist.init()
 
 module.exports.init = init

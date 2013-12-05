@@ -5,7 +5,7 @@ itemlist action button tooltips
 Created by Max Geissler
 ###
 
-text = require "../../components/text"
+text = require "../../../global/text"
 
 initTemplate = (template) ->
 	# Add tooltips for delete and duplicate buttons

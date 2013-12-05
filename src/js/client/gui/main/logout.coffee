@@ -5,11 +5,11 @@ Logout functions
 Created by Max Geissler
 ###
 
-setFormFocus = require "../../components/set-form-focus"
-jGrowl = require "../../components/jgrowl-extend"
-config = require "../../../../config"
-itemlist = require "../../itemlist"
-core = require "../../../core"
+setFormFocus = require "../global/set-form-focus"
+jGrowl = require "../global/jgrowl-extend"
+config = require "../../../config"
+itemlist = require "./itemlist"
+core = require "../../core"
 
 logout = ->
 	# Close all jGrowl messages

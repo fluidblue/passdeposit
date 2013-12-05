@@ -5,11 +5,11 @@ Front page initialization
 Created by Max Geissler
 ###
 
-setFormFocus = require "../components/set-form-focus"
+setFormFocus = require "../global/set-form-focus"
 config = require "../../../config"
-navPills = require "../components/nav-pills"
-jGrowl = require "../components/jgrowl-extend"
-text = require "../components/text"
+navPills = require "../global/nav-pills"
+jGrowl = require "../global/jgrowl-extend"
+text = require "../global/text"
 core = require "../../core"
 
 loadUsername = ->

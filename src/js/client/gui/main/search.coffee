@@ -11,8 +11,8 @@ lockDialog = require "./lock"
 logout = require "./logout"
 clipboard = require "./clipboard"
 btnAdd = require "./btnAdd"
-itemlist = require "../../itemlist"
-core = require "../../../core"
+itemlist = require "./itemlist"
+core = require "../../core"
 
 search = (value) ->
 	# Clear itemlist

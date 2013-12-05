@@ -5,7 +5,7 @@ Options dialog
 Created by Max Geissler
 ###
 
-text = require "../../components/text"
+text = require "../global/text"
 
 init = ->
 	### Initializes option dialog ###

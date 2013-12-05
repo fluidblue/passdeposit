@@ -6,7 +6,7 @@ Created by Max Geissler
 ###
 
 format = require "./format"
-core = require "../../core"
+core = require "../../../core"
 
 set = (template, item) ->
 	itemInfoContainer = template.find(".content .itemInfoContainer")
