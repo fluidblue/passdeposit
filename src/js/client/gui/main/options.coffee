@@ -26,7 +26,7 @@ init = ->
 
 	$("#optionsDialog").on "hidden", ->
 		if saveOptions
-			$.jGrowl global.text.get("optionsSaved")
+			global.jGrowl.show global.text.get("optionsSaved")
 		
 		return
 

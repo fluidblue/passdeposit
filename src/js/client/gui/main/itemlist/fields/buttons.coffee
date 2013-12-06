@@ -17,7 +17,7 @@ initBtnCopy = ->
 		console.log("copy to clipboard: " + input.val())
 		
 		# Show notification
-		$.jGrowl global.text.get("copiedToClipboard")
+		global.jGrowl.show global.text.get("copiedToClipboard")
 
 		return
 

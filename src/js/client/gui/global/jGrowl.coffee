@@ -19,4 +19,5 @@ init = ->
 		return
 
 module.exports.init = init
+module.exports.show = $.jGrowl
 module.exports.closeAll = closeAll

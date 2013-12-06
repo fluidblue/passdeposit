@@ -7,15 +7,15 @@ Created by Max Geissler
 
 setFormFocus = require "./setFormFocus"
 text = require "./text"
-jGrowlExtend = require "./jGrowlExtend"
+jGrowl = require "./jGrowl"
 navPills = require "./navPills"
 
 init = ->
 	navPills.init()
-	jGrowlExtend.init()
+	jGrowl.init()
 
 module.exports.setFormFocus = setFormFocus
 module.exports.text = text
-module.exports.jGrowlExtend = jGrowlExtend
+module.exports.jGrowl = jGrowl
 module.exports.navPills = navPills
 module.exports.init = init

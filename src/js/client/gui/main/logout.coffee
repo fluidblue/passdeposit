@@ -12,7 +12,7 @@ core = require "../../core"
 
 logout = ->
 	# Close all jGrowl messages
-	global.jGrowlExtend.closeAll()
+	global.jGrowl.closeAll()
 	
 	# Switch to frontpage
 	$("#mainpage").fadeOut config.animations.pageChangeDuration, ->

@@ -44,7 +44,7 @@ initTemplate = (template) ->
 			core.items.remove id, (response) ->
 				if response.status != "success"
 					# Show error
-					$.jGrowl global.text.get("itemDeleteFailed", response.status)
+					global.jGrowl.show global.text.get("itemDeleteFailed", response.status)
 					return
 
 				itemlist.remove(template)

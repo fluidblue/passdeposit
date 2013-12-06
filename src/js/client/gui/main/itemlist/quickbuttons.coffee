@@ -33,7 +33,7 @@ initBtnPass = ->
 		console.log("copy to clipboard: " + value)
 
 		# Show notification
-		$.jGrowl global.text.get("copiedToClipboard")
+		global.jGrowl.show global.text.get("copiedToClipboard")
 
 		return
 

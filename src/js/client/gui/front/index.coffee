@@ -17,7 +17,7 @@ saveUsername = ->
 
 loginUser = ->
 	# Dismiss registration notification(s), if open
-	global.jGrowlExtend.closeAll()
+	global.jGrowl.closeAll()
 
 	# Get fields
 	passField = $("#loginPass")
@@ -153,7 +153,7 @@ init = ->
 			saveUsername()
 			
 			# Show confirmation message
-			$.jGrowl global.text.get("loginSuccessful"),
+			global.jGrowl.show global.text.get("loginSuccessful"),
 				sticky: true
 
 			# Show login tab

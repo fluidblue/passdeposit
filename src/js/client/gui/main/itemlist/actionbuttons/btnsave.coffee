@@ -28,7 +28,7 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 	callback = (response) ->
 		if response.status != "success"
 			# Show error
-			$.jGrowl global.text.get("itemSaveFailed", response.status)
+			global.jGrowl.show global.text.get("itemSaveFailed", response.status)
 			return
 
 		# Get unencrypted item
@@ -40,7 +40,7 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 
 		# Show notification
 		if showSuccessNotification
-			$.jGrowl global.text.get("itemSaveSucceeded")
+			global.jGrowl.show global.text.get("itemSaveSucceeded")
 
 	# Call core procedure
 	if exist

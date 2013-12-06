@@ -43,7 +43,7 @@ init = ->
 		# TODO: Resort or clear item list
 
 		# Show notification
-		$.jGrowl global.text.get("duplicatedItem")
+		global.jGrowl.show global.text.get("duplicatedItem")
 
 		return
 
