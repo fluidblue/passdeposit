@@ -1,6 +1,8 @@
 [
 	{
-		"id": "528506f5d66509ac60000003",
+		"_id": { "$oid" : "528506f5d66509ac60000003" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -31,7 +33,9 @@
 		]
 	},
 	{
-		"id": "528506f5d66509ac60000004",
+		"id": { "$oid" : "528506f5d66509ac60000004" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -62,7 +66,9 @@
 		]
 	},
 	{
-		"id": "528506f5d66509ac60000005",
+		"id": { "$oid" : "528506f5d66509ac60000005" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -97,7 +103,9 @@
 		]
 	},
 	{
-		"id": "528506f5d66509ac60000006",
+		"id": { "$oid" : "528506f5d66509ac60000006" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -124,7 +132,9 @@
 		]
 	},
 	{
-		"id": "528506f5d66509ac60000007",
+		"id": { "$oid" : "528506f5d66509ac60000007" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -151,7 +161,9 @@
 		]
 	},
 	{
-		"id": "528506f5d66509ac60000008",
+		"id": { "$oid" : "528506f5d66509ac60000008" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -182,7 +194,9 @@
 		]
 	},
 	{
-		"id": "528506f5d66509ac60000009",
+		"id": { "$oid" : "528506f5d66509ac60000009" },
+
+		"_user": { "$oid" : "529a5ad1c736c14f3c000003" },
 
 		"dateCreated": "2013-11-07T15:42:36.900Z",
 		"dateModified": "2013-11-08T15:42:36.900Z",
@@ -222,65 +236,6 @@
 		"tags": [
 			123,
 			124
-		]
-	},
-	{
-		"id": "5293d854b3480cc72b000001",
-
-		"dateCreated": "2013-11-07T15:42:36.900Z",
-		"dateModified": "2013-11-08T15:42:36.900Z",
-
-		"encryption": {
-			"type": "sjcl",
-			"options": {
-				"cipher": "aes",
-				"adata": "",
-				"mode": "ccm",
-				"ts": 128,
-				"ks": 256,
-				"iter": 1000,
-				"v": 1
-			}
-		},
-
-		"fields": [
-			{
-				"type": "uri",
-				"value": {
-					"ct": "BeSdUp4qkaXkjpjKgsyXHQ1cmwzqc+nWRPFyoWcyxx8FJQ",
-					"salt": "dwsRbL1pQ/Q",
-					"iv": "Nr+m9GGJGAagdeqslQ/jJw"
-				}
-			},
-			{
-				"type": "user",
-				"value": {
-					"ct": "/fNyEaraDZxUPtj4QKrAGWs6uyk",
-					"salt": "dwsRbL1pQ/Q",
-					"iv": "fobiJQKFLYBUwR35saRvfA"
-				}
-			},
-			{
-				"type": "pass",
-				"value": {
-					"ct": "KYQtuqeY9/Hpl+wDdUlIGqjS0Ys",
-					"salt": "dwsRbL1pQ/Q",
-					"iv": "Kpi7rLSbLZerk4HyI2B3BA"
-				}
-			}
-		],
-
-		"tags": [
-			{
-				"ct": "F9jsmHsLUBiW/tdCYD1TgbhHvSo",
-				"salt": "dwsRbL1pQ/Q",
-				"iv": "IccPESRqcQYb0FPhi6xAiA"
-			},
-			{
-				"ct": "krEKjQj4EEC0DzpaMTQeHGTHWOv/",
-				"salt": "dwsRbL1pQ/Q",
-				"iv": "xDueU4UYK62u6ZAx6m2JeA"
-			}
 		]
 	}
 ]
