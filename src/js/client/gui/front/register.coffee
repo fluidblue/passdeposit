@@ -8,32 +8,67 @@ Created by Max Geissler
 username = require "./username"
 global = require "../global"
 core = require "../../core"
+shared = require "../../../shared"
 
-# TODO: Unused?
-showRegisterErrorTip = (element, message) ->
-	# TODO: Not working, if another popover is already attached to element
-	content = "<div class=\"errorPopover\">" + message + "</div>"
+registerSuccess = false
 
-	options =
-		trigger: "manual"
-		placement: "left"
-		html: true
-		content: content
+# TODO: Remove?
+# showRegisterErrorTip = (element, message) ->
+# 	# TODO: Not working, if another popover is already attached to element
+# 	content = "<div class=\"errorPopover\">" + message + "</div>"
 
-	$(element).popover options
-	$(element).popover "show"
+# 	options =
+# 		trigger: "manual"
+# 		placement: "left"
+# 		html: true
+# 		content: content
 
-setInputInvalid = (jqElem) ->
-	jqElem.addClass "invalidInput"
-	jqElem.one "keypress", ->
-		jqElem.removeClass "invalidInput"
-		return
+# 	$(element).popover options
+# 	$(element).popover "show"
 
-checkNotEmpty = (jqElem) ->
-	if jqElem.val().length == 0
-		setInputInvalid jqElem
-		return false
-	return true
+register = ->
+	registerSuccess = false
+
+	email = $("#registerEmail").val()
+	password = $("#registerPass").val()
+	passwordHint = $("#registerPassHint").val()
+
+	core.user.create email, password, passwordHint, (response) ->
+		if response.status == "success"
+			# Save username
+			username.save()
+
+			registerSuccess = true
+		else
+			# TODO: Show hint when using the same email address twice
+			global.jGrowl.show global.text.get("registerFailed", response.status)
+
+	$("#registerDialog").modal "hide"
+
+validate = ->
+	# Define field validation function
+	validateField = (jqElem, fn) ->
+		setInputInvalid = (jqElem) ->
+			jqElem.addClass "invalidInput"
+			jqElem.one "keypress", ->
+				jqElem.removeClass "invalidInput"
+				return
+
+		if !fn(jqElem.val())
+			setInputInvalid jqElem
+			return false
+		
+		return true
+
+	# Validation function for password repeat field
+	passwordRepeat = (str) ->
+		return str == $("#registerPass").val() && shared.validation.password(str)
+
+	# Validate all fields and return result
+	return validateField($("#registerEmail"), shared.validation.email) &
+	validateField($("#registerPass"), shared.validation.password) &
+	validateField($("#registerPassRepeat"), passwordRepeat) &
+	validateField($("#registerPassHint"), shared.validation.passwordHint)
 
 initRegisterTooltips = ->
 	fnContent = ->
@@ -57,15 +92,12 @@ init = ->
 	$("#register").submit (e) ->
 		e.preventDefault()
 
-		if checkNotEmpty($("#registerEmail")) & checkNotEmpty($("#registerPass")) &
-		checkNotEmpty($("#registerPassRepeat")) & checkNotEmpty($("#registerPassHint"))
+		if validate()
 			$("#registerDialog").modal "show"
 		else
 			global.setFormFocus "#register"
 
 		return
-
-	registerSuccess = false
 
 	$("#registerDialog").on "hidden", ->
 		if registerSuccess
@@ -80,9 +112,6 @@ init = ->
 				# Continue with loop
 				return true
 			
-			# Save username
-			username.save()
-			
 			# Show confirmation message
 			global.jGrowl.show global.text.get("registerSuccessful"),
 				sticky: true
@@ -94,22 +123,7 @@ init = ->
 
 	$("#registerDialog .btn.register").click (e) ->
 		e.preventDefault()
-
-		registerSuccess = false
-
-		email = $("#registerEmail").val()
-		password = $("#registerPass").val()
-		passwordHint = $("#registerPassHint").val()
-
-		core.user.create email, password, passwordHint, (response) ->
-			if response.status == "success"
-				registerSuccess = true
-			else
-				# TODO
-				alert "Failed to create user: " + response.status
-
-		$("#registerDialog").modal "hide"
-
+		register()
 		return
 
 module.exports.init = init

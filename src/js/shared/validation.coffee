@@ -5,13 +5,13 @@ Created by Max Geissler
 ###
 
 email = (str) ->
-	return true
+	return str? && str.length? && str.length > 0
 
 password = (str) ->
-	return true
+	return str? && str.length? && str.length > 0
 
 passwordHint = (str) ->
-	return true
+	return str? && str.length? && str.length > 0
 
 module.exports.email = email
 module.exports.password = password
