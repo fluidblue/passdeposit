@@ -20,6 +20,7 @@ SOURCE_DIR = src
 BUILD_DIR = build
 BUILD_HTTPDOCS_DIR = $(BUILD_DIR)/httpdocs
 BUILD_SERVER_DIR = $(BUILD_DIR)/server
+BUILD_SHARED_DIR = $(BUILD_SERVER_DIR)/shared
 
 
 # Main target
@@ -95,9 +96,11 @@ media:
 # --------------
 server:
 	coffee --compile --bare --output ./$(BUILD_SERVER_DIR) ./$(SOURCE_DIR)/js/server
+	coffee --compile --bare --output ./$(BUILD_SHARED_DIR) ./$(SOURCE_DIR)/js/shared
 
 server-debug:
 	coffee --compile --bare --map --output ./$(BUILD_SERVER_DIR) ./$(SOURCE_DIR)/js/server
+	coffee --compile --bare --map --output ./$(BUILD_SHARED_DIR) ./$(SOURCE_DIR)/js/shared
 
 # Copy package data
 # -----------------

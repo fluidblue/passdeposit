@@ -6,7 +6,7 @@ Created by Max Geissler
 
 crypt = require "./crypt"
 database = require "./database"
-shared = require "../shared"
+shared = require "./shared"
 
 create = (email, key, passwordHint, callback) ->
 	# Validate email and passwordHint
