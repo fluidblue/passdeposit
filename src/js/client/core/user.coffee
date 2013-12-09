@@ -51,6 +51,13 @@ login = (email, password, callback) ->
 
 			callback(response)
 
+sendPasswordHint = (email, callback) ->
+	# Send command to server
+	command.send
+		cmd: "user.sendPasswordHint"
+		data: email
+		callback: callback
+
 logout = ->
 	# Clear values
 	credentials.userid = null
@@ -81,6 +88,7 @@ getPassword = ->
 
 module.exports.create = create
 module.exports.login = login
+module.exports.sendPasswordHint = sendPasswordHint
 module.exports.logout = logout
 module.exports.getID = getID
 module.exports.getSession = getSession

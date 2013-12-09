@@ -26,6 +26,8 @@ process = (clientID, params, callback) ->
 			user.create(params.data.email, params.data.key, params.data.passwordHint, callback)
 		when "user.login"
 			user.login(params.data.email, params.data.key, callback)
+		when "user.sendPasswordHint"
+			user.sendPasswordHint(params.data, callback)
 		when "item.add"
 			authenticate ->
 				item.add(params.userid, params.data, callback)

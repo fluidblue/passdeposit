@@ -5,14 +5,32 @@ Password forgot dialog
 Created by Max Geissler
 ###
 
+global = require "../global"
+core = require "../../core"
+setInputInvalid = require "./setInputInvalid"
+
 init = ->
 	$("#pwForgotDialog").submit (e) ->
 		e.preventDefault()
 
-		alert "Not implemented."
+		emailField = $("#pwForgotDialog input.email")
 
-		$("#pwForgotDialog input.email").val ""
-		$("#pwForgotDialog").modal "hide"
+		core.user.sendPasswordHint emailField.val(), (response) ->
+			if response.status == "success"
+				# Clear field
+				$("#pwForgotDialog").one "hidden", ->
+					emailField.val ""
+					
+					# Show notification
+					global.jGrowl.show global.text.get("passwordHintSent")
+
+					return
+
+				# Close dialog
+				$("#pwForgotDialog").modal "hide"
+			else
+				# Notify user
+				setInputInvalid(emailField)
 
 		return
 

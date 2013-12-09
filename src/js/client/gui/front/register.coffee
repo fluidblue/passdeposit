@@ -9,6 +9,7 @@ username = require "./username"
 global = require "../global"
 core = require "../../core"
 shared = require "../../../shared"
+setInputInvalid = require "./setInputInvalid"
 
 registerSuccess = false
 
@@ -54,12 +55,6 @@ register = ->
 validate = ->
 	# Define field validation function
 	validateField = (jqElem, fn) ->
-		setInputInvalid = (jqElem) ->
-			jqElem.addClass "invalidInput"
-			jqElem.one "keypress", ->
-				jqElem.removeClass "invalidInput"
-				return
-
 		if !fn(jqElem.val())
 			setInputInvalid jqElem
 			return false

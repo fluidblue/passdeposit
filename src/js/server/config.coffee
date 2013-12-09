@@ -26,6 +26,8 @@ defaultConfig =
 		password: ""
 		database: "passdeposit"
 
+	mail: "noreply@example.com"
+
 	verbose: false
 
 get = ->

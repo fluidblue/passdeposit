@@ -7,6 +7,7 @@ Created by Max Geissler
 crypt = require "./crypt"
 database = require "./database"
 shared = require "./shared"
+mail = require "./mail"
 
 create = (email, key, passwordHint, callback) ->
 	# Validate email and passwordHint
@@ -113,6 +114,13 @@ authenticate = (userid, session, callback) ->
 		authenticated = !err && count == 1
 		callback(authenticated)
 
+sendPasswordHint = (email, callback) ->
+	# TODO
+	mail.send email, "Subject", "Message", (success) ->
+		callback
+			status: "failed"
+
 module.exports.create = create
 module.exports.login = login
 module.exports.authenticate = authenticate
+module.exports.sendPasswordHint = sendPasswordHint
