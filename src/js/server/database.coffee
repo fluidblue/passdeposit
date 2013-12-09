@@ -6,6 +6,7 @@ Created by Max Geissler
 
 mongoose = require "mongoose"
 log = require "./log"
+config = require "./config"
 
 models = {}
 
@@ -91,26 +92,26 @@ createModels = ->
 	compileSchema "user", "users", userSchema
 	compileSchema "item", "items", itemSchema
 
-init = (config, callback) ->
+init = (callback) ->
 	# Build database connection URI:
 	# mongodb://user:password@example.com/database
 
 	databaseUri = "mongodb://"
 
-	if config.database.user.length > 0
-		databaseUri += config.database.user
+	if config.get().database.user.length > 0
+		databaseUri += config.get().database.user
 
-		if config.database.password.length > 0
-			databaseUri += ":" + config.database.password
+		if config.get().database.password.length > 0
+			databaseUri += ":" + config.get().database.password
 
 		databaseUri += "@"
 
-	if config.database.host.length > 0
-		databaseUri += config.database.host + "/"
+	if config.get().database.host.length > 0
+		databaseUri += config.get().database.host + "/"
 	else
 		databaseUri += "localhost/"
 
-	databaseUri += config.database.database
+	databaseUri += config.get().database.database
 
 	# Set connection options
 	options =

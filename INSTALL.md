@@ -43,7 +43,7 @@ After updating, you need to restart PassDeposit.
 Save your configuration to a file, e.g. config.json:
 
 	{
-		"port": "8000",
+		"port": 8000,
 
 		"https": {
 			"certificate": "path/to/certificate.pem",
@@ -56,7 +56,9 @@ Save your configuration to a file, e.g. config.json:
 			"user": "",
 			"password": "",
 			"database": "passdeposit"
-		}
+		},
+
+		"verbose": false
 	}
 
 You need a certificate for PassDeposit. You can generate a self-signed certificate using the following commands:

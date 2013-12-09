@@ -12,24 +12,25 @@ staticFiles = require "./staticFiles"
 dynamic = require "./dynamic"
 database = require "./database"
 log = require "./log"
+config = require "./config"
 
-loadCertificate = (config) ->
+loadCertificate = () ->
 	options = {}
 
 	try
-		options.key = fs.readFileSync(path.resolve(config.basePath, config.https.privateKey))
-		options.cert = fs.readFileSync(path.resolve(config.basePath, config.https.certificate))
+		options.key = fs.readFileSync(path.resolve(config.get().basePath, config.get().https.privateKey))
+		options.cert = fs.readFileSync(path.resolve(config.get().basePath, config.get().https.certificate))
 	catch e
-		log.error "Could not load certificate/privateKey (specified in '" + config.configFile + "')"
+		log.error "Could not load certificate / private key (specified in '" + config.get().configFile + "')"
 		process.exit 0
 
 	return options
 
-init = (config) ->
+init = () ->
 	# Connect to database
-	database.init config, ->
+	database.init ->
 		# Load certificate
-		options = loadCertificate(config)
+		options = loadCertificate()
 
 		# Load static files
 		staticFiles.load (files) ->
@@ -39,8 +40,9 @@ init = (config) ->
 				# Get client ID
 				clientID = req.socket.address().address
 
-				# TODO: Only in debug
-				log.info clientID + " requests " + req.url
+				# Log
+				if config.get().verbose
+					log.info clientID + " requests " + req.url
 
 				# Separate URL from query string
 				url = req.url.split("?")[0]
@@ -86,6 +88,6 @@ init = (config) ->
 
 			# Create HTTPS server
 			server = https.createServer(options, httpsHandler)
-			server.listen config.port
+			server.listen config.get().port
 
 module.exports.init = init

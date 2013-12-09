@@ -10,7 +10,7 @@ config = require "./config"
 worker = require "./worker"
 log = require "./log"
 
-cfg = config.load()
+config.load()
 
 if cluster.isMaster
 	# Create as many instances as CPUs are present
@@ -42,7 +42,7 @@ if cluster.isMaster
 			# TODO: Check if worker has run longer than 1 minute
 			cluster.fork()
 
-	log.info "PassDeposit is running at https://localhost:" + cfg.port
+	log.info "PassDeposit is running at https://localhost:" + config.get().port
 else
 	# Initialize worker
-	worker.init(cfg)
+	worker.init()

@@ -7,9 +7,11 @@ Created by Max Geissler
 log = require "./log"
 item = require "./item"
 user = require "./user"
+config = require "./config"
 
 process = (clientID, params, callback) ->
-	log.info clientID + " executes " + params.cmd
+	if config.get().verbose
+		log.info clientID + " executes " + params.cmd
 
 	authenticate = (callback2) ->
 		user.authenticate params.userid, params.session, (authenticated) ->

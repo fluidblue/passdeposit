@@ -9,8 +9,10 @@ path = require "path"
 optimist = require "optimist"
 log = require "./log"
 
+config = null
+
 defaultConfig =
-	port: "8000"
+	port: 8000
 
 	https:
 		certificate: ""
@@ -22,6 +24,11 @@ defaultConfig =
 		user: ""
 		password: ""
 		database: "passdeposit"
+
+	verbose: false
+
+get = ->
+	return config
 
 getArgv = ->
 	argv = optimist
@@ -80,6 +87,5 @@ load = ->
 	config.basePath = path.normalize(path.dirname(configFile))
 	config.configFile = configFile
 
-	return config
-
 module.exports.load = load
+module.exports.get = get
