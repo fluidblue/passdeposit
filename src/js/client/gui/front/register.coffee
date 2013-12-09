@@ -84,7 +84,7 @@ init = ->
 			username.save()
 			
 			# Show confirmation message
-			global.jGrowl.show global.text.get("loginSuccessful"),
+			global.jGrowl.show global.text.get("registerSuccessful"),
 				sticky: true
 
 			# Show login tab
