@@ -6,9 +6,15 @@ Created by Max Geissler
 
 crypt = require "./crypt"
 database = require "./database"
+shared = require "../shared"
 
 create = (email, key, passwordHint, callback) ->
-	# TODO: Check email, passwordHint
+	# Validate email and passwordHint
+	if !shared.validation.email(email) || !shared.validation.passwordHint(passwordHint)
+		callback
+			status: "input:failed"
+
+		return
 
 	# Use a fresh random salt
 	salt = crypt.salt()
