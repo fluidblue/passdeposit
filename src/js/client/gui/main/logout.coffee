@@ -6,7 +6,6 @@ Created by Max Geissler
 ###
 
 global = require "../global"
-config = require "../../../config"
 itemlist = require "./itemlist"
 core = require "../../core"
 
@@ -15,15 +14,13 @@ logout = ->
 	global.jGrowl.closeAll()
 	
 	# Switch to frontpage
-	$("#mainpage").fadeOut config.animations.pageChangeDuration, ->
+	global.pageChange.change "#frontpage", ->
 		# Clear all data
 		core.user.logout()
 		itemlist.clear(true)
 
 		# TODO: Reset dialogs
-
-		# Show frontpage
-		$("#frontpage").fadeIn config.animations.pageChangeDuration
+	, ->
 		global.setFormFocus "#login"
 
 init = ->

@@ -7,7 +7,6 @@ Created by Max Geissler
 
 username = require "./username"
 global = require "../global"
-config = require "../../../config"
 core = require "../../core"
 
 login = ->
@@ -57,15 +56,11 @@ login = ->
 				return
 
 			# Switch to mainpage
-			$("#frontpage").fadeOut config.animations.pageChangeDuration, ->
+			global.pageChange.change "#mainpage", ->
 				# Empty password field
 				$("#loginPass").val ""
-
-				# Show mainpage
-				$("#mainpage").fadeIn config.animations.pageChangeDuration
+			, ->
 				$("#search").focus()
-
-				return
 
 # Initializes front page
 init = ->
