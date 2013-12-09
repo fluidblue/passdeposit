@@ -14,9 +14,9 @@ If you decide to host your own installation, you can do so by following the inst
 
 **Server requirements**
 
-* nodejs
-* npm (node package manager)
-* MongoDB
+* [node.js](http://nodejs.org/)
+* [npm](https://npmjs.org/)
+* [MongoDB](http://www.mongodb.org/)
 
 **Install using npm** (don't forget the **--global** option)
 
