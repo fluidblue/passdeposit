@@ -53,6 +53,7 @@ Save your configuration to a file, e.g. config.json:
 		"database": {
 			"type": "mongodb",
 			"host": "localhost",
+			"port": 27017,
 			"user": "",
 			"password": "",
 			"database": "passdeposit"
