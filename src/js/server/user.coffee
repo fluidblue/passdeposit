@@ -40,8 +40,13 @@ create = (email, key, passwordHint, callback) ->
 
 	database.getModel("user").create user, (err, doc) ->
 		if err || !doc?
-			callback
-				status: "db:failed"
+			# Check for duplicate key error
+			if err.code == 11000
+				callback
+					status: "db:duplicate"
+			else
+				callback
+					status: "db:failed"
 
 			return
 

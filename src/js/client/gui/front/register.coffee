@@ -34,16 +34,22 @@ register = ->
 	passwordHint = $("#registerPassHint").val()
 
 	core.user.create email, password, passwordHint, (response) ->
+		$("#registerDialog").modal "hide"
+
 		if response.status == "success"
 			# Save username
 			username.save()
 
 			registerSuccess = true
+		else if response.status == "db:duplicate"
+			# User has already been registered. Show forgot password dialog.
+			$("#pwForgotDialog").modal "show"
+			$("#pwForgotDialog input.email").val(email)
 		else
-			# TODO: Show hint when using the same email address twice
 			global.jGrowl.show global.text.get("registerFailed", response.status)
 
-	$("#registerDialog").modal "hide"
+	# Disable register button
+	$("#registerDialog .btn.register").attr("disabled", true)
 
 validate = ->
 	# Define field validation function
@@ -97,6 +103,11 @@ init = ->
 		else
 			global.setFormFocus "#register"
 
+		return
+
+	$("#registerDialog").on "show", ->
+		# Enable register button
+		$(this).find(".btn.register").attr("disabled", false)
 		return
 
 	$("#registerDialog").on "hidden", ->
