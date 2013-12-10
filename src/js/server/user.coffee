@@ -115,6 +115,13 @@ authenticate = (userid, session, callback) ->
 		callback(authenticated)
 
 sendPasswordHint = (email, callback) ->
+	# Validate email
+	if !shared.validation.email(email)
+		callback
+			status: "input:failed"
+
+		return
+
 	# TODO
 	mail.send email, "Subject", "Message", (success) ->
 		callback
