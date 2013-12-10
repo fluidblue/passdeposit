@@ -23,19 +23,19 @@ login = ->
 	
 	core.user.login email, password, (response) ->
 		if response.status != "success"
-			# Notify user
-			userField.addClass "invalidInput"
-			userField.one "keypress.loginfailed", ->
+			fnInvalid = ->
 				userField.removeClass "invalidInput"
+				userField.off "keypress.loginfailed change.loginfailed input.loginfailed"
+
+				passField.removeClass "invalidInput"
+				passField.off "keypress.loginfailed change.loginfailed input.loginfailed"
 				return
+
+			userField.addClass "invalidInput"
+			userField.one "keypress.loginfailed change.loginfailed input.loginfailed", fnInvalid
 
 			passField.addClass "invalidInput"
-			passField.one "keypress.loginfailed", ->
-				passField.removeClass "invalidInput"
-
-				userField.removeClass "invalidInput"
-				userField.off "keypress.loginfailed"
-				return
+			passField.one "keypress.loginfailed change.loginfailed input.loginfailed", fnInvalid
 
 			passField.val ""
 
