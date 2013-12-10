@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 setFormFocus = require "./setFormFocus"
+setInputInvalid = require "./setInputInvalid"
 text = require "./text"
 jGrowl = require "./jGrowl"
 navPills = require "./navPills"
@@ -16,6 +17,7 @@ init = ->
 	jGrowl.init()
 
 module.exports.setFormFocus = setFormFocus
+module.exports.setInputInvalid = setInputInvalid
 module.exports.text = text
 module.exports.jGrowl = jGrowl
 module.exports.navPills = navPills

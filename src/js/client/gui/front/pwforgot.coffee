@@ -7,7 +7,6 @@ Created by Max Geissler
 
 global = require "../global"
 core = require "../../core"
-setInputInvalid = require "./setInputInvalid"
 
 init = ->
 	$("#pwForgotDialog").submit (e) ->
@@ -30,7 +29,7 @@ init = ->
 				$("#pwForgotDialog").modal "hide"
 			else
 				# Notify user
-				setInputInvalid(emailField)
+				global.setInputInvalid(emailField)
 
 		return
 
