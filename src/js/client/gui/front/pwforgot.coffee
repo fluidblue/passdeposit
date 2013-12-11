@@ -7,29 +7,36 @@ Created by Max Geissler
 
 global = require "../global"
 core = require "../../core"
+shared = require "../../../shared"
 
 init = ->
 	$("#pwForgotDialog").submit (e) ->
 		e.preventDefault()
 
 		emailField = $("#pwForgotDialog input.email")
+		email = emailField.val()
 
-		core.user.sendPasswordHint emailField.val(), (response) ->
-			if response.status == "success"
-				# Clear field
-				$("#pwForgotDialog").one "hidden", ->
+		if !shared.validation.email(email)
+			# Notify user
+			global.setInputInvalid(emailField)
+			return
+
+		core.user.sendPasswordHint email, (response) ->
+			$("#pwForgotDialog").one "hidden", ->
+				if response.status == "success"
+					# Clear field
 					emailField.val ""
 					
 					# Show notification
 					global.jGrowl.show global.text.get("passwordHintSent")
+				else
+					# Show notification
+					global.jGrowl.show global.text.get("passwordHintFailed")
 
-					return
+				return
 
-				# Close dialog
-				$("#pwForgotDialog").modal "hide"
-			else
-				# Notify user
-				global.setInputInvalid(emailField)
+			# Close dialog
+			$("#pwForgotDialog").modal "hide"
 
 		return
 

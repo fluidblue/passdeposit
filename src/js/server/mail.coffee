@@ -10,36 +10,43 @@ log = require "./log"
 
 transport = null
 
-send = (to, subject, message, callback) ->
-	mailOptions =
-		from: "PassDeposit <" + config.get().mail + ">"
-		to: to
-		subject: subject
-		text: message
+isReady = ->
+	return transport?
 
-	errorHandler = (error, response) ->
-		if error
-			callback(true)
-		else
-			log.error "Could not send mail to " + to + " (" + response.message + ")"
-			callback(false)
+send = (to, subject, text) ->
+	try
+		if !transport?
+			throw "Not connected to mail transport"
 
-	if transport?
-		try
-			transport.sendMail mailOptions, errorHandler
-		catch e
-			errorHandler true,
-				message: e
-	else
-		errorHandler true,
-			message: "Not connected to mail relay"
+		mailOptions =
+			# TODO
+			#from: "Test <" + config.get().mail + ">"
+			to: to
+			subject: subject
+			text: text
+
+		transport.sendMail mailOptions, (error, response) ->
+			if error
+				throw error
+	catch e
+		log.error "Could not send mail to " + to + " (" + e + ")"
+
+	return
 
 init = ->
-	transport = nodemailer.createTransport "sendmail"
-	
-	# transport = nodemailer.createTransport "SMTP",
-	# 	host: "localhost"
-	# 	maxConnections: 2
+	try
+		# Use sendmail
+		transport = nodemailer.createTransport "sendmail"
 
+		# Connect to local SMTP server
+		# transport = nodemailer.createTransport "SMTP",
+		# 	host: "localhost"
+		# 	maxConnections: 2
+
+		# TODO: Check ECONNREFUSED error
+	catch e
+		transport = null
+
+module.exports.isReady = isReady
 module.exports.send = send
 module.exports.init = init

@@ -115,17 +115,22 @@ authenticate = (userid, session, callback) ->
 		callback(authenticated)
 
 sendPasswordHint = (email, callback) ->
-	# Validate email
-	if !shared.validation.email(email)
+	# Validate email and
+	# check if mail service is working
+	if !shared.validation.email(email) || !mail.isReady()
 		callback
-			status: "input:failed"
+			status: "failed"
 
 		return
 
-	# TODO
-	mail.send email, "Subject", "Message", (success) ->
-		callback
-			status: "failed"
+	# Send mail
+	mail.send email, "Subject", "Message"
+
+	# Always return "success".
+	# Do not give details if an error happens.
+	# This prevents enumerating valid email addresses.
+	callback
+		status: "success"
 
 module.exports.create = create
 module.exports.login = login
