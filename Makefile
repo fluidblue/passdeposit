@@ -21,16 +21,17 @@ BUILD_DIR = build
 BUILD_HTTPDOCS_DIR = $(BUILD_DIR)/httpdocs
 BUILD_SERVER_DIR = $(BUILD_DIR)/server
 BUILD_SHARED_DIR = $(BUILD_SERVER_DIR)/shared
+BUILD_MSG_DIR = $(BUILD_SERVER_DIR)/msg
 
 
 # Main target
 # -----------
-all: clean css js html media server package
+all: clean css js html media server package msg
 
 
 # Development target (debug)
 # --------------------------
-debug: clean css-debug js-debug html media server-debug package
+debug: clean css-debug js-debug html media server-debug package msg
 
 
 # Clean build directory target
@@ -101,6 +102,12 @@ server:
 server-debug:
 	coffee --compile --bare --map --output ./$(BUILD_SERVER_DIR) ./$(SOURCE_DIR)/js/server
 	coffee --compile --bare --map --output ./$(BUILD_SHARED_DIR) ./$(SOURCE_DIR)/js/shared
+
+
+# Copy messages
+msg:
+	cp -R ./$(SOURCE_DIR)/msg ./$(BUILD_MSG_DIR)
+
 
 # Copy package data
 # -----------------

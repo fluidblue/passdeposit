@@ -115,16 +115,31 @@ authenticate = (userid, session, callback) ->
 		callback(authenticated)
 
 sendPasswordHint = (email, callback) ->
-	# Validate email and
-	# check if mail service is working
+	# Validate email
 	if !shared.validation.email(email)
 		callback
 			status: "failed"
 
 		return
 
+	# TODO: Query database; reload email address from DB
+	passwordHint = "This is my password hint"
+
+	# TODO: Get address
+	resetURL = "https://www.passdeposit.com/reset/3ed2af1ab71e0eca6ea79a0720f3f592"
+
+	# Create message
+	message = mail.template "passreminder",
+		"%login": email
+		"%passwordHint": passwordHint
+		"%resetURL": resetURL
+
+	# TODO: Remove
+	console.log message
+	return
+
 	# Send mail
-	mail.send email, "Subject", "Message", (error) ->
+	mail.send email, subject, message, (error) ->
 		# Even if mail.send(...) returns no error, we can't be
 		# sure that the mail has been successfully delivered.
 		#
