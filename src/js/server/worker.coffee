@@ -13,7 +13,6 @@ dynamic = require "./dynamic"
 database = require "./database"
 log = require "./log"
 config = require "./config"
-mail = require "./mail"
 
 loadCertificate = ->
 	options = {}
@@ -28,9 +27,6 @@ loadCertificate = ->
 	return options
 
 init = ->
-	# Initialize mail
-	mail.init()
-
 	# Connect to database
 	database.init ->
 		# Load certificate
