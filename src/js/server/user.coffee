@@ -122,40 +122,51 @@ sendPasswordHint = (email, callback) ->
 
 		return
 
-	# TODO: Query database; reload email address from DB
-	passwordHint = "This is my password hint"
+	conditions =
+		email: email
 
-	# TODO: Get address
-	resetURL = "https://www.passdeposit.com/reset/3ed2af1ab71e0eca6ea79a0720f3f592"
+	database.getModel("user").findOne conditions, "email passwordHint", (err, doc) ->
+		if err || !doc?
+			# TODO: Check error
 
-	# Create message
-	message = mail.template "passreminder",
-		"%login": email
-		"%passwordHint": passwordHint
-		"%resetURL": resetURL
-
-	# TODO: Remove
-	console.log message
-	return
-
-	# Send mail
-	mail.send email, subject, message, (error) ->
-		# Even if mail.send(...) returns no error, we can't be
-		# sure that the mail has been successfully delivered.
-		#
-		# This doesn't bother us, because we won't return details
-		# of the delivery status to prevent enumerating valid
-		# email addresses.
-		#
-		# This means "success" only indicates that the mail has
-		# been added to the mail queue. This doesn't guarantee
-		# that the mail will be delivered.
-		if error
-			callback
-				status: "failed"
-		else
+			# Return "success", even if no entry is found in database
+			# to prevent enumerating valid email addresses
 			callback
 				status: "success"
+
+			return
+
+		# TODO
+		resetURL = "https://www.passdeposit.com/reset/3ed2af1ab71e0eca6ea79a0720f3f592"
+
+		# Create message
+		message = mail.template "passreminder",
+			"%login": doc.email
+			"%passwordHint": doc.passwordHint
+			"%resetURL": resetURL
+
+		# TODO: Remove
+		console.log message
+		return
+
+		# Send mail
+		mail.send email, subject, message, (error) ->
+			# Even if mail.send(...) returns no error, we can't be
+			# sure that the mail has been successfully delivered.
+			#
+			# This doesn't bother us, because we won't return details
+			# of the delivery status to prevent enumerating valid
+			# email addresses.
+			#
+			# This means "success" only indicates that the mail has
+			# been added to the mail queue. This doesn't guarantee
+			# that the mail will be delivered.
+			if error
+				callback
+					status: "failed"
+			else
+				callback
+					status: "success"
 
 module.exports.create = create
 module.exports.login = login
