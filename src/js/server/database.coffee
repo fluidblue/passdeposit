@@ -65,6 +65,22 @@ createModels = ->
 		versionKey: false
 		autoIndex: false
 
+	# Create schema for reset
+	resetSchema = mongoose.Schema
+		_user:
+			type: mongoose.Schema.Types.ObjectId
+			index: true
+
+		dateCreated: Date
+
+		key:
+			type: String
+			unique: true
+	,
+		versionKey: false
+		# TODO
+		#autoIndex: false
+
 	# Define toClient method used by each schema
 	toClient = ->
 		# Convert mongoose document into plain javascript object
@@ -91,6 +107,7 @@ createModels = ->
 
 	compileSchema "user", "users", userSchema
 	compileSchema "item", "items", itemSchema
+	compileSchema "reset", "reset", resetSchema
 
 init = (callback) ->
 	# Build database connection URI:

@@ -36,6 +36,17 @@ serverKey = (clientKey, salt) ->
 	# Return base64 representation
 	return sjcl.codec.base64.fromBits(serverKey) 
 
+resetKey = ->
+	# This function uses the approach of
+	# http://stackoverflow.com/a/14869745/2013757
+
+	# Seed with 20 random bytes
+	seed = crypto.randomBytes(20)
+
+	# Return sha1 hex representation
+	return crypto.createHash("sha1").update(seed).digest("hex")
+
 module.exports.salt = salt
 module.exports.session = session
 module.exports.serverKey = serverKey
+module.exports.resetKey = resetKey

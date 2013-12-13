@@ -140,37 +140,62 @@ sendPasswordHint = (email, callback) ->
 
 			return
 
-		# TODO
-		resetURL = "https://www.passdeposit.com/reset/3ed2af1ab71e0eca6ea79a0720f3f592"
+		conditions =
+			_user: doc._id
 
-		# Create message
-		message = mail.template "passreminder",
-			"%login": doc.email
-			"%passwordHint": doc.passwordHint
-			"%resetURL": resetURL
+		# Create reset key
+		resetKey = crypt.resetKey()
 
-		# TODO: Remove
-		console.log message
-		return
+		# Get current timestamp
+		timestamp = new Date()
 
-		# Send mail
-		mail.send email, subject, message, (error) ->
-			# Even if mail.send(...) returns no error, we can't be
-			# sure that the mail has been successfully delivered.
-			#
-			# This doesn't bother us, because we won't return details
-			# of the delivery status to prevent enumerating valid
-			# email addresses.
-			#
-			# This means "success" only indicates that the mail has
-			# been added to the mail queue. This doesn't guarantee
-			# that the mail will be delivered.
-			if error
+		# Save reset key to database
+		database.getModel("reset").findOneAndUpdate conditions,
+			$set:
+				key: resetKey
+				dateCreated: timestamp
+		,
+			upsert: true
+		, (err, doc2) ->
+			if err || !doc2?
 				callback
-					status: "mail:failed"
-			else
-				callback
-					status: "success"
+					status: "db:failed"
+
+				return
+
+			# TODO
+			resetURL = "https://www.passdeposit.com/reset/" + resetKey
+
+			# Create message
+			message = mail.template "passreminder",
+				"%login": doc.email
+				"%passwordHint": doc.passwordHint
+				"%resetURL": resetURL
+
+			# TODO: Remove
+			console.log message
+			callback
+				status: "success"
+			return
+
+			# Send mail
+			mail.send email, subject, message, (error) ->
+				# Even if mail.send(...) returns no error, we can't be
+				# sure that the mail has been successfully delivered.
+				#
+				# This doesn't bother us, because we won't return details
+				# of the delivery status to prevent enumerating valid
+				# email addresses.
+				#
+				# This means "success" only indicates that the mail has
+				# been added to the mail queue. This doesn't guarantee
+				# that the mail will be delivered.
+				if error
+					callback
+						status: "mail:failed"
+				else
+					callback
+						status: "success"
 
 module.exports.create = create
 module.exports.login = login
