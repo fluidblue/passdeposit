@@ -126,10 +126,14 @@ sendPasswordHint = (email, callback) ->
 		email: email
 
 	database.getModel("user").findOne conditions, "email passwordHint", (err, doc) ->
-		if err || !doc?
-			# TODO: Check error
+		if err
+			callback
+				status: "db:failed"
 
-			# Return "success", even if no entry is found in database
+			return
+
+		if !doc?
+			# Return "success" even if no entry is found in database
 			# to prevent enumerating valid email addresses
 			callback
 				status: "success"
@@ -163,7 +167,7 @@ sendPasswordHint = (email, callback) ->
 			# that the mail will be delivered.
 			if error
 				callback
-					status: "failed"
+					status: "mail:failed"
 			else
 				callback
 					status: "success"
