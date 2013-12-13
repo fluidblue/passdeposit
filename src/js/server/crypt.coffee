@@ -5,6 +5,7 @@ Created by Max Geissler
 ###
 
 sjcl = require "sjcl"
+crypto = require "crypto"
 
 salt = ->
 	# Generate random salt
@@ -14,14 +15,14 @@ salt = ->
 	return sjcl.codec.base64.fromBits(salt)
 
 session = ->
-	# Get random data (8 words = 32 bytes = 256 bits)
-	random = sjcl.random.randomWords(8, 0)
+	# This function uses a modified version of the approach of
+	# http://stackoverflow.com/a/14869745/2013757
 
-	# Hash it
-	hash = sjcl.hash.sha256.hash(random)
+	# Seed with 32 random bytes
+	seed = crypto.randomBytes(32)
 
-	# Return base64 representation
-	return sjcl.codec.base64.fromBits(hash)
+	# Return sha256 base64 representation
+	return crypto.createHash("sha256").update(seed).digest("base64")
 
 serverKey = (clientKey, salt) ->
 	# Convert from base64 to bits
