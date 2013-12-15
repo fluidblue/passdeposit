@@ -1,6 +1,6 @@
 ###
 # PassDeposit #
-NavPills
+Page change
 
 Created by Max Geissler
 ###
