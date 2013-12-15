@@ -8,6 +8,7 @@ crypt = require "./crypt"
 database = require "./database"
 shared = require "./shared"
 mail = require "./mail"
+config = require "./config"
 
 create = (email, key, passwordHint, callback) ->
 	# Validate email and passwordHint
