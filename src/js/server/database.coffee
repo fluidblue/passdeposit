@@ -79,8 +79,6 @@ createModels = ->
 	,
 		versionKey: false
 		autoIndex: false
-		id: false
-		_id: false
 
 	# Define toClient method used by each schema
 	toClient = ->
