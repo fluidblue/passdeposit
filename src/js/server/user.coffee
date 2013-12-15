@@ -153,6 +153,7 @@ reset = (email, resetKey, passwordKey, passwordHint, callback) ->
 
 			session: null
 
+		# Update user data
 		database.getModel("user").findByIdAndUpdate doc._user,
 			$set: user
 		, (err, doc) ->
@@ -162,9 +163,16 @@ reset = (email, resetKey, passwordKey, passwordHint, callback) ->
 
 				return
 
-			# TODO
-			callback
-				status: "notimplemented"
+			# Remove all items
+			database.getModel("item").remove
+				_user: doc._id
+			, (err) ->
+				if err
+					callback
+						status: "db:failed"
+				else
+					callback
+						status: "success"
 
 sendPasswordHint = (email, callback) ->
 	# Validate email
