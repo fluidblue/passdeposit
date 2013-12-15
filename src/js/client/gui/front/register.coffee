@@ -89,7 +89,7 @@ initRegisterTooltips = ->
 init = ->
 	initRegisterTooltips()
 
-	$("#register").submit (e) ->
+	$("#register").on "submit.register", (e) ->
 		e.preventDefault()
 
 		if validate()
@@ -122,7 +122,7 @@ init = ->
 				sticky: true
 
 			# Show login tab
-			global.navPills.trigger "#frontNav", "#login"
+			global.navPills.change "#frontNav", "#login", false
 
 		return
 

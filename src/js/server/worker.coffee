@@ -64,7 +64,7 @@ init = ->
 							res.end response.content
 				else
 					# Set default page
-					if url == "/" || url == ""
+					if url == "/" || url == "" || /\/reset-([a-f]|[0-9])+$/.test(url)
 						url = "/index.htm"
 
 					# Send content

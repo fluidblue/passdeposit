@@ -69,4 +69,7 @@ init = ->
 		login()
 		return
 
+	username.load()
+	global.setFormFocus "#login"
+
 module.exports.init = init
