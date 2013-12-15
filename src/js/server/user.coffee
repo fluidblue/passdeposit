@@ -232,7 +232,7 @@ sendPasswordHint = (email, callback) ->
 				return
 
 			# Create reset URL
-			resetURL = "https://" + config.get().domain + "/reset/" + resetKey
+			resetURL = "https://" + config.get().domain + "/reset-" + resetKey
 
 			# Create message
 			message = mail.template "passreminder",
