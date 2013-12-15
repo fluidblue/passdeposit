@@ -142,6 +142,14 @@ reset = (email, resetKey, passwordKey, passwordHint, callback) ->
 		# Get current timestamp
 		timestamp = new Date()
 
+		# Check time difference
+		hoursDifference = Math.abs(timestamp - doc.dateCreated) / (60 * 60 * 1000)
+		if hoursDifference > 24.0
+			callback
+				status: "time:failed"
+
+			return
+
 		# Prepare user data
 		user =
 			password:
