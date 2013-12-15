@@ -26,7 +26,7 @@ create = (email, key, passwordHint, callback) ->
 	# Get current timestamp
 	timestamp = new Date()
 
-	# Create user object
+	# Prepare user data
 	user =
 		email: email
 		password:
@@ -114,6 +114,57 @@ authenticate = (userid, session, callback) ->
 		authenticated = !err && count == 1
 		callback(authenticated)
 
+reset = (email, resetKey, passwordKey, passwordHint, callback) ->
+	# Validate email and passwordHint
+	if !shared.validation.email(email) || !shared.validation.passwordHint(passwordHint)
+		callback
+			status: "input:failed"
+
+		return
+
+	conditions =
+		key: resetKey
+
+	database.getModel("reset").findOneAndRemove conditions, (err, doc) ->
+		if err || !doc?
+			callback
+				status: "db:failed"
+
+			return
+
+		# Use a fresh random salt
+		salt = crypt.salt()
+
+		# Create server key
+		serverKey = crypt.serverKey(key, salt)
+
+		# Get current timestamp
+		timestamp = new Date()
+
+		# Prepare user data
+		user =
+			password:
+				key: serverKey
+				salt: salt
+			passwordHint: passwordHint
+			
+			lastActive: timestamp
+
+			session: null
+
+		database.getModel("user").findByIdAndUpdate doc._user,
+			$set: user
+		, (err, doc) ->
+			if err || !doc?
+				callback
+					status: "db:failed"
+
+				return
+
+			# TODO
+			callback
+				status: "notimplemented"
+
 sendPasswordHint = (email, callback) ->
 	# Validate email
 	if !shared.validation.email(email)
@@ -163,8 +214,8 @@ sendPasswordHint = (email, callback) ->
 
 				return
 
-			# TODO
-			resetURL = "https://www.passdeposit.com/reset/" + resetKey
+			# Create reset URL
+			resetURL = "https://" + config.get().domain + "/reset/" + resetKey
 
 			# Create message
 			message = mail.template "passreminder",

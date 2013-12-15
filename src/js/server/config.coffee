@@ -27,6 +27,7 @@ defaultConfig =
 		database: "passdeposit"
 
 	mail: "noreply@example.com"
+	domain: "www.example.com"
 
 	verbose: false
 

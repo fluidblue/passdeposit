@@ -69,7 +69,7 @@ createModels = ->
 	resetSchema = mongoose.Schema
 		_user:
 			type: mongoose.Schema.Types.ObjectId
-			index: true
+			unique: true
 
 		dateCreated: Date
 
@@ -78,8 +78,9 @@ createModels = ->
 			unique: true
 	,
 		versionKey: false
-		# TODO
-		#autoIndex: false
+		autoIndex: false
+		id: false
+		_id: false
 
 	# Define toClient method used by each schema
 	toClient = ->

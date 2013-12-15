@@ -28,6 +28,8 @@ process = (clientID, params, callback) ->
 			user.login(params.data.email, params.data.key, callback)
 		when "user.sendPasswordHint"
 			user.sendPasswordHint(params.data, callback)
+		when "user.reset"
+			user.reset(params.data.email, params.data.resetKey, params.data.passwordKey, params.data.passwordHint, callback)
 		when "item.add"
 			authenticate ->
 				item.add(params.userid, params.data, callback)
