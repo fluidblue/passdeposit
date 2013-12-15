@@ -59,6 +59,9 @@ Save your configuration to a file, e.g. config.json:
 			"database": "passdeposit"
 		},
 
+		"mail": "noreply@example.com",
+		"domain": "www.example.com",
+
 		"verbose": false
 	}
 
