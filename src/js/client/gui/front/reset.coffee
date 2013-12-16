@@ -6,6 +6,27 @@ Created by Max Geissler
 ###
 
 global = require "../global"
+core = require "../../core"
+register = require "./register"
+
+resetSuccess = false
+
+reset = ->
+	resetSuccess = false
+
+	password = $("#registerPass").val()
+	passwordHint = $("#registerPassHint").val()
+
+	core.user.reset password, passwordHint, (response) ->
+		$("#resetDialog").modal "hide"
+
+		if response.status == "success"
+			resetSuccess = true
+		else
+			global.jGrowl.show global.text.get("resetFailed", response.status)
+
+	# Disable reset button
+	$("#resetDialog .btn.reset").attr("disabled", true)
 
 setResetForm = (resetKey) ->
 	# This function rebuilds the register form
@@ -28,15 +49,6 @@ setResetForm = (resetKey) ->
 
 	# Do not call register submit handler
 	$("#register").off "submit.register"
-
-	# Add handler for submit event
-	$("#register").on "submit.reset", (e) ->
-		e.preventDefault()
-
-		# TODO: Validation
-		$("#resetDialog").modal "show"
-
-		return
 
 	# Show reset/register tab
 	global.navPills.change "#frontNav", "#register", false
@@ -61,17 +73,39 @@ check = ->
 			setResetForm(resetKey)
 
 init = ->
-	# $("#resetDialog").submit (e) ->
-	# 	e.preventDefault()
+	$("#resetDialog").on "hidden", ->
+		if resetSuccess
+			# Reset reset form
+			$("#register").each ->
+				@reset()
 
-	# 	# TODO
-	# 	alert "Not implemented"
+				# Continue with loop
+				return true
+			
+			# Show confirmation message
+			global.jGrowl.show global.text.get("resetSuccessful"),
+				sticky: true
 
-	# 	return
+			# Show login tab
+			global.navPills.change "#frontNav", "#login", false
 
-	# $("#resetDialog").on "shown", ->
-	# 	$("#resetDialog input.email").focus()
-	# 	return
+		return
+
+	$("#resetDialog .btn.reset").click (e) ->
+		e.preventDefault()
+		reset()
+		return
+
+	# Add handler for submit event
+	$("#register").on "submit.reset", (e) ->
+		e.preventDefault()
+
+		if register.validate(true)
+			$("#resetDialog").modal "show"
+		else
+			global.setFormFocus "#register"
+
+		return
 
 	check()
 

@@ -51,7 +51,7 @@ register = ->
 	# Disable register button
 	$("#registerDialog .btn.register").attr("disabled", true)
 
-validate = ->
+validate = (skipEmail = false) ->
 	# Define field validation function
 	validateField = (jqElem, fn) ->
 		if !fn(jqElem.val())
@@ -65,7 +65,7 @@ validate = ->
 		return str == $("#registerPass").val() && shared.validation.password(str)
 
 	# Validate all fields and return result
-	return validateField($("#registerEmail"), shared.validation.email) &
+	return (skipEmail || validateField($("#registerEmail"), shared.validation.email)) &
 	validateField($("#registerPass"), shared.validation.password) &
 	validateField($("#registerPassRepeat"), passwordRepeat) &
 	validateField($("#registerPassHint"), shared.validation.passwordHint)
@@ -132,3 +132,4 @@ init = ->
 		return
 
 module.exports.init = init
+module.exports.validate = validate
