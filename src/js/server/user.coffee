@@ -240,14 +240,8 @@ sendPasswordHint = (email, callback) ->
 				"%passwordHint": doc.passwordHint
 				"%resetURL": resetURL
 
-			# TODO: Remove
-			console.log message
-			callback
-				status: "success"
-			return
-
 			# Send mail
-			mail.send email, subject, message, (error) ->
+			mail.send doc.email, message.subject, message.text, (error) ->
 				# Even if mail.send(...) returns no error, we can't be
 				# sure that the mail has been successfully delivered.
 				#
