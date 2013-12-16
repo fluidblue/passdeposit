@@ -8,7 +8,7 @@ Created by Max Geissler
 # It is kept very simple. This will hopefully provide support for
 # email addresses using new features like new TLD domains etc.
 # Matches are like: nowhitespaces@nowhitespaces.nowhitespaces
-reEmail = /\S+@\S+\.\S+/
+reEmail = /^\S+@\S+\.\S+$/
 
 # Regular expression for safe passwords.
 #
