@@ -5,6 +5,13 @@ JGrowl extensions
 Created by Max Geissler
 ###
 
+show = (text, options = {}) ->
+	# Set default life time
+	if !options.life?
+		options.life = 5000
+
+	$.jGrowl text, options
+
 closeAll = ->
 	$("div.jGrowl-close").each ->
 		$(this).triggerHandler "click"
@@ -19,5 +26,5 @@ init = ->
 		return
 
 module.exports.init = init
-module.exports.show = $.jGrowl
+module.exports.show = show
 module.exports.closeAll = closeAll
