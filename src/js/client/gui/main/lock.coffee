@@ -6,10 +6,13 @@ Created by Max Geissler
 ###
 
 logout = require("./logout").logout
+global = require "../global"
 
 lock = ->
-	# TODO: Hide data!
-	$("#lockDialog").modal "show"
+	# TODO: Implement!
+	#$("#lockDialog").modal "show"
+
+	global.jGrowl.show "Not yet implemented."
 
 init = ->
 	$("#btnLock").click (e) ->
