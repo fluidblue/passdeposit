@@ -12,6 +12,10 @@ register = require "./register"
 
 resetSuccess = false
 resetKey = null
+resetActive = false
+
+isActive = ->
+	return resetActive
 
 reset = ->
 	resetSuccess = false
@@ -28,47 +32,54 @@ reset = ->
 			username.save()
 
 			resetSuccess = true
+		else if response.status == "time:failed"
+			# resetKey is not valid anymore
+			global.jGrowl.show global.text.get("resetTimeout")
 		else
 			global.jGrowl.show global.text.get("resetFailed", response.status)
 
 	# Disable reset button
 	$("#resetDialog .btn.reset").attr("disabled", true)
 
-setResetForm = (email) ->
-	# This function rebuilds the register form
-	# to a reset form
+setResetForm = (isReset) ->
+	# This function modifies the register form
+	# to be either the real register form
+	# or the reset form.
 
-	# Set email field and lock it
-	emailField = $("#registerEmail")
-	emailField.val(email)
-	emailField.attr("disabled", true)
+	resetActive = isReset
 
-	# Remove register button
-	$("#registerButton").hide()
+	if isReset
+		# Disable email field
+		$("#registerEmail").attr("disabled", true)
 
-	# Show reset button
-	resetButton = $("#resetButton")
-	resetButton.show()
+		# Show submit button
+		submitButton = $("#resetButton")
+		submitButton.show()
 
-	# Change tab text
-	$("#frontNav li a[href=#register]").text(resetButton.text())
+		# Change tab text
+		$("#frontNav li a[href=#register]").text(submitButton.text())
 
-	# Do not call register submit handler
-	$("#register").off "submit.register"
+		# Hide other submit button
+		$("#registerButton").hide()
 
-	# Add handler for submit event
-	$("#register").on "submit.reset", (e) ->
-		e.preventDefault()
+		# Set mode
+		$(this).data("mode", "reset")
+	else
+		# Enable email field
+		$("#registerEmail").removeAttr("disabled")
 
-		if register.validate(true)
-			$("#resetDialog").modal "show"
-		else
-			global.setFormFocus "#register"
+		# Show submit button
+		submitButton = $("#registerButton")
+		submitButton.show()
 
-		return
+		# Change tab text
+		$("#frontNav li a[href=#register]").text(submitButton.text())
 
-	# Show reset/register tab
-	global.navPills.change "#frontNav", "#register", false
+		# Hide other submit button
+		$("#resetButton").hide()
+
+		# Set mode
+		$("#register").attr("data-mode", "register")
 
 check = ->
 	# Check if reset dialog is requested
@@ -88,17 +99,41 @@ check = ->
 
 		if resetKey?
 			# Show reset form
-			setResetForm(email)
+			setResetForm(true)
+			
+			# Show email address
+			$("#registerEmail").val(email)
+
+			# Show reset/register tab
+			global.navPills.change "#frontNav", "#register", false
 
 init = ->
+	$("#register").on "submit.reset", (e) ->
+		if !resetActive
+			return
+
+		e.preventDefault()
+
+		if register.validate(true)
+			$("#resetDialog").modal "show"
+		else
+			global.setFormFocus "#register"
+
+		return
+
+	$("#resetDialog").on "show", ->
+		# Enable reset button
+		$(this).find(".btn.reset").attr("disabled", false)
+		return
+
 	$("#resetDialog").on "hidden", ->
 		if resetSuccess
-			# Reset reset form
-			$("#register").each ->
-				@reset()
+			# Fill in login information
+			$("#loginUser").val $("#registerEmail").val()
+			$("#loginPass").val ""
 
-				# Continue with loop
-				return true
+			# Reset form
+			$("#register")[0].reset()
 			
 			# Show confirmation message
 			global.jGrowl.show global.text.get("resetSuccessful"),
@@ -106,6 +141,12 @@ init = ->
 
 			# Show login tab
 			global.navPills.change "#frontNav", "#login", false
+
+			# Show register form
+			setResetForm(false)
+
+			# Modify URL
+			window.history.replaceState(null, null, ".")
 
 		return
 
@@ -116,4 +157,5 @@ init = ->
 
 	check()
 
+module.exports.isActive = isActive
 module.exports.init = init

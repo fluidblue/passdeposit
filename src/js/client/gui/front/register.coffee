@@ -9,6 +9,7 @@ username = require "./username"
 global = require "../global"
 core = require "../../core"
 shared = require "../../../shared"
+reset = require "./reset"
 
 registerSuccess = false
 
@@ -90,6 +91,10 @@ init = ->
 	initRegisterTooltips()
 
 	$("#register").on "submit.register", (e) ->
+		# Cancel if the reset form is currently displayed
+		if reset.isActive()
+			return
+
 		e.preventDefault()
 
 		if validate()
@@ -111,11 +116,7 @@ init = ->
 			$("#loginPass").val ""
 			
 			# Reset registration form
-			$("#register").each ->
-				@reset()
-
-				# Continue with loop
-				return true
+			$("#register")[0].reset()
 			
 			# Show confirmation message
 			global.jGrowl.show global.text.get("registerSuccessful"),
