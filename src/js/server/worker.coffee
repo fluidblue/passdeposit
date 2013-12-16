@@ -14,6 +14,8 @@ database = require "./database"
 log = require "./log"
 config = require "./config"
 
+reResetURL = /\/reset-.+-([a-f]|[0-9])+$/
+
 loadCertificate = ->
 	options = {}
 
@@ -65,7 +67,7 @@ init = ->
 				else
 					# Show default page when no query is given.
 					# Also show default page for reset links.
-					if url == "/" || url == "" || /\/reset-.+-([a-f]|[0-9])+$/.test(url)
+					if url == "/" || url == "" || reResetURL.test(url)
 						url = "/index.htm"
 
 					# Send content
