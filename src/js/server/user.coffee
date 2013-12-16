@@ -62,9 +62,15 @@ login = (email, key, callback) ->
 		email: email
 
 	userModel.findOne conditions, "password", (err, doc) ->
-		if err || !doc?
+		if err
 			callback
 				status: "db:failed"
+
+			return
+
+		if !doc?
+			callback
+				status: "auth:failed"
 
 			return
 

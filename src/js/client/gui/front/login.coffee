@@ -22,7 +22,7 @@ login = ->
 	password = passField.val()
 	
 	core.user.login email, password, (response) ->
-		if response.status != "success"
+		if response.status == "auth:failed"
 			fnInvalid = ->
 				userField.removeClass "invalidInput"
 				userField.off "keypress.loginfailed change.loginfailed input.loginfailed"
@@ -45,6 +45,10 @@ login = ->
 				passField.focus()
 
 			return
+		else if response.status != "success"
+			# Notify user
+			global.jGrowl.show global.text.get("loginFailed", response.status)
+			return
 
 		username.save()
 
@@ -60,6 +64,7 @@ login = ->
 				# Empty password field
 				$("#loginPass").val ""
 			, ->
+				# Focus search field
 				$("#search").focus()
 
 # Initializes front page
