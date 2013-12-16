@@ -63,7 +63,7 @@ validate = (skipEmail = false) ->
 
 	# Validation function for password repeat field
 	passwordRepeat = (str) ->
-		return str == $("#registerPass").val() && shared.validation.password(str)
+		return str == $("#registerPass").val() && str.length > 0
 
 	# Validate all fields and return result
 	return (skipEmail || validateField($("#registerEmail"), shared.validation.email)) &
