@@ -115,7 +115,7 @@ authenticate = (userid, session, callback) ->
 		authenticated = !err && count == 1
 		callback(authenticated)
 
-reset = (email, resetKey, passwordKey, passwordHint, callback) ->
+reset = (resetKey, email, passwordKey, passwordHint, callback) ->
 	# Validate email and passwordHint
 	if !shared.validation.email(email) || !shared.validation.passwordHint(passwordHint)
 		callback
@@ -137,7 +137,7 @@ reset = (email, resetKey, passwordKey, passwordHint, callback) ->
 		salt = crypt.salt()
 
 		# Create server key
-		serverKey = crypt.serverKey(key, salt)
+		serverKey = crypt.serverKey(passwordKey, salt)
 
 		# Get current timestamp
 		timestamp = new Date()
@@ -232,7 +232,7 @@ sendPasswordHint = (email, callback) ->
 				return
 
 			# Create reset URL
-			resetURL = "https://" + config.get().domain + "/reset-" + resetKey
+			resetURL = "https://" + config.get().domain + "/reset-" + doc.email + "-" + resetKey
 
 			# Create message
 			message = mail.template "passreminder",
@@ -266,6 +266,7 @@ sendPasswordHint = (email, callback) ->
 						status: "success"
 
 module.exports.create = create
+module.exports.reset = reset
 module.exports.login = login
 module.exports.authenticate = authenticate
 module.exports.sendPasswordHint = sendPasswordHint

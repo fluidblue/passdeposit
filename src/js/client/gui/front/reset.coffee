@@ -5,22 +5,28 @@ Reset user dialog
 Created by Max Geissler
 ###
 
+username = require "./username"
 global = require "../global"
 core = require "../../core"
 register = require "./register"
 
 resetSuccess = false
+resetKey = null
 
 reset = ->
 	resetSuccess = false
 
+	email = $("#registerEmail").val()
 	password = $("#registerPass").val()
 	passwordHint = $("#registerPassHint").val()
 
-	core.user.reset password, passwordHint, (response) ->
+	core.user.reset resetKey, email, password, passwordHint, (response) ->
 		$("#resetDialog").modal "hide"
 
 		if response.status == "success"
+			# Save username
+			username.save()
+
 			resetSuccess = true
 		else
 			global.jGrowl.show global.text.get("resetFailed", response.status)
@@ -28,12 +34,14 @@ reset = ->
 	# Disable reset button
 	$("#resetDialog .btn.reset").attr("disabled", true)
 
-setResetForm = (resetKey) ->
+setResetForm = (email) ->
 	# This function rebuilds the register form
 	# to a reset form
 
-	# Remove email field
-	$("#registerEmail").closest(".itemField").remove()
+	# Set email field and lock it
+	emailField = $("#registerEmail")
+	emailField.val(email)
+	emailField.attr("disabled", true)
 
 	# Remove register button
 	$("#registerButton").hide()
@@ -45,10 +53,19 @@ setResetForm = (resetKey) ->
 	# Change tab text
 	$("#frontNav li a[href=#register]").text(resetButton.text())
 
-	# TODO: Save resetKey
-
 	# Do not call register submit handler
 	$("#register").off "submit.register"
+
+	# Add handler for submit event
+	$("#register").on "submit.reset", (e) ->
+		e.preventDefault()
+
+		if register.validate(true)
+			$("#resetDialog").modal "show"
+		else
+			global.setFormFocus "#register"
+
+		return
 
 	# Show reset/register tab
 	global.navPills.change "#frontNav", "#register", false
@@ -60,17 +77,18 @@ check = ->
 	url = window.location.href
 
 	# Get reset key from URL:
-	# https://www.example.com/reset-1437b4359ebc2e949fb56cf835150482c6ef0942
-	re = /(\/reset-)(([a-f]|[0-9])+)/ig
+	# https://www.example.com/reset-mail@example.com-1437b4359ebc2e949fb56cf835150482c6ef0942
+	re = /\/reset-(.+)-(([a-f]|[0-9])+)/ig
 	result = re.exec(url)
 
 	if result?
-		# Third element contains key
+		# Get values from regex
+		email = result[1]
 		resetKey = result[2]
 
 		if resetKey?
 			# Show reset form
-			setResetForm(resetKey)
+			setResetForm(email)
 
 init = ->
 	$("#resetDialog").on "hidden", ->
@@ -94,17 +112,6 @@ init = ->
 	$("#resetDialog .btn.reset").click (e) ->
 		e.preventDefault()
 		reset()
-		return
-
-	# Add handler for submit event
-	$("#register").on "submit.reset", (e) ->
-		e.preventDefault()
-
-		if register.validate(true)
-			$("#resetDialog").modal "show"
-		else
-			global.setFormFocus "#register"
-
 		return
 
 	check()

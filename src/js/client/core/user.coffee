@@ -31,6 +31,21 @@ create = (email, password, passwordHint, callback) ->
 			passwordHint: passwordHint
 		callback: callback
 
+reset = (resetKey, email, password, passwordHint, callback) ->
+	# Create key from password and email address as salt.
+	# This key is salted and hashed again on the server, using a random salt.
+	passwordKey = crypt.key(password, email)
+
+	# Send command to server
+	command.send
+		cmd: "user.reset"
+		data:
+			resetKey: resetKey
+			email: email
+			passwordKey: passwordKey
+			passwordHint: passwordHint
+		callback: callback
+
 login = (email, password, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
@@ -87,6 +102,7 @@ getPassword = ->
 	return credentials.password
 
 module.exports.create = create
+module.exports.reset = reset
 module.exports.login = login
 module.exports.sendPasswordHint = sendPasswordHint
 module.exports.logout = logout

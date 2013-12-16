@@ -63,8 +63,9 @@ init = ->
 							res.writeHead 200, response.headers
 							res.end response.content
 				else
-					# Set default page
-					if url == "/" || url == "" || /\/reset-([a-f]|[0-9])+$/.test(url)
+					# Show default page when no query is given.
+					# Also show default page for reset links.
+					if url == "/" || url == "" || /\/reset-.+-([a-f]|[0-9])+$/.test(url)
 						url = "/index.htm"
 
 					# Send content
