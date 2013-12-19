@@ -7,9 +7,9 @@ Created by Max Geissler
 
 fuse = require "fuse.js"
 command = require "./command"
-tagcache = require "./tagcache"
 crypt = require "./crypt"
 itemcache = require "./itemcache"
+tagcache = require "./tagcache"
 
 search = (pattern) ->
 	rawResults = []
@@ -74,9 +74,6 @@ add = (item, callback) ->
 				# Update item cache
 				itemcache.add(response.item)
 
-				# Update tagcache
-				tagcache.add(response.item.id, response.item.tags)
-
 			callback(response)
 
 modify = (item, callback) ->
@@ -93,9 +90,6 @@ modify = (item, callback) ->
 				# Update item cache
 				itemcache.modify(response.item)
 
-				# Update tagcache
-				tagcache.modify(response.item.id, response.item.tags)
-
 			callback(response)
 
 remove = (id, callback) ->
@@ -109,9 +103,6 @@ remove = (id, callback) ->
 				# Update item cache
 				itemcache.remove(id)
 
-				# Update tagcache
-				tagcache.remove(id)
-
 			callback(response)
 
 load = (callback) ->
@@ -124,9 +115,6 @@ load = (callback) ->
 				for item in response.items
 					# Update item cache
 					itemcache.add(item)
-
-					# Update tagcache
-					tagcache.add(item.id, item.tags)
 			else
 				console.log "Error: Loading items failed: " + response.status
 
@@ -138,3 +126,4 @@ module.exports.modify = modify
 module.exports.remove = remove
 module.exports.get = itemcache.get
 module.exports.load = load
+module.exports.getTagArray = tagcache.getArray

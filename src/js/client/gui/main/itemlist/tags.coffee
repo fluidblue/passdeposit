@@ -5,6 +5,8 @@ itemlist tag manipulations
 Created by Max Geissler
 ###
 
+core = require "../../../core"
+
 init = (item, tagList) ->
 	input = item.find(".itemFieldTags .input-tag")
 
@@ -14,7 +16,8 @@ init = (item, tagList) ->
 	optTags =
 		caseInsensitive: true
 		allowDuplicates: false
-		source: ["test", "test2"]
+		source: (query, process) ->
+			return core.items.getTagArray()
 		placeholder: "Tags"
 
 	input.tag optTags
