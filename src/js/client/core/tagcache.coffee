@@ -8,6 +8,7 @@ Created by Max Geissler
 itemcache = require "./itemcache"
 
 tagList = {}
+tagArray = []
 
 add = (itemID, tags) ->
 	for tag in tags
@@ -17,6 +18,7 @@ add = (itemID, tags) ->
 		else
 			# Create new tag
 			tagList[tag] = [itemID]
+			tagArray.push tag
 
 remove = (itemID) ->
 	for tag of tagList
@@ -30,6 +32,7 @@ remove = (itemID) ->
 			# Remove entire tag entry, if no references are left
 			if tagList[tag].length == 0
 				delete tagList[tag]
+				tagArray.splice(tagArray.indexOf(tag), 1)
 
 modify = (itemID, tags) ->
 	# Remove old tags
@@ -43,16 +46,32 @@ modify = (itemID, tags) ->
 			if indexTags != -1
 				delete tags[indexTags]
 			else
+				# Delete reference to item
 				delete tagList[tag][indexTagList]
+
+				# Remove entire tag entry, if no references are left
+				if tagList[tag].length == 0
+					delete tagList[tag]
+					tagArray.splice(tagArray.indexOf(tag), 1)
 
 	# Add new tags
 	for tag in tags
 		tagList[tag] = [itemID]
+		tagArray.push tag
 
 clear = ->
 	tagList = {}
+	tagArray = []
+
+getArray = ->
+	return tagArray
+
+getList = ->
+	return tagList
 
 module.exports.add = add
 module.exports.remove = remove
 module.exports.modify = modify
 module.exports.clear = clear
+module.exports.getArray = getArray
+module.exports.getList = getList
