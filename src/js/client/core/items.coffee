@@ -27,6 +27,10 @@ search = (pattern) ->
 
 		# Search trough all fields
 		for field in items[id].fields
+			# Do not search trough passwords
+			if field.type == "pass"
+				continue
+
 			bitapResult = searcher.search(field.value)
 			if bitapResult.isMatch
 				# Add inverted bitap score
