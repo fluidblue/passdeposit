@@ -68,6 +68,9 @@ initTypeahead = ->
 	$("#search").typeahead options
 
 initSearchHandlers = ->
+	maxlength = $("#search").attr("maxlength")
+	searchValue = ""
+
 	$("#search").on "keypress", (e) ->
 		# Ignore enter
 		if e.which == 13
@@ -76,8 +79,11 @@ initSearchHandlers = ->
 		searchField = $(this)
 		value = searchField.val() + String.fromCharCode(e.which)
 
-		if searchField.data("search-value") != value
-			searchField.data("search-value", value)
+		if value.length > maxlength
+			value = value.substr(0, maxlength)
+
+		if searchValue != value
+			searchValue = value
 			search(value)
 
 		return
@@ -86,8 +92,8 @@ initSearchHandlers = ->
 		searchField = $(this)
 		value = searchField.val()
 
-		if searchField.data("search-value") != value
-			searchField.data("search-value", value)
+		if searchValue != value
+			searchValue = value
 			search(value)
 
 		return
