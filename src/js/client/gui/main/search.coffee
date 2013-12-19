@@ -20,12 +20,13 @@ search = (value) ->
 
 	# Start searching when value is not empty
 	if value.length > 0
-		# TODO: Remove
-		console.log value
+		# Search
+		resultIDs = core.items.search(value)
 
-		# TODO: Remove
-		for id, item of core.items.get()
-			itemlist.add(item)
+		# Add items
+		items = core.items.get()
+		for result in resultIDs
+			itemlist.add(items[result])
 
 initAdvancedSearch = ->
 	# Init search field popover
