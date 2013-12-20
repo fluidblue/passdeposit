@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 global = require "../../global"
+core = require "../../../core"
 
 validUri = (uri) ->
 	# Append http protocol, if not given
@@ -18,9 +19,9 @@ date = (date) ->
 	# Set current date if none is given
 	if !date?
 		date = new Date()
-	# Make sure we have a Date() and not an ugly string or something worse.
-	else if !(date instanceof Date)
-		date = new Date(date)
+
+	# Make sure we have a Date object and not an ugly string or something worse.
+	date = core.convert.date(date)
 
 	day = date.getDate()
 	month = date.getMonth() + 1 # Months are zero based
