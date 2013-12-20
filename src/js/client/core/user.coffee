@@ -7,8 +7,7 @@ Created by Max Geissler
 
 crypt = require "./crypt"
 command = require "./command"
-itemcache = require "./itemcache"
-tagcache = require "./tagcache"
+items = require "./items"
 
 # User's ID, current session and plaintext master password
 # These values are only set if the user is logged in.
@@ -79,9 +78,8 @@ logout = ->
 	credentials.session = null
 	credentials.password = null
 
-	# Clear caches
-	itemcache.clear()
-	tagcache.clear()
+	# Clear all items
+	items.clear()
 
 getID = ->
 	if !credentials.userid?

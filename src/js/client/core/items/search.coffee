@@ -7,7 +7,7 @@ Created by Max Geissler
 
 fuse = require "fuse.js"
 itemcache = require "./itemcache"
-convert = require "./convert"
+convert = require "../convert"
 
 search = (pattern) ->
 	rawResults = null
@@ -83,4 +83,4 @@ searchFuzzy = (pattern) ->
 
 	return rawResults
 
-module.exports.search = search
+module.exports = search

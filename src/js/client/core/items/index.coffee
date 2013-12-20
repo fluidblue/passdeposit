@@ -5,11 +5,11 @@ Item manipulations
 Created by Max Geissler
 ###
 
-command = require "./command"
-crypt = require "./crypt"
+command = require "../command"
+crypt = require "../crypt"
 itemcache = require "./itemcache"
 tagcache = require "./tagcache"
-itemsearch = require "./itemsearch"
+search = require "./search"
 
 add = (item, callback) ->
 	# Encrypt
@@ -71,10 +71,16 @@ load = (callback) ->
 
 			callback(response)
 
-module.exports.search = itemsearch.search
+clear = ->
+	# Clear caches
+	itemcache.clear()
+	tagcache.clear()
+
+module.exports.search = search
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove
 module.exports.get = itemcache.get
+module.exports.clear = clear
 module.exports.load = load
 module.exports.getTagArray = tagcache.getArray

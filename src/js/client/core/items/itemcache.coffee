@@ -5,7 +5,7 @@ Item cache
 Created by Max Geissler
 ###
 
-crypt = require "./crypt"
+crypt = require "../crypt"
 tagcache = require "./tagcache"
 
 itemsEncrypted = {}
