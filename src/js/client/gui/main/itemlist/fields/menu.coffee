@@ -7,6 +7,7 @@ Created by Max Geissler
 
 core = require "../../../../core"
 field = require "."
+global = require "../../../global"
 
 up = (elem) ->
 	elem.after(elem.prev())
@@ -23,6 +24,7 @@ remove = (elem) ->
 passgen = (elem) ->
 	input = elem.find("input[type=text]:visible, input[type=password]:visible")
 	input.val core.passgen.generatePassword()
+	global.form.setInputInvalid(input, false)
 
 	# Show tooltip notification
 	input.tooltip("show")

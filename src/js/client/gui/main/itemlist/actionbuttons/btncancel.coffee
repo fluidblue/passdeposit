@@ -16,8 +16,11 @@ init = ->
 		if id == 0
 			itemlist.remove(item)
 		else
-			# TODO
+			# TODO: Reset data
 			console.log "reset data"
+
+			# TODO: Remove invalid status on all items
+
 			item.removeClass("open")
 		
 		return

@@ -15,6 +15,9 @@ setInputInvalid = (jqElem, invalid = true) ->
 		jqElem.removeClass "invalidInput"
 		jqElem.off "keypress.invalid change.invalid input.invalid"
 
+isInputInvalid = (jqElem) ->
+	return jqElem.hasClass "invalidInput"
+
 focus = (parentID) ->
 	lastInput = null
 	
@@ -44,3 +47,4 @@ focus = (parentID) ->
 
 module.exports.focus = focus
 module.exports.setInputInvalid = setInputInvalid
+module.exports.isInputInvalid = isInputInvalid

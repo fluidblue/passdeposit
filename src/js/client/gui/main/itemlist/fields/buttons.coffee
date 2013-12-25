@@ -69,6 +69,7 @@ initBtnToggleVisibility = ->
 			txtHide.show()
 
 			inputVisible.val inputMasked.val()
+			global.form.setInputInvalid(inputVisible, global.form.isInputInvalid(inputMasked))
 
 			inputMasked.hide()
 			inputVisible.show()
@@ -77,6 +78,7 @@ initBtnToggleVisibility = ->
 			txtShow.show()
 
 			inputMasked.val inputVisible.val()
+			global.form.setInputInvalid(inputMasked, global.form.isInputInvalid(inputVisible))
 			
 			inputVisible.hide()
 			inputMasked.show()
