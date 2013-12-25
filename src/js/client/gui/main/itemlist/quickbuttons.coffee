@@ -29,11 +29,8 @@ initBtnPass = ->
 
 		value = $(this).data("pass")
 		
-		# TODO: Copy to clipboard
-		console.log("copy to clipboard: " + value)
-
-		# Show notification
-		global.jGrowl.show global.text.get("copiedToClipboard")
+		# Copy to clipboard
+		global.clipboard.setText value
 
 		return
 

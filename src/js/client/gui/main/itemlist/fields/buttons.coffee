@@ -13,11 +13,8 @@ initBtnCopy = ->
 		field = $(this).closest(".itemField")
 		input = field.find("input[type=text]:visible, input[type=password]:visible")
 		
-		# TODO: Copy to clipboard
-		console.log("copy to clipboard: " + input.val())
-		
-		# Show notification
-		global.jGrowl.show global.text.get("copiedToClipboard")
+		# Copy text to clipboard
+		global.clipboard.setText input.val()
 
 		return
 

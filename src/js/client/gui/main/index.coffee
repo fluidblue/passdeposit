@@ -9,7 +9,6 @@ optionsDialog = require "./options"
 donationDialog = require "./donations"
 lockDialog = require "./lock"
 logout = require "./logout"
-clipboard = require "./clipboard"
 btnAdd = require "./btnAdd"
 search = require "./search"
 itemlist = require "./itemlist"
@@ -20,7 +19,6 @@ init = ->
 	donationDialog.init()
 	lockDialog.init()
 	logout.init()
-	clipboard.init()
 	btnAdd.init()
 	search.init()
 	itemlist.init()
