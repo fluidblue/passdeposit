@@ -15,6 +15,25 @@ info = require "../info"
 global = require "../../../global"
 
 save = (item, tagList, fieldList, showSuccessNotification = true) ->
+	# Check if all fields are non-empty
+	invalidFields = 0
+
+	item.find(".itemField").each ->
+		input = $(this).find("input[type=text]:visible, input[type=password]:visible")
+
+		if input.val().length == 0
+			global.form.setInputInvalid(input)
+			invalidFields++
+
+			if invalidFields == 1
+				input.focus()
+
+		# Continue with loop
+		return true
+
+	if invalidFields > 0
+		return false
+
 	# Create item object
 	itemObj =
 		"fields": fieldList
@@ -61,25 +80,6 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 init = ->
 	$(document).on "click", "#mainList .content .btnSave", (e) ->
 		item = $(this).closest(".item")
-
-		# Check if all fields are non-empty
-		invalidFields = 0
-
-		item.find(".itemField").each ->
-			input = $(this).find("input[type=text]:visible, input[type=password]:visible")
-
-			if input.val().length == 0
-				global.form.setInputInvalid(input)
-				invalidFields++
-
-				if invalidFields == 1
-					input.focus()
-
-			# Continue with loop
-			return true
-
-		if invalidFields > 0
-			return
 
 		# Get tags
 		tagList = tags.get(item)

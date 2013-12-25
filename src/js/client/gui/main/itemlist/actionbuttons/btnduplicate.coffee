@@ -21,8 +21,11 @@ init = ->
 		# Get fields
 		fieldList = fields.getFields(item)
 
-		# Save and close
-		btnsave.save(item, tagList, fieldList, false)
+		# Save old item
+		if !btnsave.save(item, tagList, fieldList, false)
+			return
+
+		# Close item
 		item.removeClass("open")
 
 		# Duplicate item
