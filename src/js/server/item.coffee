@@ -39,16 +39,18 @@ modify = (userid, item, callback) ->
 		_id: item.id
 		_user: userid
 
-	database.getModel("item").update conditions,
+	database.getModel("item").findOneAndUpdate conditions,
 		$set: item
-	, (err, numberAffected, raw) ->
-		if err || numberAffected != 1
+	, (err, doc) ->
+		if err || !doc?
 			callback
 				status: "db:failed"
 
 			return
+		
+		# Convert mongoose document into plain javascript object
+		item = doc.toClient()
 
-		# TODO: Do not return entire item, but only dateModified
 		callback
 			status: "success"
 			item: item
