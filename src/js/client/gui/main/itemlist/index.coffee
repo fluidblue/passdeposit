@@ -93,7 +93,7 @@ clear = (all = false) ->
 			elem = $(elem)
 			
 			# Remove all items which are saved
-			if itemid.get(elem) != 0
+			if itemid.get(elem) != null
 				elem.remove()
 
 			# Continue with loop

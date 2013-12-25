@@ -37,7 +37,7 @@ initTemplate = (template) ->
 
 	$(template).on "click", ".popover .btnConfirmDelete", (e) ->
 		id = itemid.get(template)
-		exist = id != 0
+		exist = id != null
 
 		if exist
 			# Remove item

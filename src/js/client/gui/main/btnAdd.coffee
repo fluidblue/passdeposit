@@ -16,7 +16,6 @@ init = ->
 		type = href.substr(1)
 
 		item =
-			id: 0
 			fields: []
 			tags: []
 

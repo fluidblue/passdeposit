@@ -13,7 +13,7 @@ init = ->
 		item = $(this).closest(".item")
 		id = itemid.get(item)
 
-		if id == 0
+		if id == null
 			itemlist.remove(item)
 		else
 			# TODO: Reset data

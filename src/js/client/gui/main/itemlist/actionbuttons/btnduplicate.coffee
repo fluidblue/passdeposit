@@ -30,8 +30,6 @@ init = ->
 
 		# Duplicate item
 		newItem =
-			id: 0
-
 			title: global.text.get("addOther")
 
 			fields: fieldList

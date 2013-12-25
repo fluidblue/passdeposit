@@ -9,11 +9,14 @@ get = (item) ->
 	id = item.data("item-id")
 
 	if !id?
-		return 0
+		return null
 	else
 		return id
 
 set = (item, id) ->
+	if !id?
+		id = null
+
 	item.data("item-id", id)
 
 module.exports.get = get

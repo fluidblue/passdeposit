@@ -41,7 +41,7 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 
 	# Process item
 	id = itemid.get(item)
-	exist = id != 0
+	exist = id != null
 
 	# Define callback
 	callback = (response) ->
