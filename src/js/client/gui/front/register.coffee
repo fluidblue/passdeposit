@@ -111,9 +111,16 @@ init = ->
 
 	$("#registerDialog").on "hidden", ->
 		if registerSuccess
+			fieldUser = $("#loginUser")
+			fieldPass = $("#loginPass")
+
+			# Reset invalid states of login form fields
+			global.form.setInputInvalid(fieldUser, false)
+			global.form.setInputInvalid(fieldPass, false)
+
 			# Fill in login information
-			$("#loginUser").val $("#registerEmail").val()
-			$("#loginPass").val ""
+			fieldUser.val $("#registerEmail").val()
+			fieldPass.val ""
 			
 			# Reset registration form
 			$("#register")[0].reset()
