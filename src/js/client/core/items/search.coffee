@@ -76,11 +76,18 @@ searchFuzzy = (pattern) ->
 			rawResults.push
 				id: id
 				score: score
+				date: convert.date(item.dateModified)
 
 	# Sort the results, from highest to lowest score
+	# If score is the same, sort by date
 	rawResults.sort (a, b) ->
-		return b.score - a.score
+		scoreDiff = b.score - a.score
 
+		if scoreDiff == 0
+			return b.date - a.date
+		else
+			return scoreDiff
+	
 	return rawResults
 
 module.exports = search
