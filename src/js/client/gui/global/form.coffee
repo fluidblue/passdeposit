@@ -1,14 +1,24 @@
 ###
 # PassDeposit #
-Exports: setFormFocus(parent)
+Form functions
 
 Created by Max Geissler
 ###
 
-setFormFocus = (parent) ->
+setInputInvalid = (jqElem, invalid = true) ->
+	if invalid
+		jqElem.addClass "invalidInput"
+		jqElem.one "keypress.invalid change.invalid input.invalid", ->
+			setInputInvalid(jqElem, false)
+			return
+	else
+		jqElem.removeClass "invalidInput"
+		jqElem.off "keypress.invalid change.invalid input.invalid"
+
+focus = (parentID) ->
 	lastInput = null
 	
-	$(parent + " input").each (i, obj) ->
+	$(parentID + " input").each (i, obj) ->
 		obj = $(obj)
 		
 		# Save last input which is not of type submit or button.
@@ -32,4 +42,5 @@ setFormFocus = (parent) ->
 	if lastInput
 		lastInput.focus()
 
-module.exports = setFormFocus
+module.exports.focus = focus
+module.exports.setInputInvalid = setInputInvalid

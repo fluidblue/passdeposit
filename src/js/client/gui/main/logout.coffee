@@ -21,7 +21,7 @@ logout = ->
 
 		# TODO: Reset dialogs
 	, ->
-		global.setFormFocus "#login"
+		global.form.focus "#login"
 
 init = ->
 	$("#btnLogout").click (e) ->

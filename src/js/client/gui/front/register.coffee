@@ -56,7 +56,7 @@ validate = (skipEmail = false) ->
 	# Define field validation function
 	validateField = (jqElem, fn) ->
 		if !fn(jqElem.val())
-			global.setInputInvalid jqElem
+			global.form.setInputInvalid jqElem
 			return false
 		
 		return true
@@ -100,7 +100,7 @@ init = ->
 		if validate()
 			$("#registerDialog").modal "show"
 		else
-			global.setFormFocus "#register"
+			global.form.focus "#register"
 
 		return
 

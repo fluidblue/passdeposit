@@ -117,7 +117,7 @@ init = ->
 		if register.validate(true)
 			$("#resetDialog").modal "show"
 		else
-			global.setFormFocus "#register"
+			global.form.focus "#register"
 
 		return
 

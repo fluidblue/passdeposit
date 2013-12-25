@@ -75,6 +75,6 @@ init = ->
 		return
 
 	username.load()
-	global.setFormFocus "#login"
+	global.form.focus "#login"
 
 module.exports.init = init

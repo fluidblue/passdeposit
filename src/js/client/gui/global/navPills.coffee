@@ -5,7 +5,7 @@ NavPills
 Created by Max Geissler
 ###
 
-setFormFocus = require "./setFormFocus"
+form = require "./form"
 
 navPillFadeDuration = 400
 
@@ -34,7 +34,7 @@ init = ->
 		
 		allContent.fadeOut(navPillFadeDuration / 2).promise().done ->
 			$(content).fadeIn navPillFadeDuration / 2
-			setFormFocus content
+			form.focus content
 			return
 
 		return
@@ -72,7 +72,7 @@ change = (navPillID, content, animation) ->
 		# Hide old content, show new content and set focus
 		$("." + target + " .navContent").hide()
 		$(content).show()
-		setFormFocus content
+		form.focus content
 
 module.exports.init = init
 module.exports.change = change

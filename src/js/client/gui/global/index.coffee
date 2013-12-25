@@ -5,8 +5,7 @@ Global GUI functions
 Created by Max Geissler
 ###
 
-setFormFocus = require "./setFormFocus"
-setInputInvalid = require "./setInputInvalid"
+form = require "./form"
 text = require "./text"
 jGrowl = require "./jGrowl"
 navPills = require "./navPills"
@@ -16,8 +15,7 @@ init = ->
 	navPills.init()
 	jGrowl.init()
 
-module.exports.setFormFocus = setFormFocus
-module.exports.setInputInvalid = setInputInvalid
+module.exports.form = form
 module.exports.text = text
 module.exports.jGrowl = jGrowl
 module.exports.navPills = navPills

@@ -18,7 +18,7 @@ init = ->
 
 		if !shared.validation.email(email)
 			# Notify user
-			global.setInputInvalid(emailField)
+			global.form.setInputInvalid(emailField)
 			return
 
 		core.user.sendPasswordHint email, (response) ->
