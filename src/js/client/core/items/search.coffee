@@ -61,15 +61,15 @@ searchFuzzy = (pattern) ->
 
 			bitapResult = searcher.search(field.value)
 			if bitapResult.isMatch
-				# Add inverted bitap score
-				score += 1.0 - bitapResult.score
+				# Use inverted bitap score
+				score = Math.max(score, 1.0 - bitapResult.score)
 
 		# Search through all tags
 		for tag in items[id].tags
 			bitapResult = searcher.search(tag)
 			if bitapResult.isMatch
-				# Add inverted bitap score
-				score += 1.0 - bitapResult.score
+				# Use inverted bitap score
+				score = Math.max(score, 1.0 - bitapResult.score)
 
 		# Add to results, if matches were found
 		if score > 0.0
