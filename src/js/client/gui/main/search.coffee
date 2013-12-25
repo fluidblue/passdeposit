@@ -54,6 +54,16 @@ initAdvancedSearch = ->
 			searchAdvancedButtonLabel.addClass("caretUp")
 		return
 
+	$(document).on "click", ".searchBarContainer a[href=#all]", (e) ->
+		e.preventDefault()
+
+		searchField.val ":all"
+
+		searchField.triggerHandler("change")
+		searchAdvancedButton.triggerHandler("click")
+
+		return
+
 initTypeahead = ->
 	# TODO: Multiple typeahead
 	
