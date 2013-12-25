@@ -19,6 +19,9 @@ logout = ->
 		core.user.logout()
 		itemlist.clear(true)
 
+		# Reset search field
+		$("#search").val ""
+
 		# TODO: Reset dialogs
 	, ->
 		global.form.focus "#login"
