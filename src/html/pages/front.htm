@@ -2,74 +2,17 @@
 <div id="frontpage" class="page">
 	<img src="media/passdeposit.png" alt="PassDeposit" class="logo" />
 	
-	<ul id="frontNav" class="nav nav-pills" data-target="frontNavContent">
-		<li class="active"><a href="#login">Login</a></li>
-		<li><a href="#register">Register</a></li>
-		<li><a href="#about">About</a></li>
-	</ul>
+	<!-- Main navigation bar -->
+	{% include front/frontnav.htm %}
 	
 	<div class="frontNavContent">
-		<form id="login" autocomplete="off" class="navContent clearfix">
-			<div class="itemField input-append">
-				<div>
-					<span class="add-on"><i class="icon-user"></i></span>
-					<input type="text" id="loginUser" value="" spellcheck="false" placeholder="Email address" />
-				</div>
-			</div>
+		<!-- Login tab -->
+		{% include front/login.htm %}
 
-			<div class="itemField input-append">
-				<div>
-					<span class="add-on"><i class="icon-lock"></i></span>
-					<input type="password" id="loginPass" value="" placeholder="Password" />
-				</div>
-			</div>
+		<!-- Register tab -->
+		{% include front/register.htm %}
 
-			<button type="button" id="loginPassForgotten" class="pull-left btn btn-link" data-target="#pwForgotDialog" data-toggle="modal">Forgot your password?</button>
-			<button type="submit" id="loginButton" class="btn btn-success btnWide pull-right">Login</button>
-		</form>
-
-		<form id="register" autocomplete="off" class="navContent clearfix hide">
-			<div class="itemField input-append">
-				<div>
-					<span class="add-on"><i class="icon-envelope"></i></span>
-					<input type="text" id="registerEmail" value="" placeholder="Email address" spellcheck="false" />
-				</div>
-			</div>
-
-			<div class="itemField input-append">
-				<div>
-					<span class="add-on"><i class="icon-lock"></i></span>
-					<input type="password" id="registerPass" value="" placeholder="Password" />
-				</div>
-			</div>
-
-			<div class="itemField input-append">
-				<div>
-					<span class="add-on"><i class="icon-repeat"></i></span>
-					<input type="password" id="registerPassRepeat" value="" placeholder="Repeat password" />
-				</div>
-			</div>
-
-			<div class="itemField input-append">
-				<div>
-					<span class="add-on"><i class="icon-info-sign"></i></span>
-					<input type="text" id="registerPassHint" value="" placeholder="Password hint" />
-				</div>
-			</div>
-
-			<button type="submit" id="registerButton" class="btn btn-success btnWide pull-right">Register</button>
-
-			<button type="submit" id="resetButton" class="btn btn-danger btnWide pull-right hide">Reset</button>
-		</form>
-
-		<div id="about" class="navContent hide">
-			PassDeposit is a simple and secure online password manager,
-			which allows you to store and access your passwords online.<br />
-			<br />
-			See the <a href="https://github.com/fluidblue/passdeposit/blob/master/README.md#passdeposit">Readme</a>
-			for further information.<br />
-			<br />
-			PassDeposit is open source. Get the source at <a href="https://github.com/fluidblue/passdeposit">github</a>.
-		</div>
+		<!-- About tab -->
+		{% include front/about.htm %}
 	</div>
 </div>
