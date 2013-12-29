@@ -66,9 +66,7 @@ load = (callback) ->
 				for item in response.items
 					# Update item cache
 					itemcache.add(item)
-			else
-				console.log "Error: Loading items failed: " + response.status
-
+			
 			callback(response)
 
 clear = ->

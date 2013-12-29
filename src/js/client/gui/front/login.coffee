@@ -52,20 +52,28 @@ login = ->
 
 		username.save()
 
-		# Load items from database
-		core.items.load (response) ->
-			if response.status != "success"
-				# TODO
-				alert "Failed to load items from DB"
-				return
+		# Switch to loadpage
+		global.pageChange.change "#loadpage", ->
+			# Load items from database
+			core.items.load (response) ->
+				# Simulate long loading
+				# TODO: Remove
+				window.setTimeout ->
+					if response.status != "success"
+						# Go back to frontpage and show error
+						global.pageChange.change "#frontpage", null, ->
+							global.jGrowl.show global.text.get("dbLoadFailed", response.status)
+							global.form.focus "#login"
+						return
 
-			# Switch to mainpage
-			global.pageChange.change "#mainpage", ->
-				# Empty password field
-				$("#loginPass").val ""
-			, ->
-				# Focus search field
-				$("#search").focus()
+					# Empty password field
+					$("#loginPass").val ""
+
+					# Switch to mainpage
+					global.pageChange.change "#mainpage", null, ->
+						# Focus search field
+						$("#search").focus()
+				, 5000
 
 # Initializes front page
 init = ->

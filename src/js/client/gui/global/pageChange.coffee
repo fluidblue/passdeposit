@@ -5,18 +5,18 @@ Page change
 Created by Max Geissler
 ###
 
-pageChangeDuration = 400
+duration = 400
 
 change = (pageID, callbackHidden, callbackShow) ->
 	hidePage = ".page:not(" + pageID + ")"
-	
-	$(hidePage).fadeOut pageChangeDuration / 2, ->
+
+	$(hidePage).stop(true, false).fadeOut(duration / 2).promise().done ->
 		# Callback after page has been hidden
 		if callbackHidden?
 			callbackHidden()
 
 		# Show new page
-		$(pageID).fadeIn pageChangeDuration / 2
+		$(pageID).stop(true, false).fadeTo duration / 2, 1
 
 		# Immediately callback
 		if callbackShow?
