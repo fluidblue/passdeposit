@@ -33,20 +33,6 @@ See the [installation instructions](INSTALL.md#passdeposit-installation) for mor
 Please report bugs to <https://github.com/fluidblue/passdeposit/issues>
 
 
-## Libraries
-
-The following libraries and extensions are used:
-
-* jQuery
-* jGrowl
-* jquery-total-storage
-* Bootstrap
-* bootstrap-tag
-* Stanford Javascript Crypto Library
-* ZeroClipboard
-* Bourbon Sass Mixin Library
-
-
 ## License
 
 Copyright (C) 2013 Max Geissler
