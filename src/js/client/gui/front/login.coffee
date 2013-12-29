@@ -9,6 +9,9 @@ username = require "./username"
 global = require "../global"
 core = require "../../core"
 
+setLoginButtonDisabled = (disabled) ->
+	$("#loginButton").attr("disabled", disabled)
+
 load = ->
 	loaded = false
 	frontHidden = false
@@ -37,6 +40,9 @@ load = ->
 
 	# Switch to loading page
 	global.pageChange.change "#loadpage", ->
+		# Enable login button
+		setLoginButtonDisabled(false)
+
 		frontHidden = true
 
 		if loaded
@@ -55,6 +61,9 @@ load = ->
 			loadResponse = response
 
 login = ->
+	# Disable login button
+	setLoginButtonDisabled(true)
+
 	# Dismiss registration notification(s), if open
 	global.jGrowl.closeAll()
 
@@ -89,10 +98,16 @@ login = ->
 			else
 				passField.focus()
 
+			setLoginButtonDisabled(false)
+
 			return
+
 		else if response.status != "success"
 			# Notify user
 			global.jGrowl.show global.text.get("loginFailed", response.status)
+			
+			setLoginButtonDisabled(false)
+			
 			return
 
 		# Save username
