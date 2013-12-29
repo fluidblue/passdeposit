@@ -7,6 +7,7 @@ Created by Max Geissler
 
 itemid = require "../itemid"
 itemlist = require ".."
+core = require "../../../../core"
 
 init = ->
 	$(document).on "click", "#mainList .content .btnCancel", (e) ->
@@ -16,13 +17,8 @@ init = ->
 		if id == null
 			itemlist.remove(item)
 		else
-			# TODO: Reset data
-			console.log "reset data"
+			itemlist.replace item, core.items.get(id)
 
-			# TODO: Remove invalid status on all items
-
-			item.removeClass("open")
-		
 		return
 
 module.exports.init = init

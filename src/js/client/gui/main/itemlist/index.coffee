@@ -60,10 +60,16 @@ add = (item, options = null) ->
 	itemid.set(template, item.id)
 
 	# Add item to mainList
-	if options.position == "top"
-		template.prependTo("#mainList")
+	if typeof options.position == "number"
+		if options.position > 0
+			$("#mainList > div:nth-child(" + options.position + ")").after(template)
+		else
+			template.prependTo("#mainList")
 	else
-		template.appendTo("#mainList")
+		if options.position == "top"
+			template.prependTo("#mainList")
+		else
+			template.appendTo("#mainList")
 
 	# Show mainList
 	show(true)
@@ -82,6 +88,19 @@ remove = (item) ->
 	item.remove()
 	visible = $("#mainList").children().length > 0
 	show(visible)
+
+replace = (item, newItem, options = null) ->
+	if !options?
+		options = {}
+
+	# Get old item's index
+	options.position = item.index()
+
+	# Remove old item
+	item.remove()
+
+	# Add new item
+	add(newItem, options)
 
 clear = (all = false) ->
 	mainList = $("#mainList")
@@ -122,4 +141,5 @@ init = ->
 module.exports.init = init
 module.exports.add = add
 module.exports.remove = remove
+module.exports.replace = replace
 module.exports.clear = clear
