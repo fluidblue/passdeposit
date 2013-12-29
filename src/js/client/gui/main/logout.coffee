@@ -24,6 +24,8 @@ logout = ->
 
 		# TODO: Reset dialogs
 
+		return true
+	, ->
 		# Focus login form
 		global.form.focus "#login"
 

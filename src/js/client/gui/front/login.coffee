@@ -9,6 +9,51 @@ username = require "./username"
 global = require "../global"
 core = require "../../core"
 
+load = ->
+	loaded = false
+	frontHidden = false
+	loadResponse = null
+
+	# Define loadHandler
+	loadHandler = (response) ->
+		if response.status != "success"
+			# Go back to frontpage and show error
+			global.pageChange.change "#frontpage", null, ->
+				global.form.focus "#login"
+				global.jGrowl.show global.text.get("dbLoadFailed", response.status)
+				return true
+			
+			return
+
+		# Switch to mainpage
+		global.pageChange.change "#mainpage", ->
+			# Empty password field
+			$("#loginPass").val ""
+			return true
+		, ->
+			# Focus search field
+			$("#search").focus()
+			return true
+
+	# Switch to loading page
+	global.pageChange.change "#loadpage", ->
+		frontHidden = true
+
+		if loaded
+			loadHandler(loadResponse)
+			return false
+
+		return true
+
+	# Load items from database
+	core.items.load (response) ->
+		loaded = true
+
+		if frontHidden
+			loadHandler(response)
+		else
+			loadResponse = response
+
 login = ->
 	# Dismiss registration notification(s), if open
 	global.jGrowl.closeAll()
@@ -50,33 +95,11 @@ login = ->
 			global.jGrowl.show global.text.get("loginFailed", response.status)
 			return
 
+		# Save username
 		username.save()
 
-		# Switch to loading page
-		global.pageChange.change "#loadpage"
-
-		# Load items from database
-		core.items.load (response) ->
-			# Simulate long loading
-			# TODO: Remove
-			window.setTimeout ->
-				if response.status != "success"
-					# Go back to frontpage and show error
-					global.pageChange.change "#frontpage", ->
-						global.form.focus "#login"
-					, ->
-						global.jGrowl.show global.text.get("dbLoadFailed", response.status)
-					
-					return
-
-				# Switch to mainpage
-				global.pageChange.change "#mainpage", ->
-					# Empty password field
-					$("#loginPass").val ""
-
-					# Focus search field
-					$("#search").focus()
-			, 5000
+		# Start loading
+		load()
 
 # Initializes front page
 init = ->
