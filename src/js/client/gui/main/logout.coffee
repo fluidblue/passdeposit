@@ -23,7 +23,8 @@ logout = ->
 		$("#search").val ""
 
 		# TODO: Reset dialogs
-	, ->
+
+		# Focus login form
 		global.form.focus "#login"
 
 init = ->
