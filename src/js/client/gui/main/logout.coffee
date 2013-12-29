@@ -9,7 +9,13 @@ global = require "../global"
 itemlist = require "./itemlist"
 core = require "../../core"
 
+setLogoutButtonDisabled = (disabled) ->
+	$("#btnLogout").attr("disabled", disabled)
+
 logout = ->
+	# Disable logout button
+	setLogoutButtonDisabled(true)
+
 	# Close all jGrowl messages
 	global.jGrowl.closeAll()
 	
@@ -23,6 +29,9 @@ logout = ->
 		$("#search").val ""
 
 		# TODO: Reset dialogs
+
+		# Enable logout button
+		setLogoutButtonDisabled(false)
 
 		return true
 	, ->
