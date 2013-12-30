@@ -14,18 +14,20 @@ itemlist = require "./itemlist"
 core = require "../../core"
 
 search = (value) ->
-	# Clear itemlist
-	itemlist.clear()
-
 	# Start searching when value is not empty
 	if value.length > 0
 		# Search
-		resultIDs = core.items.search(value)
+		core.items.search value, (resultIDs) ->
+			# Clear itemlist
+			itemlist.clear()
 
-		# Add items
-		items = core.items.get()
-		for result in resultIDs
-			itemlist.add(items[result])
+			# Add items
+			items = core.items.get()
+			for result in resultIDs
+				itemlist.add(items[result])
+	else
+		# Clear itemlist
+		itemlist.clear()
 
 initAdvancedSearch = ->
 	# Init search field popover
