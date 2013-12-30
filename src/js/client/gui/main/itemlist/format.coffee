@@ -20,9 +20,6 @@ date = (date) ->
 	if !date?
 		date = new Date()
 
-	# Make sure we have a Date object and not an ugly string or something worse.
-	date = core.convert.date(date)
-
 	day = date.getDate()
 	month = date.getMonth() + 1 # Months are zero based
 	year = date.getFullYear()

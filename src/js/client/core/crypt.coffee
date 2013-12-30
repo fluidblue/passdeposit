@@ -7,6 +7,7 @@ Created by Max Geissler
 
 sjcl = require "sjcl"
 user = require "./user"
+clone = require "./clone"
 
 # Define encryptions
 availableEncryptions =
@@ -63,7 +64,7 @@ encrypt = (item, encryption = defaultEncryption) ->
 			throw "Error: Unknown encryption: " + encryption.type
 
 	# Make a deep copy of the item
-	item = deepCopy(item)
+	item = clone.deepCopy(item)
 
 	# Encrypt fields
 	for key, entry of item.fields
@@ -101,7 +102,7 @@ decrypt = (item) ->
 			throw "Error: Unknown encryption: " + item.encryption.type
 
 	# Make a deep copy of the item
-	item = deepCopy(item)
+	item = clone.deepCopy(item)
 
 	# Decrypt fields
 	for key, entry of item.fields
@@ -128,12 +129,6 @@ key = (password, salt) ->
 	# PBKDF2-HMAC-SHA256 with iteration count 1000
 	key = sjcl.misc.pbkdf2(password, salt, 1000)
 	return sjcl.codec.base64.fromBits(key)
-
-deepCopy = (obj) ->
-	# Make a deep copy of the object.
-	# Use JSON, because it is the most efficient way:
-	# http://jsperf.com/cloning-an-object/2
-	return JSON.parse(JSON.stringify(obj))
 
 module.exports.encrypt = encrypt
 module.exports.decrypt = decrypt

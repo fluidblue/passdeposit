@@ -9,8 +9,6 @@ fuse = require "fuse.js"
 
 currentSearchID = 0
 
-# TODO: Date convert!
-
 search = (searchID, pattern, items) ->
 	rawResults = null
 
