@@ -13,20 +13,6 @@ reset = require "./reset"
 
 registerSuccess = false
 
-# TODO: Remove?
-# showRegisterErrorTip = (element, message) ->
-# 	# TODO: Not working, if another popover is already attached to element
-# 	content = "<div class=\"errorPopover\">" + message + "</div>"
-
-# 	options =
-# 		trigger: "manual"
-# 		placement: "left"
-# 		html: true
-# 		content: content
-
-# 	$(element).popover options
-# 	$(element).popover "show"
-
 register = ->
 	registerSuccess = false
 
