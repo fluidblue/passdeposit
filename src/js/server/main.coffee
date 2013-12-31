@@ -54,6 +54,9 @@ main = ->
 		# Initialize master
 		init()
 	else
+		if config.get().verbose
+			log.info "Worker started"
+
 		# Initialize worker
 		worker.init()
 
