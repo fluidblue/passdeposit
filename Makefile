@@ -64,15 +64,23 @@ css-base:
 
 # Compile JS
 # ----------
+
+define js_dist
+
+cat ./$(SOURCE_DIR)/js/license.js > $1.min.js
+
+uglifyjs $1 >> $1.min.js
+rm $1
+mv $1.min.js $1
+
+endef
+
 js: js-base
 	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/client/index.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
 	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/client/worker.coffee ./$(BUILD_HTTPDOCS_DIR)/js/worker.js
 
-	cat ./$(SOURCE_DIR)/js/license.js > ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js
-
-	uglifyjs ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js >> ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js
-	rm ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
-	mv ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.min.js ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
+	$(call js_dist,./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js)
+	$(call js_dist,./$(BUILD_HTTPDOCS_DIR)/js/worker.js)
 
 js-debug: js-base
 #	webmake --ext=coffee --ignore-errors --sourcemap ./$(SOURCE_DIR)/js/client/index.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
