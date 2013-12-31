@@ -25,11 +25,6 @@ initBtnOpen = ->
 		
 		# Cancel if field is empty
 		if uri.length == 0
-			# TODO: Testing
-			# input.on "hidden.bs.tooltip", ->
-			# 	console.log "test"
-			# 	return
-
 			# Show notification
 			input.attr("data-original-title", global.text.get("emptyURI")).tooltip("fixTitle")
 
