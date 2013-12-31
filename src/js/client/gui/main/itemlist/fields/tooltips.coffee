@@ -9,7 +9,10 @@ global = require "../../../global"
 
 initTooltipWebAddress = (fieldTemplate) ->
 	# Create web address tooltip
-	# TODO: Enable animation (Bug when focus already set and bug with arrow)
+
+	# Hint: If animation would be enabled, there would be bugs:
+	#  * Jumping arrow
+	#  * Incorrect behaviour when focus already set
 
 	options =
 		placement: "bottom"
