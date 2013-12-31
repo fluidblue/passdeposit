@@ -148,10 +148,11 @@ init = (callback) ->
 
 	# Set handlers
 	mongoose.connection.on "error", (err) ->
-		log.error "Database says: '" + err + "'"
+		# Notify user
+		log.error "Database: " + err + ". Trying to reconnect..."
 
-		# TODO: Do not exit, but limit reconnecting and notifying user
-		process.exit 0
+		# The setting options.auto_reconnect == true
+		# results in auto reconnecting after 1 second.
 
 	mongoose.connection.once "open", ->
 		# Connected to database
