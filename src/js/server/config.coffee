@@ -50,7 +50,7 @@ getArgv = ->
 
 	if argv.help
 		optimist.showHelp()
-		process.exit
+		process.exit 0
 
 	return argv
 
