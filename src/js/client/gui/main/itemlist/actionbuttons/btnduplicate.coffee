@@ -41,8 +41,6 @@ init = ->
 			position: "top"
 			focus: true
 
-		# TODO: Resort or clear item list
-
 		# Show notification
 		global.jGrowl.show global.text.get("duplicatedItem")
 
