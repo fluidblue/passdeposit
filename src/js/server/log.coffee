@@ -33,7 +33,7 @@ getDate = ->
 	return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
 
 getLogPrefix = ->
-	return "[" + getDate() + "] "
+	return "[" + getDate() + " PID: " + process.pid + "] "
 
 error = (message) ->
 	console.error getLogPrefix() + "Error: " + message
