@@ -10,39 +10,52 @@ config = require "./config"
 worker = require "./worker"
 log = require "./log"
 
-config.load()
+# Time (ms) to wait before restarting crashed worker
+restartWait = 2000
 
-if cluster.isMaster
+terminate = ->
+	# Kill all other workers
+	for id of cluster.workers
+		cluster.workers[id].kill()
+
+	# Exit the master process
+	log.info "Shutting down..."
+	process.exit 0
+
+init = ->
 	# Create as many instances as CPUs are present
-	numCPUs = os.cpus().length
-	i = numCPUs
-
-	while i > 0
-		# Fork workers
+	for i of os.cpus()
+		# Fork new worker
 		cluster.fork()
-		i--
 
 	cluster.on "exit", (worker, code, signal) ->
 		exitCode = worker.process.exitCode
 		
 		if exitCode == 0
-			# Kill all other workers
-			for id of cluster.workers
-				cluster.workers[id].kill()
-
-			# Exit the master process
-			log.info "Shutting down..."
-			process.exit 0
+			terminate()
 		else
 			# Log error
 			pid = worker.process.pid
-			log.error "Worker " + pid + " died (" + exitCode + "). Restarting worker..."
+			log.error "Worker " + pid + " died (" + exitCode + "). " +
+			"Restarting worker in " + Math.round(restartWait / 1000) + " seconds..."
 
-			# Restart worker
-			# TODO: Check if worker has run longer than 1 minute
-			cluster.fork()
+			# Wait short time before restarting worker
+			setTimeout ->
+				# Restart worker
+				cluster.fork()
+			, restartWait
 
 	log.info "PassDeposit is running at https://localhost:" + config.get().port
-else
-	# Initialize worker
-	worker.init()
+
+main = ->
+	config.load()
+
+	if cluster.isMaster
+		# Initialize master
+		init()
+	else
+		# Initialize worker
+		worker.init()
+
+# Start the server
+main()
