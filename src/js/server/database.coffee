@@ -143,7 +143,7 @@ init = (callback) ->
 	# Connect
 	mongoose.connect databaseUri, options, (err) ->
 		if err
-			log.error "Could not connect to database"
+			log.error "Could not connect to database (" + err + ")"
 			process.exit 0
 
 	# Set handlers
