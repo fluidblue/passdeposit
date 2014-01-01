@@ -8,11 +8,11 @@ sjcl = require "sjcl"
 crypto = require "crypto"
 
 salt = ->
-	# Generate random salt
-	salt = sjcl.random.randomWords(2, 0)
+	# Generate random salt (8 Bytes)
+	buf = crypto.randomBytes(8)
 
 	# Return base64 representation
-	return sjcl.codec.base64.fromBits(salt)
+	return buf.toString("base64")
 
 session = ->
 	# This function uses a modified version of the approach of
