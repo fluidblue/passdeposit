@@ -40,7 +40,7 @@ init = ->
 			# Define HTTPS handler
 			httpsHandler = (req, res) ->
 				# Get client ID
-				clientID = req.socket.address().address
+				clientID = req.connection.remoteAddress + ":" + req.connection.remotePort
 
 				# Log
 				if config.get().verbose
