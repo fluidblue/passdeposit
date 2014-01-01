@@ -9,6 +9,7 @@ database = require "./database"
 shared = require "./shared"
 mail = require "./mail"
 config = require "./config"
+log = require "./log"
 
 create = (email, key, passwordHint, callback) ->
 	# Validate email and passwordHint
@@ -22,38 +23,45 @@ create = (email, key, passwordHint, callback) ->
 	salt = crypt.salt()
 
 	# Create server key
-	serverKey = crypt.serverKey(key, salt)
+	crypt.serverKey key, salt, (err, serverKey) ->
+		if err
+			log.error "Failed to compute serverKey: " + err
 
-	# Get current timestamp
-	timestamp = new Date()
-
-	# Prepare user data
-	user =
-		email: email
-		password:
-			key: serverKey
-			salt: salt
-		passwordHint: passwordHint
-		
-		created: timestamp
-		lastActive: timestamp
-
-		session: null
-
-	database.getModel("user").create user, (err, doc) ->
-		if err || !doc?
-			# Check for duplicate key error
-			if err.code == 11000
-				callback
-					status: "db:duplicate"
-			else
-				callback
-					status: "db:failed"
+			callback
+				status: "crypt:failed"
 
 			return
 
-		callback
-			status: "success"
+		# Get current timestamp
+		timestamp = new Date()
+
+		# Prepare user data
+		user =
+			email: email
+			password:
+				key: serverKey
+				salt: salt
+			passwordHint: passwordHint
+			
+			created: timestamp
+			lastActive: timestamp
+
+			session: null
+
+		database.getModel("user").create user, (err, doc) ->
+			if err || !doc?
+				# Check for duplicate key error
+				if err.code == 11000
+					callback
+						status: "db:duplicate"
+				else
+					callback
+						status: "db:failed"
+
+				return
+
+			callback
+				status: "success"
 
 login = (email, key, callback) ->
 	userModel = database.getModel("user")
@@ -75,38 +83,46 @@ login = (email, key, callback) ->
 			return
 
 		# Authenticate user
-		serverKey = crypt.serverKey(key, doc.password.salt)
-		if serverKey != doc.password.key
-			callback
-				status: "auth:failed"
+		crypt.serverKey key, doc.password.salt, (err, serverKey) ->
+			if err
+				log.error "Failed to compute serverKey: " + err
 
-			return
-
-		# Create session
-		session = crypt.session()
-
-		# Get current timestamp
-		timestamp = new Date()
-
-		# Get ID
-		userID = doc._id
-
-		# Save session
-		userModel.findByIdAndUpdate userID,
-			$set:
-				session: session
-				lastActive: timestamp
-		, (err, doc) ->
-			if err || !doc?
 				callback
-					status: "db:failed"
+					status: "auth:failed"
 
 				return
 
-			callback
-				status: "success"
-				session: session
-				userid: userID.toString()
+			if serverKey != doc.password.key
+				callback
+					status: "auth:failed"
+
+				return
+
+			# Create session
+			session = crypt.session()
+
+			# Get current timestamp
+			timestamp = new Date()
+
+			# Get ID
+			userID = doc._id
+
+			# Save session
+			userModel.findByIdAndUpdate userID,
+				$set:
+					session: session
+					lastActive: timestamp
+			, (err, doc) ->
+				if err || !doc?
+					callback
+						status: "db:failed"
+
+					return
+
+				callback
+					status: "success"
+					session: session
+					userid: userID.toString()
 
 authenticate = (userid, session, callback) ->
 	if !userid? || !session?
@@ -143,50 +159,57 @@ reset = (resetKey, email, passwordKey, passwordHint, callback) ->
 		salt = crypt.salt()
 
 		# Create server key
-		serverKey = crypt.serverKey(passwordKey, salt)
+		crypt.serverKey passwordKey, salt, (err, serverKey) ->
+			if err
+				log.error "Failed to compute serverKey: " + err
 
-		# Get current timestamp
-		timestamp = new Date()
-
-		# Check time difference
-		hoursDifference = Math.abs(timestamp - doc.dateCreated) / (60 * 60 * 1000)
-		if hoursDifference > 24.0
-			callback
-				status: "time:failed"
-
-			return
-
-		# Prepare user data
-		user =
-			password:
-				key: serverKey
-				salt: salt
-			passwordHint: passwordHint
-			
-			lastActive: timestamp
-
-			session: null
-
-		# Update user data
-		database.getModel("user").findByIdAndUpdate doc._user,
-			$set: user
-		, (err, doc) ->
-			if err || !doc?
 				callback
-					status: "db:failed"
+					status: "crypt:failed"
 
 				return
 
-			# Remove all items
-			database.getModel("item").remove
-				_user: doc._id
-			, (err) ->
-				if err
+			# Get current timestamp
+			timestamp = new Date()
+
+			# Check time difference
+			hoursDifference = Math.abs(timestamp - doc.dateCreated) / (60 * 60 * 1000)
+			if hoursDifference > 24.0
+				callback
+					status: "time:failed"
+
+				return
+
+			# Prepare user data
+			user =
+				password:
+					key: serverKey
+					salt: salt
+				passwordHint: passwordHint
+				
+				lastActive: timestamp
+
+				session: null
+
+			# Update user data
+			database.getModel("user").findByIdAndUpdate doc._user,
+				$set: user
+			, (err, doc) ->
+				if err || !doc?
 					callback
 						status: "db:failed"
-				else
-					callback
-						status: "success"
+
+					return
+
+				# Remove all items
+				database.getModel("item").remove
+					_user: doc._id
+				, (err) ->
+					if err
+						callback
+							status: "db:failed"
+					else
+						callback
+							status: "success"
 
 sendPasswordHint = (email, callback) ->
 	# Validate email

@@ -4,8 +4,9 @@
 Created by Max Geissler
 ###
 
-sjcl = require "sjcl"
 crypto = require "crypto"
+
+pbkdf2iterations = 1000
 
 salt = ->
 	# Generate random salt (8 Bytes)
@@ -24,17 +25,22 @@ session = ->
 	# Return sha256 base64 representation
 	return crypto.createHash("sha256").update(seed).digest("base64")
 
-serverKey = (clientKey, salt) ->
-	# Convert from base64 to bits
-	clientKey = sjcl.codec.base64.toBits(clientKey)
-	salt = sjcl.codec.base64.toBits(salt)
+serverKey = (clientKey, salt, callback) ->
+	# Convert from base64 to binary
+	clientKey = new Buffer(clientKey, "base64")
+	salt = new Buffer(salt, "base64")
 
 	# Create a server key from client key and salt:
-	# PBKDF2-HMAC-SHA256 with iteration count 1000
-	serverKey = sjcl.misc.pbkdf2(clientKey, salt, 1000)
+	# PBKDF2-HMAC-SHA1 with given iteration count and keylen 160/8 (length of SHA1)
+	serverKey = crypto.pbkdf2 clientKey, salt, pbkdf2iterations, 160/8, (err, derivedKey) ->
+		if err
+			callback err, null
+		else
+			# Return base64 representation
+			callback null, derivedKey.toString("base64")
 
-	# Return base64 representation
-	return sjcl.codec.base64.fromBits(serverKey) 
+	# Return undefined to prevent misuse of function
+	return
 
 resetKey = ->
 	# This function uses the approach of
