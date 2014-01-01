@@ -34,6 +34,9 @@ init = ->
 		# Load certificate
 		options = loadCertificate()
 
+		# Force TLS (disallow SSL)
+		options.secureProtocol = "TLSv1_method"
+
 		# Load static files
 		staticFiles.load (files) ->
 			
