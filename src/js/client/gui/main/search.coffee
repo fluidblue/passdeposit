@@ -13,6 +13,8 @@ btnAdd = require "./btnAdd"
 itemlist = require "./itemlist"
 core = require "../../core"
 
+searchValue = ""
+
 search = (value) ->
 	# Start searching when value is not empty
 	if value.length > 0
@@ -82,7 +84,6 @@ initTypeahead = ->
 
 initSearchHandlers = ->
 	maxlength = $("#search").attr("maxlength")
-	searchValue = ""
 
 	$("#search").on "keypress", (e) ->
 		# Ignore enter
@@ -111,9 +112,15 @@ initSearchHandlers = ->
 
 		return
 
+clear = ->
+	# Reset search field
+	$("#search").val ""
+	searchValue = ""
+
 init = ->
 	initAdvancedSearch()
 	initTypeahead()
 	initSearchHandlers()
 
 module.exports.init = init
+module.exports.clear = clear

@@ -7,6 +7,7 @@ Created by Max Geissler
 
 global = require "../global"
 itemlist = require "./itemlist"
+search = require "./search"
 core = require "../../core"
 
 setLogoutButtonDisabled = (disabled) ->
@@ -24,9 +25,7 @@ logout = ->
 		# Clear all data
 		core.user.logout()
 		itemlist.clear(true)
-
-		# Reset search field
-		$("#search").val ""
+		search.clear()
 
 		# TODO: Reset dialogs
 
