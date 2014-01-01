@@ -40,7 +40,7 @@ encrypt = (item, encryption = defaultEncryption) ->
 				return str
 		when "sjcl"
 			fnEncrypt = (str) ->
-				# Always use a fresh random salt
+				# Always use a fresh random salt (8 Bytes)
 				salt = sjcl.random.randomWords(2, 0)
 
 				# Create the key from password and salt:
