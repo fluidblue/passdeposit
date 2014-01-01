@@ -9,6 +9,7 @@ sjcl = require "sjcl"
 user = require "./user"
 clone = require "./clone"
 
+# Iterations for PBKDF2
 pbkdf2iterations = 1000
 
 # Define encryptions

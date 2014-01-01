@@ -6,7 +6,9 @@ Created by Max Geissler
 
 crypto = require "crypto"
 
-pbkdf2iterations = 1000
+# Iterations for PBKDF2
+# Takes ~500ms
+pbkdf2iterations = 300000
 
 salt = ->
 	# Generate random salt (8 Bytes)
