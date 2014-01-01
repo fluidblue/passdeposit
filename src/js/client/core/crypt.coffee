@@ -9,6 +9,8 @@ sjcl = require "sjcl"
 user = require "./user"
 clone = require "./clone"
 
+pbkdf2iterations = 1000
+
 # Define encryptions
 availableEncryptions =
 	none:
@@ -126,8 +128,8 @@ format = (encryption) ->
 
 key = (password, salt) ->
 	# Create key from password and salt:
-	# PBKDF2-HMAC-SHA256 with iteration count 1000
-	key = sjcl.misc.pbkdf2(password, salt, 1000)
+	# PBKDF2-HMAC-SHA256 with given iteration count
+	key = sjcl.misc.pbkdf2(password, salt, pbkdf2iterations)
 	return sjcl.codec.base64.fromBits(key)
 
 module.exports.encrypt = encrypt
