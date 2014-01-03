@@ -17,7 +17,7 @@ fnImport = (format, data, tag, callback) ->
 	format = getFormat(format)
 	items.addBulk format.import(data, tag), callback
 
-fnExport = (format, items, callback) ->
+fnExport = (format, callback) ->
 	throw new Error("Unsupported format.")
 
 module.exports.import = fnImport
