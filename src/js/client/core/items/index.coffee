@@ -27,6 +27,24 @@ add = (item, callback) ->
 
 			callback(response)
 
+addBulk = (items, callback) ->
+	# Encrypt
+	for i of items
+		items[i] = crypt.encrypt(items[i])
+
+	# Send command to server
+	command.send
+		cmd: "item.add"
+		data: items
+		authenticate: true
+		callback: (response) ->
+			if response.status == "success"
+				for item in response.items
+					# Update item cache
+					itemcache.add(item)
+
+			callback(response)
+
 modify = (item, callback) ->
 	# Encrypt
 	itemCrypted = crypt.encrypt(item)

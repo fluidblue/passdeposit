@@ -6,29 +6,37 @@ Created by Max Geissler
 
 database = require "./database"
 
-add = (userid, item, callback) ->
-	# Add timestamp
-	timestamp = new Date()
-	item.dateCreated = timestamp
-	item.dateModified = timestamp
+add = (userid, items, callback) ->
+	isArray = Object::toString.call(item) == "[object Array]"
 
-	# Add userID
-	item._user = userid
+	# If single item is given, make array
+	if !isArray
+		items = [items]
 
-	database.getModel("item").create item, (err, doc) ->
-		if err || !doc?
+	for item in items
+		# Add timestamp
+		timestamp = new Date()
+		item.dateCreated = timestamp
+		item.dateModified = timestamp
+
+		# Add userID
+		item._user = userid
+
+	database.getModel("item").create items, (err, docs...) ->
+		if err || !docs? || docs.length == 0
 			callback
 				status: "db:failed"
 
 			return
 		
-		# Convert mongoose document into plain javascript object
-		# The ID of the newly inserted item will be included in the object
-		item = doc.toClient()
+		for i of docs
+			# Convert mongoose document into plain javascript object
+			# The ID of the newly inserted item will be included in the object
+			docs[i] = docs[i].toClient()
 
 		callback
 			status: "success"
-			item: item
+			item: if isArray then docs else docs[0]
 
 modify = (userid, item, callback) ->
 	# Update timestamp
