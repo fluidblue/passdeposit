@@ -7,7 +7,7 @@ Created by Max Geissler
 
 crypt = require "../crypt"
 tagcache = require "./tagcache"
-convert = require "../convert"
+date = require "./date"
 
 itemsEncrypted = {}
 itemsDecrypted = {}
@@ -20,8 +20,8 @@ get = (id = undefined) ->
 
 add = (itemCrypted) ->
 	# Convert string dates to Date objects
-	itemCrypted.dateCreated = convert.date(itemCrypted.dateCreated)
-	itemCrypted.dateModified = convert.date(itemCrypted.dateModified)
+	itemCrypted.dateCreated = date(itemCrypted.dateCreated)
+	itemCrypted.dateModified = date(itemCrypted.dateModified)
 
 	# Add to cache
 	itemsEncrypted[itemCrypted.id] = itemCrypted

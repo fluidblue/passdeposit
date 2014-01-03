@@ -1,6 +1,6 @@
 ###
 # PassDeposit #
-Converting
+Convert date
 
 Created by Max Geissler
 ###
@@ -17,4 +17,4 @@ date = (date) ->
 	# Return Date object
 	return date
 
-module.exports.date = date
+module.exports = date
