@@ -59,7 +59,7 @@ fnImport = (csv, tag) ->
 	return items
 
 fnExport = (items) ->
-	return null
+	throw new Error("Not implemented.")
 
 module.exports.import = fnImport
 module.exports.export = fnExport
