@@ -11,27 +11,30 @@ navPillFadeDuration = 400
 
 init = ->
 	# Speed up content change by using mousedown instead of click event.
-	$(".nav-pills li a").mousedown ->
+	$(".nav-pills li:not(.dropdown) > a").mousedown ->
 		parent = $(this).parent()
-		
+		content = $(this).attr("href")
+
 		# Cancel if already active
-		if parent.hasClass("active")
+		if $(content).is(":visible")
 			return
+
+		isDropdownMenuItem = $(this).closest("ul").hasClass("dropdown-menu")
+		navPill = if isDropdownMenuItem then $(this).closest("li.dropdown") else parent
 		
-		# Get target (group)
-		target = $(this).parent().parent().attr("data-target")
-		
-		# Set nav-pill
-		$(".nav-pills[data-target=" + target + "] li").removeClass "active"
-		parent.addClass "active"
+		# Get container
+		container = $(this).closest(".nav-pills")
+
+		# Set active nav-pill
+		container.find("li").removeClass "active"
+		navPill.addClass "active"
 		
 		# Stop all runnning and queued animations
+		target = container.attr("data-target")
 		allContent = $("." + target + " .navContent")
 		allContent.stop true, true
 		
 		# Fade old content out, fade new content in and set focus
-		content = $(this).attr("href")
-		
 		allContent.fadeOut(navPillFadeDuration / 2).promise().done ->
 			$(content).fadeIn navPillFadeDuration / 2
 			form.focus content
@@ -39,7 +42,9 @@ init = ->
 
 		return
 
-	$(".nav-pills li a").click (e) ->
+	$(".nav-pills li:not(.dropdown) > a").click (e) ->
+		parent = $(this).parent()
+
 		# Suppress link opening
 		e.preventDefault()
 		return

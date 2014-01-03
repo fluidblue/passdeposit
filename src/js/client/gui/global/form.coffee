@@ -21,7 +21,7 @@ isInputInvalid = (jqElem) ->
 focus = (parentID) ->
 	lastInput = null
 	
-	$(parentID + " input").each (i, obj) ->
+	$(parentID).find("input, textarea").each (i, obj) ->
 		obj = $(obj)
 		
 		# Save last input which is not of type submit or button.

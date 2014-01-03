@@ -9,8 +9,26 @@
 			<li class="active"><a href="#options-general">General</a></li>
 			<li><a href="#options-email">Email</a></li>
 			<li><a href="#options-password">Password</a></li>
-			<li><a href="#options-import">Import</a></li>
-			<li><a href="#options-export">Export</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					Import
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#options-import-csv">CSV</a></li>
+					<li><a tabindex="-1" href="#options-import-json">Encrypted JSON</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					Export
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#options-export-csv">CSV</a></li>
+					<li><a tabindex="-1" href="#options-export-json">Encrypted JSON</a></li>
+				</ul>
+			</li>
 		</ul>
 		<div class="optionsNavContent">
 			<div id="options-general" class="navContent">
@@ -28,25 +46,27 @@
 				This feature is coming soon.
 				<a href="#donationDialog" data-toggle="modal" data-dismiss="modal">Donations</a> will motivate me.
 			</div>
-			<div id="options-import" class="navContent hide">
+			<div id="options-import-csv" class="navContent hide">
 				<p>
-					Import your data from
+					Import your data from CSV files.
 				</p>
-				<ul>
-					<li>CSV files</li>
-					<li>encrypted JSON files</li>
-				</ul>
+				<p>
+					The data must be comma separated and the first line must specify the field type: email, pass, service, uri, user, text or tags. <a href="#example">Show an example</a>.
+				</p>
+				<textarea rows="4" placeholder="Insert CSV data here"></textarea>
+			</div>
+			<div id="options-import-json" class="navContent hide">
+				Import your data from encrypted JSON files.<br />
 				This feature is coming soon.
 				<a href="#donationDialog" data-toggle="modal" data-dismiss="modal">Donations</a> will motivate me.
 			</div>
-			<div id="options-export" class="navContent hide">
-				<p>
-					Export your data to
-				</p>
-				<ul>
-					<li>CSV files</li>
-					<li>encrypted JSON files</li>
-				</ul>
+			<div id="options-export-csv" class="navContent hide">
+				Export your data to CSV files.<br />
+				This feature is coming soon.
+				<a href="#donationDialog" data-toggle="modal" data-dismiss="modal">Donations</a> will motivate me.
+			</div>
+			<div id="options-export-json" class="navContent hide">
+				Export your data to encrypted JSON files.<br />
 				This feature is coming soon.
 				<a href="#donationDialog" data-toggle="modal" data-dismiss="modal">Donations</a> will motivate me.
 			</div>
