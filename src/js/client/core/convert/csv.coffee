@@ -16,7 +16,10 @@ getType = (str) ->
 		when "service" then "service"
 		when "uri" then "uri"
 		when "user" then "user"
-		else "text"
+		when "text" then "text"
+
+		# Ignore
+		else "ignore"
 
 findTag = (tags, tag) ->
 	# Search case insensitive for tag
@@ -28,7 +31,7 @@ findTag = (tags, tag) ->
 
 	return false
 
-fnImport = (csv, tag) ->
+fnImport = (csv, defaultTag) ->
 	rows = $.csv.toArrays(csv)
 	header = rows.shift()
 
@@ -38,7 +41,14 @@ fnImport = (csv, tag) ->
 		# Create new item
 		item =
 			fields: []
-			tags: [tag]
+			tags: []
+
+		# Add default tag
+		if defaultTag?
+			defaultTag = $.trim(defaultTag)
+
+			if defaultTag.length > 0
+				item.tags.push defaultTag
 
 		for i, column of row
 			if column? && column.length > 0
@@ -46,9 +56,11 @@ fnImport = (csv, tag) ->
 				type = getType(header[i])
 
 				if type == "tags"
-					if !findTag(item.tags, column)
-						item.tags.push column
-				else
+					for tag in column.split(",")
+						tag = $.trim(tag)
+						if !findTag(item.tags, tag)
+							item.tags.push tag
+				else if type != "ignore"
 					item.fields.push
 						type: type
 						value: column
