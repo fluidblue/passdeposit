@@ -12,6 +12,7 @@
 
 	"bundledDependencies": [
 		"jquery",
+		"jquery-csv",
 		"jquery-jgrowl",
 		"jquery-total-storage",
 		"bootstrap",

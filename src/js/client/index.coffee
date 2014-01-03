@@ -8,6 +8,7 @@ Created by Max Geissler
 # Require framework
 # The framework will attach itself to the window object
 require "jquery"
+require "jquery-csv"
 require "jquery-jgrowl"
 require "jquery-total-storage"
 require "bootstrap"

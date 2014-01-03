@@ -22,6 +22,7 @@ The following libraries and extensions are used:
 
 * jQuery
 * jGrowl
+* jquery-csv
 * jquery-total-storage
 * Bootstrap
 * bootstrap-tag
