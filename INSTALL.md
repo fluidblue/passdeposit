@@ -74,7 +74,9 @@ You need a certificate for PassDeposit. You can generate a self-signed certifica
 
 ## Development installation
 
-You only need this type of installation if you want to help developing.
+You only need this type of installation if you want to help developing. You do not need to follow the instructions below, if you installed PassDeposit with npm.
+
+Warning: The development installation should only be used for development and testing. If you want to use PassDeposit, install it with npm instead.
 
 * git clone the repository <https://github.com/fluidblue/passdeposit>
 * Install npm and gem
