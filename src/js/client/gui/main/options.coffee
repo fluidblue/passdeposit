@@ -7,6 +7,9 @@ Created by Max Geissler
 
 global = require "../global"
 
+startsWith = (data, str) ->
+	return data.lastIndexOf(str, 0) == 0
+
 init = ->
 	### Initializes option dialog ###
 	
@@ -28,6 +31,18 @@ init = ->
 		if saveOptions
 			global.jGrowl.show global.text.get("optionsSaved")
 		
+		return
+
+	$("#optionsDialog .nav-pills li:not(.dropdown) > a").data "callback", (href) ->
+		buttonText = if startsWith(href, "#options-import")
+				global.text.get("import")
+			else if startsWith(href, "#options-export")
+				global.text.get("export")
+			else
+				global.text.get("save")
+
+		$("#optionsDialog .btnDo").html buttonText
+
 		return
 
 	$("#options-import-csv a[href=#example]").on "click", (e) ->
