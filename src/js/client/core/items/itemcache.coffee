@@ -18,7 +18,7 @@ get = (id = undefined) ->
 	else
 		return itemsDecrypted
 
-add = (itemCrypted) ->
+add = (itemCrypted, existent = false) ->
 	# Convert string dates to Date objects
 	itemCrypted.dateCreated = date(itemCrypted.dateCreated)
 	itemCrypted.dateModified = date(itemCrypted.dateModified)
@@ -28,20 +28,16 @@ add = (itemCrypted) ->
 	itemsDecrypted[itemCrypted.id] = crypt.decrypt(itemCrypted)
 
 	# Update tagcache
-	tagcache.add(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
+	if existent
+		tagcache.modify(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
+	else
+		tagcache.add(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
 
 	# Return decrypted item
 	return itemsDecrypted[itemCrypted.id]
 
 modify = (itemCrypted) ->
-	# Exactly the same as adding
-	itemDecrypted = add(itemCrypted)
-
-	# Update tagcache
-	tagcache.modify(itemCrypted.id, itemDecrypted.tags)
-
-	# Return decrypted item
-	return itemDecrypted
+	return add(itemCrypted, true)
 
 remove = (id) ->
 	delete itemsEncrypted[id]
