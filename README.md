@@ -7,7 +7,7 @@ You may be asking yourself: Can I trust PassDeposit? Yes you can!
 PassDeposit has been designed to ensure maximum security for your data.
 See the feature list for details.
 
-Use PassDeposit at <http://www.passdeposit.com> for free.
+Use PassDeposit at <https://www.passdeposit.com> for free.
 
 
 ## Features
@@ -22,7 +22,7 @@ Use PassDeposit at <http://www.passdeposit.com> for free.
 
 ## Installation
 
-You can use PassDeposit without installation at <http://www.passdeposit.com>
+You can use PassDeposit without installation at <https://www.passdeposit.com>
 
 Alternatively, you can download the latest version and use it on your own server.
 See the [installation instructions](INSTALL.md#passdeposit-installation) for more information.
