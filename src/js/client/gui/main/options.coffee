@@ -12,25 +12,19 @@ startsWith = (data, str) ->
 
 init = ->
 	### Initializes option dialog ###
-	
-	saveOptions = false
-
-	$("#optionsDialog").on "show", ->
-		saveOptions = false
-		return
 
 	$("#optionsDialog .btnDo").click ->
-		if $("#optionsDialog .nav-pills a[href=#options-general]").parent().hasClass("active")
-			saveOptions = true
+		if $("#options-general").is(":visible")
+			$("#optionsDialog").one "hidden", ->
+				global.jGrowl.show global.text.get("optionsSaved")
+				return
+		else if $("#options-import-csv").is(":visible")
+			$("#optionsDialog").one "hidden", ->
+				global.jGrowl.show "Not yet implemented."
+				return
 
 		$("#optionsDialog").modal "hide"
 
-		return
-
-	$("#optionsDialog").on "hidden", ->
-		if saveOptions
-			global.jGrowl.show global.text.get("optionsSaved")
-		
 		return
 
 	$("#optionsDialog .nav-pills li:not(.dropdown) > a").data "callback", (href) ->
