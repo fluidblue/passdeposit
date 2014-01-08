@@ -14,9 +14,7 @@ config = null
 defaultConfig =
 	port: 8000
 
-	https:
-		certificate: ""
-		privateKey: ""
+	https: {}
 
 	database:
 		type: "mongodb"

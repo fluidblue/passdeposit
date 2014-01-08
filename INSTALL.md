@@ -46,8 +46,8 @@ Save your configuration to a file, e.g. config.json:
 		"port": 8000,
 
 		"https": {
-			"certificate": "path/to/certificate.pem",
-			"privateKey": "path/to/privatekey.pem"
+			"certFile": "path/to/certificate.pem",
+			"keyFile": "path/to/privatekey.pem"
 		},
 
 		"database": {
@@ -64,6 +64,9 @@ Save your configuration to a file, e.g. config.json:
 
 		"verbose": false
 	}
+
+The https section is passed to the nodejs TLS module, so you can use all [options](http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener) from this module.
+Additionally, you can use the following options to load certificates from files: pfxFile, keyFile, certFile.
 
 You need a certificate for PassDeposit. You can generate a self-signed certificate using the following commands:
 
