@@ -11,7 +11,11 @@ startsWith = (data, str) ->
 	return data.lastIndexOf(str, 0) == 0
 
 reset = ->
+	# Reset email address
 	$("#changeEmail").val ""
+
+	# Set initial tab
+	global.navPills.change "#optionsNav", "#options-general", false
 
 init = ->
 	### Initializes option dialog ###
