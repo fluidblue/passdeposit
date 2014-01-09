@@ -63,6 +63,70 @@ create = (email, key, passwordHint, callback) ->
 			callback
 				status: "success"
 
+update = (userid, data, callback) ->
+	# Validate data
+	if (data.email? && !shared.validation.email(data.email)) ||
+	(data.key? && (!data.passwordHint? || !shared.validation.passwordHint(data.passwordHint))) ||
+	(!data.email? && !data.key?)
+		callback
+			status: "input:failed"
+
+		return
+
+	# Prepare user data
+	user = {}
+
+	# Define save function
+	save = ->
+		database.getModel("user").findByIdAndUpdate userid,
+			$set: user
+		, (err, doc) ->
+			if err || !doc?
+				# Check for duplicate key error
+				if err.code == 11000
+					callback
+						status: "db:duplicate"
+				else
+					callback
+						status: "db:failed"
+
+				return
+
+			callback
+				status: "success"
+
+	# Update email
+	if data.email?
+		user.email = email
+
+	# Update password
+	if data.key?
+		# Use a fresh random salt
+		salt = crypt.salt()
+
+		# Create server key
+		crypt.serverKey data.key, salt, (err, serverKey) ->
+			if err
+				log.error "Failed to compute serverKey: " + log.errmsg(err)
+
+				callback
+					status: "crypt:failed"
+
+				return
+
+			# Save password and passwordHint
+			user.password =
+				key: serverKey
+				salt: salt
+			user.passwordHint = data.passwordHint
+
+			# Save to DB
+			save()
+	else
+		# Wait some time before calling the save function.
+		# This prevents enumerating registered email addresses.
+		setTimeout save, 400
+
 login = (email, key, callback) ->
 	userModel = database.getModel("user")
 
@@ -275,7 +339,7 @@ sendPasswordHint = (email, callback) ->
 				# sure that the mail has been successfully delivered.
 				#
 				# This doesn't bother us, because we won't return details
-				# of the delivery status to prevent enumerating valid
+				# of the delivery status to prevent enumerating registered
 				# email addresses.
 				#
 				# This means "success" only indicates that the mail has
