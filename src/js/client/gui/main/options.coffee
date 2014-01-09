@@ -13,6 +13,14 @@ startsWith = (data, str) ->
 init = ->
 	### Initializes option dialog ###
 
+	$("#optionsDialog").on "show", ->
+		# Load email address
+		email = $("#changeEmail")
+		if email.val().length <= 0
+			$("#changeEmail").val $("#loginUser").val()
+		
+		return
+
 	$("#optionsDialog .btnDo").click ->
 		if $("#options-general").is(":visible")
 			$("#optionsDialog").one "hidden", ->
@@ -22,6 +30,8 @@ init = ->
 			$("#optionsDialog").one "hidden", ->
 				global.jGrowl.show "Not yet implemented."
 				return
+		else if $("#options-email").is(":visible")
+			$("#changeEmail").val $("#loginUser").val
 
 		$("#optionsDialog").modal "hide"
 
