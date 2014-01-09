@@ -9,23 +9,11 @@
 	margin-bottom: 10px;
 }
 
-#options-import-csv
-{
-	textarea
-	{
-		@include box-sizing(border-box);
-		width: 100%;
-
-		margin-bottom: 5px;
-		margin-top: 5px;
-	}
-}
-
 #options-email
 {
 	.itemField:last-child
 	{
-		margin-bottom: 0;
+		margin-bottom: 5px;
 	}
 }
 
@@ -38,6 +26,45 @@
 
 	.itemField:last-child
 	{
-		margin-bottom: 0;
+		margin-bottom: 5px;
+	}
+}
+
+#options-import-csv
+{
+	.addtag
+	{
+		display: table;
+		width: 100%;
+		margin-bottom: 10px;
+		
+		> div
+		{
+			display: table-cell;
+
+			&:first-child
+			{
+				vertical-align: middle;
+			}
+
+			&:last-child
+			{
+				width: 275px;
+
+				> div
+				{
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	
+	textarea
+	{
+		@include box-sizing(border-box);
+		width: 100%;
+
+		margin-bottom: 5px;
+		margin-top: 5px;
 	}
 }
