@@ -8,6 +8,7 @@ fs = require "fs"
 path = require "path"
 optimist = require "optimist"
 log = require "./log"
+pack = require "../package.json"
 
 config = null
 
@@ -35,19 +36,28 @@ get = ->
 getArgv = ->
 	argv = optimist
 	.usage("PassDeposit server.\nUsage: $0 [options]")
-	.options("c",
-		demand: true
+	.options "c",
 		alias: "config"
 		describe: "Configuration file. Example: path/to/config.json"
-	)
-	.options("h",
+	.options "v",
+		alias: "version"
+		describe: "Show the version"
+	.options "h",
 		alias: "help"
 		describe: "Show this help"
-	)
 	.argv
 
 	if argv.help
 		optimist.showHelp()
+		process.exit 0
+
+	if argv.version
+		console.log pack.version
+		process.exit 0
+
+	if !argv.config
+		optimist.showHelp()
+		console.log "Missing required arguments: c"
 		process.exit 0
 
 	return argv
