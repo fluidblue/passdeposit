@@ -9,6 +9,7 @@ global = require "../global"
 itemlist = require "./itemlist"
 search = require "./search"
 core = require "../../core"
+options = require "./options"
 
 setLogoutButtonDisabled = (disabled) ->
 	$("#btnLogout").attr("disabled", disabled)
@@ -25,9 +26,10 @@ logout = ->
 		# Clear all data
 		core.user.logout()
 		itemlist.clear(true)
-		search.clear()
 
-		# TODO: Reset dialogs
+		# Reset dialogs
+		search.reset()
+		options.reset()
 
 		# Enable logout button
 		setLogoutButtonDisabled(false)

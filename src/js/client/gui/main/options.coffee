@@ -10,6 +10,9 @@ global = require "../global"
 startsWith = (data, str) ->
 	return data.lastIndexOf(str, 0) == 0
 
+reset = ->
+	$("#changeEmail").val ""
+
 init = ->
 	### Initializes option dialog ###
 
@@ -18,7 +21,7 @@ init = ->
 		email = $("#changeEmail")
 		if email.val().length <= 0
 			$("#changeEmail").val $("#loginUser").val()
-		
+
 		return
 
 	$("#optionsDialog .btnDo").click ->
@@ -62,3 +65,4 @@ init = ->
 		return
 
 module.exports.init = init
+module.exports.reset = reset

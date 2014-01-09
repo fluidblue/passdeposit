@@ -112,7 +112,7 @@ initSearchHandlers = ->
 
 		return
 
-clear = ->
+reset = ->
 	# Reset search field
 	$("#search").val ""
 	searchValue = ""
@@ -123,4 +123,4 @@ init = ->
 	initSearchHandlers()
 
 module.exports.init = init
-module.exports.clear = clear
+module.exports.reset = reset
