@@ -15,12 +15,11 @@ reEmail = /^\S+@\S+\.\S+$/
 # A safe password must fulfill:
 #   * at least one uppercase letter
 #   * at least one lowercase letter
-#   * at least one digit
 #   * 8 characters or longer
 #
 # This is a modified version of
 # http://imar.spaanjaars.com/297/regular-expression-for-a-strong-password
-rePassword = /(?=^.{8,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
+rePassword = /(?=^.{8,}$)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
 
 email = (str) ->
 	return str? && reEmail.test(str)
