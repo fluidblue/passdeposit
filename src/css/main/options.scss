@@ -4,6 +4,11 @@
  * Created by Max Geissler
  */
 
+#optionsNav
+{
+	margin-bottom: 10px;
+}
+
 #options-import-csv
 {
 	textarea
@@ -13,5 +18,26 @@
 
 		margin-bottom: 5px;
 		margin-top: 5px;
+	}
+}
+
+#options-email
+{
+	.itemField:last-child
+	{
+		margin-bottom: 0;
+	}
+}
+
+#options-password
+{
+	ul
+	{
+		margin-bottom: 15px;
+	}
+
+	.itemField:last-child
+	{
+		margin-bottom: 0;
 	}
 }
