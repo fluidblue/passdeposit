@@ -25,7 +25,7 @@ create = (email, key, passwordHint, callback) ->
 	# Create server key
 	crypt.serverKey key, salt, (err, serverKey) ->
 		if err
-			log.error "Failed to compute serverKey: " + err
+			log.error "Failed to compute serverKey: " + log.errmsg(err)
 
 			callback
 				status: "crypt:failed"
@@ -85,7 +85,7 @@ login = (email, key, callback) ->
 		# Authenticate user
 		crypt.serverKey key, doc.password.salt, (err, serverKey) ->
 			if err
-				log.error "Failed to compute serverKey: " + err
+				log.error "Failed to compute serverKey: " + log.errmsg(err)
 
 				callback
 					status: "auth:failed"
@@ -161,7 +161,7 @@ reset = (resetKey, email, passwordKey, passwordHint, callback) ->
 		# Create server key
 		crypt.serverKey passwordKey, salt, (err, serverKey) ->
 			if err
-				log.error "Failed to compute serverKey: " + err
+				log.error "Failed to compute serverKey: " + log.errmsg(err)
 
 				callback
 					status: "crypt:failed"

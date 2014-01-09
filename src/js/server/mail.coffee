@@ -25,7 +25,7 @@ send = (to, subject, text, callback) ->
 
 		callback(null)
 	catch e
-		log.error "Could not send mail to " + to + " (" + e + ")"
+		log.error "Could not send mail to " + to + " (" + log.errmsg(e) + ")"
 		callback(e)
 
 	return

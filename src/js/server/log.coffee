@@ -41,5 +41,13 @@ error = (message) ->
 info = (message) ->
 	console.log getLogPrefix() + "Info: " + message
 
+errmsg = (err) ->
+	# Return error message of thrown error
+	if err.message?
+		return err.message
+	else
+		return err
+
 module.exports.error = error
 module.exports.info = info
+module.exports.errmsg = errmsg
