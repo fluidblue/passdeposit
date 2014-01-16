@@ -6,14 +6,36 @@ Created by Max Geissler
 
 database = require "./database"
 
+isArray = (obj) ->
+	return Object::toString.call(obj) == "[object Array]"
+
+isItemValid = (item) ->
+	return item && item.encryption? && item.encryption.type? &&
+		isArray(item.tags) && isArray(item.fields) &&
+		item.fields.length > 0
+
 add = (userid, items, callback) ->
-	isArray = Object::toString.call(item) == "[object Array]"
+	multipleItems = isArray(items)
 
 	# If single item is given, make array
-	if !isArray
+	if !multipleItems
 		items = [items]
 
+	# Check if at least one item is given
+	if items.length <= 0
+		callback
+			status: "input:failed"
+
+		return
+
 	for item in items
+		# Check if item is valid
+		if !isItemValid(item)
+			callback
+				status: "input:failed"
+
+			return
+
 		# Add timestamp
 		timestamp = new Date()
 		item.dateCreated = timestamp
@@ -36,9 +58,16 @@ add = (userid, items, callback) ->
 
 		callback
 			status: "success"
-			item: if isArray then docs else docs[0]
+			item: if multipleItems then docs else docs[0]
 
 modify = (userid, item, callback) ->
+	# Check if item is valid
+	if !isItemValid(item)
+		callback
+			status: "input:failed"
+
+		return
+
 	# Update timestamp
 	timestamp = new Date()
 	item.dateModified = timestamp

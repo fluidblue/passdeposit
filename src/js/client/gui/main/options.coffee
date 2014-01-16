@@ -6,13 +6,36 @@ Created by Max Geissler
 ###
 
 global = require "../global"
+core = require "../../core"
+format = require "./itemlist/format"
 
 startsWith = (data, str) ->
 	return data.lastIndexOf(str, 0) == 0
 
+importCSV = ->
+	data = $("#options-import-csv textarea").val()
+	tag = $("#options-import-csv input").val()
+
+	core.convert.import "csv", data, tag, (response, count) ->
+		if response.status == "success"
+			if count == 0
+				global.jGrowl.show global.text.get("importFailedNoItems")
+			else
+				global.jGrowl.show global.text.get("importSuccess", count)
+
+				# Reset fields
+				$("#options-import-csv input").val ""
+				$("#options-import-csv textarea").val ""
+		else
+			global.jGrowl.show global.text.get("importFailed", response.status)
+
 reset = ->
-	# Reset email address
+	# Reset email tab
 	$("#changeEmail").val ""
+
+	# Reset csv-import tab
+	$("#options-import-csv input").val ""
+	$("#options-import-csv textarea").val ""
 
 	# Set initial tab
 	global.navPills.change "#optionsNav", "#options-general", false
@@ -26,6 +49,10 @@ init = ->
 		if email.val().length <= 0
 			$("#changeEmail").val $("#loginUser").val()
 
+		# Set default import tag
+		if $("#options-import-csv input").val().length == 0
+			$("#options-import-csv input").val "import-" + format.date()
+
 		return
 
 	$("#optionsDialog .btnDo").click ->
@@ -35,7 +62,7 @@ init = ->
 				return
 		else if $("#options-import-csv").is(":visible")
 			$("#optionsDialog").one "hidden", ->
-				global.jGrowl.show "Not yet implemented."
+				importCSV()
 				return
 		else if $("#options-email").is(":visible")
 			$("#changeEmail").val $("#loginUser").val

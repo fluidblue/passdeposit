@@ -39,7 +39,7 @@ addBulk = (items, callback) ->
 		authenticate: true
 		callback: (response) ->
 			if response.status == "success"
-				for item in response.items
+				for item in response.item
 					# Update item cache
 					itemcache.add(item)
 
@@ -94,6 +94,7 @@ clear = ->
 
 module.exports.search = search
 module.exports.add = add
+module.exports.addBulk = addBulk
 module.exports.modify = modify
 module.exports.remove = remove
 module.exports.get = itemcache.get

@@ -35,6 +35,9 @@ fnImport = (csv, defaultTag) ->
 	rows = $.csv.toArrays(csv)
 	header = rows.shift()
 
+	if defaultTag?
+		defaultTag = $.trim(defaultTag)
+
 	items = []
 
 	for row in rows
@@ -44,11 +47,8 @@ fnImport = (csv, defaultTag) ->
 			tags: []
 
 		# Add default tag
-		if defaultTag?
-			defaultTag = $.trim(defaultTag)
-
-			if defaultTag.length > 0
-				item.tags.push defaultTag
+		if defaultTag? && defaultTag.length > 0
+			item.tags.push defaultTag
 
 		for i, column of row
 			if column? && column.length > 0
@@ -65,7 +65,7 @@ fnImport = (csv, defaultTag) ->
 						type: type
 						value: column
 
-		if items.fields.length > 0
+		if item.fields.length > 0
 			items.push item
 
 	return items

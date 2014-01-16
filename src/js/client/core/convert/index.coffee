@@ -15,7 +15,22 @@ getFormat = (name) ->
 
 fnImport = (format, data, tag, callback) ->
 	format = getFormat(format)
-	items.addBulk format.import(data, tag), callback
+	importItems = format.import(data, tag)
+
+	if importItems? && importItems.length?
+		count = importItems.length
+
+		if count > 0
+			items.addBulk importItems, (response) ->
+				callback response, count
+		else
+			callback
+				status: "success"
+			, 0
+	else
+		callback
+			status: "import:failed"
+		, null
 
 fnExport = (format, callback) ->
 	throw new Error("Unsupported format.")
