@@ -56,7 +56,7 @@ setButtons = (item, fieldList) ->
 	fieldPass = fields.find(fieldList, "pass")
 
 	# Set data for buttons
-	if fieldUri? then btnOpen.attr("href", fieldUri.value)
+	if fieldUri? then btnOpen.attr("href", format.validUri(fieldUri.value))
 	if fieldPass? then btnPass.data("pass", fieldPass.value)
 
 	# Set visibility of buttons
