@@ -33,6 +33,9 @@ date = (date) ->
 	return year + "-" + month + "-" + day
 
 webAddress = (addr) ->
+	if addr.charAt(addr.length - 1) == "/"
+		addr = addr.substring(0, addr.length - 1)
+
 	if addr.indexOf("http://") == 0
 		return addr.substring(7)
 
