@@ -9,6 +9,7 @@ buttons = require "./buttons"
 menu = require "./menu"
 tooltips = require "./tooltips"
 completeuri = require "./completeuri"
+format = require "../format"
 
 # Return first field that matches the given type.
 # If no such field is found, null is returned.
@@ -67,7 +68,11 @@ add = (itemFieldContainer, field) ->
 	fieldTemplate = createTemplate(field)
 
 	# Set field value
-	fieldTemplate.find("input[type=password], input[type=text]").val(field.value)
+	value = if field.type == "uri"
+		format.validUri(field.value)
+	else
+		field.value
+	fieldTemplate.find("input[type=password], input[type=text]").val(value)
 
 	# Initialize tooltips
 	tooltips.initFieldTemplate(fieldTemplate, field.type)
