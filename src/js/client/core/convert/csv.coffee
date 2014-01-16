@@ -19,7 +19,10 @@ getType = (str) ->
 		when "text" then "text"
 
 		# Ignore
-		else "ignore"
+		when "ignore" then "ignore"
+
+		# Invalid
+		else "invalid"
 
 findTag = (tags, tag) ->
 	# Search case insensitive for tag
@@ -61,6 +64,12 @@ fnImport = (csv, defaultTag) ->
 						tag = $.trim(tag)
 						if !findTag(item.tags, tag)
 							item.tags.push tag
+				else if type == "invalid"
+					# Import failed
+					result =
+						error: "data:failed"
+
+					return result
 				else if type != "ignore"
 					item.fields.push
 						type: type

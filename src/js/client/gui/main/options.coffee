@@ -29,6 +29,8 @@ importCSV = ->
 				# Reset fields
 				$("#options-import-csv input").val ""
 				$("#options-import-csv textarea").val ""
+		else if response.status == "import:data:failed"
+			global.jGrowl.show global.text.get("importFailedInvalidData")
 		else
 			global.jGrowl.show global.text.get("importFailed", response.status)
 
