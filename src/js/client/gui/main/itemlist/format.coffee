@@ -45,11 +45,11 @@ webAddress = (addr) ->
 	return addr
 
 title = (fields) ->
-	user = ""
-	email = ""
-	service = ""
-	uri = ""
-	txt = ""
+	user = null
+	email = null
+	service = null
+	uri = null
+	txt = null
 
 	# Loop through fields in reverse order
 	for field in fields by -1
@@ -61,11 +61,12 @@ title = (fields) ->
 			when "text" then txt = field.value
 
 	# Create title:
-	#     (Username | Email) * (ServiceName) * (WebAddress) * (Text)
-	# If only WebAddress & Text are present:
-	#     Text * WebAddress
-	# If title is still empty
-	#     Email
+	#
+	# If only uri and text is present:
+	#     "text * uri"
+	# else
+	#     "service * uri * (user | email)"
+	#
 	# If title is still empty
 	#     "Untitled"
 
@@ -78,27 +79,22 @@ title = (fields) ->
 		else
 			return part
 
-	if user.length <= 0 && email.length <= 0 && service.length <= 0 &&
-	uri.length > 0 && txt.length > 0
+	valid = (str) ->
+		return str? && str.length > 0
+
+	if !valid(user) && !valid(email) && !valid(service) && valid(uri) && valid(txt)
 		title = txt + dot + uri
 	else
-		if user.length > 0
-			title = user
+		if valid(service)
+			title = service
 
-		if title.length <= 0 && email.length > 0
-			title = email
-
-		if service.length > 0
-			title = addPart(title, service)
-
-		if uri.length > 0
+		if valid(uri)
 			title = addPart(title, uri)
 
-		if txt.length > 0
-			title = addPart(title, txt)
-
-		if title.length <= 0
-			title = email
+		if valid(user)
+			title = addPart(title, user)
+		else if valid (email)
+			title = addPart(title, email)
 
 		if title.length <= 0
 			title = global.text.get("untitled")
