@@ -39,6 +39,7 @@ fnImport = (csv, defaultTag) ->
 		defaultTag = $.trim(defaultTag)
 
 	items = []
+	ignored = 0
 
 	for row in rows
 		# Create new item
@@ -67,8 +68,14 @@ fnImport = (csv, defaultTag) ->
 
 		if item.fields.length > 0
 			items.push item
+		else
+			ignored++
 
-	return items
+	result =
+		items: items
+		ignored: ignored
+
+	return result
 
 fnExport = (items) ->
 	throw new Error("Not implemented.")

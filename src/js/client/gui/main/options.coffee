@@ -16,12 +16,15 @@ importCSV = ->
 	data = $("#options-import-csv textarea").val()
 	tag = $("#options-import-csv input").val()
 
-	core.convert.import "csv", data, tag, (response, count) ->
+	core.convert.import "csv", data, tag, (response, count, ignored) ->
 		if response.status == "success"
 			if count == 0
 				global.jGrowl.show global.text.get("importFailedNoItems")
 			else
-				global.jGrowl.show global.text.get("importSuccess", count)
+				if ignored == 0
+					global.jGrowl.show global.text.get("importSuccess", count)
+				else
+					global.jGrowl.show global.text.get("importSuccessWithWarning", count, ignored)
 
 				# Reset fields
 				$("#options-import-csv input").val ""
