@@ -31,7 +31,6 @@ createModels = ->
 		session: String
 	,
 		versionKey: false
-		autoIndex: false
 
 	# Create schema for field
 	fieldSchema = mongoose.Schema
@@ -40,7 +39,6 @@ createModels = ->
 		value: mongoose.Schema.Types.Mixed
 	,
 		versionKey: false
-		autoIndex: false
 		id: false
 		_id: false
 
@@ -63,7 +61,6 @@ createModels = ->
 		tags: [mongoose.Schema.Types.Mixed]
 	,
 		versionKey: false
-		autoIndex: false
 
 	# Create schema for reset
 	resetSchema = mongoose.Schema
@@ -78,7 +75,6 @@ createModels = ->
 			unique: true
 	,
 		versionKey: false
-		autoIndex: false
 
 	# Define toClient method used by each schema
 	toClient = ->
