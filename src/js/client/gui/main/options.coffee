@@ -7,6 +7,7 @@ Created by Max Geissler
 
 global = require "../global"
 core = require "../../core"
+shared = require "../../../shared"
 format = require "./itemlist/format"
 username = require "../front/username"
 
@@ -35,9 +36,16 @@ importCSV = ->
 		else
 			global.jGrowl.show global.text.get("importFailed", response.status)
 
+	return true
+
 changeEmail = ->
-	# TODO: Validation
-	email = $("#changeEmail").val()
+	emailField = $("#changeEmail")
+	email = emailField.val()
+
+	if !shared.validation.email(email)
+		global.form.setInputInvalid emailField
+		emailField.focus()
+		return false
 
 	core.user.updateEmail email, (response) ->
 		if response.status == "success"
@@ -47,6 +55,8 @@ changeEmail = ->
 			global.jGrowl.show global.text.get("changeEmailDuplicate")
 		else
 			global.jGrowl.show global.text.get("optionsSaveFailed", response.status)
+
+	return true
 
 reset = ->
 	# Reset email tab
@@ -75,20 +85,20 @@ init = ->
 		return
 
 	$("#optionsDialog .btnDo").click ->
+		hideDialog = true
+
+		# TODO: Use .one "hidden" everywhere
 		if $("#options-general").is(":visible")
 			$("#optionsDialog").one "hidden", ->
 				global.jGrowl.show global.text.get("optionsSaved")
 				return
 		else if $("#options-import-csv").is(":visible")
-			$("#optionsDialog").one "hidden", ->
-				importCSV()
-				return
+			hideDialog = importCSV()
 		else if $("#options-email").is(":visible")
-			$("#optionsDialog").one "hidden", ->
-				changeEmail()
-				return
+			hideDialog = changeEmail()
 
-		$("#optionsDialog").modal "hide"
+		if hideDialog
+			$("#optionsDialog").modal "hide"
 
 		return
 
