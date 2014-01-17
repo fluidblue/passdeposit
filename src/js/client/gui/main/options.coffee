@@ -58,6 +58,45 @@ changeEmail = ->
 
 	return true
 
+validatePasswordChangeFields = ->
+	# Define field validation function
+	validateField = (jqElem, fn) ->
+		if !fn(jqElem.val())
+			global.form.setInputInvalid jqElem
+			return false
+		
+		return true
+
+	# Validation function for password repeat field
+	passwordRepeat = (str) ->
+		return str == $("#changePass").val() && str.length > 0
+
+	# Validate all fields and return result
+	return validateField($("#changePass"), shared.validation.password) &
+	validateField($("#changePassRepeat"), passwordRepeat) &
+	validateField($("#changePassHint"), shared.validation.passwordHint)
+
+changePassword = ->
+	if !validatePasswordChangeFields()
+		global.form.focus "#options-password"
+		return false
+
+	core.user.updatePassword $("#changePass").val(), $("#changePassHint").val(), (response) ->
+		if response.status == "success"
+			global.jGrowl.show global.text.get("optionsSaved")
+		else
+			global.jGrowl.show global.text.get("optionsSaveFailed", response.status)
+
+	$("#optionsDialog").one "hidden", ->
+		# Clear data
+		$("#changePass").val ""
+		$("#changePassRepeat").val ""
+		$("#changePassHint").val ""
+		
+		return
+
+	return true
+
 reset = ->
 	# Reset email tab
 	$("#changeEmail").val ""
@@ -92,10 +131,12 @@ init = ->
 			$("#optionsDialog").one "hidden", ->
 				global.jGrowl.show global.text.get("optionsSaved")
 				return
-		else if $("#options-import-csv").is(":visible")
-			hideDialog = importCSV()
 		else if $("#options-email").is(":visible")
 			hideDialog = changeEmail()
+		else if $("#options-password").is(":visible")
+			hideDialog = changePassword()
+		else if $("#options-import-csv").is(":visible")
+			hideDialog = importCSV()
 
 		if hideDialog
 			$("#optionsDialog").modal "hide"
