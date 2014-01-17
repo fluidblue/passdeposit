@@ -37,7 +37,6 @@ importCSV = ->
 
 changeEmail = ->
 	# TODO: Validation
-	# TODO: Check duplicates
 	email = $("#changeEmail").val()
 
 	core.user.updateEmail email, (response) ->

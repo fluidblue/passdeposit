@@ -51,7 +51,7 @@ create = (email, key, passwordHint, callback) ->
 		database.getModel("user").create user, (err, doc) ->
 			if err || !doc?
 				# Check for duplicate key error
-				if err.code == 11000
+				if err.code == 11000 || err.code == 11001
 					callback
 						status: "db:duplicate"
 				else
@@ -112,12 +112,14 @@ update = (userid, data, callback) ->
 			salt: salt
 
 		# Save to DB
-		database.getModel("user").findByIdAndUpdate userid,
+		database.getModel("user").update
+			_id: userid
+		,
 			$set: user
-		, (err, doc) ->
-			if err || !doc?
+		, (err, numberAffected, raw) ->
+			if err || !numberAffected? || numberAffected != 1
 				# Check for duplicate key error
-				if err.code == 11000
+				if err.code == 11000 || err.code == 11001
 					callback
 						status: "db:duplicate"
 				else
