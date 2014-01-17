@@ -6,9 +6,14 @@ Created by Max Geissler
 ###
 
 load = ->
-	$("#loginUser").val $.totalStorage("username")
+	username = $.totalStorage("username")
+	$("#loginUser").val username
+	return username
 
-save = ->
+save = (username = null) ->
+	if username?
+		$("#loginUser").val username
+
 	$.totalStorage "username", $("#loginUser").val()
 
 module.exports.load = load

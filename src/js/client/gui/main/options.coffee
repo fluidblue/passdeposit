@@ -8,6 +8,7 @@ Created by Max Geissler
 global = require "../global"
 core = require "../../core"
 format = require "./itemlist/format"
+username = require "../front/username"
 
 startsWith = (data, str) ->
 	return data.lastIndexOf(str, 0) == 0
@@ -34,6 +35,20 @@ importCSV = ->
 		else
 			global.jGrowl.show global.text.get("importFailed", response.status)
 
+changeEmail = ->
+	# TODO: Validation
+	# TODO: Check duplicates
+	email = $("#changeEmail").val()
+
+	core.user.updateEmail email, (response) ->
+		if response.status == "success"
+			username.save(email)
+			global.jGrowl.show global.text.get("optionsSaved")
+		else if response.status == "db:duplicate"
+			global.jGrowl.show global.text.get("changeEmailDuplicate")
+		else
+			global.jGrowl.show global.text.get("optionsSaveFailed", response.status)
+
 reset = ->
 	# Reset email tab
 	$("#changeEmail").val ""
@@ -52,7 +67,7 @@ init = ->
 		# Load email address
 		email = $("#changeEmail")
 		if email.val().length <= 0
-			$("#changeEmail").val $("#loginUser").val()
+			$("#changeEmail").val core.user.getEmail()
 
 		# Set default import tag
 		if $("#options-import-csv input").val().length == 0
@@ -70,7 +85,9 @@ init = ->
 				importCSV()
 				return
 		else if $("#options-email").is(":visible")
-			$("#changeEmail").val $("#loginUser").val
+			$("#optionsDialog").one "hidden", ->
+				changeEmail()
+				return
 
 		$("#optionsDialog").modal "hide"
 

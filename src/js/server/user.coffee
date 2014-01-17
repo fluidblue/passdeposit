@@ -64,10 +64,19 @@ create = (email, key, passwordHint, callback) ->
 				status: "success"
 
 update = (userid, data, callback) ->
-	# Validate data
-	if (data.email? && !shared.validation.email(data.email)) ||
-	(data.key? && (!data.passwordHint? || !shared.validation.passwordHint(data.passwordHint))) ||
-	(!data.email? && !data.key?)
+	# Validate input data
+	valid = true
+
+	if data.email?
+		if !shared.validation.email(data.email) || !data.key?
+			valid = false
+	else if data.key?
+		if !data.passwordHint? || !shared.validation.passwordHint(data.passwordHint)
+			valid = false
+	else
+		valid = false
+
+	if !valid
 		callback
 			status: "input:failed"
 
@@ -76,8 +85,33 @@ update = (userid, data, callback) ->
 	# Prepare user data
 	user = {}
 
-	# Define save function
-	save = ->
+	# Update email
+	if data.email?
+		user.email = data.email
+
+	# Save passwordHint
+	if data.passwordHint?
+		user.passwordHint = data.passwordHint
+
+	# Use a fresh random salt
+	salt = crypt.salt()
+
+	# Create server key
+	crypt.serverKey data.key, salt, (err, serverKey) ->
+		if err
+			log.error "Failed to compute serverKey: " + log.errmsg(err)
+
+			callback
+				status: "crypt:failed"
+
+			return
+
+		# Save password
+		user.password =
+			key: serverKey
+			salt: salt
+
+		# Save to DB
 		database.getModel("user").findByIdAndUpdate userid,
 			$set: user
 		, (err, doc) ->
@@ -94,38 +128,6 @@ update = (userid, data, callback) ->
 
 			callback
 				status: "success"
-
-	# Update email
-	if data.email?
-		user.email = email
-
-	# Update password
-	if data.key?
-		# Use a fresh random salt
-		salt = crypt.salt()
-
-		# Create server key
-		crypt.serverKey data.key, salt, (err, serverKey) ->
-			if err
-				log.error "Failed to compute serverKey: " + log.errmsg(err)
-
-				callback
-					status: "crypt:failed"
-
-				return
-
-			# Save password and passwordHint
-			user.password =
-				key: serverKey
-				salt: salt
-			user.passwordHint = data.passwordHint
-
-			# Save to DB
-			save()
-	else
-		# Wait some time before calling the save function.
-		# This prevents enumerating registered email addresses.
-		setTimeout save, 400
 
 login = (email, key, callback) ->
 	userModel = database.getModel("user")
@@ -353,6 +355,7 @@ sendPasswordHint = (email, callback) ->
 						status: "success"
 
 module.exports.create = create
+module.exports.update = update
 module.exports.reset = reset
 module.exports.login = login
 module.exports.authenticate = authenticate

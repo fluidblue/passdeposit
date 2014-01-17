@@ -9,9 +9,10 @@ crypt = require "./crypt"
 command = require "./command"
 items = require "./items"
 
-# User's ID, current session and plaintext master password
+# User's email, user's ID, current session and plaintext master password
 # These values are only set if the user is logged in.
 credentials =
+	email: null
 	userid: null
 	session: null
 	password: null
@@ -29,6 +30,44 @@ create = (email, password, passwordHint, callback) ->
 			key: key
 			passwordHint: passwordHint
 		callback: callback
+
+updateEmail = (email, callback) ->
+	# Create key from password and email address as salt.
+	# This key is salted and hashed again on the server, using a random salt.
+	key = crypt.key(credentials.password, email)
+
+	# Send command to server
+	command.send
+		cmd: "user.update"
+		data:
+			email: email
+			key: key
+		authenticate: true
+		callback:  (response) ->
+			if response.status == "success"
+				# Save email
+				credentials.email = email
+
+			callback(response)
+
+updatePassword = (password, passwordHint, callback) ->
+	# Create key from password and email address as salt.
+	# This key is salted and hashed again on the server, using a random salt.
+	key = crypt.key(password, credentials.email)
+
+	# Send command to server
+	command.send
+		cmd: "user.update"
+		data:
+			key: key
+			passwordHint: passwordHint
+		authenticate: true
+		callback:  (response) ->
+			if response.status == "success"
+				# Save password
+				credentials.password = password
+
+			callback(response)
 
 reset = (resetKey, email, password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
@@ -59,6 +98,7 @@ login = (email, password, callback) ->
 		callback: (response) ->
 			if response.status == "success"
 				# Save userID and session
+				credentials.email = email
 				credentials.userid = response.userid
 				credentials.session = response.session
 				credentials.password = password
@@ -74,12 +114,19 @@ sendPasswordHint = (email, callback) ->
 
 logout = ->
 	# Clear values
+	credentials.email = null
 	credentials.userid = null
 	credentials.session = null
 	credentials.password = null
 
 	# Clear all items
 	items.clear()
+
+getEmail = ->
+	if !credentials.email?
+		throw "Error: User is not logged in"
+
+	return credentials.email
 
 getID = ->
 	if !credentials.userid?
@@ -100,10 +147,13 @@ getPassword = ->
 	return credentials.password
 
 module.exports.create = create
+module.exports.updateEmail = updateEmail
+module.exports.updatePassword = updatePassword
 module.exports.reset = reset
 module.exports.login = login
 module.exports.sendPasswordHint = sendPasswordHint
 module.exports.logout = logout
+module.exports.getEmail = getEmail
 module.exports.getID = getID
 module.exports.getSession = getSession
 module.exports.getPassword = getPassword
