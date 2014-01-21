@@ -51,10 +51,10 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 			return
 
 		# Get unencrypted item
-		itemDecrypted = core.items.get(response.item.id)
+		itemDecrypted = core.items.get(response.id)
 
 		# Update gui
-		itemid.set(item, response.item.id)
+		itemid.set(item, response.id)
 		info.set(item, itemDecrypted)
 
 		# Show notification
