@@ -28,6 +28,9 @@ add = (userid, items, callback) ->
 
 		return
 
+	# Create timestamp
+	timestamp = new Date()
+
 	for item in items
 		# Check if item is valid
 		if !isItemValid(item)
@@ -37,7 +40,6 @@ add = (userid, items, callback) ->
 			return
 
 		# Add timestamp
-		timestamp = new Date()
 		item.dateCreated = timestamp
 		item.dateModified = timestamp
 
@@ -50,47 +52,66 @@ add = (userid, items, callback) ->
 				status: "db:failed"
 
 			return
-		
+
+		# Create list with IDs of the newly inserted items
+		idList = []
 		for i of docs
-			# Convert mongoose document into plain javascript object
-			# The ID of the newly inserted item will be included in the object
-			docs[i] = docs[i].toClient()
+			idList.push docs[i]._id
 
 		callback
 			status: "success"
-			item: if multipleItems then docs else docs[0]
+			dateCreated: timestamp
+			id: if multipleItems then idList else idList[0]
 
-modify = (userid, item, callback) ->
-	# Check if item is valid
-	if !isItemValid(item)
+modify = (userid, items, callback) ->
+	multipleItems = isArray(items)
+
+	# If single item is given, make array
+	if !multipleItems
+		items = [items]
+
+	# Check if at least one item is given
+	if items.length <= 0
 		callback
 			status: "input:failed"
 
 		return
 
-	# Update timestamp
+	# Create timestamp
 	timestamp = new Date()
-	item.dateModified = timestamp
 
+	for item in items
+		# Check if item is valid
+		if !isItemValid(item) || !item.id?
+			callback
+				status: "input:failed"
+
+			return
+
+		# Update timestamp
+		item.dateModified = timestamp
+
+		# Map ID
+		item._id = item.id
+
+	# Query conditions
 	conditions =
-		_id: item.id
 		_user: userid
 
-	database.getModel("item").findOneAndUpdate conditions,
-		$set: item
-	, (err, doc) ->
-		if err || !doc?
+	# Update DB
+	# TODO: Test!
+	database.getModel("item").update conditions,
+		$set: items
+	, (err, numberAffected, raw) ->
+		if err || !numberAffected? || numberAffected != items.length
 			callback
 				status: "db:failed"
 
 			return
-		
-		# Convert mongoose document into plain javascript object
-		item = doc.toClient()
 
 		callback
 			status: "success"
-			item: item
+			dateModified: timestamp
 
 remove = (userid, id, callback) ->
 	conditions =

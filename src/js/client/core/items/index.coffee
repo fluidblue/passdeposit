@@ -13,17 +13,24 @@ search = require "./search"
 
 add = (item, callback) ->
 	# Encrypt
-	itemCrypted = crypt.encrypt(item)
+	item = crypt.encrypt(item)
 
 	# Send command to server
 	command.send
 		cmd: "item.add"
-		data: itemCrypted
+		data: item
 		authenticate: true
 		callback: (response) ->
 			if response.status == "success"
+				# Set ID
+				item.id = response.id
+
+				# Set date
+				item.dateCreated = response.dateCreated
+				item.dateModified = response.dateCreated
+
 				# Update item cache
-				itemcache.add(response.item)
+				itemcache.add(item)
 
 			callback(response)
 
@@ -39,7 +46,14 @@ addBulk = (items, callback) ->
 		authenticate: true
 		callback: (response) ->
 			if response.status == "success"
-				for item in response.item
+				for i, item of items
+					# Set ID
+					item.id = response.id[i]
+
+					# Set date
+					item.dateCreated = response.dateCreated
+					item.dateModified = response.dateCreated
+
 					# Update item cache
 					itemcache.add(item)
 
@@ -47,17 +61,20 @@ addBulk = (items, callback) ->
 
 modify = (item, callback) ->
 	# Encrypt
-	itemCrypted = crypt.encrypt(item)
+	item = crypt.encrypt(item)
 	
 	# Send command to server
 	command.send
 		cmd: "item.modify"
-		data: itemCrypted
+		data: item
 		authenticate: true
 		callback: (response) ->
 			if response.status == "success"
+				# Set date
+				item.dateModified = response.dateModified
+
 				# Update item cache
-				itemcache.modify(response.item)
+				itemcache.modify(item)
 
 			callback(response)
 
