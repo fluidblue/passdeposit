@@ -91,6 +91,9 @@ modify = (userid, items, callback) ->
 		# Update timestamp
 		item.dateModified = timestamp
 
+	# TODO: If anything goes wrong, restore old state.
+	# Ideas: Create new user / Use backup items
+
 	# Unfortunately, mongoose doesn't allow updating
 	# multiple documents, like in model.create(...).
 	# Therefore we must loop by ourselves through the array.
