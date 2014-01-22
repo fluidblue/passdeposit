@@ -10,6 +10,7 @@ shared = require "./shared"
 mail = require "./mail"
 config = require "./config"
 log = require "./log"
+item = require "./item"
 
 create = (email, key, passwordHint, callback) ->
 	# Validate email and passwordHint
@@ -106,30 +107,37 @@ update = (userid, data, callback) ->
 
 			return
 
-		# Save password
-		user.password =
-			key: serverKey
-			salt: salt
-
-		# Save to DB
-		database.getModel("user").update
-			_id: userid
-		,
-			$set: user
-		, (err, numberAffected, raw) ->
-			if err || !numberAffected? || numberAffected != 1
-				# Check for duplicate key error
-				if err.code == 11000 || err.code == 11001
-					callback
-						status: "db:duplicate"
-				else
-					callback
-						status: "db:failed"
-
+		# Update items
+		item.modify userid, data.items, (response) ->
+			# Cancel on error
+			if response.status != "success"
+				callback response
 				return
 
-			callback
-				status: "success"
+			# Save password (serverKey and salt)
+			user.password =
+				key: serverKey
+				salt: salt
+
+			# Save to DB
+			database.getModel("user").update
+				_id: userid
+			,
+				$set: user
+			, (err, numberAffected, raw) ->
+				if err || !numberAffected? || numberAffected != 1
+					# Check for duplicate key error
+					if err.code == 11000 || err.code == 11001
+						callback
+							status: "db:duplicate"
+					else
+						callback
+							status: "db:failed"
+
+					return
+
+				callback
+					status: "success"
 
 login = (email, key, callback) ->
 	userModel = database.getModel("user")

@@ -55,12 +55,18 @@ updatePassword = (password, passwordHint, callback) ->
 	# This key is salted and hashed again on the server, using a random salt.
 	key = crypt.key(password, credentials.email)
 
+	# Re-encrypt all items with new password
+	items = core.items.get()
+	for i of items
+		items[i] = crypt.encrypt(items[i])
+
 	# Send command to server
 	command.send
 		cmd: "user.update"
 		data:
 			key: key
 			passwordHint: passwordHint
+			items: items
 		authenticate: true
 		callback:  (response) ->
 			if response.status == "success"
