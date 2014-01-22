@@ -1,9 +1,11 @@
 ###
 # PassDeposit #
-Object cloning
 
 Created by Max Geissler
 ###
+
+isArray = (obj) ->
+	return Object::toString.call(obj) == "[object Array]"
 
 deepCopy = (obj) ->
 	# Make a deep copy of the object.
@@ -40,4 +42,21 @@ deepCopy = (obj) ->
 
 	throw new Error("Unable to copy obj! Its type isn't supported.")
 
+mergeRecursive = (obj1, obj2) ->
+	for p of obj2
+		try
+			# Property in destination object set; update its value.
+			if obj2[p].constructor is Object
+				obj1[p] = mergeRecursive(obj1[p], obj2[p])
+			else
+				obj1[p] = obj2[p]
+
+		catch e
+			# Property in destination object not set; create it and set its value.
+			obj1[p] = obj2[p]
+
+	return obj1
+
+module.exports.isArray = isArray
 module.exports.deepCopy = deepCopy
+module.exports.mergeRecursive = mergeRecursive

@@ -5,17 +5,15 @@ Created by Max Geissler
 ###
 
 database = require "./database"
-
-isArray = (obj) ->
-	return Object::toString.call(obj) == "[object Array]"
+shared = require "./shared"
 
 isItemValid = (item) ->
 	return item && item.encryption? && item.encryption.type? &&
-		isArray(item.tags) && isArray(item.fields) &&
+		shared.util.isArray(item.tags) && shared.util.isArray(item.fields) &&
 		item.fields.length > 0
 
 add = (userid, items, callback) ->
-	multipleItems = isArray(items)
+	multipleItems = shared.util.isArray(items)
 
 	# If single item is given, make array
 	if !multipleItems
@@ -64,7 +62,7 @@ add = (userid, items, callback) ->
 			id: if multipleItems then idList else idList[0]
 
 modify = (userid, items, callback) ->
-	multipleItems = isArray(items)
+	multipleItems = shared.util.isArray(items)
 
 	# If single item is given, make array
 	if !multipleItems

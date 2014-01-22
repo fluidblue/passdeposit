@@ -8,6 +8,7 @@ fs = require "fs"
 path = require "path"
 optimist = require "optimist"
 log = require "./log"
+shared = require "./shared"
 pack = require "../package.json"
 
 config = null
@@ -62,21 +63,6 @@ getArgv = ->
 
 	return argv
 
-mergeRecursive = (obj1, obj2) ->
-	for p of obj2
-		try
-			# Property in destination object set; update its value.
-			if obj2[p].constructor is Object
-				obj1[p] = mergeRecursive(obj1[p], obj2[p])
-			else
-				obj1[p] = obj2[p]
-
-		catch e
-			# Property in destination object not set; create it and set its value.
-			obj1[p] = obj2[p]
-
-	return obj1
-
 load = ->
 	# Get location of config file
 	argv = getArgv()
@@ -93,7 +79,7 @@ load = ->
 	config = JSON.parse content
 
 	# Merge with default config
-	config = mergeRecursive defaultConfig, config
+	config = shared.util.mergeRecursive defaultConfig, config
 
 	# Set paths
 	config.basePath = path.normalize(path.dirname(configFile))

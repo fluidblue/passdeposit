@@ -7,7 +7,7 @@ Created by Max Geissler
 
 sjcl = require "sjcl"
 user = require "./user"
-clone = require "./clone"
+shared = require "../../shared"
 
 # Iterations for PBKDF2
 pbkdf2iterations = 1000
@@ -67,7 +67,7 @@ encrypt = (item, encryption = defaultEncryption) ->
 			throw "Error: Unknown encryption: " + encryption.type
 
 	# Make a deep copy of the item
-	item = clone.deepCopy(item)
+	item = shared.util.deepCopy(item)
 
 	# Encrypt fields
 	for key, entry of item.fields
@@ -105,7 +105,7 @@ decrypt = (item) ->
 			throw "Error: Unknown encryption: " + item.encryption.type
 
 	# Make a deep copy of the item
-	item = clone.deepCopy(item)
+	item = shared.util.deepCopy(item)
 
 	# Decrypt fields
 	for key, entry of item.fields
