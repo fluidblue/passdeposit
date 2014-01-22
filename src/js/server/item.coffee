@@ -91,27 +91,39 @@ modify = (userid, items, callback) ->
 		# Update timestamp
 		item.dateModified = timestamp
 
-		# Map ID
-		item._id = item.id
+	# Unfortunately, mongoose doesn't allow updating
+	# multiple documents, like in model.create(...).
+	# Therefore we must loop by ourselves through the array.
+	next = ->
+		# Get next item
+		item = items.pop()
 
-	# Query conditions
-	conditions =
-		_user: userid
+		# Query conditions
+		conditions =
+			_id: item.id
+			_user: userid
 
-	# Update DB
-	# TODO: Test!
-	database.getModel("item").update conditions,
-		$set: items
-	, (err, numberAffected, raw) ->
-		if err || !numberAffected? || numberAffected != items.length
-			callback
-				status: "db:failed"
+		# Update item in DB
+		database.getModel("item").update conditions,
+			$set: item
+		, (err, numberAffected, raw) ->
+			if err || !numberAffected? || numberAffected != 1
+				callback
+					status: "db:failed"
 
-			return
+				return
 
-		callback
-			status: "success"
-			dateModified: timestamp
+			if items.length > 0
+				# Proceed with next item
+				next()
+			else
+				# Finished
+				callback
+					status: "success"
+					dateModified: timestamp
+
+	# Start loop
+	next()
 
 remove = (userid, id, callback) ->
 	conditions =
