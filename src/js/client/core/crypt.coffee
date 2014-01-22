@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 worker = require "./worker"
+shared = require "../../shared"
 
 # Iterations for PBKDF2
 pbkdf2iterations = 1000
@@ -31,22 +32,50 @@ availableEncryptions =
 defaultEncryption = availableEncryptions.aes256
 
 encrypt = (item, password, callback, encryption = defaultEncryption) ->
-	worker.execute "crypt.encrypt",
-		item: item
-		password: password
-		encryption: encryption
-	, (result, id) ->
-		callback(result)
+	isArray = shared.util.isArray(item)
+	items = if isArray then item else [item]
 
+	i = 0
+	next = ->
+		if i < items.length
+			# Encrypt
+			worker.execute "crypt.encrypt",
+				item: items[i]
+				password: password
+				encryption: encryption
+			, (result, id) ->
+				items[i] = result
+		else
+			# Finished
+			if isArray
+				callback items
+			else
+				callback items[0]
+
+	next()
 	return
 
 decrypt = (item, password, callback) ->
-	worker.execute "crypt.decrypt",
-		item: item
-		password: password
-	, (result, id) ->
-		callback(result)
+	isArray = shared.util.isArray(item)
+	items = if isArray then item else [item]
 
+	i = 0
+	next = ->
+		if i < items.length
+			# Decrypt
+			worker.execute "crypt.decrypt",
+				item: items[i]
+				password: password
+			, (result, id) ->
+				items[i] = result
+		else
+			# Finished
+			if isArray
+				callback items
+			else
+				callback items[0]
+
+	next()
 	return
 
 key = (password, salt, callback) ->
