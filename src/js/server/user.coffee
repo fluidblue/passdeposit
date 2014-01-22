@@ -108,19 +108,6 @@ update = (userid, data, callback) ->
 
 			return
 
-		# Update items
-		if data.items.length > 0
-			item.modify userid, data.items, (response) ->
-				# Cancel on error
-				if response.status != "success"
-					callback response
-					return
-
-				savepassword()
-			, false
-		else
-			savepassword()
-
 		# Update user's password
 		savepassword = ->
 			# Set password (serverKey and salt)
@@ -147,6 +134,19 @@ update = (userid, data, callback) ->
 
 				callback
 					status: "success"
+
+		# Update items
+		if data.items.length > 0
+			item.modify userid, data.items, (response) ->
+				# Cancel on error
+				if response.status != "success"
+					callback response
+					return
+
+				savepassword()
+			, false
+		else
+			savepassword()
 
 login = (email, key, callback) ->
 	userModel = database.getModel("user")
