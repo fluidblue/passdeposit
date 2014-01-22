@@ -78,6 +78,27 @@ modify = (item, callback) ->
 
 			callback(response)
 
+modifyBulk = (items, callback) ->
+	# Encrypt
+	for i of items
+		items[i] = crypt.encrypt(items[i])
+	
+	# Send command to server
+	command.send
+		cmd: "item.modify"
+		data: items
+		authenticate: true
+		callback: (response) ->
+			if response.status == "success"
+				for i, item of items
+					# Set date
+					item.dateModified = response.dateModified
+
+					# Update item cache
+					itemcache.modify(item)
+
+			callback(response)
+
 remove = (id, callback) ->
 	# Send command to server
 	command.send
@@ -113,6 +134,7 @@ module.exports.search = search
 module.exports.add = add
 module.exports.addBulk = addBulk
 module.exports.modify = modify
+module.exports.modifyBulk = modifyBulk
 module.exports.remove = remove
 module.exports.get = itemcache.get
 module.exports.clear = clear
