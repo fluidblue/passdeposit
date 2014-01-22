@@ -1,12 +1,13 @@
 ###
 # PassDeposit #
-WebWorker
+WebWorker search module
 
 Created by Max Geissler
 ###
 
 fuse = require "fuse.js"
 
+# TODO: Cancelling the last search with currentSearchID doesn't work.
 currentSearchID = 0
 
 search = (searchID, pattern, items) ->
@@ -102,15 +103,11 @@ searchFuzzy = (searchID, pattern, items) ->
 
 	return rawResults
 
-self.addEventListener "message", (e) ->
+start = (id, data) ->
 	# Set current ID
-	currentSearchID = e.data.id
+	currentSearchID = id
 
 	# Start new search
-	result = search(e.data.id, e.data.pattern, e.data.items)
+	return search(id, data.pattern, data.items)
 
-	# Return result
-	self.postMessage
-		id: e.data.id
-		result: result
-, false
+module.exports.start = start
