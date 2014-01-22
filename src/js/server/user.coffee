@@ -11,6 +11,7 @@ mail = require "./mail"
 config = require "./config"
 log = require "./log"
 item = require "./item"
+shared = require "./shared"
 
 create = (email, key, passwordHint, callback) ->
 	# Validate email and passwordHint
@@ -72,7 +73,7 @@ update = (userid, data, callback) ->
 		if !shared.validation.email(data.email) || !data.key?
 			valid = false
 	else if data.key?
-		if !data.passwordHint? || !shared.validation.passwordHint(data.passwordHint)
+		if !data.passwordHint? || !shared.validation.passwordHint(data.passwordHint) || !shared.util.isArray(data.items)
 			valid = false
 	else
 		valid = false
@@ -108,18 +109,25 @@ update = (userid, data, callback) ->
 			return
 
 		# Update items
-		item.modify userid, data.items, (response) ->
-			# Cancel on error
-			if response.status != "success"
-				callback response
-				return
+		if data.items.length > 0
+			item.modify userid, data.items, (response) ->
+				# Cancel on error
+				if response.status != "success"
+					callback response
+					return
 
-			# Save password (serverKey and salt)
+				savepassword()
+		else
+			savepassword()
+
+		# Update user's password
+		savepassword = ->
+			# Set password (serverKey and salt)
 			user.password =
 				key: serverKey
 				salt: salt
 
-			# Save to DB
+			# Write to DB
 			database.getModel("user").update
 				_id: userid
 			,
