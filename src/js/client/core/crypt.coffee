@@ -5,8 +5,7 @@ Cryptographic module
 Created by Max Geissler
 ###
 
-sjcl = require "sjcl"
-shared = require "../../shared"
+worker = require "./worker"
 
 # Iterations for PBKDF2
 pbkdf2iterations = 1000
@@ -31,88 +30,51 @@ availableEncryptions =
 # Default encryption
 defaultEncryption = availableEncryptions.aes256
 
-encrypt = (item, password, encryption = defaultEncryption) ->
-	fnEncrypt = null
+encrypt = (item, password, callback, encryption = defaultEncryption) ->
+	worker.execute "crypt.encrypt",
+		item: item
+		password: password
+		encryption: encryption
+	, (result, id) ->
+		callback(result)
 
-	# Define encryption function
-	switch encryption.type
-		when "none"
-			fnEncrypt = (str) ->
-				return str
-		when "sjcl"
-			fnEncrypt = (str) ->
-				# Always use a fresh random salt (8 Bytes)
-				salt = sjcl.random.randomWords(2, 0)
+	return
 
-				# Create the key from password and salt:
-				# PBKDF2-HMAC-SHA256 with given iteration count
-				key = sjcl.misc.pbkdf2(password, salt, encryption.options.iter)
+decrypt = (item, password, callback) ->
+	worker.execute "crypt.decrypt",
+		item: item
+		password: password
+	, (result, id) ->
+		callback(result)
 
-				# Shorten key to encryption keysize length
-				key = key.slice(0, encryption.options.ks / 32)
+	return
 
-				# Encrypt with SJCL
-				enc = sjcl.json._encrypt(key, str, encryption.options)
+key = (password, salt, callback) ->
+	worker.execute "crypt.key",
+		password: password
+		salt: salt
+		iterations: pbkdf2iterations
+	, (result, id) ->
+		callback(result)
 
-				# Return only relevant information
-				ret =
-					iv: sjcl.codec.base64.fromBits(enc.iv)
-					salt: sjcl.codec.base64.fromBits(salt)
-					ct: sjcl.codec.base64.fromBits(enc.ct)
+	return
 
-				return ret
-		else
-			throw "Error: Unknown encryption: " + encryption.type
+init = ->
+	# Collect entropy
+	buf = new Uint32Array(32)
+	if window.crypto && window.crypto.getRandomValues
+		window.crypto.getRandomValues buf
+	else if window.msCrypto && window.msCrypto.getRandomValues
+		window.msCrypto.getRandomValues buf
+	else
+		throw new Error("Unable to collect entropy.")
 
-	# Make a deep copy of the item
-	item = shared.util.deepCopy(item)
+	# Send to webworker
+	worker.execute "crypt.addEntropy", buf, (result, id) ->
+		if !result? || result == false
+			console.log "There was an error collecting entropy"
 
-	# Encrypt fields
-	for key, entry of item.fields
-		item.fields[key].value = fnEncrypt(entry.value)
-
-	# Encrypt tags
-	for key, value of item.tags
-		item.tags[key] = fnEncrypt(value)
-
-	# Add encryption info to item
-	item.encryption = encryption
-
-	return item
-
-decrypt = (item, password) ->
-	fnDecrypt = null
-
-	# Define decryption function
-	switch item.encryption.type
-		when "none"
-			fnDecrypt = (value) ->
-				return value
-		when "sjcl"
-			fnDecrypt = (value) ->
-				# Create raw ciphertext object from value
-				crypt =
-					iv: sjcl.codec.base64.toBits(value.iv)
-					salt: sjcl.codec.base64.toBits(value.salt)
-					ct: sjcl.codec.base64.toBits(value.ct)
-
-				# Decrypt with SJCL lib
-				return sjcl.json._decrypt(password, item.encryption.options, crypt)
-		else
-			throw "Error: Unknown encryption: " + item.encryption.type
-
-	# Make a deep copy of the item
-	item = shared.util.deepCopy(item)
-
-	# Decrypt fields
-	for key, entry of item.fields
-		item.fields[key].value = fnDecrypt(entry.value)
-
-	# Decrypt tags
-	for key, value of item.tags
-		item.tags[key] = fnDecrypt(value)
-
-	return item
+	return
 
 format = (encryption) ->
 	# Output default encryption if no encryption is given
@@ -124,14 +86,9 @@ format = (encryption) ->
 		when "sjcl" then encryption.options.cipher.toUpperCase() + " " + encryption.options.ks
 		else encryption.type
 
-key = (password, salt) ->
-	# Create key from password and salt:
-	# PBKDF2-HMAC-SHA256 with given iteration count
-	key = sjcl.misc.pbkdf2(password, salt, pbkdf2iterations)
-	return sjcl.codec.base64.fromBits(key)
-
 module.exports.encrypt = encrypt
 module.exports.decrypt = decrypt
-module.exports.format = format
 module.exports.key = key
+module.exports.init = init
+module.exports.format = format
 module.exports.availableEncryptions = availableEncryptions

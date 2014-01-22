@@ -7,16 +7,13 @@ Created by Max Geissler
 
 fuse = require "fuse.js"
 
-# TODO: Cancelling the last search with currentSearchID doesn't work.
-currentSearchID = 0
-
-search = (searchID, pattern, items) ->
+search = (pattern, items) ->
 	rawResults = null
 
 	if pattern.toLowerCase() == ":all"
-		rawResults = searchAll(searchID, items)
+		rawResults = searchAll(items)
 	else
-		rawResults = searchFuzzy(searchID, pattern, items)
+		rawResults = searchFuzzy(pattern, items)
 
 	if rawResults?
 		results = []
@@ -29,15 +26,11 @@ search = (searchID, pattern, items) ->
 	else
 		return null
 
-searchAll = (searchID, items) ->
+searchAll = (items) ->
 	rawResults = []
 
 	# Show all items
 	for id, item of items
-		# Cancel search when new search has been started
-		if currentSearchID != searchID
-			return null
-
 		rawResults.push
 			id: id
 			date: item.dateModified
@@ -48,7 +41,7 @@ searchAll = (searchID, items) ->
 
 	return rawResults
 
-searchFuzzy = (searchID, pattern, items) ->
+searchFuzzy = (pattern, items) ->
 	rawResults = []
 
 	options =
@@ -59,10 +52,6 @@ searchFuzzy = (searchID, pattern, items) ->
 
 	# Search trough all items
 	for id, item of items
-		# Cancel search when new search has been started
-		if currentSearchID != searchID
-			return null
-
 		# Set starting score
 		score = 0.0
 
@@ -103,11 +92,4 @@ searchFuzzy = (searchID, pattern, items) ->
 
 	return rawResults
 
-start = (id, data) ->
-	# Set current ID
-	currentSearchID = id
-
-	# Start new search
-	return search(id, data.pattern, data.items)
-
-module.exports.start = start
+module.exports = search

@@ -13,7 +13,7 @@ nextID = ->
 	lastID = (lastID + 1) % 65536
 	return lastID
 
-execute = (cmd, data, callback) ->
+execute = (cmd, data, callback = null) ->
 	# Get next ID
 	id = nextID()
 
@@ -39,7 +39,8 @@ init = ->
 		callback = callbacks[e.data.id]
 
 		# Fire callback with result
-		callback(e.data.result, e.data.id)
+		if callback != null
+			callback(e.data.result, e.data.id)
 
 		# Cleanup
 		delete callbacks[e.data.id]
