@@ -19,26 +19,38 @@ get = (id = undefined) ->
 	else
 		return itemsDecrypted
 
-add = (itemCrypted, existent = false) ->
+getArray = () ->
+	items = []
+
+	for id, item of itemsDecrypted
+		items.push item
+
+	return items
+
+add = (itemCrypted, callback, existent = false) ->
 	# Convert string dates to Date objects
 	itemCrypted.dateCreated = date(itemCrypted.dateCreated)
 	itemCrypted.dateModified = date(itemCrypted.dateModified)
 
-	# Add to cache
-	itemsEncrypted[itemCrypted.id] = itemCrypted
-	itemsDecrypted[itemCrypted.id] = crypt.decrypt itemCrypted, user.getPassword()
+	crypt.decrypt itemCrypted, user.getPassword(), (itemDecrypted) ->
+		# Add to cache
+		itemsEncrypted[itemCrypted.id] = itemCrypted
+		itemsDecrypted[itemCrypted.id] = itemDecrypted
 
-	# Update tagcache
-	if existent
-		tagcache.modify(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
-	else
-		tagcache.add(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
+		# Update tagcache
+		if existent
+			tagcache.modify(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
+		else
+			tagcache.add(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
 
-	# Return decrypted item
-	return itemsDecrypted[itemCrypted.id]
+		# Return decrypted item
+		if callback?
+			callback itemsDecrypted[itemCrypted.id]
 
-modify = (itemCrypted) ->
-	return add(itemCrypted, true)
+	return
+
+modify = (itemCrypted, callback) ->
+	return add(itemCrypted, callback, true)
 
 remove = (id) ->
 	delete itemsEncrypted[id]
@@ -54,6 +66,7 @@ clear = ->
 	itemsDecrypted = {}
 
 module.exports.get = get
+module.exports.getArray = getArray
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove

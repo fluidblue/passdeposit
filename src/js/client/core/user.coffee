@@ -20,97 +20,91 @@ credentials =
 create = (email, password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
-	key = crypt.key(password, email)
-
-	# Send command to server
-	command.send
-		cmd: "user.create"
-		data:
-			email: email
-			key: key
-			passwordHint: passwordHint
-		callback: callback
+	crypt.key password, email, (key) ->
+		# Send command to server
+		command.send
+			cmd: "user.create"
+			data:
+				email: email
+				key: key
+				passwordHint: passwordHint
+			callback: callback
 
 updateEmail = (email, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
-	key = crypt.key(credentials.password, email)
+	crypt.key credentials.password, email, (key) ->
+		# Send command to server
+		command.send
+			cmd: "user.update"
+			data:
+				email: email
+				key: key
+			authenticate: true
+			callback:  (response) ->
+				if response.status == "success"
+					# Save email
+					credentials.email = email
 
-	# Send command to server
-	command.send
-		cmd: "user.update"
-		data:
-			email: email
-			key: key
-		authenticate: true
-		callback:  (response) ->
-			if response.status == "success"
-				# Save email
-				credentials.email = email
-
-			callback(response)
+				callback(response)
 
 updatePassword = (password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
-	key = crypt.key(password, credentials.email)
+	crypt.key password, credentials.email, (key) ->
+		# Get all items
+		itemArray = items.getArray()
 
-	# Get all items and
-	# re-encrypt all items with new password
-	itemArray = []
-	for id, item of items.get()
-		itemArray.push crypt.encrypt item, password
+		# Re-encrypt all items with new password
+		crypt.encrypt itemArray, password, (itemArray) ->
+			# Send command to server
+			command.send
+				cmd: "user.update"
+				data:
+					key: key
+					passwordHint: passwordHint
+					items: itemArray
+				authenticate: true
+				callback:  (response) ->
+					if response.status == "success"
+						# Save password
+						credentials.password = password
 
-	# Send command to server
-	command.send
-		cmd: "user.update"
-		data:
-			key: key
-			passwordHint: passwordHint
-			items: itemArray
-		authenticate: true
-		callback:  (response) ->
-			if response.status == "success"
-				# Save password
-				credentials.password = password
-
-			callback(response)
+					callback(response)
 
 reset = (resetKey, email, password, passwordHint, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
-	passwordKey = crypt.key(password, email)
-
-	# Send command to server
-	command.send
-		cmd: "user.reset"
-		data:
-			resetKey: resetKey
-			email: email
-			passwordKey: passwordKey
-			passwordHint: passwordHint
-		callback: callback
+	crypt.key password, email, (passwordKey) ->
+		# Send command to server
+		command.send
+			cmd: "user.reset"
+			data:
+				resetKey: resetKey
+				email: email
+				passwordKey: passwordKey
+				passwordHint: passwordHint
+			callback: callback
 
 login = (email, password, callback) ->
 	# Create key from password and email address as salt.
 	# This key is salted and hashed again on the server, using a random salt.
-	key = crypt.key(password, email)
+	crypt.key password, email, (key) ->
+		# Send command to server
+		command.send
+			cmd: "user.login"
+			data:
+				email: email
+				key: key
+			callback: (response) ->
+				if response.status == "success"
+					# Save userID and session
+					credentials.email = email
+					credentials.userid = response.userid
+					credentials.session = response.session
+					credentials.password = password
 
-	# Send command to server
-	command.send
-		cmd: "user.login"
-		data:
-			email: email
-			key: key
-		callback: (response) ->
-			if response.status == "success"
-				# Save userID and session
-				credentials.email = email
-				credentials.userid = response.userid
-				credentials.session = response.session
-				credentials.password = password
-
-			callback(response)
+				callback(response)
 
 sendPasswordHint = (email, callback) ->
 	# Send command to server

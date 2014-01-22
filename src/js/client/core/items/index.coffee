@@ -14,91 +14,91 @@ search = require "./search"
 
 add = (item, callback) ->
 	# Encrypt
-	item = crypt.encrypt item, user.getPassword()
-
-	# Send command to server
-	command.send
-		cmd: "item.add"
-		data: item
-		authenticate: true
-		callback: (response) ->
-			if response.status == "success"
-				# Set ID
-				item.id = response.id
-
-				# Set date
-				item.dateCreated = response.dateCreated
-				item.dateModified = response.dateCreated
-
-				# Update item cache
-				itemcache.add(item)
-
-			callback(response)
-
-addBulk = (items, callback) ->
-	# Encrypt
-	for i of items
-		items[i] = crypt.encrypt items[i], user.getPassword()
-
-	# Send command to server
-	command.send
-		cmd: "item.add"
-		data: items
-		authenticate: true
-		callback: (response) ->
-			if response.status == "success"
-				for i, item of items
+	crypt.encrypt item, user.getPassword(), (item) ->
+		# Send command to server
+		command.send
+			cmd: "item.add"
+			data: item
+			authenticate: true
+			callback: (response) ->
+				if response.status == "success"
 					# Set ID
-					item.id = response.id[i]
+					item.id = response.id
 
 					# Set date
 					item.dateCreated = response.dateCreated
 					item.dateModified = response.dateCreated
 
 					# Update item cache
-					itemcache.add(item)
+					itemcache.add item, ->
+						callback(response)
+				else
+					callback(response)
 
-			callback(response)
+addBulk = (items, callback) ->
+	# Encrypt
+	crypt.encrypt items, user.getPassword(), (items) ->
+		# Send command to server
+		command.send
+			cmd: "item.add"
+			data: items
+			authenticate: true
+			callback: (response) ->
+				if response.status == "success"
+					for i, item of items
+						# Set ID
+						item.id = response.id[i]
+
+						# Set date
+						item.dateCreated = response.dateCreated
+						item.dateModified = response.dateCreated
+
+						# Update item cache
+						itemcache.add item, ->
+							# Callback when finished
+							if i == items.length - 1
+								callback(response)
+				else
+					callback(response)
 
 modify = (item, callback) ->
 	# Encrypt
-	item = crypt.encrypt item, user.getPassword()
-	
-	# Send command to server
-	command.send
-		cmd: "item.modify"
-		data: item
-		authenticate: true
-		callback: (response) ->
-			if response.status == "success"
-				# Set date
-				item.dateModified = response.dateModified
-
-				# Update item cache
-				itemcache.modify(item)
-
-			callback(response)
-
-modifyBulk = (items, callback) ->
-	# Encrypt
-	for i of items
-		items[i] = crypt.encrypt items[i], user.getPassword()
-	
-	# Send command to server
-	command.send
-		cmd: "item.modify"
-		data: items
-		authenticate: true
-		callback: (response) ->
-			if response.status == "success"
-				for i, item of items
+	crypt.encrypt item, user.getPassword(), (item) ->
+		# Send command to server
+		command.send
+			cmd: "item.modify"
+			data: item
+			authenticate: true
+			callback: (response) ->
+				if response.status == "success"
 					# Set date
 					item.dateModified = response.dateModified
 
 					# Update item cache
-					itemcache.modify(item)
+					itemcache.modify item, ->
+						callback(response)
+				else
+					callback(response)
 
-			callback(response)
+modifyBulk = (items, callback) ->
+	# Encrypt
+	crypt.encrypt items, user.getPassword(), (items) ->
+		# Send command to server
+		command.send
+			cmd: "item.modify"
+			data: items
+			authenticate: true
+			callback: (response) ->
+				if response.status == "success"
+					for i, item of items
+						# Set date
+						item.dateModified = response.dateModified
+
+						# Update item cache
+						itemcache.modify item, ->
+							callback(response)
+				else
+					callback(response)
 
 remove = (id, callback) ->
 	# Send command to server
@@ -122,9 +122,10 @@ load = (callback) ->
 			if response.status == "success"
 				for item in response.items
 					# Update item cache
-					itemcache.add(item)
-			
-			callback(response)
+					itemcache.add item, ->
+						callback(response)
+			else
+				callback(response)
 
 clear = ->
 	# Clear caches
