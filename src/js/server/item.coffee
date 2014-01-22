@@ -61,7 +61,7 @@ add = (userid, items, callback) ->
 			dateCreated: timestamp
 			id: if multipleItems then idList else idList[0]
 
-modify = (userid, items, callback) ->
+modify = (userid, items, callback, updateTimestamp = true) ->
 	multipleItems = shared.util.isArray(items)
 
 	# If single item is given, make array
@@ -87,14 +87,15 @@ modify = (userid, items, callback) ->
 			return
 
 		# Update timestamp
-		item.dateModified = timestamp
+		if updateTimestamp
+			item.dateModified = timestamp
 
 	# TODO: If anything goes wrong, restore old state.
 	# Ideas: Create new user / Use backup items
 
 	# Unfortunately, mongoose doesn't allow updating
 	# multiple documents, like in model.create(...).
-	# Therefore we must loop by ourselves through the array.
+	# Therefore we must loop through the array by ourselves.
 	next = ->
 		# Get next item
 		item = items.pop()
@@ -119,9 +120,13 @@ modify = (userid, items, callback) ->
 				next()
 			else
 				# Finished
-				callback
+				result =
 					status: "success"
-					dateModified: timestamp
+
+				if updateTimestamp
+					result.dateModified = timestamp
+
+				callback result
 
 	# Start loop
 	next()

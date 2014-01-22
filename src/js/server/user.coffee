@@ -117,6 +117,7 @@ update = (userid, data, callback) ->
 					return
 
 				savepassword()
+			, false
 		else
 			savepassword()
 
