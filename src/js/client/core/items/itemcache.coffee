@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 crypt = require "../crypt"
+user = require "../user"
 tagcache = require "./tagcache"
 date = require "./date"
 
@@ -25,7 +26,7 @@ add = (itemCrypted, existent = false) ->
 
 	# Add to cache
 	itemsEncrypted[itemCrypted.id] = itemCrypted
-	itemsDecrypted[itemCrypted.id] = crypt.decrypt(itemCrypted)
+	itemsDecrypted[itemCrypted.id] = crypt.decrypt itemCrypted, user.getPassword()
 
 	# Update tagcache
 	if existent

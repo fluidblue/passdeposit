@@ -7,13 +7,14 @@ Created by Max Geissler
 
 command = require "../command"
 crypt = require "../crypt"
+user = require "../user"
 itemcache = require "./itemcache"
 tagcache = require "./tagcache"
 search = require "./search"
 
 add = (item, callback) ->
 	# Encrypt
-	item = crypt.encrypt(item)
+	item = crypt.encrypt item, user.getPassword()
 
 	# Send command to server
 	command.send
@@ -37,7 +38,7 @@ add = (item, callback) ->
 addBulk = (items, callback) ->
 	# Encrypt
 	for i of items
-		items[i] = crypt.encrypt(items[i])
+		items[i] = crypt.encrypt items[i], user.getPassword()
 
 	# Send command to server
 	command.send
@@ -61,7 +62,7 @@ addBulk = (items, callback) ->
 
 modify = (item, callback) ->
 	# Encrypt
-	item = crypt.encrypt(item)
+	item = crypt.encrypt item, user.getPassword()
 	
 	# Send command to server
 	command.send
@@ -81,7 +82,7 @@ modify = (item, callback) ->
 modifyBulk = (items, callback) ->
 	# Encrypt
 	for i of items
-		items[i] = crypt.encrypt(items[i])
+		items[i] = crypt.encrypt items[i], user.getPassword()
 	
 	# Send command to server
 	command.send

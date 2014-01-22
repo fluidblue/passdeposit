@@ -6,7 +6,6 @@ Created by Max Geissler
 ###
 
 sjcl = require "sjcl"
-user = require "./user"
 shared = require "../../shared"
 
 # Iterations for PBKDF2
@@ -32,8 +31,7 @@ availableEncryptions =
 # Default encryption
 defaultEncryption = availableEncryptions.aes256
 
-encrypt = (item, encryption = defaultEncryption) ->
-	password = user.getPassword()
+encrypt = (item, password, encryption = defaultEncryption) ->
 	fnEncrypt = null
 
 	# Define encryption function
@@ -82,8 +80,7 @@ encrypt = (item, encryption = defaultEncryption) ->
 
 	return item
 
-decrypt = (item) ->
-	password = user.getPassword()
+decrypt = (item, password) ->
 	fnDecrypt = null
 
 	# Define decryption function
