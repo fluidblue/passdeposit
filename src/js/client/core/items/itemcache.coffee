@@ -6,6 +6,7 @@ Created by Max Geissler
 ###
 
 crypt = require "../crypt"
+shared = require "../../../shared"
 user = require "../user"
 tagcache = require "./tagcache"
 date = require "./date"
@@ -27,30 +28,42 @@ getArray = () ->
 
 	return items
 
-add = (itemCrypted, callback, existent = false) ->
-	# Convert string dates to Date objects
-	itemCrypted.dateCreated = date(itemCrypted.dateCreated)
-	itemCrypted.dateModified = date(itemCrypted.dateModified)
+add = (itemCrypted, callback) ->
+	return _add(itemCrypted, callback, false)
 
-	crypt.decrypt itemCrypted, user.getPassword(), (itemDecrypted) ->
-		# Add to cache
-		itemsEncrypted[itemCrypted.id] = itemCrypted
-		itemsDecrypted[itemCrypted.id] = itemDecrypted
+_add = (itemCrypted, callback, existent) ->
+	isArray = shared.util.isArray(itemCrypted)
+	itemsCrypted = if isArray then itemCrypted else [itemCrypted]
 
-		# Update tagcache
-		if existent
-			tagcache.modify(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
-		else
-			tagcache.add(itemCrypted.id, itemsDecrypted[itemCrypted.id].tags)
+	for item in itemsCrypted
+		# Convert string dates to Date objects
+		item.dateCreated = date(item.dateCreated)
+		item.dateModified = date(item.dateModified)
+
+	crypt.decrypt itemsCrypted, user.getPassword(), (itemsDecrypted) ->
+		for i of itemsCrypted
+			# Get ID
+			id = itemsCrypted[i].id
+
+			# Add to cache
+			itemsEncrypted[id] = itemsCrypted[i]
+			itemsDecrypted[id] = itemsDecrypted[i]
+
+			# Update tagcache
+			if existent
+				tagcache.modify(id, itemsDecrypted[id].tags)
+			else
+				tagcache.add(id, itemsDecrypted[id].tags)
 
 		# Return decrypted item
 		if callback?
-			callback itemsDecrypted[itemCrypted.id]
+			result = if isArray then itemsDecrypted else itemsDecrypted[0]
+			callback result
 
 	return
 
 modify = (itemCrypted, callback) ->
-	return add(itemCrypted, callback, true)
+	return _add(itemCrypted, callback, true)
 
 remove = (id) ->
 	delete itemsEncrypted[id]

@@ -30,7 +30,7 @@ add = (item, callback) ->
 					item.dateModified = response.dateCreated
 
 					# Update item cache
-					itemcache.add item, ->
+					itemcache.add item, (items) ->
 						callback(response)
 				else
 					callback(response)
@@ -53,11 +53,9 @@ addBulk = (items, callback) ->
 						item.dateCreated = response.dateCreated
 						item.dateModified = response.dateCreated
 
-						# Update item cache
-						itemcache.add item, ->
-							# Callback when finished
-							if i == items.length - 1
-								callback(response)
+					# Update item cache
+					itemcache.add items, (items) ->
+						callback(response)
 				else
 					callback(response)
 
@@ -75,7 +73,7 @@ modify = (item, callback) ->
 					item.dateModified = response.dateModified
 
 					# Update item cache
-					itemcache.modify item, ->
+					itemcache.modify item, (items) ->
 						callback(response)
 				else
 					callback(response)
@@ -95,7 +93,7 @@ modifyBulk = (items, callback) ->
 						item.dateModified = response.dateModified
 
 						# Update item cache
-						itemcache.modify item, ->
+						itemcache.modify item, (items) ->
 							callback(response)
 				else
 					callback(response)
@@ -120,10 +118,9 @@ load = (callback) ->
 		authenticate: true
 		callback: (response) ->
 			if response.status == "success"
-				for item in response.items
-					# Update item cache
-					itemcache.add item, ->
-						callback(response)
+				# Update item cache
+				itemcache.add response.items, (items) ->
+					callback(response)
 			else
 				callback(response)
 
