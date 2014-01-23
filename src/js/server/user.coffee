@@ -136,7 +136,7 @@ update = (userid, data, callback) ->
 					status: "success"
 
 		# Update items
-		if data.items.length > 0
+		if data.items? && data.items.length > 0
 			item.modify userid, data.items, (response) ->
 				# Cancel on error
 				if response.status != "success"
