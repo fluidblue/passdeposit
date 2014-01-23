@@ -23,7 +23,7 @@ set = (currentPage_, totalPages_, callback_) ->
 
 	update()
 
-update = () ->
+update = ->
 	# Only show pager if there is more than one page
 	if totalPages >= 1
 		pager.show()
@@ -73,9 +73,6 @@ init = ->
 		callback(currentPage)
 
 		return
-
-	set 1, 8, (page) ->
-		console.log page
 
 module.exports.set = set
 module.exports.init = init
