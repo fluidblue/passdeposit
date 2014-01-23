@@ -50,11 +50,15 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 			global.jGrowl.show global.text.get("itemSaveFailed", response.status)
 			return
 
+		# Get ID of new item
+		if !exist
+			id = response.id
+			itemid.set(item, id)
+
 		# Get unencrypted item
-		itemDecrypted = core.items.get(response.id)
+		itemDecrypted = core.items.get(id)
 
 		# Update gui
-		itemid.set(item, response.id)
 		info.set(item, itemDecrypted)
 
 		# Show notification
