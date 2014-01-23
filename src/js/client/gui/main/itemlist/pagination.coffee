@@ -36,13 +36,13 @@ update = ->
 	infoText.html info
 
 	# Enable/Disable prev button
-	if currentPage > 1
+	if currentPage > 0
 		prev.removeClass("disabled")
 	else
 		prev.addClass("disabled")
 
 	# Enable/Disable next button
-	if currentPage < totalPages
+	if currentPage < totalPages - 1
 		next.removeClass("disabled")
 	else
 		next.addClass("disabled")
@@ -59,12 +59,12 @@ init = ->
 		href = $(this).attr("href")
 
 		if href == "#prev"
-			if currentPage <= 1
+			if currentPage <= 0
 				return
 
 			currentPage--
 		else
-			if currentPage >= totalPages
+			if currentPage >= totalPages - 1
 				return
 
 			currentPage++
