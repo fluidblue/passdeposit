@@ -98,13 +98,19 @@ changePassword = ->
 	return true
 
 reset = ->
-	# Reset email tab
-	$("#changeEmail").val ""
+	# Reset all fields
+	$("#optionsDialog input, #optionsDialog textarea").each ->
+		that = $(this)
 
-	# Reset csv-import tab
-	$("#options-import-csv input").val ""
-	$("#options-import-csv textarea").val ""
+		# Empty field
+		that.val ""
 
+		# Remove invalid state
+		global.form.setInputInvalid that, false
+
+		# Continue with loop
+		return true
+	
 	# Set initial tab
 	global.navPills.change "#optionsNav", "#options-general", false
 
