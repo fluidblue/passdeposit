@@ -31,20 +31,12 @@ add = (item, options = null) ->
 	template.removeClass("itemTemplate")
 
 	# Add title
-	titleContainer = template.find(".header .title")
+	title = if item.title? then item.title else format.title(item.fields)
+	titleContainer = template.find(".header .title").html(title)
 
-	if item.title?
-		titleContainer.html(item.title)
-	else
-		titleContainer.html(format.title(item.fields))
-
-	# Add info texts
+	# Set item's values
 	info.set(template, item)
-
-	# Add fields
 	fields.setFields(template, item.fields)
-
-	# Add tags
 	tags.init(template, item.tags)
 
 	# Set quickbuttons
