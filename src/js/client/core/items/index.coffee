@@ -136,6 +136,7 @@ module.exports.modify = modify
 module.exports.modifyBulk = modifyBulk
 module.exports.remove = remove
 module.exports.get = itemcache.get
+module.exports.getArray = itemcache.getArray
 module.exports.clear = clear
 module.exports.load = load
 module.exports.getTagArray = tagcache.getArray

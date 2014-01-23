@@ -20,7 +20,7 @@ get = (id = undefined) ->
 	else
 		return itemsDecrypted
 
-getArray = () ->
+getArray = ->
 	items = []
 
 	for id, item of itemsDecrypted
