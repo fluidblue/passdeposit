@@ -40,14 +40,14 @@ _add = (itemCrypted, callback, existent) ->
 		item.dateCreated = date(item.dateCreated)
 		item.dateModified = date(item.dateModified)
 
-	crypt.decrypt itemsCrypted, user.getPassword(), (itemsDecrypted) ->
+	crypt.decrypt itemsCrypted, user.getPassword(), (items) ->
 		for i of itemsCrypted
 			# Get ID
 			id = itemsCrypted[i].id
 
 			# Add to cache
 			itemsEncrypted[id] = itemsCrypted[i]
-			itemsDecrypted[id] = itemsDecrypted[i]
+			itemsDecrypted[id] = items[i]
 
 			# Update tagcache
 			if existent
@@ -57,7 +57,7 @@ _add = (itemCrypted, callback, existent) ->
 
 		# Return decrypted item
 		if callback?
-			result = if isArray then itemsDecrypted else itemsDecrypted[0]
+			result = if isArray then items else items[0]
 			callback result
 
 	return
