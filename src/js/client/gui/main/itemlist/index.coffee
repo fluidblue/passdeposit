@@ -14,6 +14,7 @@ fields = require "./fields"
 tags = require "./tags"
 itemid = require "./itemid"
 info = require "./info"
+pagination = require "./pagination"
 
 defaultAddOptions =
 	open: false
@@ -126,10 +127,12 @@ show = (visible) ->
 		# Show mainList
 		$("#landingPage").hide()
 		$("#mainList").show()
+		$("#pagination").show()
 	else
 		# Show landing page
 		$("#mainList").hide()
 		$("#landingPage").show()
+		$("#pagination").hide()
 
 init = ->
 	fields.init()
@@ -137,6 +140,7 @@ init = ->
 	actionbuttons.init()
 	menuaddfield.init()
 	quickbuttons.init()
+	pagination.init()
 
 module.exports.init = init
 module.exports.add = add
