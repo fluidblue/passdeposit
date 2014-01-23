@@ -35,8 +35,7 @@ encrypt = (item, password, callback, encryption = defaultEncryption) ->
 	isArray = shared.util.isArray(item)
 	items = if isArray then item else [item]
 
-	i = 0
-	next = ->
+	next = (i) ->
 		if i < items.length
 			# Encrypt
 			worker.execute "crypt.encrypt",
@@ -45,6 +44,7 @@ encrypt = (item, password, callback, encryption = defaultEncryption) ->
 				encryption: encryption
 			, (result, id) ->
 				items[i] = result
+				next(i + 1)
 		else
 			# Finished
 			if isArray
@@ -52,15 +52,14 @@ encrypt = (item, password, callback, encryption = defaultEncryption) ->
 			else
 				callback items[0]
 
-	next()
+	next(0)
 	return
 
 decrypt = (item, password, callback) ->
 	isArray = shared.util.isArray(item)
 	items = if isArray then item else [item]
 
-	i = 0
-	next = ->
+	next = (i) ->
 		if i < items.length
 			# Decrypt
 			worker.execute "crypt.decrypt",
@@ -68,6 +67,7 @@ decrypt = (item, password, callback) ->
 				password: password
 			, (result, id) ->
 				items[i] = result
+				next(i + 1)
 		else
 			# Finished
 			if isArray
@@ -75,7 +75,7 @@ decrypt = (item, password, callback) ->
 			else
 				callback items[0]
 
-	next()
+	next(0)
 	return
 
 key = (password, salt, callback) ->
