@@ -70,6 +70,9 @@ updatePassword = (password, passwordHint, callback) ->
 						# Save password
 						credentials.password = password
 
+						# Update cache
+						items.updateEncryptedItems(itemArray)
+
 					callback(response)
 
 reset = (resetKey, email, password, passwordHint, callback) ->

@@ -140,3 +140,4 @@ module.exports.getArray = itemcache.getArray
 module.exports.clear = clear
 module.exports.load = load
 module.exports.getTagArray = tagcache.getArray
+module.exports.updateEncryptedItems = itemcache.updateEncryptedItems

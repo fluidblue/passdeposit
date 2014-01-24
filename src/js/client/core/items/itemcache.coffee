@@ -78,9 +78,14 @@ clear = ->
 	itemsEncrypted = {}
 	itemsDecrypted = {}
 
+updateEncryptedItems = (items) ->
+	for item in items
+		itemsEncrypted[item.id] = item
+
 module.exports.get = get
 module.exports.getArray = getArray
 module.exports.add = add
 module.exports.modify = modify
 module.exports.remove = remove
 module.exports.clear = clear
+module.exports.updateEncryptedItems = updateEncryptedItems
