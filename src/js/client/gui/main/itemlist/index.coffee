@@ -8,46 +8,90 @@ Created by Max Geissler
 toggleview = require "./toggleview"
 itemid = require "./itemid"
 pagination = require "./pagination"
+template = require "./template"
+
+# Store items, which are currently not shown in GUI.
+# These items are either before or after the current page.
+itemsBefore = []
+itemsAfter = []
+itemsPerPage = 10
 
 defaultAddOptions =
 	open: false
 	position: "bottom"
 	focus: false
 
+firstPage = (itemToTop = null) ->
+	# Move all items in itemsBefore to the GUI list.
+	while itemsBefore.length > 0
+		itemsBefore.pop().prependTo("#mainList")
+
+	# Add to top of GUI list
+	if itemToTop != null
+		itemToTop.prependTo("#mainList")
+
+	# If there are more items than one page can hold,
+	# we need to move items to itemsAfter.
+	guiItems = numItemsShown()
+	while guiItems > itemsPerPage
+		moveItem = $("#mainList > div:last-child").detach()
+		itemsAfter.unshift moveItem
+		guiItems--
+
 add = (item, options = null) ->
 	# Merge options
 	options = $.extend(true, {}, defaultAddOptions, options)
 
+	# Create template
 	tpl = template.create(item, options.open)
+	store = false
 
-	# Add item to mainList
 	if typeof options.position == "number"
+		# Directly add template, because position in GUI is known.
+		# options.position is the zero-based index of the item in the GUI list.
 		if options.position > 0
 			$("#mainList > div:nth-child(" + options.position + ")").after(tpl)
 		else
 			tpl.prependTo("#mainList")
 	else
 		if options.position == "top"
-			tpl.prependTo("#mainList")
+			# We want to see an element which gets added to the top.
+			# Thus we need to go to the first page.
+			# The function firstPage(...) will make the given
+			# argument (tpl) the topmost item.
+			firstPage(tpl)
 		else
-			tpl.appendTo("#mainList")
+			if itemsAfter.length == 0 && numItemsShown() < itemsPerPage
+				# There is enough space on the current page, so we
+				# add the item to the GUI list.
+				tpl.appendTo("#mainList")
+			else
+				# Add item after all other items
+				itemsAfter.push tpl
+				store = true
 
 	# Show mainList
 	show(true)
 
 	# Fix width of tags
-	if options.open
+	if !store && options.open
 		$(window).triggerHandler("tags-fix-width")
 
 	# Focus first field
-	if options.focus
+	if !store && options.focus
 		tpl.find(".itemFieldContainer > *:first-child").find("input[type=text]:visible, input[type=password]:visible").focus()
 
 	return true
 
 remove = (item) ->
+	# Remove item
 	item.remove()
-	visible = $("#mainList").children().length > 0
+
+	# Move one item from itemsAfter to GUI list
+	if itemsAfter.length > 0
+		itemsAfter.shift().appendTo("#mainList")
+
+	visible = numItemsShown() > 0
 	show(visible)
 
 replace = (item, newItem, options = null) ->
@@ -63,15 +107,29 @@ replace = (item, newItem, options = null) ->
 	# Add new item
 	add(newItem, options)
 
-clear = (all = false) ->
-	mainList = $("#mainList")
-
-	if all
-		mainList.empty()
+clear = (clearUnsaved = true) ->
+	if clearUnsaved
+		itemsBefore = []
+		itemsAfter = []
+		$("#mainList").empty()
 	else
-		mainList.children().each (i, elem) ->
+		removeUnsavedItems = (items) ->
+			# Loop through array in reverse order.
+			# This allows to remove elements from the array in the loop.
+			i = items.length
+			while i--
+				# Remove all items which are saved (= which have an ID)
+				if itemid.get(items[i]) != null
+					items.splice(i, 1)
+
+			return items
+
+		itemsBefore = removeUnsavedItems(itemsBefore)
+		itemsAfter = removeUnsavedItems(itemsAfter)
+
+		$("#mainList").children().each (i, elem) ->
 			elem = $(elem)
-			
+
 			# Remove all items which are saved
 			if itemid.get(elem) != null
 				elem.remove()
@@ -79,7 +137,10 @@ clear = (all = false) ->
 			# Continue with loop
 			return true
 
-	visible = mainList.children().length > 0
+		# Show the first page
+		firstPage()
+
+	visible = numItemsShown() > 0
 	show(visible)
 
 show = (visible) ->
@@ -87,16 +148,56 @@ show = (visible) ->
 		# Show mainList
 		$("#landingPage").hide()
 		$("#mainList").show()
-		$("#pagination").show()
+
+		# Set pagination
+		currentPage = itemsBefore.length / itemsPerPage
+		pagination.set currentPage, numPages()
 	else
 		# Show landing page
 		$("#mainList").hide()
 		$("#landingPage").show()
-		$("#pagination").hide()
+
+		# Hide pagination
+		pagination.hide()
+
+paginationCallback = (page) ->
+	itemsBeforeLength = page * itemsPerPage
+
+	itemsAfterLength = numItems() - ((page + 1) * itemsPerPage)
+	if itemsAfterLength < 0
+		itemsAfterLength = 0
+
+	while itemsBefore.length < itemsBeforeLength
+		# Move item from GUI list to itemsBefore
+		moveItem = $("#mainList > div:first-child").detach()
+		itemsBefore.push moveItem
+
+	while itemsBefore.length > itemsBeforeLength
+		# Move item from itemsBefore to GUI list
+		itemsBefore.pop().prependTo("#mainList")
+
+	while itemsAfter.length < itemsAfterLength
+		# Move item from GUI list to itemsAfter
+		moveItem = $("#mainList > div:last-child").detach()
+		itemsAfter.unshift moveItem
+
+	while itemsAfter.length > itemsAfterLength
+		# Move items from itemsAfter to GUI list
+		itemsAfter.shift().appendTo("#mainList")
+
+numItems = ->
+	return itemsBefore.length + numItemsShown() + itemsAfter.length
+
+numItemsShown = ->
+	return $("#mainList > *").length
+
+numPages = ->
+	return Math.ceil(numItems() / itemsPerPage)
 
 init = ->
+	template.init()
 	toggleview.init()
-	pagination.init()
+	pagination.init(paginationCallback)
 
 module.exports.init = init
 module.exports.add = add

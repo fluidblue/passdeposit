@@ -21,7 +21,7 @@ search = (value) ->
 		# Search
 		core.items.search value, (resultIDs) ->
 			# Clear itemlist
-			itemlist.clear()
+			itemlist.clear(false)
 
 			# Add items
 			items = core.items.get()
@@ -29,7 +29,7 @@ search = (value) ->
 				itemlist.add(items[result])
 	else
 		# Clear itemlist
-		itemlist.clear()
+		itemlist.clear(false)
 
 initAdvancedSearch = ->
 	# Init search field popover

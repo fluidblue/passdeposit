@@ -25,7 +25,7 @@ logout = ->
 	global.pageChange.change "#frontpage", ->
 		# Clear all data
 		core.user.logout()
-		itemlist.clear(true)
+		itemlist.clear()
 
 		# Reset dialogs
 		search.reset()

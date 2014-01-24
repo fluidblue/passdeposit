@@ -7,6 +7,7 @@ Created by Max Geissler
 
 quickbuttons = require "./quickbuttons"
 actionbuttons = require "./actionbuttons"
+menuaddfield = require "./menuaddfield"
 format = require "./format"
 fields = require "./fields"
 tags = require "./tags"
@@ -41,7 +42,7 @@ create = (item, open) ->
 	# Set item's id
 	itemid.set(template, item.id)
 
-	return true
+	return template
 
 init = ->
 	fields.init()

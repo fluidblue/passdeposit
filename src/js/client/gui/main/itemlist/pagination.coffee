@@ -16,10 +16,9 @@ currentPage = 0
 totalPages = 0
 callback = null
 
-set = (currentPage_, totalPages_, callback_) ->
+set = (currentPage_, totalPages_) ->
 	currentPage = currentPage_
 	totalPages = totalPages_
-	callback = callback_
 
 	update()
 
@@ -32,7 +31,7 @@ update = ->
 		return
 
 	# Set info text
-	info = global.text.get "pagination", currentPage, totalPages
+	info = global.text.get "pagination", currentPage + 1, totalPages
 	infoText.html info
 
 	# Enable/Disable prev button
@@ -47,7 +46,12 @@ update = ->
 	else
 		next.addClass("disabled")
 
-init = ->
+hide = ->
+	pager.hide()
+
+init = (callback_) ->
+	callback = callback_
+	
 	pager = $("#pagination")
 	infoText = $("#pagination .middle")
 	prev = $("#pagination a[href=#prev]").parent()
@@ -75,4 +79,5 @@ init = ->
 		return
 
 module.exports.set = set
+module.exports.hide = hide
 module.exports.init = init
