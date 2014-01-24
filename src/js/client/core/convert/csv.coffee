@@ -38,6 +38,15 @@ fnImport = (csv, defaultTag) ->
 	rows = $.csv.toArrays(csv)
 	header = rows.shift()
 
+	if header.length < 2
+		# We need at least two columns for $.csv.toArrays to work properly:
+		# http://code.google.com/p/jquery-csv/issues/detail?id=23
+		# Therefore, we cannot accept data with only one column.
+		result =
+			error: "data:failed"
+
+		return
+
 	if defaultTag?
 		defaultTag = $.trim(defaultTag)
 
