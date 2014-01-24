@@ -107,20 +107,33 @@ replace = (item, newItem, options = null) ->
 	# Add new item
 	add(newItem, options)
 
+clearItems = (items) ->
+	# Safely clear items, preventing memory leaks.
+	# Note: This is very time consuming and should rarely be used.
+	$("<div>").append(items).empty()
+
 clear = (clearUnsaved = true) ->
 	if clearUnsaved
+		clearItems(itemsBefore)
 		itemsBefore = []
+
+		clearItems(itemsAfter)
 		itemsAfter = []
+
 		$("#mainList").empty()
 	else
 		removeUnsavedItems = (items) ->
+			itemsRemoved = []
+
 			# Loop through array in reverse order.
 			# This allows to remove elements from the array in the loop.
 			i = items.length
 			while i--
 				# Remove all items which are saved (= which have an ID)
 				if itemid.get(items[i]) != null
-					items.splice(i, 1)
+					itemsRemoved.push items.splice(i, 1)[0]
+			
+			clearItems(itemsRemoved)
 
 			return items
 
