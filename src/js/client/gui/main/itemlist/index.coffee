@@ -12,6 +12,7 @@ template = require "./template"
 
 # Store items, which are currently not shown in GUI.
 # These items are either before or after the current page.
+# Note: itemsAfter may contain template creation functions instead of items.
 itemsBefore = []
 itemsAfter = []
 itemsPerPage = 10
@@ -42,11 +43,15 @@ add = (item, options = null) ->
 	# Merge options
 	options = $.extend(true, {}, defaultAddOptions, options)
 
-	# Create template
-	tpl = template.create(item, options.open)
+	# Define template creation function
+	fnTemplate = ->
+		return template.create(item, options.open)
+
 	store = false
 
 	if typeof options.position == "number"
+		tpl = fnTemplate()
+
 		# Directly add template, because position in GUI is known.
 		# options.position is the zero-based index of the item in the GUI list.
 		if options.position > 0
@@ -59,15 +64,18 @@ add = (item, options = null) ->
 			# Thus we need to go to the first page.
 			# The function firstPage(...) will make the given
 			# argument (tpl) the topmost item.
+			tpl = fnTemplate()
 			firstPage(tpl)
 		else
 			if itemsAfter.length == 0 && numItemsShown() < itemsPerPage
 				# There is enough space on the current page, so we
 				# add the item to the GUI list.
+				tpl = fnTemplate()
 				tpl.appendTo("#mainList")
 			else
 				# Add item after all other items
-				itemsAfter.push tpl
+				# Do not create the template yet, but only store the function.
+				itemsAfter.push fnTemplate
 				store = true
 
 	# Show mainList
@@ -83,13 +91,21 @@ add = (item, options = null) ->
 
 	return true
 
+ensureTemplate = (item) ->
+	if typeof item == "function"
+		return item()
+	else
+		return item
+
 remove = (item) ->
 	# Remove item
 	item.remove()
 
 	# Move one item from itemsAfter to GUI list
 	if itemsAfter.length > 0
-		itemsAfter.shift().appendTo("#mainList")
+		item = itemsAfter.shift()
+		item = ensureTemplate(item)
+		item.appendTo("#mainList")
 
 	visible = numItemsShown() > 0
 	show(visible)
@@ -196,7 +212,9 @@ paginationCallback = (page) ->
 
 	while itemsAfter.length > itemsAfterLength
 		# Move items from itemsAfter to GUI list
-		itemsAfter.shift().appendTo("#mainList")
+		item = itemsAfter.shift()
+		item = ensureTemplate(item)
+		item.appendTo("#mainList")
 
 numItems = ->
 	return itemsBefore.length + numItemsShown() + itemsAfter.length
