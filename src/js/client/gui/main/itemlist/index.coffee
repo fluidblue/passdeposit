@@ -123,12 +123,12 @@ replace = (item, newItem, options = null) ->
 	# Add new item
 	add(newItem, options)
 
-clearItems = (items) ->
-	# Safely clear items, preventing memory leaks.
-	# Note: This is very time consuming and should rarely be used.
-	$("<div>").append(items).empty()
-
 clear = (clearUnsaved = true) ->
+	clearItems = (items) ->
+		# Safely clear items, preventing memory leaks.
+		# Note: This is very time consuming and should rarely be used.
+		$("<div>").append(items).empty()
+
 	if clearUnsaved
 		clearItems(itemsBefore)
 		itemsBefore = []
@@ -145,8 +145,10 @@ clear = (clearUnsaved = true) ->
 			# This allows to remove elements from the array in the loop.
 			i = items.length
 			while i--
+				isFunction = typeof items[i] == "function"
+
 				# Remove all items which are saved (= which have an ID)
-				if itemid.get(items[i]) != null
+				if isFunction || itemid.get(items[i]) != null
 					itemsRemoved.push items.splice(i, 1)[0]
 			
 			clearItems(itemsRemoved)
