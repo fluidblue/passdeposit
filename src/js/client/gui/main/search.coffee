@@ -117,6 +117,9 @@ reset = ->
 	$("#search").val ""
 	searchValue = ""
 
+refresh = ->
+	search(searchValue)
+
 init = ->
 	initAdvancedSearch()
 	initTypeahead()
@@ -124,3 +127,4 @@ init = ->
 
 module.exports.init = init
 module.exports.reset = reset
+module.exports.refresh = refresh

@@ -10,6 +10,7 @@ core = require "../../core"
 shared = require "../../../shared"
 format = require "./itemlist/format"
 username = require "../front/username"
+search = require "./search"
 
 startsWith = (data, str) ->
 	return data.lastIndexOf(str, 0) == 0
@@ -23,6 +24,9 @@ importCSV = ->
 			if count == 0
 				global.jGrowl.show global.text.get("importFailedNoItems")
 			else
+				# Update search list
+				search.refresh()
+				
 				if ignored == 0
 					global.jGrowl.show global.text.get("importSuccess", count)
 				else
