@@ -11,7 +11,9 @@ donateLink = null
 timer = null
 
 wiggle = (elem, duration, callback) ->
-	elem.wiggle()
+	elem.wiggle "start",
+		wiggleDegrees: [1,2,3,4,5,6,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-6,-5,-4,-3,-2,-1,0]
+		delay: 8
 
 	setTimeout ->
 		elem.wiggle "stop"
