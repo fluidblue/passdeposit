@@ -57,6 +57,10 @@ mergeRecursive = (obj1, obj2) ->
 
 	return obj1
 
+getRandomInt = (min, max) ->
+	return Math.floor(Math.random() * (max - min + 1)) + min
+
 module.exports.isArray = isArray
 module.exports.deepCopy = deepCopy
 module.exports.mergeRecursive = mergeRecursive
+module.exports.getRandomInt = getRandomInt

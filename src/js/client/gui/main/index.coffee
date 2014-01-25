@@ -12,6 +12,7 @@ logout = require "./logout"
 btnAdd = require "./btnAdd"
 search = require "./search"
 itemlist = require "./itemlist"
+landingpage = require "./landingpage"
 
 # Initializes main page
 init = ->
@@ -22,5 +23,6 @@ init = ->
 	btnAdd.init()
 	search.init()
 	itemlist.init()
+	landingpage.init()
 
 module.exports.init = init

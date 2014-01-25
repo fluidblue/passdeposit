@@ -9,6 +9,7 @@ toggleview = require "./toggleview"
 itemid = require "./itemid"
 pagination = require "./pagination"
 template = require "./template"
+landingpage = require "../landingpage"
 
 # Store items, which are currently not shown in GUI.
 # These items are either before or after the current page.
@@ -184,7 +185,7 @@ show = (visible) ->
 	
 	if visible
 		# Show mainList
-		$("#landingPage").hide()
+		landingpage.hide()
 		$("#mainList").show()
 
 		# Set pagination
@@ -193,7 +194,7 @@ show = (visible) ->
 	else
 		# Show landing page
 		$("#mainList").hide()
-		$("#landingPage").show()
+		landingpage.show()
 
 		# Hide pagination
 		pagination.hide()

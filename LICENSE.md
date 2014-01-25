@@ -24,6 +24,7 @@ The following libraries and extensions are used:
 * jGrowl
 * jquery-csv
 * jquery-total-storage
+* jquery-wiggle
 * Bootstrap
 * bootstrap-tag
 * Stanford Javascript Crypto Library
