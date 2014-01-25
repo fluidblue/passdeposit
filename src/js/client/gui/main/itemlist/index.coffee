@@ -17,6 +17,8 @@ itemsBefore = []
 itemsAfter = []
 itemsPerPage = 10
 
+itemListVisible = false
+
 defaultAddOptions =
 	open: false
 	position: "bottom"
@@ -175,6 +177,11 @@ clear = (clearUnsaved = true) ->
 	show(visible)
 
 show = (visible) ->
+	if visible == itemListVisible
+		return
+	else
+		itemListVisible = visible
+	
 	if visible
 		# Show mainList
 		$("#landingPage").hide()
