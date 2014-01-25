@@ -43,7 +43,7 @@ stopWiggle = ->
 	timer = null
 
 show = (firstShow) ->
-	$("#landingpage").show()
+	$("#landingPage").show()
 
 	# Start wiggling, if not yet started
 	if !timer
@@ -53,7 +53,7 @@ show = (firstShow) ->
 			startWiggle()
 
 hide = ->
-	$("#landingpage").hide()
+	$("#landingPage").hide()
 
 	# Stop wiggling
 	stopWiggle()
