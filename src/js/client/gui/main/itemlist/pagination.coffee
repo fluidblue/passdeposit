@@ -16,6 +16,8 @@ currentPage = 0
 totalPages = 0
 callback = null
 
+alwaysShowPager = true
+
 set = (currentPage_, totalPages_) ->
 	currentPage = currentPage_
 	totalPages = totalPages_
@@ -24,7 +26,7 @@ set = (currentPage_, totalPages_) ->
 
 update = ->
 	# Only show pager if there is more than one page
-	if totalPages >= 1
+	if alwaysShowPager || totalPages > 1
 		pager.show()
 	else
 		pager.hide()
