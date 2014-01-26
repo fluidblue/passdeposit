@@ -9,7 +9,7 @@ shared = require "../../../shared"
 
 # Wiggle animation duration is derived
 # from CSS3 animation settings + 500ms security gap
-wiggleDuration = 5 * 300 + 500
+wiggleDuration = 6 * 300 + 500
 
 timer = null
 
