@@ -135,9 +135,9 @@
 
 	&.wiggle:not(:hover)
 	{
-		-webkit-animation: wiggle 0.2s ease 2;
-		-moz-animation: wiggle 0.2s ease 2;
-		-o-animation: wiggle 0.2s ease 2;
-		animation: wiggle 0.2s ease 2;
+		-webkit-animation: wiggle 0.25s ease 6;
+		-moz-animation: wiggle 0.25s ease 6;
+		-o-animation: wiggle 0.25s ease 6;
+		animation: wiggle 0.25s ease 6;
 	}
 }
