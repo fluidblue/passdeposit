@@ -9,82 +9,90 @@ sjcl = require "sjcl"
 
 initialized = false
 
-encrypt = (item, password, encryption) ->
-	fnEncrypt = null
+encrypt = (items, password, encryption) ->
+	for i of items
+		item = items[i]
+		fnEncrypt = null
 
-	# Define encryption function
-	switch encryption.type
-		when "none"
-			fnEncrypt = (str) ->
-				return str
-		when "sjcl"
-			fnEncrypt = (str) ->
-				# Always use a fresh random salt (8 Bytes)
-				salt = sjcl.random.randomWords(2, 0)
+		# Define encryption function
+		switch encryption.type
+			when "none"
+				fnEncrypt = (str) ->
+					return str
+			when "sjcl"
+				fnEncrypt = (str) ->
+					# Always use a fresh random salt (8 Bytes)
+					salt = sjcl.random.randomWords(2, 0)
 
-				# Create the key from password and salt:
-				# PBKDF2-HMAC-SHA256 with given iteration count
-				key = sjcl.misc.pbkdf2(password, salt, encryption.options.iter)
+					# Create the key from password and salt:
+					# PBKDF2-HMAC-SHA256 with given iteration count
+					key = sjcl.misc.pbkdf2(password, salt, encryption.options.iter)
 
-				# Shorten key to encryption keysize length
-				key = key.slice(0, encryption.options.ks / 32)
+					# Shorten key to encryption keysize length
+					key = key.slice(0, encryption.options.ks / 32)
 
-				# Encrypt with SJCL
-				enc = sjcl.json._encrypt(key, str, encryption.options)
+					# Encrypt with SJCL
+					enc = sjcl.json._encrypt(key, str, encryption.options)
 
-				# Return only relevant information
-				ret =
-					iv: sjcl.codec.base64.fromBits(enc.iv)
-					salt: sjcl.codec.base64.fromBits(salt)
-					ct: sjcl.codec.base64.fromBits(enc.ct)
+					# Return only relevant information
+					ret =
+						iv: sjcl.codec.base64.fromBits(enc.iv)
+						salt: sjcl.codec.base64.fromBits(salt)
+						ct: sjcl.codec.base64.fromBits(enc.ct)
 
-				return ret
-		else
-			throw "Error: Unknown encryption: " + encryption.type
+					return ret
+			else
+				throw "Error: Unknown encryption: " + encryption.type
 
-	# Encrypt fields
-	for key, entry of item.fields
-		item.fields[key].value = fnEncrypt(entry.value)
+		# Encrypt fields
+		for key, entry of item.fields
+			item.fields[key].value = fnEncrypt(entry.value)
 
-	# Encrypt tags
-	for key, value of item.tags
-		item.tags[key] = fnEncrypt(value)
+		# Encrypt tags
+		for key, value of item.tags
+			item.tags[key] = fnEncrypt(value)
 
-	# Add encryption info to item
-	item.encryption = encryption
+		# Add encryption info to item
+		item.encryption = encryption
 
-	return item
+		items[i] = item
 
-decrypt = (item, password) ->
-	fnDecrypt = null
+	return items
 
-	# Define decryption function
-	switch item.encryption.type
-		when "none"
-			fnDecrypt = (value) ->
-				return value
-		when "sjcl"
-			fnDecrypt = (value) ->
-				# Create raw ciphertext object from value
-				crypt =
-					iv: sjcl.codec.base64.toBits(value.iv)
-					salt: sjcl.codec.base64.toBits(value.salt)
-					ct: sjcl.codec.base64.toBits(value.ct)
+decrypt = (items, password) ->
+	for i of items
+		item = items[i]
+		fnDecrypt = null
 
-				# Decrypt with SJCL lib
-				return sjcl.json._decrypt(password, item.encryption.options, crypt)
-		else
-			throw "Error: Unknown encryption: " + item.encryption.type
+		# Define decryption function
+		switch item.encryption.type
+			when "none"
+				fnDecrypt = (value) ->
+					return value
+			when "sjcl"
+				fnDecrypt = (value) ->
+					# Create raw ciphertext object from value
+					crypt =
+						iv: sjcl.codec.base64.toBits(value.iv)
+						salt: sjcl.codec.base64.toBits(value.salt)
+						ct: sjcl.codec.base64.toBits(value.ct)
 
-	# Decrypt fields
-	for key, entry of item.fields
-		item.fields[key].value = fnDecrypt(entry.value)
+					# Decrypt with SJCL lib
+					return sjcl.json._decrypt(password, item.encryption.options, crypt)
+			else
+				throw "Error: Unknown encryption: " + item.encryption.type
 
-	# Decrypt tags
-	for key, value of item.tags
-		item.tags[key] = fnDecrypt(value)
+		# Decrypt fields
+		for key, entry of item.fields
+			item.fields[key].value = fnDecrypt(entry.value)
 
-	return item
+		# Decrypt tags
+		for key, value of item.tags
+			item.tags[key] = fnDecrypt(value)
+
+		items[i] = item
+
+	return items
 
 key = (password, salt, iterations) ->
 	# Create key from password and salt:
