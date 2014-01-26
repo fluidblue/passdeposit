@@ -77,7 +77,7 @@ endef
 
 js: js-base
 	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/client/index.coffee ./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js
-	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/client/worker.coffee ./$(BUILD_HTTPDOCS_DIR)/js/worker.js
+	webmake --ext=coffee --ignore-errors ./$(SOURCE_DIR)/js/client/worker/index.coffee ./$(BUILD_HTTPDOCS_DIR)/js/worker.js
 
 	$(call js_dist,./$(BUILD_HTTPDOCS_DIR)/js/passdeposit.js)
 	$(call js_dist,./$(BUILD_HTTPDOCS_DIR)/js/worker.js)
