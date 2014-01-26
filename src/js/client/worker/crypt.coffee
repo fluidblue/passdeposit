@@ -6,9 +6,6 @@ Created by Max Geissler
 ###
 
 sjcl = require "sjcl"
-deepCopy = require("../../shared/util").deepCopy
-
-# TODO: Check if deepCopy isn't needed anymore
 
 initialized = false
 
@@ -45,9 +42,6 @@ encrypt = (item, password, encryption) ->
 		else
 			throw "Error: Unknown encryption: " + encryption.type
 
-	# Make a deep copy of the item
-	item = deepCopy(item)
-
 	# Encrypt fields
 	for key, entry of item.fields
 		item.fields[key].value = fnEncrypt(entry.value)
@@ -81,9 +75,6 @@ decrypt = (item, password) ->
 				return sjcl.json._decrypt(password, item.encryption.options, crypt)
 		else
 			throw "Error: Unknown encryption: " + item.encryption.type
-
-	# Make a deep copy of the item
-	item = deepCopy(item)
 
 	# Decrypt fields
 	for key, entry of item.fields
