@@ -7,16 +7,13 @@ Created by Max Geissler
 
 shared = require "../../../shared"
 
-donateLink = null
 timer = null
 
-wiggle = (elem, duration, callback) ->
-	elem.wiggle "start",
-		wiggleDegrees: [1,2,3,4,5,6,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-6,-5,-4,-3,-2,-1,0]
-		delay: 8
-
+setWiggle = (elem, duration, callback) ->
+	elem.addClass "wiggle"
+	
 	setTimeout ->
-		elem.wiggle "stop"
+		elem.removeClass "wiggle"
 		callback()
 		return
 	, duration
@@ -26,15 +23,9 @@ startWiggle = (waitTime) ->
 		waitTime = shared.util.getRandomInt(3000, 8000)
 
 	timer = setTimeout ->
-		hover = $("#primaryDonationLink:hover").length > 0
-
-		# Start wiggling if element is not hovered.
-		if hover? && !hover
-			wiggle donateLink, 1200, ->
-				# Start over if hide() has not been called
-				if timer then startWiggle()
-		else
-			# Try again later if hide() has not been called
+		# Start wiggling
+		setWiggle $("#primaryDonationLink"), 2000, ->
+			# Start over if stopWiggle() has not been called
 			if timer then startWiggle()
 
 		return
@@ -60,14 +51,5 @@ hide = ->
 	# Stop wiggling
 	stopWiggle()
 
-init = ->
-	donateLink = $("#primaryDonationLink")
-	donateLink.css("display", "inline-block")
-
-	donateLink.hover ->
-		# Stop wiggling when hovering element
-		donateLink.wiggle "stop"
-
 module.exports.show = show
 module.exports.hide = hide
-module.exports.init = init

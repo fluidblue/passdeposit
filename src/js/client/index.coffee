@@ -11,7 +11,6 @@ require "jquery"
 require "jquery-csv"
 require "jquery-jgrowl"
 require "jquery-total-storage"
-require "jquery-wiggle"
 require "bootstrap"
 require "bootstrap-tag"
 

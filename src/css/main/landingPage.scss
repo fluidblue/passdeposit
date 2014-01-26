@@ -103,3 +103,41 @@
 		}
 	}
 }
+
+@-webkit-keyframes wiggle
+{
+	0% {-webkit-transform: rotate(6deg);}
+	50% {-webkit-transform: rotate(-6deg);}
+	100% {-webkit-transform: rotate(6deg);}
+}
+@-moz-keyframes wiggle
+{
+	0% {-moz-transform: rotate(6deg);}
+	50% {-moz-transform: rotate(-6deg);}
+	100% {-moz-transform: rotate(6deg);}
+}
+@-o-keyframes wiggle
+{
+	0% {-o-transform: rotate(6deg);}
+	50% {-o-transform: rotate(-6deg);}
+	100% {-o-transform: rotate(6deg);}
+}
+@keyframes wiggle
+{
+	0% {transform: rotate(6deg);}
+	50% {transform: rotate(-6deg);}
+	100% {transform: rotate(6deg);}
+}
+
+#primaryDonationLink
+{
+	display: inline-block;
+
+	&.wiggle:not(:hover)
+	{
+		-webkit-animation: wiggle 0.2s ease 2;
+		-moz-animation: wiggle 0.2s ease 2;
+		-o-animation: wiggle 0.2s ease 2;
+		animation: wiggle 0.2s ease 2;
+	}
+}
