@@ -106,27 +106,35 @@
 
 @-webkit-keyframes wiggle
 {
-	0% {-webkit-transform: rotate(6deg);}
-	50% {-webkit-transform: rotate(-6deg);}
-	100% {-webkit-transform: rotate(6deg);}
+	0% {-webkit-transform: rotate(0deg);}
+	25% {-webkit-transform: rotate(7deg);}
+	50% {-webkit-transform: rotate(0deg);}
+	75% {-webkit-transform: rotate(-7deg);}
+	100% {-webkit-transform: rotate(0deg);}
 }
 @-moz-keyframes wiggle
 {
-	0% {-moz-transform: rotate(6deg);}
-	50% {-moz-transform: rotate(-6deg);}
-	100% {-moz-transform: rotate(6deg);}
+	0% {-moz-transform: rotate(0deg);}
+	25% {-moz-transform: rotate(7deg);}
+	50% {-moz-transform: rotate(0deg);}
+	75% {-moz-transform: rotate(-7deg);}
+	100% {-moz-transform: rotate(0deg);}
 }
 @-o-keyframes wiggle
 {
-	0% {-o-transform: rotate(6deg);}
-	50% {-o-transform: rotate(-6deg);}
-	100% {-o-transform: rotate(6deg);}
+	0% {-o-transform: rotate(0deg);}
+	25% {-o-transform: rotate(7deg);}
+	50% {-o-transform: rotate(0deg);}
+	75% {-o-transform: rotate(-7deg);}
+	100% {-o-transform: rotate(0deg);}
 }
 @keyframes wiggle
 {
-	0% {transform: rotate(6deg);}
-	50% {transform: rotate(-6deg);}
-	100% {transform: rotate(6deg);}
+	0% {transform: rotate(0deg);}
+	25% {transform: rotate(7deg);}
+	50% {transform: rotate(0deg);}
+	75% {transform: rotate(-7deg);}
+	100% {transform: rotate(0deg);}
 }
 
 #primaryDonationLink
@@ -135,9 +143,9 @@
 
 	&.wiggle:not(:hover)
 	{
-		-webkit-animation: wiggle 0.25s ease 6;
-		-moz-animation: wiggle 0.25s ease 6;
-		-o-animation: wiggle 0.25s ease 6;
-		animation: wiggle 0.25s ease 6;
+		-webkit-animation: wiggle 0.3s linear 5;
+		-moz-animation: wiggle 0.3s linear 5;
+		-o-animation: wiggle 0.3s linear 5;
+		animation: wiggle 0.3s linear 5;
 	}
 }

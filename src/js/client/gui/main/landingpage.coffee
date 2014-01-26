@@ -7,6 +7,10 @@ Created by Max Geissler
 
 shared = require "../../../shared"
 
+# Wiggle animation duration is derived
+# from CSS3 animation settings + 500ms security gap
+wiggleDuration = 5 * 300 + 500
+
 timer = null
 
 setWiggle = (elem, duration, callback) ->
@@ -24,7 +28,7 @@ startWiggle = (waitTime) ->
 
 	timer = setTimeout ->
 		# Start wiggling
-		setWiggle $("#primaryDonationLink"), 2000, ->
+		setWiggle $("#primaryDonationLink"), wiggleDuration, ->
 			# Start over if stopWiggle() has not been called
 			if timer then startWiggle()
 
