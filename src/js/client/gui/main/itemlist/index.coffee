@@ -178,26 +178,25 @@ clear = (clearUnsaved = true) ->
 	show(visible)
 
 show = (visible) ->
-	if visible == itemListVisible
-		return
-	else
-		itemListVisible = visible
-	
 	if visible
-		# Show mainList
-		landingpage.hide()
-		$("#mainList").show()
-
-		# Set pagination
+		# Update pagination
 		currentPage = itemsBefore.length / itemsPerPage
 		pagination.set currentPage, numPages()
-	else
-		# Show landing page
-		$("#mainList").hide()
-		landingpage.show()
 
-		# Hide pagination
-		pagination.hide()
+	if visible != itemListVisible
+		itemListVisible = visible
+
+		if visible
+			# Show mainList
+			landingpage.hide()
+			$("#mainList").show()
+		else
+			# Show landing page
+			$("#mainList").hide()
+			landingpage.show()
+
+			# Hide pagination
+			pagination.hide()
 
 paginationCallback = (page) ->
 	itemsBeforeLength = page * itemsPerPage
