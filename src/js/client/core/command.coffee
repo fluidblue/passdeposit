@@ -53,8 +53,7 @@ send = (options) ->
 	$.ajax
 		type: "POST"
 		url: "passdeposit"
-		data:
-			obj: JSON.stringify(obj)
+		data: JSON.stringify(obj)
 		dataType: "json"
 		complete: complete
 		success: success

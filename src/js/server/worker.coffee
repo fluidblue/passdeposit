@@ -6,7 +6,6 @@ Created by Max Geissler
 
 https = require "https"
 fs = require "fs"
-querystring = require "querystring"
 path = require "path"
 staticFiles = require "./staticFiles"
 dynamic = require "./dynamic"
@@ -38,8 +37,7 @@ httpsHandler = (req, res) ->
 			postData += chunk
 
 		req.on "end", ->
-			postObject = querystring.parse(postData)
-			dynamic.serve clientID, postObject, (response) ->
+			dynamic.serve clientID, postData, (response) ->
 				# Send data
 				# Response: 200 OK
 				res.writeHead 200, response.headers

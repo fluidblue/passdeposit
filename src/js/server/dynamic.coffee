@@ -9,10 +9,7 @@ command = require "./command"
 
 serve = (clientID, post, callback) ->
 	# Get command (and the corresponding data)
-	params = {}
-
-	if post.obj?
-		params = JSON.parse(post.obj)
+	params = JSON.parse(post)
 
 	# Process command
 	command.process clientID, params, (result) ->
