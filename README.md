@@ -27,6 +27,8 @@ You can use PassDeposit without installation at <https://www.passdeposit.com>
 Alternatively, you can download the latest version and use it on your own server.
 See the [installation instructions](INSTALL.md#passdeposit-installation) for more information.
 
+There is also an [API documentation](API.md#passdeposit-api) available.
+
 
 ## Bugs
 
