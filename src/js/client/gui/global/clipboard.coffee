@@ -12,17 +12,21 @@ init = ->
 	ZeroClipboard.config
 		moviePath: "media/zeroclipboard.swf"
 		cacheBust: false
-		forceHandCursor: true
+		forceHandCursor: true # Not working?
 		debug: true
 
 	client = new ZeroClipboard(document.getElementById("loginButton"))
 
 	client.on "load", (client) ->
 		console.log "movie is loaded"
+		
 		client.on "complete", (client, args) ->
 			# 'this' is the element that was clicked
 			this.style.display = "none"
 			console.log "Copied text to clipboard: " + args.text
+
+		client.on "dataRequested", (client, args) ->
+			client.setText "TestTest"
 
 setText = (text) ->
 	# TODO: Remove
