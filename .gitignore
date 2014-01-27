@@ -12,3 +12,4 @@ config
 node_modules/optimist
 node_modules/mongoose
 node_modules/email
+node_modules/zeroclipboard
