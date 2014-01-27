@@ -103,6 +103,7 @@ html:
 # -----------
 media:
 	cp -R ./$(SOURCE_DIR)/media ./$(BUILD_HTTPDOCS_DIR)
+	cp ./node_modules/zeroclipboard/ZeroClipboard.swf ./$(BUILD_HTTPDOCS_DIR)/media/zeroclipboard.swf
 
 
 # Compile server

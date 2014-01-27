@@ -5,21 +5,24 @@ Provide clipboard write access
 Created by Max Geissler
 ###
 
-#ZeroClipboard = require "zeroclipboard"
+ZeroClipboard = require "zeroclipboard"
 global = require "."
 
-clip = null
-
 init = ->
-	# TODO
+	ZeroClipboard.config
+		moviePath: "media/zeroclipboard.swf"
+		cacheBust: false
+		forceHandCursor: true
+		debug: true
 
-	# ZeroClipboard.setDefaults moviePath: "media/zeroclipboard.swf"
-	# clip = new ZeroClipboard()
+	client = new ZeroClipboard(document.getElementById("loginButton"))
 
-	# clip.on "load", (client, args) ->
-	# 	# TODO: Remove
-	# 	console.log "movie has loaded"
-	# 	return
+	client.on "load", (client) ->
+		console.log "movie is loaded"
+		client.on "complete", (client, args) ->
+			# 'this' is the element that was clicked
+			this.style.display = "none"
+			console.log "Copied text to clipboard: " + args.text
 
 setText = (text) ->
 	# TODO: Remove
