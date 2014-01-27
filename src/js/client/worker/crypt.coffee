@@ -77,8 +77,15 @@ decrypt = (items, password) ->
 						salt: sjcl.codec.base64.toBits(value.salt)
 						ct: sjcl.codec.base64.toBits(value.ct)
 
+					# Create the key from password and salt:
+					# PBKDF2-HMAC-SHA256 with given iteration count
+					key = sjcl.misc.pbkdf2(password, crypt.salt, item.encryption.options.iter)
+
+					# Shorten key to encryption keysize length
+					key = key.slice(0, item.encryption.options.ks / 32)
+
 					# Decrypt with SJCL lib
-					return sjcl.json._decrypt(password, item.encryption.options, crypt)
+					return sjcl.json._decrypt(key, item.encryption.options, crypt)
 			else
 				throw "Error: Unknown encryption: " + item.encryption.type
 
