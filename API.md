@@ -8,6 +8,49 @@ This document describes the API and how to use it.
 **Warning: The API described in this document is not compatible with v0.2.0 (current release). This document describes the API used in the development version.**
 
 
+
+## How to use
+
+The API is based on HTTP POST and JSON. The command and its arguments are transmitted as JSON strings in the POST data. The url for the HTTP request is https://address:port/passdeposit.
+
+A request contains the following data:
+
+Field   | Description
+--------|-----------------------------------------------
+cmd     | Command to be executed
+data    | Arguments for the command (not always needed)
+userid  | User's ID (not always needed)
+session | Current session (not always needed)
+
+Example request:
+
+	{
+		"cmd": "user.login",
+		"data ": {
+			"email": "test@example.com",
+			"key": "9R+Yzh3QjimItU80dN+SCNzkWqbM/4Aa9VrxtO5aui4="
+		}
+	}
+
+
+The response always contains the field *status*. Depending on the command, there are more fields.
+
+Example response:
+
+	{
+		"status": "success",
+		"session": "aJIeB8kH0tZdXXIGRt0FSEFGsRMPEJBMivfVe3V+bzI=",
+		"userid": "52c4077e774fe2bf30000001"
+	}
+
+
+Please note:
+
+* Responses are gzipped, even if gzip is not specified in Accept-Encoding. This is due to performance reasons.
+* All strings must be encoded in UTF-8
+
+
+
 ## Commands
 
 
@@ -138,48 +181,6 @@ Field        | Description
 -------------|-----------------------------------------------
 status       | "success" or error code
 items        | Array of items. See "Item data structure".
-
-
-
-## How to use
-
-The API is based on HTTP POST and JSON. The command and its arguments are transmitted as JSON strings in the POST data. The url for the HTTP request is https://address:port/passdeposit.
-
-A request contains the following data:
-
-Field   | Description
---------|-----------------------------------------------
-cmd     | Command to be executed
-data    | Arguments for the command (not always needed)
-userid  | User's ID (not always needed)
-session | Current session (not always needed)
-
-Example request:
-
-	{
-		"cmd": "user.login",
-		"data ": {
-			"email": "test@example.com",
-			"key": "9R+Yzh3QjimItU80dN+SCNzkWqbM/4Aa9VrxtO5aui4="
-		}
-	}
-
-
-The response always contains the field *status*. Depending on the command, there are more fields.
-
-Example response:
-
-	{
-		"status": "success",
-		"session": "aJIeB8kH0tZdXXIGRt0FSEFGsRMPEJBMivfVe3V+bzI=",
-		"userid": "52c4077e774fe2bf30000001"
-	}
-
-
-Please note:
-
-* Responses are gzipped, even if gzip is not specified in Accept-Encoding. This is due to performance reasons.
-* All strings must be encoded in UTF-8
 
 
 
