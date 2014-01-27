@@ -22,7 +22,7 @@ data.email        | Email address, which also serves as username
 data.key          | Password hash (generated with PBKDF2, 1000 iterations, salted with email)
 data.passwordHint | Password hint
 
-The response contains following fields:
+The response contains the following fields:
 
 Field        | Description
 -------------|---------------------------
@@ -40,7 +40,7 @@ cmd          | "user.login"
 data.email   | Email address, which also serves as username
 data.key     | Password hash (generated with PBKDF2, 1000 iterations, salted with email)
 
-The response contains following fields:
+The response contains the following fields:
 
 Field        | Description
 -------------|---------------------------
@@ -85,7 +85,7 @@ data         | Single item or array of items. See "Item data structure".
 session      | Current session ID (returned from user.login)
 userid       | User's ID (returned from user.login)
 
-The response contains following fields:
+The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------------------------
@@ -114,7 +114,7 @@ data.id      | ID of the item to be removed
 session      | Current session ID (returned from user.login)
 userid       | User's ID (returned from user.login)
 
-The response contains following fields:
+The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------
@@ -132,7 +132,7 @@ cmd          | "item.get"
 session      | Current session ID (returned from user.login)
 userid       | User's ID (returned from user.login)
 
-The response contains following fields:
+The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------
