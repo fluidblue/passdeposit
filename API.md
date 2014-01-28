@@ -133,7 +133,7 @@ The response contains the following fields:
 Field        | Description
 -------------|-----------------------------------------------------------------
 status       | "success" or error code
-dateCreated  | Current session ID
+dateCreated  | Creation timestamp. Given as Javascript Date() compatible string.
 id           | ID of the new item. If multiple items were added, array of IDs.
 
 
