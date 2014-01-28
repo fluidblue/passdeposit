@@ -34,11 +34,37 @@ init = ->
 		if client != null
 			isReady = true
 
+			console.log "load"
+
 			client.on "complete", (client, args) ->
+				console.log "complete"
 				jGrowl.show text.get("copiedToClipboard")
+				return
 
 			client.on "dataRequested", (client, args) ->
+				console.log "dataRequested"
 				client.setText fnText(this)
+				return
+
+			# client.on "mouseover", (client) ->
+			# 	client.setText "text0"
+			# 	console.log "mouse over"
+			# 	return
+
+			# client.on "mouseout", (client) ->
+			# 	client.setText "text1"
+			# 	console.log "mouse out"
+			# 	return
+
+			# client.on "mousedown", (client) ->
+			# 	client.setText "text2"
+			# 	console.log "mouse down"
+			# 	return
+
+			# client.on "mouseup", (client) ->
+			# 	client.setText "text3"
+			# 	console.log "mouse up"
+			# 	return
 		else
 			isReady = false
 
@@ -46,17 +72,18 @@ init = ->
 		isReady = false
 		client.destroy()
 		client = null
+		throw new Error("Clipboard not working")
 
 	# Testing
 	$("#loginButton").on "mouseover", (e) ->
-		activate this, (elem) ->
-			$(elem).css "color", "red"
-			return "Test: " + (new Date()).toString()
+		$(this).css "color", "red"
+		text = (new Date()).toString()
 
-activate = (elem, fnText_) ->
-	fnText = fnText_
+		activate this, text
 
+activate = (elem, text) ->
 	if isReady
+		client.setText text
 		ZeroClipboard.activate(elem)
 	else
 		# TODO: Check performance of off,on
