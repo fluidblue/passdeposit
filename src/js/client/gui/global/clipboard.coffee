@@ -12,50 +12,64 @@ text = require "./text"
 # This fixes a bug in ZeroClipboard, where the load event never gets fired.
 window.ZeroClipboard = ZeroClipboard
 
+# Function that returns the text being copied to the clipboard
+fnText = null
+
+client = null
+isReady = false
+
 init = ->
+	# Set global ZeroClipboard configuration
 	ZeroClipboard.config
 		moviePath: "media/zeroclipboard.swf"
 		cacheBust: false
 		forceHandCursor: true
+		autoActivate: false
 		debug: true # Verbose mode
 
-	# Testing
-	bind $("#loginButton"), (elem) ->
-		$(elem).css "color", "red"
-		return "Test: " + (new Date()).toString()
+	# Create ZeroClipboard client
+	client = new ZeroClipboard()
 
-setText = (text) ->
-	# TODO: Remove
-	#console.log("Copy to clipboard: " + text)
+	client.on "load", (client) ->
+		if client != null
+			isReady = true
 
-	# Set text
-	#clip.setText text
-
-	# Show notification
-	#jGrowl.show text.get("copiedToClipboard")
-	jGrowl.show "Copy-to-clipboard is not yet implemented."
-
-bind = (jqElem, fnText) ->
-	if ZeroClipboard
-		client = new ZeroClipboard(jqElem)
-
-		client.on "load", (client) ->
 			client.on "complete", (client, args) ->
 				jGrowl.show text.get("copiedToClipboard")
 
 			client.on "dataRequested", (client, args) ->
 				client.setText fnText(this)
+		else
+			isReady = false
 
-		client.on "wrongflash noflash", ->
-			jGrowl.show text.get("copyToClipboardFailed")
-			client.destroy()
-			ZeroClipboard = null
+	client.on "wrongflash noflash", ->
+		isReady = false
+		client.destroy()
+		client = null
+
+	# Testing
+	$("#loginButton").on "mouseover", (e) ->
+		activate this, (elem) ->
+			$(elem).css "color", "red"
+			return "Test: " + (new Date()).toString()
+
+activate = (elem, fnText_) ->
+	fnText = fnText_
+
+	if isReady
+		ZeroClipboard.activate(elem)
 	else
-		jqElem.click (e) ->
+		# TODO: Check performance of off,on
+		elem.off "click.clipboard"
+		elem.on "click.clipboard", (e) ->
 			e.preventDefault()
 			jGrowl.show text.get("copyToClipboardFailed")
 			return
 
+deactivate = ->
+	if isReady
+		ZeroClipboard.deactivate()
+
 module.exports.init = init
-module.exports.bind = bind
-module.exports.setText = setText
+module.exports.activate = activate
+module.exports.deactivate = deactivate
