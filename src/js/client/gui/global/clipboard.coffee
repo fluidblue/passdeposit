@@ -8,6 +8,9 @@ Created by Max Geissler
 ZeroClipboard = require "zeroclipboard"
 global = require "."
 
+# This fixes a bug in ZeroClipboard, where the load event never gets fired.
+window.ZeroClipboard = ZeroClipboard
+
 init = ->
 	ZeroClipboard.config
 		moviePath: "media/zeroclipboard.swf"
