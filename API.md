@@ -62,7 +62,7 @@ Field             | Description
 ------------------|--------------------------------------------------------------------------
 cmd               | "user.create"
 data.email        | Email address, which also serves as username
-data.key          | Password hash (generated with PBKDF2, 1000 iterations, salted with email)
+data.key          | Password hash. Generated with PBKDF2 (1000 iterations, salted with email). This hash is hashed again on the server with PBKDF2 (300000 iterations, salted with random value).
 data.passwordHint | Password hint
 
 The response contains the following fields:
@@ -81,7 +81,7 @@ Field        | Description
 -------------|--------------------------------------------------------------------------
 cmd          | "user.login"
 data.email   | Email address, which also serves as username
-data.key     | Password hash (generated with PBKDF2, 1000 iterations, salted with email)
+data.key     | Password hash. See user.create
 
 The response contains the following fields:
 
