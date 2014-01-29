@@ -74,18 +74,19 @@ init = ->
 	# Testing
 	$("#loginButton").on "mouseover", (e) ->
 		$(this).css "color", "red"
-		text = (new Date()).toString()
 
-		activate this, text
+		activate this, (elem) ->
+			return (new Date()).toString()
 
-activate = (elem, text) ->
+activate = (elem, fnText_) ->
 	console.log "activate"
 
+	fnText = fnText_
+
 	if isReady
-		client.setText text
 		ZeroClipboard.activate(elem)
 	else
-		# TODO: Check performance of off,on
+		# Make sure, that only one event handler is bound to the click event.
 		elem = $(elem)
 		elem.off "click.clipboard"
 		elem.on "click.clipboard", (e) ->
