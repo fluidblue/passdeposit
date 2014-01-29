@@ -47,6 +47,14 @@ initButtons = (template) ->
 				$(elem).tooltip("hide")
 				return
 
+		# Prevent propagation to underlying .header
+		e.stopPropagation()
+		
+		return
+
+	# Fix for ZeroClipboard's mouseout not firing
+	template.find(".header").on "mouseover", (e) ->
+		global.clipboard.deactivate()
 		return
 
 setBtnVisible = (btn, visible) ->
