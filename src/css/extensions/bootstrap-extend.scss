@@ -110,3 +110,15 @@ input.hide
 
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe6e6e6', GradientType=0);
 }
+
+/* Artificial btn:hover */
+.btn-hover
+{
+	@extend .btn:hover;
+}
+
+/* Artificial btn:active */
+.btn-active
+{
+	@extend .btn:active;
+}

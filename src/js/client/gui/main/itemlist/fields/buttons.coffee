@@ -8,14 +8,45 @@ Created by Max Geissler
 format = require "../format"
 global = require "../../../global"
 
-initBtnCopy = ->
-	$(document).on "click", "#mainList .itemField .btnCopy", (e) ->
-		field = $(this).closest(".itemField")
-		input = field.find("input[type=text]:visible, input[type=password]:visible")
-		
-		# Copy text to clipboard
-		global.clipboard.setText input.val()
+initBtnCopy = (template) ->
+	btnCopy = template.find(".btnCopy")
 
+	# Initialize copy-to-clipboard on copy button
+	btnCopy.on "mouseover", (e) ->
+		global.clipboard.activate
+			element: this
+
+			dataRequested: (elem) ->
+				# Set data to be copied to clipboard
+				field = $(elem).closest(".itemField")
+				input = field.find("input[type=text]:visible, input[type=password]:visible")
+				return input.val()
+
+			mouseover: (elem) ->
+				$(elem).addClass("btn-hover")
+				return
+
+			mouseout: (elem) ->
+				$(elem).removeClass("btn-hover")
+				$(elem).removeClass("btn-active")
+				return
+
+			mousedown: (elem) ->
+				$(elem).addClass("btn-active")
+				return
+
+			mouseup: (elem) ->
+				$(elem).removeClass("btn-active")
+				return
+		
+		# Prevent propagation to underlying div
+		e.stopPropagation()
+		
+		return
+
+	# Fix for ZeroClipboard's mouseout not firing
+	template.on "mouseover", (e) ->
+		global.clipboard.deactivate()
 		return
 
 initBtnOpen = ->
@@ -81,8 +112,11 @@ initBtnToggleVisibility = ->
 		return
 
 init = ->
-	initBtnCopy()
 	initBtnOpen()
 	initBtnToggleVisibility()
 
+initTemplate = (template) ->
+	initBtnCopy(template)
+
 module.exports.init = init
+module.exports.initTemplate = initTemplate

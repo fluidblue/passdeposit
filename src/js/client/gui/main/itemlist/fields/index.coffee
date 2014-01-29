@@ -60,6 +60,9 @@ createTemplate = (field) ->
 	input = fieldTemplate.find("input[type=password], input[type=text]")
 	input.val(field.value)
 
+	# Initialize buttons
+	buttons.initTemplate(fieldTemplate)
+
 	# Return initialized template
 	return fieldTemplate
 
