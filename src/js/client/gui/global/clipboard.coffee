@@ -103,6 +103,10 @@ deactivate = ->
 	if isReady
 		ZeroClipboard.deactivate()
 
+		# Fire mouseout event
+		if options.mouseout?
+			options.mouseout(options.element)
+
 module.exports.init = init
 module.exports.activate = activate
 module.exports.deactivate = deactivate
