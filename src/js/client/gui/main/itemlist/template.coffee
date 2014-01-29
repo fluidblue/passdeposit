@@ -48,7 +48,6 @@ init = ->
 	fields.init()
 	actionbuttons.init()
 	menuaddfield.init()
-	quickbuttons.init()
 
 module.exports.create = create
 module.exports.init = init

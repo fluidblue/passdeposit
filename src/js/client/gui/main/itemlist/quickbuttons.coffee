@@ -9,28 +9,43 @@ format = require "./format"
 fields = require "./fields"
 global = require "../../global"
 
-initTooltips = (template) ->
+initButtons = (template) ->
 	buttonContainer = template.find(".header .buttons")
+	btnPass = buttonContainer.find(".btnPass")
+	btnOpen = buttonContainer.find(".btnOpen")
 
+	# Initialize tooltips
 	options =
 		placement: "top"
 		trigger: "hover focus"
 		animation: false
 
-	options.title = global.text.get("copyPass")
-	buttonContainer.find(".btnPass").tooltip options
-
 	options.title = global.text.get("openAddress")
-	buttonContainer.find(".btnOpen").tooltip options
+	btnOpen.tooltip options
 
-initBtnPass = ->
-	$(document).on "click", "#mainList .item .header a.btnPass", (e) ->
-		e.preventDefault()
+	options.title = global.text.get("copyPass")
+	options.trigger = "manual"
+	btnPass.tooltip options
 
-		value = $(this).data("pass")
-		
-		# Copy to clipboard
-		global.clipboard.setText value
+	# Initialize copy-to-clipboard on btnPass
+	btnPass.on "mouseover", (e) ->
+		global.clipboard.activate
+			element: this
+
+			dataRequested: (elem) ->
+				# Set data to clipboard
+				# TODO: Remove data on lock!
+				return $(elem).data("pass")
+
+			mouseover: (elem) ->
+				$(elem).addClass("active")
+				$(elem).tooltip("show")
+				return
+
+			mouseout: (elem) ->
+				$(elem).removeClass("active")
+				$(elem).tooltip("hide")
+				return
 
 		return
 
@@ -63,13 +78,5 @@ setButtons = (item, fieldList) ->
 	setBtnVisible(btnOpen, fieldUri? && fieldUri.value.length > 0)
 	setBtnVisible(btnPass, fieldPass? && fieldPass.value.length > 0)
 
-initTemplate = (template) ->
-	initTooltips(template)
-
-init = ->
-	# Add button event
-	initBtnPass()
-
-module.exports.initTemplate = initTemplate
-module.exports.init = init
+module.exports.initTemplate = initButtons
 module.exports.setButtons = setButtons

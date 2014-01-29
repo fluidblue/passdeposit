@@ -11,8 +11,8 @@ global = require "."
 # This fixes a bug in ZeroClipboard, where the load event never gets fired.
 window.ZeroClipboard = ZeroClipboard
 
-# Function that returns the text being copied to the clipboard
-fnText = null
+# Holds event handler for active element
+options = {}
 
 client = null
 isReady = false
@@ -29,36 +29,37 @@ init = ->
 	# Create ZeroClipboard client
 	client = new ZeroClipboard()
 
-	client.on "load", (client) ->
+	client.on "load", (client_) ->
 		if client != null
 			isReady = true
 
-			console.log "load"
-
 			client.on "complete", (client, args) ->
-				console.log "complete"
 				global.jGrowl.show global.text.get("copiedToClipboard")
 				return
 
 			client.on "dataRequested", (client, args) ->
-				console.log "dataRequested"
-				client.setText fnText(this)
+				client.setText options.dataRequested(this)
 				return
 
 			client.on "mouseover", (client) ->
-				console.log "mouse over"
+				if options.mouseover?
+					options.mouseover(this)
 				return
 
 			client.on "mouseout", (client) ->
-				console.log "mouse out"
+				if options.mouseout?
+					options.mouseout(this)
+				ZeroClipboard.deactivate()
 				return
 
 			client.on "mousedown", (client) ->
-				console.log "mouse down"
+				if options.mousedown?
+					options.mousedown(this)
 				return
 
 			client.on "mouseup", (client) ->
-				console.log "mouse up"
+				if options.mouseup?
+					options.mouseup(this)
 				return
 		else
 			isReady = false
@@ -71,28 +72,32 @@ init = ->
 		client = null
 		throw new Error("Clipboard not working")
 
-	# Testing
-	$("#loginButton").on "mouseover", (e) ->
-		$(this).css "color", "red"
-
-		activate this, (elem) ->
-			return (new Date()).toString()
-
-activate = (elem, fnText_) ->
-	console.log "activate"
-
-	fnText = fnText_
+activate = (options_) ->
+	options = options_
 
 	if isReady
-		ZeroClipboard.activate(elem)
+		ZeroClipboard.activate(options.element)
 	else
-		# Make sure, that only one event handler is bound to the click event.
-		elem = $(elem)
+		elem = $(options.element)
+
 		elem.off "click.clipboard"
 		elem.on "click.clipboard", (e) ->
 			e.preventDefault()
 			global.jGrowl.show global.text.get("copyToClipboardFailed")
 			return
+
+		bind = (eventName) ->
+			eventName += ".clipboard"
+			elem.off eventName
+			if options[eventName]?
+				elem.on eventName, (e) ->
+					options[eventName](this)
+					return
+
+		bind "mouseover"
+		bind "mouseout"
+		bind "mousedown"
+		bind "mouseup"
 
 deactivate = ->
 	if isReady
