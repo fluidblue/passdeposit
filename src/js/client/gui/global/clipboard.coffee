@@ -6,8 +6,7 @@ Created by Max Geissler
 ###
 
 ZeroClipboard = require "zeroclipboard"
-jGrowl = require "./jGrowl"
-text = require "./text"
+global = require "."
 
 # This fixes a bug in ZeroClipboard, where the load event never gets fired.
 window.ZeroClipboard = ZeroClipboard
@@ -38,7 +37,7 @@ init = ->
 
 			client.on "complete", (client, args) ->
 				console.log "complete"
-				jGrowl.show text.get("copiedToClipboard")
+				global.jGrowl.show global.text.get("copiedToClipboard")
 				return
 
 			client.on "dataRequested", (client, args) ->
@@ -46,27 +45,25 @@ init = ->
 				client.setText fnText(this)
 				return
 
-			# client.on "mouseover", (client) ->
-			# 	client.setText "text0"
-			# 	console.log "mouse over"
-			# 	return
+			client.on "mouseover", (client) ->
+				console.log "mouse over"
+				return
 
-			# client.on "mouseout", (client) ->
-			# 	client.setText "text1"
-			# 	console.log "mouse out"
-			# 	return
+			client.on "mouseout", (client) ->
+				console.log "mouse out"
+				return
 
-			# client.on "mousedown", (client) ->
-			# 	client.setText "text2"
-			# 	console.log "mouse down"
-			# 	return
+			client.on "mousedown", (client) ->
+				console.log "mouse down"
+				return
 
-			# client.on "mouseup", (client) ->
-			# 	client.setText "text3"
-			# 	console.log "mouse up"
-			# 	return
+			client.on "mouseup", (client) ->
+				console.log "mouse up"
+				return
 		else
 			isReady = false
+
+		return
 
 	client.on "wrongflash noflash", ->
 		isReady = false
@@ -82,15 +79,18 @@ init = ->
 		activate this, text
 
 activate = (elem, text) ->
+	console.log "activate"
+
 	if isReady
 		client.setText text
 		ZeroClipboard.activate(elem)
 	else
 		# TODO: Check performance of off,on
+		elem = $(elem)
 		elem.off "click.clipboard"
 		elem.on "click.clipboard", (e) ->
 			e.preventDefault()
-			jGrowl.show text.get("copyToClipboardFailed")
+			global.jGrowl.show global.text.get("copyToClipboardFailed")
 			return
 
 deactivate = ->
