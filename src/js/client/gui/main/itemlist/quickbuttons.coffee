@@ -17,7 +17,7 @@ initButtons = (template) ->
 	# Initialize tooltips
 	options =
 		placement: "top"
-		trigger: "hover focus"
+		trigger: "hover"
 		animation: false
 
 	options.title = global.text.get("openAddress")
