@@ -115,7 +115,21 @@ This prevents enumerating registered email addresses.
 
 Completely reset an existent user account. This will delete all data associated with the user.
 
-TODO: Description.
+Field             | Description
+------------------|---------------------------------------------------------------------
+cmd               | "user.reset"
+data.resetKey     | The reset key is given in the email that is sent to the user when calling `user.sendPasswordHint`. The reset key is only valid for 24 hours.
+data.email        | Email address of the user. This must be the email address the user registered with.
+data.passwordKey  | Password hash of new password. See `data.key` in `user.create`.
+data.passwordHint | New password hint. See `user.create`.
+
+The response contains the following fields:
+
+Field        | Description
+-------------|---------------------------
+status       | "success" or error code
+
+Please note: Before `user.reset` can be called, `user.sendPasswordHint` must be called to generate a reset key.
 
 
 
