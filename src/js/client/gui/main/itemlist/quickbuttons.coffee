@@ -33,7 +33,7 @@ initButtons = (template) ->
 			element: this
 
 			dataRequested: (elem) ->
-				# Set data to clipboard
+				# Set data to be copied to clipboard
 				# TODO: Remove data on lock!
 				return $(elem).data("pass")
 
