@@ -121,7 +121,7 @@ cmd               | "user.reset"
 data.resetKey     | The reset key is given in the email that is sent to the user when calling `user.sendPasswordHint`. The reset key is only valid for 24 hours.
 data.email        | Email address of the user. This must be the email address the user registered with.
 data.passwordKey  | Password hash of new password. See `data.key` in `user.create`.
-data.passwordHint | New password hint. See `user.create`.
+data.passwordHint | New password hint.
 
 The response contains the following fields:
 
@@ -144,8 +144,8 @@ data.email         | New email address, which also serves as username
 data.key           | Password hash of new password. See `data.key` in `user.create`.
 data.passwordHint  | New password hint.
 data.items         | Array of all user's items or *null* if the user doesn't have items. The items must be encrypted with the new password. Also see "Item data structure".
-session            | Current session ID (returned from user.login)
-userid             | User's ID (returned from user.login)
+session            | Current session ID (returned from `user.login`)
+userid             | User's ID (returned from `user.login`)
 
 You may only specify some of the data parameters. Valid combinations are:
 
@@ -169,8 +169,8 @@ Field        | Description
 -------------|-----------------------------------------------------------------
 cmd          | "item.add"
 data         | Single item or array of items. See "Item data structure".
-session      | Current session ID (returned from user.login)
-userid       | User's ID (returned from user.login)
+session      | Current session ID (returned from `user.login`)
+userid       | User's ID (returned from `user.login`)
 
 The response contains the following fields:
 
@@ -190,8 +190,8 @@ Field        | Description
 -------------|-----------------------------------------------------------------
 cmd          | "item.modify"
 data         | Single item or array of items. See "Item data structure".
-session      | Current session ID (returned from user.login)
-userid       | User's ID (returned from user.login)
+session      | Current session ID (returned from `user.login`)
+userid       | User's ID (returned from `user.login`)
 
 The response contains the following fields:
 
@@ -210,8 +210,8 @@ Field        | Description
 -------------|-----------------------------------------------
 cmd          | "item.remove"
 data.id      | ID of the item to be removed
-session      | Current session ID (returned from user.login)
-userid       | User's ID (returned from user.login)
+session      | Current session ID (returned from `user.login`)
+userid       | User's ID (returned from `user.login`)
 
 The response contains the following fields:
 
@@ -228,8 +228,8 @@ Return all items from server.
 Field        | Description
 -------------|-----------------------------------------------
 cmd          | "item.get"
-session      | Current session ID (returned from user.login)
-userid       | User's ID (returned from user.login)
+session      | Current session ID (returned from `user.login`)
+userid       | User's ID (returned from `user.login`)
 
 The response contains the following fields:
 
