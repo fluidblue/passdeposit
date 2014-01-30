@@ -87,10 +87,10 @@ activate = (options_) ->
 			return
 
 		bind = (eventName) ->
-			eventName += ".clipboard"
-			elem.off eventName
+			nsEvent = eventName + ".clipboard"
+			elem.off nsEvent
 			if options[eventName]?
-				elem.on eventName, (e) ->
+				elem.on nsEvent, (e) ->
 					options[eventName](this)
 					return
 

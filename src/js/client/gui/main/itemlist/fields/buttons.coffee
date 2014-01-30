@@ -29,6 +29,7 @@ initBtnCopy = (template) ->
 			mouseout: (elem) ->
 				$(elem).removeClass("btn-hover")
 				$(elem).removeClass("btn-active")
+				$(elem).blur()
 				return
 
 			mousedown: (elem) ->
