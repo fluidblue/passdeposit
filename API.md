@@ -5,8 +5,6 @@ You can use it to develop browser plugins, tools or even new clients for PassDep
 
 This document describes the API and how to use it.
 
-**Warning: The API described in this document is not compatible with v0.2.0 (current release). This document describes the API used in the development version.**
-
 
 
 ## How to use
