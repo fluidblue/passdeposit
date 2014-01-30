@@ -137,7 +137,27 @@ Please note: Before `user.reset` can be called, `user.sendPasswordHint` must be 
 
 Update the email address and/or the password for an existent user account.
 
-TODO: Description.
+Field              | Description
+-------------------|-----------------------------------------------------------------
+cmd                | "user.update"
+data.email         | New email address, which also serves as username
+data.key           | Password hash of new password. See `data.key` in `user.create`.
+data.passwordHint  | New password hint.
+data.items         | Array of all user's items or *null* if the user doesn't have items. The items must be encrypted with the new password. Also see "Item data structure".
+session            | Current session ID (returned from user.login)
+userid             | User's ID (returned from user.login)
+
+You may only specify some of the data parameters. Valid combinations are:
+
+* Change email address only: email, key
+* Change password only: key, passwordHint, items
+* Change email and password: email, key, passwordHint, items
+
+The response contains the following fields:
+
+Field        | Description
+-------------|-----------------------------------------------------------------
+status       | "success" or error code
 
 
 
