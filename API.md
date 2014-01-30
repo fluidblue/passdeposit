@@ -66,8 +66,8 @@ data.passwordHint | Password hint
 The response contains the following fields:
 
 Field        | Description
--------------|---------------------------
-status       | "success" or error code
+-------------|-----------------------------------
+status       | See [Status codes](#status-codes)
 
 
 
@@ -85,7 +85,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|---------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 session      | Current session ID
 userid       | User's ID
 
@@ -104,7 +104,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|---------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 
 Please note: Even if the email address is not found in the database, "success" may be returned.
 This prevents enumerating registered email addresses.
@@ -127,7 +127,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|---------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 
 Please note: Before `user.reset` can be called, `user.sendPasswordHint` must be called to generate a reset key.
 
@@ -143,7 +143,7 @@ cmd                | "user.update"
 data.email         | New email address, which also serves as username
 data.key           | Password hash of new password. See `data.key` in `user.create`.
 data.passwordHint  | New password hint.
-data.items         | Array of all user's items or *null* if the user doesn't have items. The items must be encrypted with the new password. Also see "Item data structure".
+data.items         | Array of all user's items or *null* if the user doesn't have items. The items must be encrypted with the new password. Also see [Item data structure](#item-data-structure).
 session            | Current session ID (returned from `user.login`)
 userid             | User's ID (returned from `user.login`)
 
@@ -157,7 +157,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 
 
 
@@ -168,7 +168,7 @@ Add a new item.
 Field        | Description
 -------------|-----------------------------------------------------------------
 cmd          | "item.add"
-data         | Single item or array of items. See "Item data structure".
+data         | Single item or array of items. See [Item data structure](#item-data-structure).
 session      | Current session ID (returned from `user.login`)
 userid       | User's ID (returned from `user.login`)
 
@@ -176,7 +176,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 dateCreated  | Creation timestamp. Given as Javascript Date() compatible string.
 id           | ID of the new item. If multiple items were added, array of IDs.
 
@@ -189,7 +189,7 @@ Modify an existing item.
 Field        | Description
 -------------|-----------------------------------------------------------------
 cmd          | "item.modify"
-data         | Single item or array of items. See "Item data structure".
+data         | Single item or array of items. See [Item data structure](#item-data-structure).
 session      | Current session ID (returned from `user.login`)
 userid       | User's ID (returned from `user.login`)
 
@@ -197,7 +197,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 dateModified | Modification timestamp. Given as Javascript Date() compatible string. You can update your items' dateModified values with this value.
 
 
@@ -217,7 +217,7 @@ The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------
-status       | "success" or error code
+status       | See [Status codes](#status-codes)
 
 
 
@@ -235,8 +235,8 @@ The response contains the following fields:
 
 Field        | Description
 -------------|-----------------------------------------------
-status       | "success" or error code
-items        | Array of items. See "Item data structure".
+status       | See [Status codes](#status-codes)
+items        | Array of items. See [Item data structure](#item-data-structure).
 
 
 
