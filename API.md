@@ -95,7 +95,19 @@ userid       | User's ID
 
 Send the user's password hint to the registered email address.
 
-TODO: Description.
+Field        | Description
+-------------|--------------------------------------------------------------------------
+cmd          | "user.sendPasswordHint"
+data         | Email address
+
+The response contains the following fields:
+
+Field        | Description
+-------------|---------------------------
+status       | "success" or error code
+
+Please note: Even if the email address is not found in the database, "success" may be returned.
+This prevents enumerating registered email addresses.
 
 
 
