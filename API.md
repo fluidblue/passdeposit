@@ -140,7 +140,19 @@ id           | ID of the new item. If multiple items were added, array of IDs.
 
 Modify an existing item.
 
-TODO: Description.
+Field        | Description
+-------------|-----------------------------------------------------------------
+cmd          | "item.modify"
+data         | Single item or array of items. See "Item data structure".
+session      | Current session ID (returned from user.login)
+userid       | User's ID (returned from user.login)
+
+The response contains the following fields:
+
+Field        | Description
+-------------|-----------------------------------------------------------------
+status       | "success" or error code
+dateModified | Modification timestamp. Given as Javascript Date() compatible string. You can update your items' dateModified values with this value.
 
 
 
