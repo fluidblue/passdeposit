@@ -79,7 +79,7 @@ Field        | Description
 -------------|--------------------------------------------------------------------------
 cmd          | "user.login"
 data.email   | Email address, which also serves as username
-data.key     | Password hash. See user.create
+data.key     | Password hash. See `user.create`
 
 The response contains the following fields:
 
