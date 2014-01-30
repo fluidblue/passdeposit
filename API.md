@@ -240,6 +240,24 @@ items        | Array of items. See "Item data structure".
 
 
 
+## Status codes
+
+All API functions return a status code:
+
+Status         | Description
+---------------|-----------------------------------------------
+success        | Everything is OK.
+invalidcommand | Unknown command.
+input:failed   | Some of the input data is invalid. Example: Invalid email address.
+auth:failed    | User authentication failed. Example: Username or password incorrect.
+db:failed      | Database error.
+db:duplicate   | Duplicate data in database. Example: Already registered email address.
+crypt:failed   | Cryptographic function could not be executed (e.g. not enough entropy).
+time:failed    | Some of the input data is not valid anymore. Example: Reset key for `user.reset` expired.
+mail:failed    | The mail service is not working. The server cannot send mails.
+
+
+
 ## Item data structure
 
 Items are encrypted. The encryption used for *fields* and *tags* is specified in *encryption*.
