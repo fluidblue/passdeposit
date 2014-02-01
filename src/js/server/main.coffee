@@ -13,14 +13,18 @@ log = require "./log"
 # Time (ms) to wait before restarting crashed worker
 restartWait = 2000
 
-terminate = ->
-	# Kill all other workers
-	for id of cluster.workers
-		cluster.workers[id].kill()
+# Server state
+terminating = false
 
-	# Exit the master process
+terminate = ->
+	if terminating
+		return
+
+	terminating = true
 	log.info "Shutting down..."
-	process.exit 0
+
+	# The master process will exit,
+	# after all workers have exited.
 
 init = ->
 	# Create as many instances as CPUs are present
@@ -29,21 +33,26 @@ init = ->
 		cluster.fork()
 
 	cluster.on "exit", (worker, code, signal) ->
-		exitCode = worker.process.exitCode
-		
-		if exitCode == 0
-			terminate()
-		else
-			# Log error
-			pid = worker.process.pid
-			log.error "Worker " + pid + " died (" + exitCode + "). " +
-			"Restarting worker in " + Math.round(restartWait / 1000) + " seconds..."
+		if !terminating
+			exitCode = worker.process.exitCode
 
-			# Wait short time before restarting worker
-			setTimeout ->
-				# Restart worker
-				cluster.fork()
-			, restartWait
+			if exitCode == 0
+				terminate()
+			else
+				# Log error
+				pid = worker.process.pid
+				log.error "Worker " + pid + " died (" + exitCode + "). " +
+				"Restarting worker in " + Math.round(restartWait / 1000) + " seconds..."
+
+				# Wait short time before restarting worker
+				setTimeout ->
+					# Restart worker
+					cluster.fork()
+				, restartWait
+
+	# Set termination handlers
+	process.on "SIGINT", terminate
+	process.on "SIGTERM", terminate
 
 	log.info "PassDeposit is running at https://localhost:" + config.get().port
 

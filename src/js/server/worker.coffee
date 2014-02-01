@@ -16,6 +16,15 @@ config = require "./config"
 reResetURL = /\/reset-.+-([a-f]|[0-9])+$/
 files = null
 
+# HTTPS server
+server = null
+
+# Worker state
+terminating = false
+
+# Time (ms) to wait before killing worker
+killWait = 2000
+
 # Define HTTPS handler
 httpsHandler = (req, res) ->
 	# Get client ID
@@ -94,11 +103,38 @@ getHttpsOptions = ->
 
 	return options
 
+terminate = ->
+	if terminating
+		return
+
+	terminating = true
+
+	if server != null
+		# Do not accept new connections.
+		server.close ->
+			# Exit when all connections are closed.
+			process.exit 0
+
+		# Wait short time before killing the worker.
+		# This will allow ongoing requests to be finished.
+		setTimeout ->
+			process.exit 0
+		, killWait
+	else
+		process.exit 0
+
 init = ->
+	# Set termination handlers
+	process.on "SIGINT", terminate
+	process.on "SIGTERM", terminate
+
 	# Connect to database
 	database.init ->
 		# Load static files
 		staticFiles.load (staticFiles) ->
+			if terminating
+				return
+
 			files = staticFiles
 
 			# Create HTTPS server
