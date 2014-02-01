@@ -20,8 +20,9 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 
 	item.find(".itemField").each ->
 		input = $(this).find("input[type=text]:visible, input[type=password]:visible")
+		value = input.val()
 
-		if input.val().length == 0
+		if value.length == 0 || value == "http://" || value == "https://"
 			global.form.setInputInvalid(input)
 			invalidFields++
 
