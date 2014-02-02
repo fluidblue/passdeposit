@@ -73,7 +73,40 @@ You need a certificate for PassDeposit. You can generate a self-signed certifica
 	openssl genrsa -out privatekey.pem 4096
 	openssl req -new -key privatekey.pem -out certrequest.csr
 	openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
-  
+
+
+## System service
+
+You can install passdeposit as a system service. This will allow you to control PassDeposit with:
+
+	service passdeposit start|stop|restart|status
+
+To install PassDeposit as an upstart system service, first perform an [npm installation](#installation).
+Then create the file /etc/init/passdeposit.conf:
+
+	# PassDeposit Service
+	description "PassDeposit Server"
+	author      "Max Geissler"
+
+	# Start after mongodb has started.
+	start on started mongodb
+
+	# Stop server. Wait until server has stopped, before continuing system shutdown.
+	stop on starting rc RUNLEVEL=[016]
+
+	# Restart the process if it dies with a signal or exit code not given by the 'normal exit' stanza.
+	respawn
+
+	# Give up if restart occurs 10 times in 90 seconds.
+	respawn limit 10 90
+
+	# Wait 100s between SIGTERM and SIGKILL.
+	kill timeout 100
+
+	# Use exec to replace the current process instead of spawning a child process.
+	# Use start-stop-daemon to automatically handle PID file.
+	exec start-stop-daemon --start --make-pidfile --pidfile /var/run/passdeposit.pid --exec /usr/bin/passdeposit -- --config /etc/passdeposit/config.json >> /var/log/passdeposit.log 2>&1
+
 
 ## Development installation
 
