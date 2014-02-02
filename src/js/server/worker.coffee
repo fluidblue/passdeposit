@@ -28,9 +28,15 @@ killWait = 2000
 # Define HTTPS handler
 httpsHandler = (req, res) ->
 	if terminating
-		# Cancel request:
-		# We do not call res.end(), so the client stays
-		# in "pending" state, until the connection is closed.
+		# HTTP Headers
+		headers =
+			"Connection": "close"
+			"Retry-After": Math.ceil(killWait / 1000) + 2
+
+		# Send 503 Service Unavailable
+		res.writeHead 503, headers
+		res.end()
+
 		return
 	
 	# Get client ID
