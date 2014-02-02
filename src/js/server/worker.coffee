@@ -27,6 +27,12 @@ killWait = 2000
 
 # Define HTTPS handler
 httpsHandler = (req, res) ->
+	if terminating
+		# Cancel request:
+		# We do not call res.end(), so the client stays
+		# in "pending" state, until the connection is closed.
+		return
+	
 	# Get client ID
 	clientID = req.connection.remoteAddress + ":" + req.connection.remotePort
 
