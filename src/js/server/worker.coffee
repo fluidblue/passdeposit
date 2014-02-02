@@ -32,6 +32,7 @@ httpsHandler = (req, res) ->
 		headers =
 			"Connection": "close"
 			"Retry-After": Math.ceil(killWait / 1000) + 2
+			"Content-Length": 0
 
 		# Send 503 Service Unavailable
 		res.writeHead 503, headers
