@@ -31,9 +31,20 @@ search = (value) ->
 		# Clear itemlist
 		itemlist.clear(false)
 
-initAdvancedSearch = ->
-	# Init search field popover
+showAdvancedSearch = (show) ->
+	searchBar = $(".searchBar")
+	searchField = searchBar.children(".searchField")
+	searchAdvancedButton = searchBar.children(".btn")
+	searchAdvancedButtonLabel = searchAdvancedButton.children("span")
 
+	if show
+		searchField.popover "show"
+		searchAdvancedButtonLabel.addClass("caretUp")
+	else
+		searchField.popover "hide"
+		searchAdvancedButtonLabel.removeClass("caretUp")
+
+initAdvancedSearch = ->
 	options =
 		trigger: "manual"
 		placement: "bottom"
@@ -49,12 +60,7 @@ initAdvancedSearch = ->
 	searchField.popover options
 
 	searchAdvancedButton.click ->
-		if searchAdvancedButtonLabel.hasClass("caretUp")
-			searchField.popover "hide"
-			searchAdvancedButtonLabel.removeClass("caretUp")
-		else
-			searchField.popover "show"
-			searchAdvancedButtonLabel.addClass("caretUp")
+		showAdvancedSearch(!searchAdvancedButtonLabel.hasClass("caretUp"))
 		return
 
 	$(document).on "click", ".searchBarContainer a[href=#all]", (e) ->
@@ -116,6 +122,9 @@ reset = ->
 	# Reset search field
 	$("#search").val ""
 	searchValue = ""
+
+	# Close advanced options
+	showAdvancedSearch(false)
 
 refresh = ->
 	search(searchValue)
