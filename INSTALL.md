@@ -81,7 +81,7 @@ You can install passdeposit as a system service. This will allow you to control 
 
 	service passdeposit start|stop|restart|status
 
-To install PassDeposit as an upstart system service, first perform an [npm installation](#installation).
+To install PassDeposit as an [Upstart](http://en.wikipedia.org/wiki/Upstart) system service, first perform an [npm installation](#installation).
 Then create the file /etc/init/passdeposit.conf:
 
 	# PassDeposit Service
