@@ -70,6 +70,7 @@ modify = (item, callback) ->
 			callback: (response) ->
 				if response.status == "success"
 					# Set date
+					item.dateCreated = itemcache.get(item.id).dateCreated
 					item.dateModified = response.dateModified
 
 					# Update item cache
