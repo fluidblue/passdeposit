@@ -42,6 +42,9 @@ webAddress = (addr) ->
 	if addr.charAt(addr.length - 1) == "/"
 		addr = addr.substring(0, addr.length - 1)
 
+	if addr.indexOf("www.") == 0 && addr.length > 4
+		addr = addr.substring(4)
+
 	return addr
 
 title = (fields) ->
