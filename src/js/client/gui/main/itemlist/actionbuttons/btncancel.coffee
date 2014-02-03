@@ -17,7 +17,8 @@ init = ->
 		if id == null
 			itemlist.remove(item)
 		else
-			itemlist.replace item, core.items.get(id)
+			itemlist.replace item, core.items.get(id),
+				open: item.hasClass("open")
 
 		return
 

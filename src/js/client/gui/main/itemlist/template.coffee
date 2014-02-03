@@ -36,6 +36,10 @@ create = (item, open) ->
 	quickbuttons.initTemplate(template)
 	actionbuttons.initTemplate(template)
 
+	if !item.id?
+		template.find(".content .btnCancel .cancel").show()
+		template.find(".content .btnCancel .reset").hide()
+
 	# Open item
 	if open then template.addClass("open")
 
