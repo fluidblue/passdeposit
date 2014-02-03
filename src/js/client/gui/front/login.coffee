@@ -8,7 +8,7 @@ Created by Max Geissler
 username = require "./username"
 global = require "../global"
 core = require "../../core"
-landingpage = require "../main/landingpage"
+panel = require "../main/panel"
 
 setLoginButtonDisabled = (disabled) ->
 	$("#loginButton").attr("disabled", disabled)
@@ -38,8 +38,8 @@ load = ->
 			# Focus search field
 			$("#search").focus()
 
-			# Show landinpage
-			landingpage.show(true)
+			# Show panel
+			panel.show(true)
 
 			return true
 

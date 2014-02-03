@@ -39,7 +39,7 @@ stopWiggle = ->
 	clearTimeout timer
 	timer = null
 
-show = (firstShow) ->
+show = (firstShow = false) ->
 	$("#landingPage").show()
 
 	# Start wiggling, if not yet started

@@ -9,7 +9,7 @@ toggleview = require "./toggleview"
 itemid = require "./itemid"
 pagination = require "./pagination"
 template = require "./template"
-landingpage = require "../landingpage"
+panel = require "../panel"
 
 # Store items, which are currently not shown in GUI.
 # These items are either before or after the current page.
@@ -17,8 +17,6 @@ landingpage = require "../landingpage"
 itemsBefore = []
 itemsAfter = []
 itemsPerPage = 10
-
-itemListVisible = false
 
 defaultAddOptions =
 	open: false
@@ -183,20 +181,16 @@ show = (visible) ->
 		currentPage = itemsBefore.length / itemsPerPage
 		pagination.set currentPage, numPages()
 
-	if visible != itemListVisible
-		itemListVisible = visible
+		# Show mainList
+		panel.hide()
+		$("#mainList").show()
+	else
+		# Show landing page
+		$("#mainList").hide()
+		panel.show()
 
-		if visible
-			# Show mainList
-			landingpage.hide()
-			$("#mainList").show()
-		else
-			# Show landing page
-			$("#mainList").hide()
-			landingpage.show()
-
-			# Hide pagination
-			pagination.hide()
+		# Hide pagination
+		pagination.hide()
 
 paginationCallback = (page) ->
 	itemsBeforeLength = page * itemsPerPage

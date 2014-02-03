@@ -10,7 +10,7 @@ itemlist = require "./itemlist"
 search = require "./search"
 core = require "../../core"
 options = require "./options"
-landingpage = require "./landingpage"
+panel = require "./panel"
 
 setLogoutButtonDisabled = (disabled) ->
 	$("#btnLogout").attr("disabled", disabled)
@@ -35,8 +35,8 @@ logout = ->
 		# Enable logout button
 		setLogoutButtonDisabled(false)
 
-		# Hide landingpage
-		landingpage.hide()
+		# Hide panel
+		panel.hide()
 
 		return true
 	, ->

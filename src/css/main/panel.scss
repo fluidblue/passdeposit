@@ -4,7 +4,7 @@
  * Created by Max Geissler
  */
 
-#landingPage
+#landingPage, #noresults
 {
 	padding: 30px;
 	text-align: center;
@@ -18,6 +18,11 @@
 	.info
 	{
 		margin-top: 20px;
+	}
+
+	.noresults
+	{
+		color: #b94a48;
 	}
 
 	.donate
