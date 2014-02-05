@@ -3,7 +3,7 @@
 	"name": "passdeposit",
 	"description": "PassDeposit is a simple and secure online password manager.",
 	"homepage": "http://www.passdeposit.com",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"preferGlobal": true,
 
 	"repository": {
