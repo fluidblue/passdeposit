@@ -2,7 +2,7 @@
 	"author": "Max Geissler",
 	"name": "passdeposit-dev",
 	"description": "PassDeposit development package. Runtime package: passdeposit",
-	"homepage": "http://www.passdeposit.com",
+	"homepage": "https://www.passdeposit.com",
 
 	"dependencies": {
 		"optimist": "0.6.x",
