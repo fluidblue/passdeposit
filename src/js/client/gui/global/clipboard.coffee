@@ -9,7 +9,7 @@ ZeroClipboard = require "zeroclipboard"
 global = require "."
 
 # This fixes a bug in ZeroClipboard, where the load event never gets fired.
-window.ZeroClipboard = ZeroClipboard
+window.require = require
 
 # Holds event handler for active element
 options = {}
