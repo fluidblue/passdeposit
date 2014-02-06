@@ -62,6 +62,10 @@ save = (item, tagList, fieldList, showSuccessNotification = true) ->
 		# Update gui
 		info.set(item, itemDecrypted)
 
+		# Change cancel button to reset button
+		item.find(".content .btnCancel .cancel").hide()
+		item.find(".content .btnCancel .reset").show()
+
 		# Show notification
 		if showSuccessNotification
 			global.jGrowl.show global.text.get("itemSaveSucceeded")
