@@ -13,8 +13,7 @@ init = ->
 	# Preload all images which are not loaded
 	# when visiting the front page
 	images = [
-		"media/social.png",
-		"media/glyphicons-halflings-white.png"
+		"media/social.png"
 	]
 
 	for img in images
