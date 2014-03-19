@@ -83,3 +83,9 @@ input.hide
 {
 	@extend .btn:active;
 }
+
+/* Fixes icon width for font-awesome */
+[class^="icon-"]:before, [class*=" icon-"]:before
+{
+	width: 12px;
+}
