@@ -41,69 +41,38 @@
 			width: 32px;
 			height: 32px;
 
-			background-image: url('../media/social.png');
-		}
+			text-decoration: none;
+			color: rgb(120, 120, 120);
 
-		.facebook
-		{
-			background-position: -192px 0px;
-			&:hover
+			[class^="icon-"]:before, [class*=" icon-"]:before
 			{
-				background-position: -192px -32px;
+				width: 32px;
+				margin-top: 2px;
 			}
-		}
 
-		.googleplus
-		{
-			background-position: -160px 0px;
-			&:hover
+			&.facebook:hover
 			{
-				background-position: -160px -32px;
+				color: rgb(59, 89, 152);
 			}
-		}
 
-		.twitter
-		{
-			background-position: 0px 0px;
-			&:hover
+			&.googleplus:hover
 			{
-				background-position: 0px -32px;
+				color: rgb(218, 80, 59);
 			}
-		}
 
-		.linkedin
-		{
-			background-position: -128px 0px;
-			&:hover
+			&.twitter:hover
 			{
-				background-position: -128px -32px;
+				color: rgb(44, 170, 225);
 			}
-		}
 
-		.pinterest
-		{
-			background-position: -96px 0px;
-			&:hover
+			&.pinterest:hover
 			{
-				background-position: -96px -32px;
+				color: rgb(201, 34, 40);
 			}
-		}
 
-		.reddit
-		{
-			background-position: -64px 0px;
-			&:hover
+			&.tumblr:hover
 			{
-				background-position: -64px -32px;
-			}
-		}
-
-		.tumblr
-		{
-			background-position: -32px 0px;
-			&:hover
-			{
-				background-position: -32px -32px;
+				color: rgb(50, 80, 109);
 			}
 		}
 	}
