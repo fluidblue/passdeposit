@@ -39,11 +39,13 @@ initButtons = (template) ->
 
 			mouseover: (elem) ->
 				$(elem).addClass("active")
+				$(elem).closest(".item").addClass("active")
 				$(elem).tooltip("show")
 				return
 
 			mouseout: (elem) ->
 				$(elem).removeClass("active")
+				$(elem).closest(".item").removeClass("active")
 				$(elem).tooltip("hide")
 				return
 

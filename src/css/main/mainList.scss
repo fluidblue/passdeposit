@@ -189,7 +189,7 @@
 		}
 
 		/* Hover header styling */
-		&:not(.open):hover
+		&:not(.open):hover, &.active
 		{
 			background-color: $itemBackgroundColorActive;
 			
