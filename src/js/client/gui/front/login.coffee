@@ -9,6 +9,7 @@ username = require "./username"
 global = require "../global"
 core = require "../../core"
 panel = require "../main/panel"
+logout = require "../main/logout"
 
 setLoginButtonDisabled = (disabled) ->
 	$("#loginButton").attr("disabled", disabled)
@@ -40,6 +41,14 @@ load = ->
 
 			# Show panel
 			panel.show(true)
+
+			# Start inactivity timer
+			timeout = 10
+			global.inactivity.start timeout, ->
+				if core.user.isLoggedIn()
+					logout.logout()
+					global.jGrowl.show global.text.get("inactivity", timeout),
+						sticky: true
 
 			return true
 

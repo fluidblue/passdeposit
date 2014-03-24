@@ -11,6 +11,7 @@ jGrowl = require "./jGrowl"
 navPills = require "./navPills"
 pageChange = require "./pageChange"
 clipboard = require "./clipboard"
+inactivity = require "./inactivity"
 
 init = ->
 	navPills.init()
@@ -23,4 +24,5 @@ module.exports.jGrowl = jGrowl
 module.exports.navPills = navPills
 module.exports.pageChange = pageChange
 module.exports.clipboard = clipboard
+module.exports.inactivity = inactivity
 module.exports.init = init

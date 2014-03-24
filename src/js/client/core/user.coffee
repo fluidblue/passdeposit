@@ -126,6 +126,9 @@ logout = ->
 	# Clear all items
 	items.clear()
 
+isLoggedIn = ->
+	return credentials.session?
+
 getEmail = ->
 	if !credentials.email?
 		throw "Error: User is not logged in"
@@ -157,6 +160,7 @@ module.exports.reset = reset
 module.exports.login = login
 module.exports.sendPasswordHint = sendPasswordHint
 module.exports.logout = logout
+module.exports.isLoggedIn = isLoggedIn
 module.exports.getEmail = getEmail
 module.exports.getID = getID
 module.exports.getSession = getSession
