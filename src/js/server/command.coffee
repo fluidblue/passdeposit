@@ -14,12 +14,11 @@ process = (clientID, params, callback) ->
 		log.info clientID + " executes " + params.cmd
 
 	authenticate = (callback2) ->
-		user.authenticate params.userid, params.session, (authenticated) ->
-			if authenticated
+		user.authenticate params.userid, params.session, (result) ->
+			if result.status == "success"
 				callback2()
 			else
-				callback
-					status: "auth:failed"
+				callback(result)
 
 	switch params.cmd
 		when "user.create"

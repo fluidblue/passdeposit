@@ -214,13 +214,36 @@ authenticate = (userid, session, callback) ->
 		callback(false)
 		return
 
-	conditions =
-		_id: userid
-		session: session
+	database.getModel("user").findById userid, (err, doc) ->
+		if err
+			callback
+				status: "db:failed"
 
-	database.getModel("user").count conditions, (err, count) ->
-		authenticated = !err && count == 1
-		callback(authenticated)
+			return
+
+		timestamp = new Date()
+
+		if !doc? || doc.session != session || (timestamp.getTime() - doc.lastActive.getTime()) > 15 * 60 * 1000
+			callback
+				status: "auth:failed"
+
+			return
+
+		# Update lastActive timestamp
+		database.getModel("user").update
+			_id: userid
+		,
+			$set:
+				lastActive: timestamp
+		, (err, numberAffected, raw) ->
+			if err || !numberAffected? || numberAffected != 1
+				callback
+					status: "db:failed"
+
+				return
+
+			callback
+				status: "success"
 
 reset = (resetKey, email, passwordKey, passwordHint, callback) ->
 	# Validate email and passwordHint
