@@ -11,10 +11,8 @@ jGrowl = require "./jGrowl"
 navPills = require "./navPills"
 pageChange = require "./pageChange"
 clipboard = require "./clipboard"
-imageLoader = require "./imageLoader"
 
 init = ->
-	imageLoader.init()
 	navPills.init()
 	jGrowl.init()
 	clipboard.init()
