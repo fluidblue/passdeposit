@@ -5,6 +5,8 @@ itemlist toggle view
 Created by Max Geissler
 ###
 
+fields = require "./fields"
+
 init = ->
 	$(document).on "click", "#mainList .header .clickable", (e) ->
 		item = $(this).closest(".item")
@@ -17,6 +19,13 @@ init = ->
 			# Close delete button popover
 			item.find(".popover").css("display", "none")
 			item.find(".content .actionButtons .btnDelete").popover("hide")
+
+			# Mask password field(s)
+			item.find(".itemField.itemFieldPassword").each ->
+				fields.setPasswordVisibility($(this), "masked")
+
+				# Continue with loop
+				return true
 		else
 			# Open the item
 			item.addClass("open")

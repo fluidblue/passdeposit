@@ -80,36 +80,43 @@ initBtnOpen = ->
 
 		return
 
+setPasswordVisibility = (itemField, visible = "toggle") ->
+	btnToggle = itemField.find(".btnToggleVisiblity")
+	txtShow = btnToggle.find(".txtShow")
+	txtHide = btnToggle.find(".txtHide")
+	inputMasked = itemField.find(".inputMasked")
+	inputVisible = itemField.find(".inputVisible")
+	btnDropdown = itemField.find(".btn.dropdown-toggle")
+
+	visible = switch visible
+		when "toggle" then txtShow.is(":visible")
+		when "visible" then true
+		when "masked" then false
+		else false
+
+	if visible
+		txtShow.hide()
+		txtHide.show()
+
+		inputVisible.val inputMasked.val()
+		global.form.setInputInvalid(inputVisible, global.form.isInputInvalid(inputMasked))
+
+		inputMasked.hide()
+		inputVisible.show()
+	else
+		txtHide.hide()
+		txtShow.show()
+
+		inputMasked.val inputVisible.val()
+		global.form.setInputInvalid(inputMasked, global.form.isInputInvalid(inputVisible))
+		
+		inputVisible.hide()
+		inputMasked.show()
+
 initBtnToggleVisibility = ->
 	$(document).on "click", "#mainList .itemField.itemFieldPassword .btnToggleVisiblity", (e) ->
 		itemField = $(this).closest(".itemField")
-
-		btnToggle = itemField.find(".btnToggleVisiblity")
-		txtShow = btnToggle.find(".txtShow")
-		txtHide = btnToggle.find(".txtHide")
-		inputMasked = itemField.find(".inputMasked")
-		inputVisible = itemField.find(".inputVisible")
-		btnDropdown = itemField.find(".btn.dropdown-toggle")
-
-		if txtShow.is(":visible")
-			txtShow.hide()
-			txtHide.show()
-
-			inputVisible.val inputMasked.val()
-			global.form.setInputInvalid(inputVisible, global.form.isInputInvalid(inputMasked))
-
-			inputMasked.hide()
-			inputVisible.show()
-		else
-			txtHide.hide()
-			txtShow.show()
-
-			inputMasked.val inputVisible.val()
-			global.form.setInputInvalid(inputMasked, global.form.isInputInvalid(inputVisible))
-			
-			inputVisible.hide()
-			inputMasked.show()
-
+		setPasswordVisibility(itemField, "toggle")
 		return
 
 init = ->
@@ -121,3 +128,4 @@ initTemplate = (template) ->
 
 module.exports.init = init
 module.exports.initTemplate = initTemplate
+module.exports.setPasswordVisibility = setPasswordVisibility

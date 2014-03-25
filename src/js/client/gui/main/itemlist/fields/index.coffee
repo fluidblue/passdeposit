@@ -146,3 +146,4 @@ module.exports.add = add
 module.exports.replace = replace
 module.exports.setFields = setFields
 module.exports.getFields = getFields
+module.exports.setPasswordVisibility = buttons.setPasswordVisibility
