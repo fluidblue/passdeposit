@@ -46,6 +46,7 @@ Save your configuration to a file, e.g. config.json:
 		"port": 8000,
 
 		"https": {
+			"enabled": "true",
 			"certFile": "path/to/certificate.pem",
 			"keyFile": "path/to/privatekey.pem"
 		},

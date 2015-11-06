@@ -369,7 +369,8 @@ sendPasswordHint = (email, callback) ->
 				return
 
 			# Create reset URL
-			resetURL = "https://" + config.get().domain + "/reset-" + doc.email + "-" + resetKey
+			protocol = config.get().https.enabled ? "https" : "http"
+			resetURL = protocol + "://" + config.get().domain + "/reset-" + doc.email + "-" + resetKey
 
 			# Create message
 			message = mail.template "passreminder",

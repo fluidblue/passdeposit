@@ -5,6 +5,7 @@ Created by Max Geissler
 ###
 
 https = require "https"
+http = require "http"
 fs = require "fs"
 path = require "path"
 staticFiles = require "./staticFiles"
@@ -16,7 +17,7 @@ config = require "./config"
 reResetURL = /\/reset-.+-([a-f]|[0-9])+$/
 files = null
 
-# HTTPS server
+# HTTP/HTTPS server
 server = null
 
 # Worker state
@@ -25,8 +26,8 @@ terminating = false
 # Time (ms) to wait before killing worker
 killWait = 2000
 
-# Define HTTPS handler
-httpsHandler = (req, res) ->
+# Define HTTP/HTTPS handler
+requestHandler = (req, res) ->
 	if terminating
 		# HTTP Headers
 		headers =
@@ -152,14 +153,18 @@ init = ->
 
 			# Create HTTPS server
 			try
-				server = https.createServer(getHttpsOptions(), httpsHandler)
+				httpsOptions = getHttpsOptions()
+				if !httpsOptions.enabled
+					server = http.createServer(requestHandler)
+				else
+					server = https.createServer(httpsOptions, requestHandler)
 				server.listen config.get().port
 			catch e
 				message = e.message
 				if message == "mac verify failure"
 					message += " (perhaps private key password incorrect)"
 
-				log.error "Could not start https server: " + message
+				log.error "Could not start webserver: " + message
 
 				process.exit 0
 
