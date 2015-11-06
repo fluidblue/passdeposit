@@ -369,7 +369,7 @@ sendPasswordHint = (email, callback) ->
 				return
 
 			# Create reset URL
-			protocol = config.get().https.enabled ? "https" : "http"
+			protocol = if config.get().https.enabled then "https" else "http"
 			resetURL = protocol + "://" + config.get().domain + "/reset-" + doc.email + "-" + resetKey
 
 			# Create message

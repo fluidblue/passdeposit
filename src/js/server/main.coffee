@@ -54,7 +54,7 @@ init = ->
 	process.on "SIGINT", terminate
 	process.on "SIGTERM", terminate
 
-	protocol = config.get().https.enabled ? "https" : "http"
+	protocol = if config.get().https.enabled then "https" else "http"
 	log.info "PassDeposit is running at " + protocol + "://localhost:" + config.get().port
 
 main = ->
