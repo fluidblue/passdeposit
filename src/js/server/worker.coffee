@@ -92,6 +92,8 @@ requestHandler = (req, res) ->
 
 getHttpsOptions = ->
 	options = config.get().https
+	if !options.enabled
+		return options
 
 	loadFile = (propertyFile, property) ->
 		if options[propertyFile]?
