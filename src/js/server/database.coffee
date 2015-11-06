@@ -119,7 +119,7 @@ init = (callback) ->
 		databaseUri += "@"
 
 	if config.get().database.host.length > 0
-		databaseUri += config.get().database.host + "/"
+		databaseUri += config.get().database.host
 		if config.get().database.port?
 			databaseUri += ":" + config.get().database.port + "/"
 		else
