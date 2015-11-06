@@ -120,8 +120,16 @@ init = (callback) ->
 
 	if config.get().database.host.length > 0
 		databaseUri += config.get().database.host + "/"
+		if config.get().database.port?
+			databaseUri += ":" + config.get().database.port + "/"
+		else
+			databaseUri += "/"
 	else
-		databaseUri += "localhost/"
+		databaseUri += "localhost"
+		if config.get().database.port?
+			databaseUri += ":" + config.get().database.port + "/"
+		else
+			databaseUri += "/"
 
 	databaseUri += config.get().database.database
 
