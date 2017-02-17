@@ -45,6 +45,7 @@ clean:
 # ------------------------
 install-tools:
 	sudo npm install -g coffee-script
+	sudo npm install -g webmake
 	sudo npm install -g webmake-coffee
 	sudo npm install -g uglify-js
 	sudo npm install -g htmlcat
