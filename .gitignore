@@ -9,6 +9,15 @@ stuff
 .sass-cache
 build
 config
-node_modules/optimist
-node_modules/mongoose
-node_modules/email
+
+# Exclude all node_modules except local ones
+node_modules/*
+!node_modules/bootstrap-tag/
+!node_modules/bootstrap/
+!node_modules/fuse.js/
+!node_modules/jquery-csv/
+!node_modules/jquery-jgrowl/
+!node_modules/jquery-total-storage/
+!node_modules/jquery/
+!node_modules/sjcl/
+!node_modules/zeroclipboard/
