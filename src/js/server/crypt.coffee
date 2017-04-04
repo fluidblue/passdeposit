@@ -34,7 +34,7 @@ serverKey = (clientKey, salt, callback) ->
 
 	# Create a server key from client key and salt:
 	# PBKDF2-HMAC-SHA1 with given iteration count and keylen 160/8 (length of SHA1)
-	serverKey = crypto.pbkdf2 clientKey, salt, pbkdf2iterations, 160/8, (err, derivedKey) ->
+	serverKey = crypto.pbkdf2 clientKey, salt, pbkdf2iterations, 160/8, "sha1", (err, derivedKey) ->
 		if err
 			callback err, null
 		else
