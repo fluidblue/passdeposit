@@ -197,6 +197,8 @@ login = (email, key, callback) ->
 				$set:
 					session: session
 					lastActive: timestamp
+			,
+				new: true
 			, (err, doc) ->
 				if err || !doc?
 					callback
@@ -301,6 +303,8 @@ reset = (resetKey, email, passwordKey, passwordHint, callback) ->
 			# Update user data
 			database.getModel("user").findByIdAndUpdate doc._user,
 				$set: user
+			,
+				new: true
 			, (err, doc) ->
 				if err || !doc?
 					callback
@@ -361,6 +365,7 @@ sendPasswordHint = (email, callback) ->
 				dateCreated: timestamp
 		,
 			upsert: true
+			new: true
 		, (err, doc2) ->
 			if err || !doc2?
 				callback
