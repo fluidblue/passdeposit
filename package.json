@@ -6,7 +6,7 @@
 
 	"dependencies": {
 		"optimist": "0.6.x",
-		"mongoose": "3.8.x",
+		"mongoose": "4.9.x",
 		"email": "0.2.x"
 	},
 
