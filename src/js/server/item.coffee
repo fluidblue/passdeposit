@@ -44,7 +44,7 @@ add = (userid, items, callback) ->
 		# Add userID
 		item._user = userid
 
-	database.getModel("item").create items, (err, docs...) ->
+	database.getModel("item").create items, (err, docs) ->
 		if err || !docs? || docs.length == 0
 			callback
 				status: "db:failed"
