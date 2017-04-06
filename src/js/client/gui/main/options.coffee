@@ -45,6 +45,9 @@ importCSV = ->
 
 	return true
 
+exportCSV = ->
+	return true
+
 changeEmail = ->
 	emailField = $("#changeEmail")
 	email = emailField.val()
@@ -150,6 +153,8 @@ init = ->
 			hideDialog = changePassword()
 		else if $("#options-import-csv").is(":visible")
 			hideDialog = importCSV()
+		else if $("#options-export-csv").is(":visible")
+			hideDialog = exportCSV()
 
 		if hideDialog
 			$("#optionsDialog").modal "hide"
