@@ -31,5 +31,6 @@ The following libraries and extensions are used:
 * Bourbon Sass Mixin Library
 * node-email
 * fuse.js
+* FileSaver.js
 * optimist
 * mongoose

@@ -12,6 +12,9 @@ format = require "./itemlist/format"
 username = require "../front/username"
 search = require "./search"
 
+# Require external lib
+FileSaver = require "file-saver"
+
 startsWith = (data, str) ->
 	return data.lastIndexOf(str, 0) == 0
 
