@@ -96,11 +96,20 @@ fnImport = (csv, defaultTag) ->
 	return result
 
 fnExport = (itemObjects) ->
-	# Create list of all fields
-	# types = 
-	# for id, item of items
-	# 	for field in item.fields
-	# 		field.type
+	# Create list of all types
+	types = 
+	for id, item of itemObjects
+		console.log item
+		# for field in item.fields
+		# 	field.type
+
+	# TODO
+	objects = {}
+
+	# TODO
+	return $.csv.fromObjects objects
+
+	# TODO
 	return "test"
 
 module.exports.import = fnImport
