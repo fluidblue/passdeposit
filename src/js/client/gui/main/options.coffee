@@ -46,11 +46,13 @@ importCSV = ->
 	return true
 
 exportCSV = ->
-	content = "Hello, world!"
+	# TODO
+	global.jGrowl.show global.text.get("exportStarted")
 
-	blob = new Blob [content],
-		type: "text/plain;charset=utf-8"
-	FileSaver.saveAs(blob, "hello world.txt");
+	core.convert.export "csv", (content) ->
+		blob = new Blob [content],
+			type: "text/plain;charset=utf-8"
+		FileSaver.saveAs(blob, "hello world.txt");
 
 	return true
 

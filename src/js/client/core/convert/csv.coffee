@@ -95,8 +95,13 @@ fnImport = (csv, defaultTag) ->
 
 	return result
 
-fnExport = (items) ->
-	throw new Error("Not implemented.")
+fnExport = (itemObjects) ->
+	# Create list of all fields
+	# types = 
+	# for id, item of items
+	# 	for field in item.fields
+	# 		field.type
+	return "test"
 
 module.exports.import = fnImport
 module.exports.export = fnExport

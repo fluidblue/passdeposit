@@ -35,7 +35,13 @@ fnImport = (format, data, tag, callback) ->
 			status: status
 
 fnExport = (format, callback) ->
-	throw new Error("Unsupported format.")
+	format = getFormat(format)
+
+	# Export all items
+	itemObjects = items.get()
+	result = format.export(itemObjects)
+
+	callback result
 
 module.exports.import = fnImport
 module.exports.export = fnExport
