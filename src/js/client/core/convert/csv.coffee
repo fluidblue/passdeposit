@@ -96,21 +96,25 @@ fnImport = (csv, defaultTag) ->
 	return result
 
 fnExport = (itemObjects) ->
-	# Create list of all types
-	types = 
+	# TODO: Remove
+	console.log itemObjects
+
+	# Convert items to csv structure
+	csvObjects = []
 	for id, item of itemObjects
+		# TODO: Remove
 		console.log item
-		# for field in item.fields
-		# 	field.type
 
-	# TODO
-	objects = {}
+		csvItem =
+			tags: item.tags.join(",")
 
-	# TODO
-	return $.csv.fromObjects objects
+		# TODO: Handle double fields
+		for field in item.fields
+			csvItem[field.type] = field.value
 
-	# TODO
-	return "test"
+		csvObjects.push csvItem
+
+	return $.csv.fromObjects csvObjects
 
 module.exports.import = fnImport
 module.exports.export = fnExport
