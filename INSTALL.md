@@ -14,7 +14,7 @@ If you decide to host your own installation, you can do so by following the inst
 
 **Server requirements**
 
-* [node.js](http://nodejs.org/)
+* [node.js (v6 or later)](http://nodejs.org/)
 * [npm](https://npmjs.org/)
 * [MongoDB](http://www.mongodb.org/)
 
