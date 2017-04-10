@@ -113,7 +113,8 @@ fnExport = (itemObjects) ->
 
 		csvObjects.push csvItem
 
-	content = $.csv.fromObjects csvObjects
+	content = $.csv.fromObjects csvObjects,
+		manualOrder: ["tags", "service", "uri", "user", "email", "pass", "text"]
 
 	# Remove "_" in csv header
 	lineSeparator = "\n"
