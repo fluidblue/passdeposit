@@ -96,25 +96,32 @@ fnImport = (csv, defaultTag) ->
 	return result
 
 fnExport = (itemObjects) ->
-	# TODO: Remove
-	console.log itemObjects
-
 	# Convert items to csv structure
 	csvObjects = []
 	for id, item of itemObjects
-		# TODO: Remove
-		console.log item
-
 		csvItem =
 			tags: item.tags.join(",")
 
-		# TODO: Handle double fields
 		for field in item.fields
-			csvItem[field.type] = field.value
+			type = field.type
+
+			# Make sure fields are not overwritten by adding "_"
+			while csvItem.hasOwnProperty type
+				type += "_"
+
+			csvItem[type] = field.value
 
 		csvObjects.push csvItem
 
-	return $.csv.fromObjects csvObjects
+	content = $.csv.fromObjects csvObjects
+
+	# Remove "_" in csv header
+	lineSeparator = "\n"
+	lines = content.split(lineSeparator)
+	lines[0] = lines[0].replace /_/g, ""
+	content = lines.join(lineSeparator)
+
+	return content
 
 module.exports.import = fnImport
 module.exports.export = fnExport
