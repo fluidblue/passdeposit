@@ -80,7 +80,7 @@ Then create the file /etc/init/passdeposit.conf:
 
 	# PassDeposit Service
 	description "PassDeposit Server"
-	author      "Max Geissler"
+	author      "fluidblue@users.noreply.github.com"
 
 	# Start after mongodb has started.
 	start on started mongodb
