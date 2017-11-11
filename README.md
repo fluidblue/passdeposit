@@ -6,7 +6,11 @@ It allows you to store and access your passwords online.
 You may be asking yourself: Can I trust PassDeposit? Yes you can!
 PassDeposit has been designed to ensure maximum security for your data.
 
-Use PassDeposit at <https://www.passdeposit.com> for free.
+
+## Installation
+
+You can download and install the latest version of PassDeposit on your server.
+See the [installation instructions](INSTALL.md#passdeposit-installation) for more information.
 
 
 ## Features
@@ -34,14 +38,6 @@ Use PassDeposit at <https://www.passdeposit.com> for free.
 4. After authentication, the connection is secured by using sessions (256 bit random hashes).
 
 5. The database is regularly backed up on two servers. Those servers are not located at the same computing center.
-
-
-## Installation
-
-You can use PassDeposit without installation at <https://www.passdeposit.com>
-
-Alternatively, you can download the latest version and use it on your own server.
-See the [installation instructions](INSTALL.md#passdeposit-installation) for more information.
 
 
 ## Tools
