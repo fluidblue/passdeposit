@@ -11,7 +11,7 @@ Please read carefully through both this document and the [readme](README.md#pass
 * [npm](https://npmjs.org/)
 * [MongoDB](http://www.mongodb.org/)
 
-**Install using npm** (don't forget the **--global** option)
+**Install using npm** (be sure to add the **--global** option)
 
 	sudo npm install --global passdeposit
 
