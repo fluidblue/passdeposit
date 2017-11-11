@@ -71,7 +71,7 @@ You need a certificate for PassDeposit. You can generate a self-signed certifica
 
 ## System service
 
-You can install passdeposit as a system service. This will allow you to control PassDeposit with:
+Optionally, you can install passdeposit as a system service. This will allow you to control PassDeposit with:
 
 	service passdeposit start|stop|restart|status
 
