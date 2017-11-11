@@ -3,13 +3,6 @@
 Please read carefully through both this document and the [readme](README.md#passdeposit).
 
 
-## Do you need to install PassDeposit yourself?
-
-No, you don't have to. You can use PassDeposit without installation at <https://www.passdeposit.com>. Using the official site will also ensure that you are always using the latest version of PassDeposit, which increases security.
-
-If you decide to host your own installation, you can do so by following the instructions below.
-
-
 ## Installation
 
 **Server requirements**
