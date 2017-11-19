@@ -8,26 +8,8 @@
 		<ul id="optionsNav" class="nav nav-pills" data-target="optionsNavContent">
 			<li class="active"><a href="#options-email">Email</a></li>
 			<li><a href="#options-password">Password</a></li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					Import
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#options-import-csv">CSV</a></li>
-					<li><a tabindex="-1" href="#options-import-json">Encrypted JSON</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					Export
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#options-export-csv">CSV</a></li>
-					<li><a tabindex="-1" href="#options-export-json">Encrypted JSON</a></li>
-				</ul>
-			</li>
+			<li><a href="#options-import-csv">Import</a></li>
+			<li><a href="#options-export-csv">Export</a></li>
 		</ul>
 		<div class="optionsNavContent">
 			<div id="options-email" class="navContent">
@@ -91,30 +73,12 @@
 				</div>
 				<textarea rows="4" placeholder="Insert CSV data here"></textarea>
 			</div>
-			<div id="options-import-json" class="navContent hide">
-				<p>
-					Import your data from encrypted JSON files.
-				</p>
-				This feature is not yet implemented.<br />
-				You can mention it in a
-				<a href="#donationDialog" data-toggle="modal" data-dismiss="modal">donation</a>
-				to motivate me.
-			</div>
 			<div id="options-export-csv" class="navContent hide">
 				<p>
 					Export your data to a CSV file.
 				</p>
 				The file can be opened with Microsoft Excel or Google Sheets.<br />
 				Warning: Your passwords will be saved <span class="colorDanger">unencrypted</span>. Keep your file in a safe place or encrypt it.
-			</div>
-			<div id="options-export-json" class="navContent hide">
-				<p>
-					Export your data to encrypted JSON files.
-				</p>
-				This feature is not yet implemented.<br />
-				You can mention it in a
-				<a href="#donationDialog" data-toggle="modal" data-dismiss="modal">donation</a>
-				to motivate me.
 			</div>
 		</div>
 	</div>
