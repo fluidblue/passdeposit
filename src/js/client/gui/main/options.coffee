@@ -129,7 +129,7 @@ reset = ->
 		return true
 	
 	# Set initial tab
-	global.navPills.change "#optionsNav", "#options-general", false
+	global.navPills.change "#optionsNav", "#options-email", false
 
 init = ->
 	### Initializes option dialog ###
@@ -150,11 +150,7 @@ init = ->
 		hideDialog = true
 
 		# TODO: Use .one "hidden" everywhere
-		if $("#options-general").is(":visible")
-			$("#optionsDialog").one "hidden", ->
-				global.jGrowl.show global.text.get("optionsSaved")
-				return
-		else if $("#options-email").is(":visible")
+		if $("#options-email").is(":visible")
 			hideDialog = changeEmail()
 		else if $("#options-password").is(":visible")
 			hideDialog = changePassword()
