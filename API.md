@@ -161,6 +161,23 @@ status       | See [Status codes](#status-codes)
 
 
 
+### user.features
+
+Retrieve a list of features of the server.
+
+Field              | Description
+-------------------|-----------------------------------------------------------------
+cmd                | "user.features"
+
+The response contains the following fields:
+
+Field        | Description
+-------------|-----------------------------------------------------------------
+status       | See [Status codes](#status-codes)
+registration | Boolean value indicating whether the registration is enabled. When the registration is disabled, the command [user.create](#usercreate) cannot be executed on the server.
+
+
+
 ### item.add
 
 Add a new item.
