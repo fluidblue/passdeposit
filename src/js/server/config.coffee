@@ -30,6 +30,8 @@ defaultConfig =
 	mail: "noreply@example.com"
 	domain: "www.example.com"
 
+	registrationEnabled: true
+
 	verbose: false
 
 get = ->

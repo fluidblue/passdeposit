@@ -13,7 +13,19 @@ log = require "./log"
 item = require "./item"
 shared = require "./shared"
 
+features = (callback) ->
+	callback
+		status: "success"
+		registration: config.get().registrationEnabled
+
 create = (email, key, passwordHint, callback) ->
+	# Check if registration is enabled on the server
+	if !config.get().registrationEnabled
+		callback
+			status: "invalidcommand"
+
+		return
+
 	# Validate email and passwordHint
 	if !shared.validation.email(email) || !shared.validation.passwordHint(passwordHint)
 		callback
@@ -402,6 +414,7 @@ sendPasswordHint = (email, callback) ->
 					callback
 						status: "success"
 
+module.exports.features = features
 module.exports.create = create
 module.exports.update = update
 module.exports.reset = reset

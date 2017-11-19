@@ -21,6 +21,8 @@ process = (clientID, params, callback) ->
 				callback(result)
 
 	switch params.cmd
+		when "user.features"
+			user.features(callback)
 		when "user.create"
 			user.create(params.data.email, params.data.key, params.data.passwordHint, callback)
 		when "user.login"

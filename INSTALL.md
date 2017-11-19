@@ -56,6 +56,8 @@ Save your configuration to a file, e.g. config.json:
 		"mail": "noreply@example.com",
 		"domain": "www.example.com",
 
+		"registrationEnabled": true,
+
 		"verbose": false
 	}
 

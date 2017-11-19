@@ -125,5 +125,17 @@ init = ->
 		register()
 		return
 
+	core.user.features (response) ->
+		if response.status == "success"
+			if !response.registration
+				# Disable registration
+				$("#register > .itemField").hide()
+				$("#register > .btn").hide()
+
+				# Show registration closed message
+				infoBox = $("#register > .registrationClosed")
+				infoBox.text global.text.get("registrationClosed")
+				infoBox.removeClass("hide")
+
 module.exports.init = init
 module.exports.validate = validate

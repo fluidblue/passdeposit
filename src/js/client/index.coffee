@@ -20,6 +20,6 @@ core = require "./core"
 
 # Initialize GUI when DOM is ready
 $(document).ready ->
-	gui.init()
 	core.init()
+	gui.init()
 	return
