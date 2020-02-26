@@ -49,7 +49,7 @@ install-tools:
 	sudo npm install -g webmake-coffee
 	sudo npm install -g uglify-js
 	sudo npm install -g htmlcat
-	sudo gem install sass
+	sudo npm install -g sass
 
 
 # Compile CSS

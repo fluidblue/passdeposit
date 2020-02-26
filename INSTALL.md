@@ -111,7 +111,7 @@ You only need this type of installation if you want to help developing. You do n
 Warning: The development installation should only be used for development and testing.
 
 * git clone the repository <https://github.com/fluidblue/passdeposit>
-* Install npm and gem
+* Install npm
 * Run 'make install-tools' to install all required development tools
 * Run 'npm install' to install all nodejs dependencies
 * Run 'make' to build PassDeposit. Alternatively run 'make debug' to build the debug version.
