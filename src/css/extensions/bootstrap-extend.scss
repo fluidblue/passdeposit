@@ -75,13 +75,13 @@ input.hide
 /* Artificial btn:hover */
 .btn-hover
 {
-	@extend .btn:hover;
+	@extend .btn, :hover;
 }
 
 /* Artificial btn:active */
 .btn-active
 {
-	@extend .btn:active;
+	@extend .btn, :active;
 }
 
 /* Fixes icon width for font-awesome */
