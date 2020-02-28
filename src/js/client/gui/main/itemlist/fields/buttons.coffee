@@ -8,42 +8,81 @@ Created by Max Geissler
 format = require "../format"
 global = require "../../../global"
 
+copyText = (input) ->
+	# Uses html5 clipboard api
+
+	# Select the text field
+	input.select()
+
+	# For mobile devices
+	if input.setSelectionRange?
+		input.setSelectionRange(0, 99999)
+
+	# Copy the text inside the field
+	document.execCommand("copy")
+
+	value = input.val()
+	console.log(value)
+
 initBtnCopy = (template) ->
 	btnCopy = template.find(".btnCopy")
 
 	# Initialize copy-to-clipboard on copy button
-	btnCopy.on "mouseover", (e) ->
-		global.clipboard.activate
-			element: this
+	btnCopy.on "click", (e) ->
+		field = $(this).closest(".itemField")
 
-			dataRequested: (elem) ->
-				# Set data to be copied to clipboard
-				field = $(elem).closest(".itemField")
-				input = field.find("input[type=text]:visible, input[type=password]:visible")
-				return input.val()
+		needVisibilityToggle = false
+		input = field.find("input[type=text]:visible")
 
-			mouseover: (elem) ->
-				$(elem).addClass("btn-hover")
-				return
+		# The html5 clipboard api onyl works for visible text fields.
+		# Therefore make password field temporarily visible.
+		if not (input? && input.length? && input.length > 0)
+			# input is of type: input[type=password]
+			needVisibilityToggle = true
+			setPasswordVisibility(field, "toggle")
+			input = field.find("input[type=text]:visible")
 
-			mouseout: (elem) ->
-				$(elem).removeClass("btn-hover")
-				$(elem).removeClass("btn-active")
-				$(elem).blur()
-				return
+		# Copy text to clipboard
+		copyText(input);
 
-			mousedown: (elem) ->
-				$(elem).addClass("btn-active")
-				return
+		# Restore visibility setting for password fields
+		if needVisibilityToggle
+			setPasswordVisibility(field, "toggle")
 
-			mouseup: (elem) ->
-				$(elem).removeClass("btn-active")
-				return
-		
-		# Prevent propagation to underlying div
-		e.stopPropagation()
-		
 		return
+
+	# btnCopy.on "mouseover", (e) ->
+	# 	global.clipboard.activate
+	# 		element: this
+
+	# 		dataRequested: (elem) ->
+	# 			# Set data to be copied to clipboard
+	# 			field = $(elem).closest(".itemField")
+	# 			input = field.find("input[type=text]:visible, input[type=password]:visible")
+	# 			return input.val()
+
+	# 		mouseover: (elem) ->
+	# 			$(elem).addClass("btn-hover")
+	# 			return
+
+	# 		mouseout: (elem) ->
+	# 			$(elem).removeClass("btn-hover")
+	# 			$(elem).removeClass("btn-active")
+	# 			$(elem).blur()
+	# 			return
+
+	# 		mousedown: (elem) ->
+	# 			$(elem).addClass("btn-active")
+	# 			return
+
+	# 		mouseup: (elem) ->
+	# 			$(elem).removeClass("btn-active")
+	# 			return
+		
+	# 	# Prevent propagation to underlying div
+	# 	e.stopPropagation()
+		
+	# 	return
 
 	# Fix for ZeroClipboard's mouseout not firing
 	template.on "mouseover", (e) ->
