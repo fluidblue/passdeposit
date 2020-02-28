@@ -49,6 +49,9 @@ initBtnCopy = (template) ->
 		if needVisibilityToggle
 			setPasswordVisibility(field, "toggle")
 
+		# Show info
+		global.jGrowl.show global.text.get("copiedToClipboard")
+
 		return
 
 	# btnCopy.on "mouseover", (e) ->
