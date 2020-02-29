@@ -38,44 +38,6 @@ initBtnCopy = (template) ->
 
 		return
 
-	# btnCopy.on "mouseover", (e) ->
-	# 	global.clipboard.activate
-	# 		element: this
-
-	# 		dataRequested: (elem) ->
-	# 			# Set data to be copied to clipboard
-	# 			field = $(elem).closest(".itemField")
-	# 			input = field.find("input[type=text]:visible, input[type=password]:visible")
-	# 			return input.val()
-
-	# 		mouseover: (elem) ->
-	# 			$(elem).addClass("btn-hover")
-	# 			return
-
-	# 		mouseout: (elem) ->
-	# 			$(elem).removeClass("btn-hover")
-	# 			$(elem).removeClass("btn-active")
-	# 			$(elem).blur()
-	# 			return
-
-	# 		mousedown: (elem) ->
-	# 			$(elem).addClass("btn-active")
-	# 			return
-
-	# 		mouseup: (elem) ->
-	# 			$(elem).removeClass("btn-active")
-	# 			return
-		
-	# 	# Prevent propagation to underlying div
-	# 	e.stopPropagation()
-		
-	# 	return
-
-	# Fix for ZeroClipboard's mouseout not firing
-	template.on "mouseover", (e) ->
-		global.clipboard.deactivate()
-		return
-
 initBtnOpen = ->
 	$(document).on "click", "#mainList .itemField .btnOpen", (e) ->
 		input = $(this).closest(".itemField").find("input[type=text]")

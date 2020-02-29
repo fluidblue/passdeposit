@@ -27,7 +27,6 @@ The following libraries and extensions are used:
 * Bootstrap
 * bootstrap-tag
 * Stanford Javascript Crypto Library
-* ZeroClipboard
 * Bourbon Sass Mixin Library
 * node-email
 * fuse.js

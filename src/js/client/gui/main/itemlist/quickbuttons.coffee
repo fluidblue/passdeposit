@@ -24,7 +24,6 @@ initButtons = (template) ->
 	btnOpen.tooltip options
 
 	options.title = global.text.get("copyPass")
-	#options.trigger = "manual"
 	btnPass.tooltip options
 
 	# Initialize copy-to-clipboard on btnPass
@@ -44,37 +43,6 @@ initButtons = (template) ->
 		global.jGrowl.show global.text.get("copiedToClipboard")
 
 		return false
-
-	# btnPass.on "mouseover", (e) ->
-	# 	global.clipboard.activate
-	# 		element: this
-
-	# 		dataRequested: (elem) ->
-	# 			# Set data to be copied to clipboard
-	# 			# TODO: Remove data on lock!
-	# 			return $(elem).data("pass")
-
-	# 		mouseover: (elem) ->
-	# 			$(elem).addClass("active")
-	# 			$(elem).closest(".item").addClass("active")
-	# 			$(elem).tooltip("show")
-	# 			return
-
-	# 		mouseout: (elem) ->
-	# 			$(elem).removeClass("active")
-	# 			$(elem).closest(".item").removeClass("active")
-	# 			$(elem).tooltip("hide")
-	# 			return
-
-	# 	# Prevent propagation to underlying .header
-	# 	e.stopPropagation()
-		
-	# 	return
-
-	# # Fix for ZeroClipboard's mouseout not firing
-	# template.find(".header").on "mouseover", (e) ->
-	# 	global.clipboard.deactivate()
-	# 	return
 
 setBtnVisible = (btn, visible) ->
 	# jQuery's hide() and show() don't work here,

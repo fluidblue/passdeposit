@@ -16,7 +16,6 @@ inactivity = require "./inactivity"
 init = ->
 	navPills.init()
 	jGrowl.init()
-	clipboard.init()
 
 module.exports.form = form
 module.exports.text = text

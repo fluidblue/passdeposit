@@ -18,7 +18,6 @@
 		"jquery-total-storage",
 		"bootstrap",
 		"bootstrap-tag",
-		"sjcl",
-		"zeroclipboard"
+		"sjcl"
 	]
 }
