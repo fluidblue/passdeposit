@@ -8,22 +8,6 @@ Created by Max Geissler
 format = require "../format"
 global = require "../../../global"
 
-copyText = (input) ->
-	# Uses html5 clipboard api
-
-	# Select the text field
-	input.select()
-
-	# For mobile devices
-	if input.setSelectionRange?
-		input.setSelectionRange(0, 99999)
-
-	# Copy the text inside the field
-	document.execCommand("copy")
-
-	value = input.val()
-	console.log(value)
-
 initBtnCopy = (template) ->
 	btnCopy = template.find(".btnCopy")
 
@@ -34,7 +18,7 @@ initBtnCopy = (template) ->
 		needVisibilityToggle = false
 		input = field.find("input[type=text]:visible")
 
-		# The html5 clipboard api onyl works for visible text fields.
+		# The html5 clipboard api only works for visible text fields.
 		# Therefore make password field temporarily visible.
 		if not (input? && input.length? && input.length > 0)
 			# input is of type: input[type=password]
@@ -43,9 +27,9 @@ initBtnCopy = (template) ->
 			input = field.find("input[type=text]:visible")
 
 		# Copy text to clipboard
-		copyText(input);
+		global.clipboard.copyText(input);
 
-		# Restore visibility setting for password fields
+		# Restore visibility setting for password field
 		if needVisibilityToggle
 			setPasswordVisibility(field, "toggle")
 

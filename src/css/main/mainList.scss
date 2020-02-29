@@ -142,7 +142,7 @@
 
 					/* Icon opacity */
 					opacity: $btnOpacityInactive;
-					&:not(.btnPass):hover, &.active
+					&:hover
 					{
 						opacity: $btnOpacityActive;
 					}

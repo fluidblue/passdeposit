@@ -24,40 +24,57 @@ initButtons = (template) ->
 	btnOpen.tooltip options
 
 	options.title = global.text.get("copyPass")
-	options.trigger = "manual"
+	#options.trigger = "manual"
 	btnPass.tooltip options
 
 	# Initialize copy-to-clipboard on btnPass
-	btnPass.on "mouseover", (e) ->
-		global.clipboard.activate
-			element: this
+	btnPass.on "click", (e) ->
+		# Prepare data and show temporary input
+		clipboardInput = $("#clipboard")
+		clipboardInput.val(btnPass.data("pass"));
+		clipboardInput.show()
 
-			dataRequested: (elem) ->
-				# Set data to be copied to clipboard
-				# TODO: Remove data on lock!
-				return $(elem).data("pass")
+		# Copy text to clipboard
+		global.clipboard.copyText(clipboardInput);
 
-			mouseover: (elem) ->
-				$(elem).addClass("active")
-				$(elem).closest(".item").addClass("active")
-				$(elem).tooltip("show")
-				return
+		# Hide temporary input
+		clipboardInput.hide()
 
-			mouseout: (elem) ->
-				$(elem).removeClass("active")
-				$(elem).closest(".item").removeClass("active")
-				$(elem).tooltip("hide")
-				return
+		# Show info
+		global.jGrowl.show global.text.get("copiedToClipboard")
 
-		# Prevent propagation to underlying .header
-		e.stopPropagation()
+		return false
+
+	# btnPass.on "mouseover", (e) ->
+	# 	global.clipboard.activate
+	# 		element: this
+
+	# 		dataRequested: (elem) ->
+	# 			# Set data to be copied to clipboard
+	# 			# TODO: Remove data on lock!
+	# 			return $(elem).data("pass")
+
+	# 		mouseover: (elem) ->
+	# 			$(elem).addClass("active")
+	# 			$(elem).closest(".item").addClass("active")
+	# 			$(elem).tooltip("show")
+	# 			return
+
+	# 		mouseout: (elem) ->
+	# 			$(elem).removeClass("active")
+	# 			$(elem).closest(".item").removeClass("active")
+	# 			$(elem).tooltip("hide")
+	# 			return
+
+	# 	# Prevent propagation to underlying .header
+	# 	e.stopPropagation()
 		
-		return
+	# 	return
 
-	# Fix for ZeroClipboard's mouseout not firing
-	template.find(".header").on "mouseover", (e) ->
-		global.clipboard.deactivate()
-		return
+	# # Fix for ZeroClipboard's mouseout not firing
+	# template.find(".header").on "mouseover", (e) ->
+	# 	global.clipboard.deactivate()
+	# 	return
 
 setBtnVisible = (btn, visible) ->
 	# jQuery's hide() and show() don't work here,
