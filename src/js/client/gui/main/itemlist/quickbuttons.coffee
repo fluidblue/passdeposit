@@ -28,6 +28,8 @@ initButtons = (template) ->
 
 	# Initialize copy-to-clipboard on btnPass
 	btnPass.on "click", (e) ->
+		e.preventDefault()
+
 		# Prepare data and show temporary input
 		clipboardInput = $("#clipboard")
 		clipboardInput.val(btnPass.data("pass"));
@@ -39,7 +41,7 @@ initButtons = (template) ->
 		# Hide temporary input
 		clipboardInput.hide()
 
-		return false
+		return
 
 setBtnVisible = (btn, visible) ->
 	# jQuery's hide() and show() don't work here,
