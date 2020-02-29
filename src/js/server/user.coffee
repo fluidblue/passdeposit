@@ -17,6 +17,7 @@ features = (callback) ->
 	callback
 		status: "success"
 		registration: config.get().registrationEnabled
+		banner: config.get().banner
 
 create = (email, key, passwordHint, callback) ->
 	# Check if registration is enabled on the server

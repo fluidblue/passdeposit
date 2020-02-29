@@ -7,6 +7,7 @@ Created by Max Geissler
 
 form = require "./form"
 text = require "./text"
+banner = require "./banner"
 jGrowl = require "./jGrowl"
 navPills = require "./navPills"
 pageChange = require "./pageChange"
@@ -14,6 +15,7 @@ clipboard = require "./clipboard"
 inactivity = require "./inactivity"
 
 init = ->
+	banner.init()
 	navPills.init()
 	jGrowl.init()
 
