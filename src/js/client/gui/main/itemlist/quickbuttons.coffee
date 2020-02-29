@@ -39,9 +39,6 @@ initButtons = (template) ->
 		# Hide temporary input
 		clipboardInput.hide()
 
-		# Show info
-		global.jGrowl.show global.text.get("copiedToClipboard")
-
 		return false
 
 setBtnVisible = (btn, visible) ->

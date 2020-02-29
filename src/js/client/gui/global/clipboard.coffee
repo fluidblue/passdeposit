@@ -20,4 +20,7 @@ copyText = (input) ->
 	# Copy the text inside the field
 	document.execCommand("copy")
 
+	# Show info
+	global.jGrowl.show global.text.get("copiedToClipboard")
+
 module.exports.copyText = copyText
