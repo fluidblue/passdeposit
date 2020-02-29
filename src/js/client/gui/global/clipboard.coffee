@@ -20,7 +20,4 @@ copyText = (input) ->
 	# Copy the text inside the field
 	document.execCommand("copy")
 
-module.exports.init = init
-module.exports.activate = activate
-module.exports.deactivate = deactivate
 module.exports.copyText = copyText
