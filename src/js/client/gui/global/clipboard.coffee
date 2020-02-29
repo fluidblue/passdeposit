@@ -20,10 +20,6 @@ copyText = (input) ->
 	# Copy the text inside the field
 	document.execCommand("copy")
 
-	# TODO: Remove
-	value = input.val()
-	console.log(value)
-
 module.exports.init = init
 module.exports.activate = activate
 module.exports.deactivate = deactivate
