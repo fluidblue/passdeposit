@@ -57,7 +57,6 @@ Save your configuration to a file, e.g. config.json:
 		"domain": "www.example.com",
 
 		"registrationEnabled": true,
-		"banner": true,
 
 		"verbose": false
 	}
