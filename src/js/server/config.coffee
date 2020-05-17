@@ -31,7 +31,7 @@ defaultConfig =
 	domain: "www.example.com"
 
 	registrationEnabled: true
-	banner: false
+	banner: true
 
 	verbose: false
 
