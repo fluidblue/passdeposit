@@ -10,6 +10,8 @@ itemcache = require "./itemcache"
 tagList = {}
 tagArray = []
 
+# TODO: Duplicate entries (in tagArray) are visible when editing tags sometimes.
+
 add = (itemID, tags) ->
 	for tag in tags
 		if tagList[tag]?
