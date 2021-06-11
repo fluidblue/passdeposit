@@ -17,6 +17,9 @@ init = (item, tagList) ->
 		caseInsensitive: true
 		allowDuplicates: false
 		source: (query, process) ->
+			# TODO: Duplicate entries are visible when editing tags sometimes.
+			# A cause could be: The library bootstrap-tag modifies the items
+			# in the array returned by core.items.getTagArray().
 			return core.items.getTagArray()
 		placeholder: "Tags"
 
