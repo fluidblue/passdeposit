@@ -16,10 +16,12 @@ services:
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
             MONGO_INITDB_ROOT_PASSWORD_FILE: /etc/passdeposit/mongodb_initial_admin_password.txt
+            MONGO_INITDB_DATABASE: passdeposit
         ports:
             - 127.0.0.1:27017:27017
         volumes:
             - ./install/config:/etc/passdeposit
+            - ./install/config/mongodb-init-scripts/:/docker-entrypoint-initdb.d
             - mongodb-data:/data/db
             - mongodb-config:/data/configdb
 
