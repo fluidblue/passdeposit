@@ -1,1 +1,2 @@
-0       3       *       *       *       /var/passdeposit/backup_mongo.sh >> /var/log/passdeposit-backup.log 2>&1
+# period   delay   job-identifier        command
+1          0       backup.daily          /var/passdeposit/scripts/backup.sh >> /var/passdeposit/backup/backup.log 2>&1
