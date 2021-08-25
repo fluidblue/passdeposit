@@ -1,0 +1,1 @@
+Backups of the database will be placed in this directory.

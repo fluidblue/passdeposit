@@ -1,0 +1,25 @@
+{
+	"port": 8000,
+
+	"https": {
+		"enabled": false,
+		"certFile": "certificate.pem",
+		"keyFile": "privatekey.pem"
+	},
+
+	"database": {
+		"type": "mongodb",
+		"host": "mongodb",
+		"port": 27017,
+		"user": "passdeposit",
+		"password": "your_password_here",
+		"database": "passdeposit"
+	},
+
+	"mail": "noreply@example.com",
+	"domain": "www.example.com",
+
+	"registrationEnabled": true,
+
+	"verbose": false
+}
