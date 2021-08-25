@@ -1,5 +1,6 @@
 # Generic files to ignore
 *.DS_Store
+*._*
 
 # IDE / Editor specific
 PassDeposit.sublime-workspace
@@ -8,6 +9,7 @@ PassDeposit.sublime-workspace
 stuff
 .sass-cache
 build
+install/backup/mongo_backup_*
 
 # Exclude all node_modules except local ones
 node_modules/*
