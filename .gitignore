@@ -8,7 +8,6 @@ PassDeposit.sublime-workspace
 stuff
 .sass-cache
 build
-config
 
 # Exclude all node_modules except local ones
 node_modules/*
