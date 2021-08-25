@@ -29,7 +29,7 @@ services:
 
     mongodb-backup:
         image: mongo:3.6.9-stretch
-        command: sh -c "apt-get update && apt-get install anacron && cat /etc/passdeposit/anacrontab.txt >> /etc/anacrontab && service anacron start && tail -n 0 -f /var/passdeposit/backup/backup.log"
+        command: sh -c "apt-get update && apt-get install -y anacron && cat /etc/passdeposit/anacrontab.txt >> /etc/anacrontab && service anacron start && tail -n 0 -f /var/passdeposit/backup/backup.log"
         volumes:
             - ./install/scripts:/var/passdeposit/scripts
             - ./install/config:/etc/passdeposit
