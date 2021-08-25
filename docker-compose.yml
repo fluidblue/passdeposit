@@ -5,6 +5,8 @@ services:
         image: node:14
         working_dir: /passdeposit
         command: sh -c "npm install --global passdeposit && passdeposit --config /etc/passdeposit/passdeposit.json"
+        ports:
+            - 8000:8000
         volumes:
             - ./install/config:/etc/passdeposit
         depends_on:
