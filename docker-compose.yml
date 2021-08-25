@@ -29,10 +29,11 @@ services:
 
     mongodb-backup:
         image: debian:11
+        command: sh -c "apt-get update && apt-get install anacron && cat /etc/passdeposit/anacrontab.txt >> /etc/anacrontab && service anacron start"
         volumes:
+            - ./install/config:/etc/passdeposit
             - ./install/backup:/var/passdeposit/backup
 
 volumes:
     mongodb-data:
     mongodb-config:
-    mongodb-backup:
