@@ -4,36 +4,37 @@ services:
     passdeposit:
         image: node:14
         working_dir: /passdeposit
-        command: sh -c "npm install --global passdeposit && passdeposit --config /etc/passdeposit/config.json"
+        command: sh -c "npm install --global passdeposit && passdeposit --config /etc/passdeposit/config/config.json"
         volumes:
-            - passdeposit-config:/etc/passdeposit
+            - passdeposit-config:/etc/passdeposit/config
+
+    passgen:
+        image: debian:11
+        working_dir: /etc/passdeposit/secrets
+        command: sh -c "apt-get update && apt-get install pwgen && pwgen -s -1 32 > mongodb-admin-password.txt && echo 'The admin password is:' && cat mongodb-admin-password.txt"
+        volumes:
+            - passdeposit-secrets:/etc/passdeposit/secrets
 
     mongodb:
         image: mongo:3.6.9
+        command: sh -c "echo 'The admin password is:' && cat /etc/passdeposit/secrets/mongodb-admin-password.txt"
         restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/passdeposit_mongodb_admin_password
+            MONGO_INITDB_ROOT_PASSWORD_FILE: /etc/passdeposit/secrets/mongodb-admin-password.txt
         ports:
             - 127.0.0.1:27017:27017
         volumes:
+            - passdeposit-secrets:/etc/passdeposit/secrets
             - mongodb-data:/data/db
             - mongodb-config:/data/configdb
-        secrets:
-            - passdeposit_mongodb_admin_password
-            - passdeposit_mongodb_passdeposit_password
 
     mongodb-backup:
         image: debian:11
 
 volumes:
     passdeposit-config:
+    passdeposit-secrets:
     mongodb-data:
     mongodb-config:
     mongodb-backup:
-
-secrets:
-    passdeposit_mongodb_admin_password:
-        external: true
-    passdeposit_mongodb_passdeposit_password:
-        external: true
