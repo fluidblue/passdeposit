@@ -18,4 +18,5 @@ cat /passdeposit/config/anacrontab.txt >> /etc/anacrontab
 service anacron start
 
 # Output backup log as docker container log
+touch /passdeposit/log/backup.log
 tail -n 0 -f /passdeposit/log/backup.log
