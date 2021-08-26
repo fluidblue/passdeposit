@@ -28,17 +28,13 @@ services:
             - mongodb-config:/data/configdb
 
     mongodb-backup:
-        image: mongo:3.6.9-stretch
-        command: sh -c "apt-get update && apt-get install -y anacron && cat /etc/passdeposit/anacrontab.txt >> /etc/anacrontab && service anacron start && tail -n 0 -f /var/passdeposit/backup/backup.log"
+        image: ubuntu:16.04
+        command: sh -c "apt-get update && apt-get install -y apt-transport-https ca-certificates wget && wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | apt-key add - && echo 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse' | tee /etc/apt/sources.list.d/mongodb-org-3.6.list && apt-get update && apt-get install -y mongodb-org-tools=3.6.9 anacron && cat /etc/passdeposit/anacrontab.txt >> /etc/anacrontab && service anacron start && tail -n 0 -f /var/passdeposit/backup/backup.log"
         volumes:
             - ./install/scripts:/var/passdeposit/scripts
             - ./install/config:/etc/passdeposit
             - ./install/backup:/var/passdeposit/backup
-            - mongodb-data-backup:/data/db
-            - mongodb-config-backup:/data/configdb
 
 volumes:
     mongodb-data:
     mongodb-config:
-    mongodb-data-backup:
-    mongodb-config-backup:
