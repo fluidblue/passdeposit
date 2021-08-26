@@ -10,7 +10,7 @@ apt-get install -y apt-transport-https ca-certificates wget
 wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | apt-key add -
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 apt-get update
-apt-get install -y mongodb-org-tools=3.6.9
+apt-get install -y mongodb-org-tools="$MONGODB_VERSION"
 
 # Install and setup anacron
 apt-get install -y anacron
