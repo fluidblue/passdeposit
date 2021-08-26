@@ -1,2 +1,2 @@
 # period   delay   job-identifier        command
-1          0       backup.daily          /var/passdeposit/scripts/backup.sh >> /var/passdeposit/backup/backup.log 2>&1
+1          0       backup.daily          /passdeposit/scripts/backup.sh >> /passdeposit/log/backup.log 2>&1

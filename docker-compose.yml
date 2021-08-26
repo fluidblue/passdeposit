@@ -9,8 +9,7 @@ services:
         depends_on:
             - mongodb
         volumes:
-            - ./install/config:/etc/passdeposit
-            - ./install/scripts:/var/passdeposit/scripts
+            - ./install:/passdeposit
 
     mongodb:
         image: mongo:3.6.9
@@ -22,7 +21,7 @@ services:
         ports:
             - 127.0.0.1:27017:27017
         volumes:
-            - ./install/config:/etc/passdeposit
+            - ./install:/passdeposit
             - ./install/config/mongodb-init-scripts/:/docker-entrypoint-initdb.d
             - mongodb-data:/data/db
             - mongodb-config:/data/configdb
@@ -31,9 +30,7 @@ services:
         image: ubuntu:16.04
         command: sh "/var/passdeposit/scripts/init-mongodb-backup.sh"
         volumes:
-            - ./install/scripts:/var/passdeposit/scripts
-            - ./install/config:/etc/passdeposit
-            - ./install/backup:/var/passdeposit/backup
+            - ./install:/passdeposit
 
 volumes:
     mongodb-data:

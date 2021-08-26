@@ -7,4 +7,4 @@ set -e
 npm install --global passdeposit
 
 # Start PassDeposit
-passdeposit --config /etc/passdeposit/passdeposit.json
+passdeposit --config /passdeposit/config/passdeposit.json

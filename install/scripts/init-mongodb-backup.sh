@@ -14,8 +14,8 @@ apt-get install -y mongodb-org-tools=3.6.9
 
 # Install and setup anacron
 apt-get install -y anacron
-cat /etc/passdeposit/anacrontab.txt >> /etc/anacrontab
+cat /passdeposit/config/anacrontab.txt >> /etc/anacrontab
 service anacron start
 
 # Output backup log as docker container log
-tail -n 0 -f /var/passdeposit/backup/backup.log
+tail -n 0 -f /passdeposit/log/backup.log
