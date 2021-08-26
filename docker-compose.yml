@@ -3,14 +3,14 @@ version: "3.8"
 services:
     passdeposit:
         image: node:14
-        working_dir: /passdeposit
-        command: sh -c "npm install --global passdeposit && passdeposit --config /etc/passdeposit/passdeposit.json"
+        command: sh "/var/passdeposit/scripts/init-passdeposit.sh"
         ports:
             - 8000:8000
-        volumes:
-            - ./install/config:/etc/passdeposit
         depends_on:
             - mongodb
+        volumes:
+            - ./install/config:/etc/passdeposit
+            - ./install/scripts:/var/passdeposit/scripts
 
     mongodb:
         image: mongo:3.6.9
