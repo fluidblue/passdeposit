@@ -9,9 +9,5 @@ LOG_FILE=/passdeposit/log/passdeposit.log
 # Install PassDeposit
 npm install --global passdeposit
 
-# Start PassDeposit
-passdeposit --config /passdeposit/config/passdeposit.json >> "$LOG_FILE" 2>&1 &
-
-# Output backup log as docker container log
-touch "$LOG_FILE"
-tail -n 0 -f "$LOG_FILE"
+# Start PassDeposit and log output
+exec passdeposit --config /passdeposit/config/passdeposit.json 2>&1 | tee -a "$LOG_FILE"
