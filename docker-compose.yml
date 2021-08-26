@@ -3,7 +3,7 @@ version: "3.8"
 services:
     passdeposit:
         image: node:14
-        command: sh "/var/passdeposit/scripts/init-passdeposit.sh"
+        command: sh "/passdeposit/scripts/init-passdeposit.sh"
         ports:
             - 8000:8000
         depends_on:
@@ -16,7 +16,7 @@ services:
         restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD_FILE: /etc/passdeposit/mongodb_initial_admin_password.txt
+            MONGO_INITDB_ROOT_PASSWORD_FILE: /passdeposit/config/mongodb_initial_admin_password.txt
             MONGO_INITDB_DATABASE: passdeposit
         ports:
             - 127.0.0.1:27017:27017
@@ -28,7 +28,7 @@ services:
 
     mongodb-backup:
         image: ubuntu:16.04
-        command: sh "/var/passdeposit/scripts/init-mongodb-backup.sh"
+        command: sh "/passdeposit/scripts/init-mongodb-backup.sh"
         volumes:
             - ./install:/passdeposit
 
