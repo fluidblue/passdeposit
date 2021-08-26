@@ -1,8 +1,10 @@
 version: "3.8"
 
+# Hint: Versions and tags are set in the file ".env"
+
 services:
     passdeposit:
-        image: node:14
+        image: node:${NODE_TAG}
         command: sh "/passdeposit/scripts/init-passdeposit.sh"
         ports:
             - 8000:8000
@@ -12,7 +14,7 @@ services:
             - ./install:/passdeposit
 
     mongodb:
-        image: mongo:3.6.9
+        image: mongo:${MONGODB_TAG}
         restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
@@ -27,8 +29,10 @@ services:
             - mongodb-config:/data/configdb
 
     mongodb-backup:
-        image: ubuntu:16.04
+        image: ubuntu:${BACKUP_SYSTEM_UBUNTU_TAG}
         command: sh "/passdeposit/scripts/init-mongodb-backup.sh"
+        environment:
+            - MONGODB_VERSION
         volumes:
             - ./install:/passdeposit
 
