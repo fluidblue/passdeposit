@@ -3,6 +3,9 @@
 # Exit script immediately if a command exits with a non-zero status.
 set -e
 
+# Define log file location
+LOG_FILE=/passdeposit/log/backup.log
+
 # Install mongodb-org-tools according to official docs at
 # https://docs.mongodb.com/v3.6/tutorial/install-mongodb-on-ubuntu/
 apt-get update
@@ -18,5 +21,5 @@ cat /passdeposit/config/anacrontab.txt >> /etc/anacrontab
 service anacron start
 
 # Output backup log as docker container log
-touch /passdeposit/log/backup.log
-tail -n 0 -f /passdeposit/log/backup.log
+touch "$LOG_FILE"
+tail -n 0 -f "$LOG_FILE"
