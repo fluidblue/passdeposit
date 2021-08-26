@@ -34,7 +34,11 @@ services:
             - ./install/scripts:/var/passdeposit/scripts
             - ./install/config:/etc/passdeposit
             - ./install/backup:/var/passdeposit/backup
+            - mongodb-data-backup:/data/db
+            - mongodb-config-backup:/data/configdb
 
 volumes:
     mongodb-data:
     mongodb-config:
+    mongodb-data-backup:
+    mongodb-config-backup:
