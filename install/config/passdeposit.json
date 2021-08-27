@@ -2,9 +2,9 @@
 	"port": 8000,
 
 	"https": {
-		"enabled": false,
-		"certFile": "certificate.pem",
-		"keyFile": "privatekey.pem"
+		"enabled": true,
+		"certFile": "/passdeposit/config/certificate.pem",
+		"keyFile": "/passdeposit/config/privatekey.pem"
 	},
 
 	"database": {
@@ -21,5 +21,5 @@
 
 	"registrationEnabled": true,
 
-	"verbose": false
+	"verbose": true
 }
