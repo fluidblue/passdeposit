@@ -6,6 +6,8 @@ It allows you to store and access your passwords online.
 You may be asking yourself: Can I trust PassDeposit? Yes you can!
 PassDeposit has been designed to ensure maximum security for your data.
 
+See the [screenshots](docs/Screenshots.md).
+
 
 ## Installation
 
