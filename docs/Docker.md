@@ -1,6 +1,6 @@
 # PassDeposit Docker Installation
 
-Please read carefully through both this document and the [general installation guide](Install.md).
+In this document, an installation using Docker is presented.
 
 
 ## Installation
@@ -16,7 +16,8 @@ Please read carefully through both this document and the [general installation g
 	cd /opt
 	git clone https://github.com/fluidblue/passdeposit.git
 
-**Configure**
+
+## Configuration
 
 1. Set a password for the MongoDB `admin` account.
 Add your password to the file `install/config/mongodb_initial_admin_password.txt`.
@@ -28,13 +29,16 @@ Also add the password in the files `install/config/passdeposit.json` and `instal
 3. Configure PassDeposit.
 Edit the file `install/config/passdeposit.json`. Details on the options are presented in the [configuration](Install.md#configuration) section of the general installation guide.
 
-**Start PassDeposit**
+
+## Start PassDeposit
 
 	cd /opt/passdeposit
 	docker-compose up -d
 
 
-**Warning**: Your PassDeposit installation will only update when restarting the application stack. This happens e.g. during reboot.
+## Updates
+
+Your PassDeposit installation will only update when restarting the application stack. This happens e.g. during reboot.
 It is recommended to update the application manually (e.g. with cron).
 The following commands trigger an update:
 
