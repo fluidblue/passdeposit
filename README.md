@@ -25,7 +25,7 @@ See the [installation instructions](docs/Install.md#passdeposit-installation) fo
 
 ## Why is it secure?
 
-1. The connection between your browser and the server is secured by SSL/TLS (HTTPS). Thus no one can eavesdrop on the data being exchanged.
+1. The connection between your browser and the server is secured by SSL/TLS (HTTPS).
 
 2. **The server is not able to decrypt your data**, because your password is never sent to the server.
 
@@ -36,8 +36,6 @@ See the [installation instructions](docs/Install.md#passdeposit-installation) fo
 	The server hashes your authentication key with PBKDF2 (300000 iterations) using SHA-1 and a random salt. The random salt is re-generated every time you change your password.
 
 4. After authentication, the connection is secured by using sessions (256 bit random hashes).
-
-5. The database is regularly backed up on two servers. Those servers are not located at the same computing center.
 
 
 ## Tools
