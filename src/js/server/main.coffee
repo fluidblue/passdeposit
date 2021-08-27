@@ -23,7 +23,7 @@ terminate = (signal = "SIGTERM") ->
 	terminating = true
 	log.info "Shutting down..."
 
-	for id in cluster.workers
+	for id of cluster.workers
 		worker = cluster.workers[id]
 
 		if config.get().verbose
@@ -59,8 +59,10 @@ init = ->
 				, restartWait
 
 	# Set termination handlers
-	process.on "SIGINT", terminate "SIGINT"
-	process.on "SIGTERM", terminate "SIGTERM"
+	process.on "SIGINT", ->
+		terminate "SIGINT"
+	process.on "SIGTERM", ->
+		terminate "SIGTERM"
 
 	protocol = if config.get().https.enabled then "https" else "http"
 	log.info "PassDeposit is running at " + protocol + "://localhost:" + config.get().port
