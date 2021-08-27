@@ -1,6 +1,6 @@
 # PassDeposit Installation
 
-Please read carefully through both this document and the [readme](README.md#passdeposit).
+Please read carefully through both this document and the [readme](../README.md#passdeposit).
 
 
 ## Installation

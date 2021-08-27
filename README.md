@@ -10,7 +10,7 @@ PassDeposit has been designed to ensure maximum security for your data.
 ## Installation
 
 You can download and install the latest version of PassDeposit on your server.
-See the [installation instructions](INSTALL.md#passdeposit-installation) for more information.
+See the [installation instructions](docs/Install.md#passdeposit-installation) for more information.
 
 
 ## Features
@@ -20,7 +20,7 @@ See the [installation instructions](INSTALL.md#passdeposit-installation) for mor
 * Connections to PassDeposit are secured by SSL/TLS (HTTPS)
 * PassDeposit is open source, you can review the source code before trusting it
 * Import and export (backup) your data
-* You can [host your own installation](INSTALL.md#passdeposit-installation) of PassDeposit to gain maximum control over your data
+* You can [host your own installation](docs/Install.md#passdeposit-installation) of PassDeposit to gain maximum control over your data
 
 
 ## Why is it secure?
@@ -43,7 +43,7 @@ See the [installation instructions](INSTALL.md#passdeposit-installation) for mor
 ## Tools
 
 * Import your Chrome passwords: [ChromeCSV](https://github.com/cfstras/chromecsv)
-* Want to develop a tool or extension? See [API documentation](API.md#passdeposit-api).
+* Want to develop a tool or extension? See [API documentation](docs/API.md#passdeposit-api).
 
 
 ## Bugs
