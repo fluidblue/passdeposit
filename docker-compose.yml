@@ -28,7 +28,7 @@ services:
 
     mongodb-backup:
         image: ubuntu:${BACKUP_SYSTEM_UBUNTU_TAG}
-        command: sh "/passdeposit/scripts/init-mongodb-backup.sh"
+        command: sh "/passdeposit/scripts/init-mongodb-backup-anacron.sh"
         environment:
             - MONGODB_VERSION
         volumes:
