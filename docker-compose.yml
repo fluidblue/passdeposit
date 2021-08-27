@@ -6,6 +6,7 @@ services:
     passdeposit:
         image: node:${NODE_TAG}
         command: sh "/passdeposit/scripts/init-passdeposit.sh"
+        init: true
         ports:
             - 8000:8000
         volumes:
@@ -29,6 +30,7 @@ services:
     mongodb-backup:
         image: ubuntu:${BACKUP_SYSTEM_UBUNTU_TAG}
         command: sh "/passdeposit/scripts/init-mongodb-backup-anacron.sh"
+        init: true
         environment:
             - MONGODB_VERSION
         volumes:
