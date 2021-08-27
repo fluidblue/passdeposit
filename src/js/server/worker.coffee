@@ -124,6 +124,8 @@ terminate = ->
 		return
 
 	terminating = true
+	if config.get().verbose
+		log.info "Shutting down worker..."
 
 	if server != null
 		# Do not accept new connections.

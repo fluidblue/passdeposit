@@ -25,10 +25,6 @@ terminate = (signal = "SIGTERM") ->
 
 	for id of cluster.workers
 		worker = cluster.workers[id]
-
-		if config.get().verbose
-			log.info "Shutting down worker " + id + "..."
-
 		worker.kill(signal)
 
 	# The master process will exit,
