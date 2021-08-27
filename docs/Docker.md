@@ -1,6 +1,6 @@
 # PassDeposit Docker Installation
 
-In this document, an installation using Docker is presented.
+For installing PassDeposit using Docker, follow the steps in this guide.
 
 
 ## Installation
