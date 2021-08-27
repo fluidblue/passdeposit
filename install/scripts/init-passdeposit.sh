@@ -11,4 +11,4 @@ npm install --global passdeposit
 
 # Start PassDeposit and log output
 echo "Starting PassDeposit. Log file location: $LOG_FILE"
-exec passdeposit --config /passdeposit/config/passdeposit.json 2>&1 >> "$LOG_FILE"
+exec passdeposit --config /passdeposit/config/passdeposit.json >> "$LOG_FILE" 2>&1
