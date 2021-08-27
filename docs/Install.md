@@ -5,6 +5,11 @@ Please read carefully through both this document and the [readme](../README.md#p
 
 ## Installation
 
+There are two types of installations:
+Manual installation and Docker installation.
+In this guide, the manual installation is shown.
+For the Docker installation, see the [Docker installation guide](Docker.md).
+
 **Server requirements**
 
 * [node.js (v6 or later)](http://nodejs.org/)
