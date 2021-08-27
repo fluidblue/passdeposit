@@ -15,10 +15,10 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongod
 apt-get update
 apt-get install -y mongodb-org-tools="$MONGODB_VERSION"
 
-# Install and configure cron
-apt-get install -y cron
-cat /passdeposit/config/crontab.txt | crontab -
+# Install and configure anacron
+apt-get install -y anacron
+cat /passdeposit/config/anacrontab.txt >> /etc/anacrontab
 
-# Start cron
-echo "Starting cron"
-exec /usr/sbin/cron -f
+# Start anacron
+echo "Starting anacron"
+exec /usr/sbin/anacron -ds
