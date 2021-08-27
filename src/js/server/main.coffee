@@ -16,12 +16,20 @@ restartWait = 2000
 # Server state
 terminating = false
 
-terminate = ->
+terminate = (signal = "SIGTERM") ->
 	if terminating
 		return
 
 	terminating = true
 	log.info "Shutting down..."
+
+	for id in cluster.workers
+		worker = cluster.workers[id]
+
+		if config.get().verbose
+			log.info "Shutting down worker " + id + "..."
+
+		worker.kill(signal)
 
 	# The master process will exit,
 	# after all workers have exited.
@@ -51,8 +59,8 @@ init = ->
 				, restartWait
 
 	# Set termination handlers
-	process.on "SIGINT", terminate
-	process.on "SIGTERM", terminate
+	process.on "SIGINT", terminate "SIGINT"
+	process.on "SIGTERM", terminate "SIGTERM"
 
 	protocol = if config.get().https.enabled then "https" else "http"
 	log.info "PassDeposit is running at " + protocol + "://localhost:" + config.get().port
