@@ -180,7 +180,7 @@ init = ->
 		e.preventDefault()
 
 		example = 'uri,service,user,pass,tags\n' +
-		'http://example.com,,username,password,tag1\n' +
+		'https://example.com,,username,password,tag1\n' +
 		',Skype,username,password,"tag1,tag2"'
 
 		$("#options-import-csv textarea").val example

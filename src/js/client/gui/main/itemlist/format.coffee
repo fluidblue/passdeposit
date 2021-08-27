@@ -9,9 +9,9 @@ global = require "../../global"
 core = require "../../../core"
 
 validUri = (uri) ->
-	# Append http protocol, if not given
+	# Append https protocol, if not given
 	if uri.indexOf("://") == -1
-		uri = "http://" + uri
+		uri = "https://" + uri
 
 	return uri
 
