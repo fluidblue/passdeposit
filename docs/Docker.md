@@ -7,6 +7,7 @@ For installing PassDeposit using Docker, follow the steps in this guide.
 
 **Server requirements**
 
+* Linux (e.g. Debian, Ubuntu, Manjaro, ...)
 * [Git](https://git-scm.com/)
 * [Docker (v20.10.8 or later)](https://docs.docker.com/engine/install/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
@@ -50,3 +51,37 @@ The following commands trigger an update:
 	cd /opt/passdeposit
 	docker-compose down
 	docker-compose up -d
+
+
+## Automatic start on boot
+
+You can automatically start PassDeposit when the system boots.
+Create the file `/etc/systemd/system/passdeposit.service` and add the following contents:
+
+	[Unit]
+	Description=PassDeposit
+	Requires=docker.service
+	After=docker.service
+
+	[Service]
+	Restart=always
+	User=root
+	Group=docker
+	WorkingDirectory=/opt/passdeposit
+	# Shutdown application stack (if running) before starting
+	ExecStartPre=/usr/bin/docker-compose -f docker-compose.yml down
+	# Start application stack
+	ExecStart=/usr/bin/docker-compose -f docker-compose.yml up
+	# Stop application stack
+	ExecStop=/usr/bin/docker-compose -f docker-compose.yml down
+
+	[Install]
+	WantedBy=multi-user.target
+
+You can now control PassDeposit with:
+
+	sudo systemctl start|stop|status passdeposit
+
+To start PassDeposit at boot, execute the following command:
+
+	sudo systemctl enable passdeposit
