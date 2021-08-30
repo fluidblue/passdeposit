@@ -11,6 +11,10 @@ stuff
 build
 install/backup/mongo_backup_*
 install/log/*.log
+install/config/mongodb_initial_admin_password.txt
+install/config/mongodb_initial_passdeposit_password.txt
+install/config/mongodb-init-scripts/init.js
+install/config/passdeposit.json
 
 # Exclude all node_modules except local ones
 node_modules/*

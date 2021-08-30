@@ -19,15 +19,20 @@ For installing PassDeposit using Docker, follow the steps in this guide.
 
 ## Configuration
 
-1. Set a password for the MongoDB `admin` account.
-Add your password to the file `install/config/mongodb_initial_admin_password.txt`.
+1. Set a password for the MongoDB `admin` account:
+Create the file `install/config/mongodb_initial_admin_password.txt` and save a new password for the `admin` account in it.
 
-2. Set a password for the MongoDB `passdeposit` account.
-Add your password to the file `install/config/mongodb_initial_passdeposit_password.txt`.
-Also add the password in the files `install/config/passdeposit.json` and `install/config/mongodb-init-scripts/init.js`.
+2. Set a password for the MongoDB `passdeposit` account:
+Create the file `install/config/mongodb_initial_passdeposit_password.txt` and save a new password for the `passdeposit` account in it.
 
-3. Configure PassDeposit.
-Edit the file `install/config/passdeposit.json`. Details on the options are presented in the [configuration](Install.md#configuration) section of the general installation guide.
+3. Copy the file `install/config/mongodb-init-scripts/init.js.sample` to `install/config/mongodb-init-scripts/init.js`.
+Edit the file and set the MongoDB `passdeposit` account password (from step 2).
+
+4. Configure PassDeposit.
+Copy the file `install/config/passdeposit-sample.json` to `install/config/passdeposit.json`.
+Then, edit the file to configure your PassDeposit installation.
+Be sure to set your password for the MongoDB `passdeposit` account (from step 2).
+Details on other options are presented in the [configuration](Install.md#configuration) section of the general installation guide.
 
 
 ## Start PassDeposit
