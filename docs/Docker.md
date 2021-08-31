@@ -56,7 +56,7 @@ The following commands trigger an update:
 ## Automatic start on boot
 
 You can automatically start PassDeposit when the system boots.
-Create the file `/etc/systemd/system/passdeposit.service` and add the following contents:
+Create the file `/etc/systemd/system/passdeposit.service` and add the following content:
 
 	[Unit]
 	Description=PassDeposit
