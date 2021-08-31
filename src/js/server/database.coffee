@@ -135,14 +135,11 @@ init = (callback) ->
 
 	# Set connection options
 	options =
-		server:
-			poolSize: 5 # Concurrent connections to server
-			auto_reconnect: true
-			socketOptions:
-				keepAlive: 1
-		replset:
-			socketOptions:
-				keepAlive: 1
+		poolSize: 5 # Concurrent connections to server
+		auto_reconnect: true
+		keepAlive: 1
+		useNewUrlParser: true
+		useUnifiedTopology: true
 
 	# Connect
 	mongoose.connect databaseUri, options, (err) ->
