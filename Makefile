@@ -131,4 +131,4 @@ msg:
 package:
 	cp ./$(SOURCE_DIR)/npm/* ./$(BUILD_DIR)/
 	cp *.md ./$(BUILD_DIR)/
-	cp -R ./$(DOCS_DIR) ./$(BUILD_MSG_DIR)
+	cp -R ./$(DOCS_DIR) ./$(BUILD_DOCS_DIR)
