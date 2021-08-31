@@ -108,8 +108,8 @@ modify = (userid, items, callback, updateTimestamp = true) ->
 		# Update item in DB
 		database.getModel("item").update conditions,
 			$set: item
-		, (err, raw) ->
-			if err || !raw? || raw.ok != 1 || raw.n != 1
+		, (err, updateWriteOpResult) ->
+			if err || !updateWriteOpResult? || updateWriteOpResult.matchedCount != 1 || updateWriteOpResult.modifiedCount != 1
 				callback
 					status: "db:failed"
 

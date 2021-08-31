@@ -17,7 +17,7 @@
 
 	"dependencies": {
 		"optimist": "0.6.x",
-		"mongoose": "5.13.x",
+		"mongoose": "6.0.x",
 		"email": "0.2.x",
 		"file-saver": "1.3.x"
 	},

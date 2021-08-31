@@ -133,11 +133,17 @@ init = (callback) ->
 
 	databaseUri += config.get().database.database
 
-	# Set connection options
+	# Set connection options.
+	#
+	# Upgrade from mongoose v4.9.x to 6.0.x:
+	# Mongoose passes down the options below to the MongoDB driver's connect function.
+	# Unfortunately, the following options seem not be supported anymore:
+	#   poolSize: 5 # Concurrent connections to server
+	#   autoReconnect: true
+	# However, the defaults for these fields are exactly the values in the lines above,
+	# and therefore it makes no difference if they are included here or not.
 	options =
-		poolSize: 5 # Concurrent connections to server
-		auto_reconnect: true
-		keepAlive: 1
+		keepAlive: true
 		useNewUrlParser: true
 		useUnifiedTopology: true
 

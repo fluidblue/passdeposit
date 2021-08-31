@@ -133,8 +133,8 @@ update = (userid, data, callback) ->
 				_id: userid
 			,
 				$set: user
-			, (err, raw) ->
-				if err || !raw? || raw.ok != 1 || raw.n != 1
+			, (err, updateWriteOpResult) ->
+				if err || !updateWriteOpResult? || updateWriteOpResult.matchedCount != 1 || updateWriteOpResult.modifiedCount != 1
 					# Check for duplicate key error
 					if err.code == 11000 || err.code == 11001
 						callback
@@ -250,8 +250,8 @@ authenticate = (userid, session, callback) ->
 		,
 			$set:
 				lastActive: timestamp
-		, (err, raw) ->
-			if err || !raw? || raw.ok != 1 || raw.n != 1
+		, (err, updateWriteOpResult) ->
+			if err || !updateWriteOpResult? || updateWriteOpResult.matchedCount != 1 || updateWriteOpResult.modifiedCount != 1
 				callback
 					status: "db:failed"
 
