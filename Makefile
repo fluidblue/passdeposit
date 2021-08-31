@@ -119,6 +119,7 @@ server-debug:
 
 
 # Copy messages
+# -------------
 msg:
 	cp -R ./$(SOURCE_DIR)/msg ./$(BUILD_MSG_DIR)
 
