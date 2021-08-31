@@ -18,10 +18,12 @@ SHELL := /bin/bash
 PATH := $(PATH):/usr/local/bin
 SOURCE_DIR = src
 BUILD_DIR = build
+DOCS_DIR = docs
 BUILD_HTTPDOCS_DIR = $(BUILD_DIR)/httpdocs
 BUILD_SERVER_DIR = $(BUILD_DIR)/server
 BUILD_SHARED_DIR = $(BUILD_SERVER_DIR)/shared
 BUILD_MSG_DIR = $(BUILD_SERVER_DIR)/msg
+BUILD_DOCS_DIR = $(BUILD_DIR)/docs
 
 
 # Main target
@@ -129,3 +131,4 @@ msg:
 package:
 	cp ./$(SOURCE_DIR)/npm/* ./$(BUILD_DIR)/
 	cp *.md ./$(BUILD_DIR)/
+	cp -R ./$(DOCS_DIR) ./$(BUILD_MSG_DIR)
