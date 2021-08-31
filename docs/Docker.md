@@ -64,16 +64,21 @@ Create the file `/etc/systemd/system/passdeposit.service` and add the following 
 	After=docker.service
 
 	[Service]
-	Restart=always
+	Type=oneshot
+	RemainAfterExit=yes
+
 	User=root
 	Group=docker
 	WorkingDirectory=/opt/passdeposit
-	# Shutdown application stack (if running) before starting
-	ExecStartPre=/usr/bin/docker-compose -f docker-compose.yml down
+
+	# Create application stack before starting (if not already created)
+	ExecStartPre=/usr/bin/docker-compose -f docker-compose.yml up --no-recreate --no-start
+
 	# Start application stack
-	ExecStart=/usr/bin/docker-compose -f docker-compose.yml up
+	ExecStart=/usr/bin/docker-compose -f docker-compose.yml start
+
 	# Stop application stack
-	ExecStop=/usr/bin/docker-compose -f docker-compose.yml down
+	ExecStop=/usr/bin/docker-compose -f docker-compose.yml stop
 
 	[Install]
 	WantedBy=multi-user.target
