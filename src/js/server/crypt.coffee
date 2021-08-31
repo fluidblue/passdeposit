@@ -29,8 +29,8 @@ session = ->
 
 serverKey = (clientKey, salt, callback) ->
 	# Convert from base64 to binary
-	clientKey = new Buffer(clientKey, "base64")
-	salt = new Buffer(salt, "base64")
+	clientKey = Buffer.from clientKey, "base64"
+	salt = Buffer.from salt, "base64"
 
 	# Create a server key from client key and salt:
 	# PBKDF2-HMAC-SHA1 with given iteration count and keylen 160/8 (length of SHA1)
