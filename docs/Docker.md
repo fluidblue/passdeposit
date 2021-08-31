@@ -49,8 +49,7 @@ It is recommended to update the application manually (e.g. with cron).
 The following commands trigger an update:
 
 	cd /opt/passdeposit
-	docker-compose down
-	docker-compose up -d
+	docker-compose restart
 
 
 ## Automatic start on boot
