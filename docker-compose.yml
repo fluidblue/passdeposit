@@ -19,7 +19,6 @@ services:
 
     mongodb:
         image: mongo:${MONGODB_TAG}
-        restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
             MONGO_INITDB_ROOT_PASSWORD_FILE: /passdeposit/config/mongodb_initial_admin_password.txt
