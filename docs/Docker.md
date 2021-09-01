@@ -86,6 +86,8 @@ You can now control PassDeposit with:
 
 	sudo systemctl start|stop|status passdeposit
 
+Please note that it takes a long time to issue the `start` command for the first time, because docker is pulling the images from the docker server.
+
 To start PassDeposit at boot, execute the following command:
 
 	sudo systemctl enable passdeposit
