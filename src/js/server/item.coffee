@@ -139,7 +139,7 @@ remove = (userid, id, callback) ->
 		_id: id
 		_user: userid
 
-	database.getModel("item").remove conditions, (err) ->
+	database.getModel("item").deleteOne conditions, null, (err) ->
 		if err
 			callback
 				status: "db:failed"

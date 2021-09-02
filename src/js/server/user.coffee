@@ -326,9 +326,9 @@ reset = (resetKey, email, passwordKey, passwordHint, callback) ->
 					return
 
 				# Remove all items
-				database.getModel("item").remove
+				database.getModel("item").deleteMany
 					_user: doc._id
-				, (err) ->
+				, null, (err) ->
 					if err
 						callback
 							status: "db:failed"
