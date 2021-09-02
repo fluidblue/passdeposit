@@ -129,11 +129,11 @@ update = (userid, data, callback) ->
 				salt: salt
 
 			# Write to DB
-			database.getModel("user").update
+			database.getModel("user").updateOne
 				_id: userid
 			,
 				$set: user
-			, (err, updateWriteOpResult) ->
+			, null, (err, updateWriteOpResult) ->
 				if err || !updateWriteOpResult? || updateWriteOpResult.matchedCount != 1 || updateWriteOpResult.modifiedCount != 1
 					# Check for duplicate key error
 					if err.code == 11000 || err.code == 11001
@@ -245,12 +245,12 @@ authenticate = (userid, session, callback) ->
 			return
 
 		# Update lastActive timestamp
-		database.getModel("user").update
+		database.getModel("user").updateOne
 			_id: userid
 		,
 			$set:
 				lastActive: timestamp
-		, (err, updateWriteOpResult) ->
+		, null, (err, updateWriteOpResult) ->
 			if err || !updateWriteOpResult? || updateWriteOpResult.matchedCount != 1 || updateWriteOpResult.modifiedCount != 1
 				callback
 					status: "db:failed"

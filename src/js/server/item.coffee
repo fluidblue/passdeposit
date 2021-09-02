@@ -93,9 +93,12 @@ modify = (userid, items, callback, updateTimestamp = true) ->
 	# TODO: If anything goes wrong, restore old state.
 	# Ideas: Create new user / Use backup items
 
-	# Unfortunately, mongoose doesn't allow updating
+	# Unfortunately, mongoose v4.9.x doesn't allow updating
 	# multiple documents, like in model.create(...).
 	# Therefore we must loop through the array by ourselves.
+	# Update: mongoose v6.0.x seems to allow updating multiple
+	# documents.
+	# TODO: Use <model>.updateMany instead of <model>.updateOne.
 	next = ->
 		# Get next item
 		item = items.pop()
@@ -106,9 +109,9 @@ modify = (userid, items, callback, updateTimestamp = true) ->
 			_user: userid
 
 		# Update item in DB
-		database.getModel("item").update conditions,
+		database.getModel("item").updateOne conditions,
 			$set: item
-		, (err, updateWriteOpResult) ->
+		, null, (err, updateWriteOpResult) ->
 			if err || !updateWriteOpResult? || updateWriteOpResult.matchedCount != 1 || updateWriteOpResult.modifiedCount != 1
 				callback
 					status: "db:failed"
