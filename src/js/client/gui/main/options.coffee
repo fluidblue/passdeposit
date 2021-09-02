@@ -98,6 +98,7 @@ changePassword = ->
 		global.form.focus "#options-password"
 		return false
 
+	global.jGrowl.show global.text.get("optionsPasswordChangeHint")
 	core.user.updatePassword $("#changePass").val(), $("#changePassHint").val(), (response) ->
 		if response.status == "success"
 			global.jGrowl.show global.text.get("optionsSaved")
