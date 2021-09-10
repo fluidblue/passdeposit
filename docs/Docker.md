@@ -44,13 +44,13 @@ Details on other options are presented in the [configuration](Install.md#configu
 
 ## Updates
 
-Your PassDeposit installation will only update when restarting the application stack. This happens e.g. during reboot.
-It is recommended to update the application manually (e.g. with cron).
+It is recommended to update the application regularly (e.g. with cron).
 The following commands trigger an update:
 
 	cd /opt/passdeposit
 	git pull
-	docker-compose restart
+	docker-compose down
+	docker-compose up -d
 
 
 ## Automatic start on boot
@@ -85,7 +85,7 @@ Create the file `/etc/systemd/system/passdeposit.service` and add the following 
 
 You can now control PassDeposit with:
 
-	sudo systemctl start|stop|status passdeposit
+	sudo systemctl start|stop|restart|status passdeposit
 
 Please note that it takes a long time to issue the `start` command for the first time, because docker is pulling the images from the docker server.
 
