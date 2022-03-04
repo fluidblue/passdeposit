@@ -48,47 +48,6 @@ It is recommended to update the application regularly (e.g. with cron).
 The following commands trigger an update:
 
 	cd /opt/passdeposit
-	git pull
 	docker-compose down
+	git pull
 	docker-compose up -d
-
-
-## Automatic start on boot
-
-You can automatically start PassDeposit when the system boots.
-Create the file `/etc/systemd/system/passdeposit.service` and add the following content:
-
-	[Unit]
-	Description=PassDeposit
-	Requires=docker.service
-	After=docker.service
-
-	[Service]
-	Type=oneshot
-	RemainAfterExit=yes
-
-	User=root
-	Group=docker
-	WorkingDirectory=/opt/passdeposit
-
-	# Create application stack before starting (if not already created)
-	ExecStartPre=/usr/bin/docker-compose -f docker-compose.yml up --no-recreate --no-start
-
-	# Start application stack
-	ExecStart=/usr/bin/docker-compose -f docker-compose.yml start
-
-	# Stop application stack
-	ExecStop=/usr/bin/docker-compose -f docker-compose.yml stop
-
-	[Install]
-	WantedBy=multi-user.target
-
-You can now control PassDeposit with:
-
-	sudo systemctl start|stop|restart|status passdeposit
-
-Please note that it takes a long time to issue the `start` command for the first time, because docker is pulling the images from the docker server.
-
-To start PassDeposit at boot, execute the following command:
-
-	sudo systemctl enable passdeposit
