@@ -7,6 +7,7 @@ services:
         image: node:${NODE_TAG}
         command: sh "/passdeposit/scripts/init-passdeposit.sh"
         init: true
+        restart: always
         ports:
             - 127.0.0.1:8000:8000
         volumes:
@@ -19,6 +20,7 @@ services:
 
     mongodb:
         image: mongo:${MONGODB_TAG}
+        restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
             MONGO_INITDB_ROOT_PASSWORD_FILE: /passdeposit/config/mongodb_initial_admin_password.txt
@@ -40,6 +42,7 @@ services:
         image: ubuntu:${BACKUP_SYSTEM_UBUNTU_TAG}
         command: sh "/passdeposit/scripts/init-mongodb-backup-cron.sh"
         init: true
+        restart: always
         environment:
             - MONGODB_VERSION
         volumes:
